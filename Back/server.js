@@ -2,7 +2,6 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { PORT } from './env.js';
-import { route404 } from './src/controllers/errors/route404.js';
 
 const app = express();
 

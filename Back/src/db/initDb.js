@@ -1,0 +1,132 @@
+import { MYSQL_DATABASE } from '../../env.js';
+import { getPool } from './getPool.js';
+const initDb = async () => {
+  try {
+    // Obtener el pool de conexiones
+    const pool = await getPool();
+
+    console.log(MYSQL_DATABASE);
+
+    // Poner en uso la base de datos
+    console.log('Poniendo en uso la base de datos 📑');
+    await pool.query(`USE ${MYSQL_DATABASE}`);
+    console.log('Base de datos en uso ✅ 📑');
+
+    // Eliminar las tablas tweets y users si existen
+    console.log('Eliminando las tablas tweets y users si existen 🗑');
+    await pool.query(
+      'DROP TABLE IF EXISTS ratings , responses , consultations , doctors_desciplines , desciplines , doctors , users'
+    );
+    console.log('Tablas eliminadas ✅ 🗑');
+
+    // Crear la tabla users
+    console.log('Creando la tabla users 📑');
+    await pool.query(`
+    CREATE TABLE users (
+      user_id VARCHAR(35) PRIMARY KEY NOT NULL,
+      email VARCHAR(100) UNIQUE NOT NULL,
+      username VARCHAR(30) UNIQUE NOT NULL,
+      password VARCHAR(30) NOT NULL,
+      role ENUM("doctor" , "patient") NOT NULL,
+      validation_code VARCHAR(35) NOT NULL,
+      recovery_code VARCHAR(35) NOT NULL,
+      first_name VARCHAR(30) NOT NULL,
+      last_name VARCHAR(30),
+      first_surname VARCHAR(30) NOT NULL,
+      last_surname VARCHAR(30),
+      avatar VARCHAR(50),
+      bio VARCHAR(255),
+      adress VARCHAR(100),
+      phone_number VARCHAR(15),
+      birth_date DATETIME,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      is_active BOOLEAN DEFAULT False
+      );
+    `);
+    console.log('Tabla users creada ✅ 📑');
+
+    // Crear la tabla doctors
+    console.log('Creando la tabla doctors 📑');
+    await pool.query(`
+    CREATE TABLE doctors (
+      doctor_id VARCHAR(35) PRIMARY KEY NOT NULL,
+      user_id VARCHAR(35) NOT NULL,
+      doctor_registration_number VARCHAR(15) NOT NULL,
+      FOREIGN KEY (user_id) REFERENCES users(user_id)
+      );
+    `);
+    console.log('Tabla doctors creada ✅ 📑');
+
+    // Crear la tabla doctors_desciplines
+    console.log('Creando la tabla doctors_desciplines 📑');
+    await pool.query(`
+        CREATE TABLE disciplines (
+          discipline_id VARCHAR(35) PRIMARY KEY NOT NULL,
+          name VARCHAR(30) NOT NULL
+         );
+        `);
+    console.log('Tabla doctors_desciplines creada ✅ 📑');
+
+    // Crear la tabla doctors_desciplines
+    console.log('Creando la tabla consultations 📑');
+    await pool.query(`
+           CREATE TABLE consultations (
+            consultation_id VARCHAR(35) PRIMARY KEY NOT NULL,
+            user_id VARCHAR(32) NOT NULL,
+            discipline_id VARCHAR(32) NOT NULL,
+            doctor_id VARCHAR(32),
+            title VARCHAR(50) NOT NULL,
+            description TEXT NOT NULL,
+            file VARCHAR(40),
+            severity ENUM("high" , "medium" , "low") NOT NULL,
+            is_private BOOLEAN DEFAULT False, 
+            is_active BOOLEAN DEFAULT True,
+            is_pending BOOLEAN DEFAULT True,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(user_id),
+            FOREIGN KEY (discipline_id) REFERENCES disciplines(discipline_id),
+            FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id)
+           );
+           `);
+    console.log('Tabla consultations creada ✅ 📑');
+
+    // Crear la tabla responses
+    console.log('Creando la tabla responses  📑');
+    await pool.query(`
+        CREATE TABLE responses (
+          response_id VARCHAR(35) PRIMARY KEY NOT NULL,
+          consultation_id VARCHAR(35) NOT NULL,
+          user_id VARCHAR(35) NOT NULL,
+          content TEXT NOT NULL,
+          created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+          FOREIGN KEY (consultation_id) REFERENCES consultations(consultation_id),
+          FOREIGN KEY (user_id) REFERENCES users(user_id)
+          );
+            `);
+    console.log('Tabla responses  creada ✅ 📑');
+
+    // Crear la tabla ratings
+    console.log('Creando la tabla ratings   📑');
+    await pool.query(`
+        CREATE TABLE ratings (
+          rating_id VARCHAR(35) PRIMARY KEY NOT NULL,
+          response_id VARCHAR(35) NOT NULL,
+          user_id VARCHAR(35) NOT NULL,
+          rating_value TINYINT NOT NULL, 
+          FOREIGN KEY (user_id) REFERENCES users(user_id),
+          FOREIGN KEY (response_id) REFERENCES responses(response_id)
+          );
+                `);
+    console.log('Tabla ratings creada ✅ 📑');
+
+    console.log('Base de datos inicializada 🚀');
+    process.exit(0);
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+};
+
+initDb();
