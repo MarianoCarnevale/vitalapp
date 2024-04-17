@@ -1,10 +1,16 @@
 // Importamos las dependencias necesarias para el servidor
-import 'dotenv/config';
 import express from 'express';
+import fileUpload from 'express-fileupload';
+import morgan from 'morgan';
 import cors from 'cors';
 import { PORT } from './env.js';
 
 const app = express();
+
+//middlewares
+app.use(express.json());
+app.use(fileUpload());
+app.use(morgan('dev'));
 
 app.use(cors());
 
