@@ -1,3 +1,4 @@
+// Importamos las dependencias necesarias para el servidor
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
