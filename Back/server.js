@@ -2,6 +2,7 @@
 import express from 'express';
 import fileUpload from 'express-fileupload';
 import morgan from 'morgan';
+import { router } from './src/routes/index.js';
 import cors from 'cors';
 import { PORT } from './env.js';
 
@@ -11,8 +12,12 @@ const app = express();
 app.use(express.json());
 app.use(fileUpload());
 app.use(morgan('dev'));
+app.use('/uploads', express.static('./uploads'));
 
 app.use(cors());
+
+// Middleware que indica a express dónde están las rutas.
+app.use(router);
 
 // Middleware de 404
 app.use((req, res) => {
