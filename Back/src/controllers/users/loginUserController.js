@@ -34,11 +34,6 @@ export const loginUserController = async (req, res, next) => {
       validPass = await bcrypt.compare(password, user.password);
     }
 
-    // Prueba para ver si la pass es correcta sin el hasheo que habrá que hacer
-    // const pruebaPass = true;
-
-    // console.log('Contraseña validada');
-
     // Si el usuario no existe o la contraseña no es correcta, lanzar un error.
     if (!user || !validPass) {
       throw generateError('Email y/o contraseña incorrectas', 401);

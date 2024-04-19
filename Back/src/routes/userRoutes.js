@@ -32,4 +32,4 @@ userRouter.post('/users/login', loginUserController);
 userRouter.post('/users/recoverpass', recoverPassController);
 
 // Actualizar contraseña.
-userRouter.put('/users/updatepass', updatePassController);
+userRouter.put('/users/update/:recovery_code', updatePassController);

@@ -2,7 +2,7 @@
 import bcrypt from 'bcrypt';
 
 // Importamos modelos, esquemas y validadores
-import { selectUserByEmailModel } from '../../models/users/selectUserByEmailModel.js';
+import { selectUserByRecoveryCodeModel } from '../../models/users/selectUserByRecoveryCodeModel.js';
 import { updateUserPassModel } from '../../models/users/updateUserPassModel.js';
 import { updatePassSchema } from '../../schemas/users/updatePassSchema.js';
 import { validateSchemaUtil } from '../../utils/validateSchemaUtil.js';
@@ -13,21 +13,24 @@ import { generateError } from '../../utils/errors/generateError.js';
 export const updatePassController = async (req, res, next) => {
   try {
     // Obtener los datos del body.
-    const { email, password } = req.body;
-    console.log('Cogimos el email y la pass del req.body');
+    const { password } = req.body;
+    console.log(password);
+    // Obtener el recovery_code de los params
+    const { recovery_code } = req.params;
+    console.log(recovery_code);
 
     // Validamos los datos con Joi.
     await validateSchemaUtil(updatePassSchema, req.body);
 
     // Selección del usuario por email.
-    const user = await selectUserByEmailModel(email);
+    const user = await selectUserByRecoveryCodeModel(recovery_code);
 
     console.log(user);
 
     // Si no existe un usuario registrado con ese email, creamos un error
     if (!user) {
       throw generateError(
-        'No existe ningún usuario registado con ese email',
+        'No existe ningún usuario registado con ese recovery code',
         401
       );
     }
@@ -41,20 +44,16 @@ export const updatePassController = async (req, res, next) => {
     }
 
     // Hasheamos la contraseña.
-    // const hashedPass = await bcrypt.hash(password, 10);
-
-    const pruebaPass = '654321';
+    const hashedPass = await bcrypt.hash(password, 10);
 
     // Cambiamos la contraseña en la base de datos
-    await updateUserPassModel(pruebaPass, email);
+    await updateUserPassModel(hashedPass, recovery_code);
 
     // Enviar la respuesta.
     res.status(200).send({
       status: 'ok',
       message: 'Contraseña cambiada correctamente',
-      data: {
-        email,
-      },
+      data: {},
     });
   } catch (error) {
     next(error);

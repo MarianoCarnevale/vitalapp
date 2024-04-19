@@ -5,12 +5,14 @@ export const validateUserController = async (req, res, next) => {
   try {
     console.log('validateUserController');
     // Obtener el código de registro.
-    const { registrationCode } = req.params;
+    const { validation_code } = req.params;
+
+    console.log(validation_code);
 
     // Verificar si existe un usuario con ese código de registro.
-    await selectUserByValidationCodeModel(registrationCode);
+    await selectUserByValidationCodeModel(validation_code);
     // Activar el usuario.
-    const result = await updateUserActivationModel(registrationCode);
+    const result = await updateUserActivationModel(validation_code);
 
     // Devolver una respuesta.
     res.status(201).send({

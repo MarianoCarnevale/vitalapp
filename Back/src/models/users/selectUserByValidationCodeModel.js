@@ -17,7 +17,7 @@ export const selectUserByValidationCodeModel = async (validation_code) => {
   }
 
   // Si existe el usuario, comprobar si está activo.
-  if (users[0].active) {
+  if (users[0].is_active) {
     throw generateError(`El usuario ya ha sido activado`, 400);
   }
 

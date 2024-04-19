@@ -5,7 +5,7 @@ export const updateUserActivationModel = async (validation_code) => {
 
   // Actualizar el usuario con ese código de registro.
   const [result] = await pool.query(
-    `UPDATE users SET active = 1 WHERE validation_code = ?`,
+    `UPDATE users SET is_active = 1 WHERE validation_code = ?`,
     [validation_code]
   );
 

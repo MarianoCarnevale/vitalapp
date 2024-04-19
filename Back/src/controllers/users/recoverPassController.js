@@ -45,7 +45,7 @@ export const recoverPassController = async (req, res, next) => {
 
     // Creamos el cuerpo del email de verificación.
     const emailText = `
-    <p>Este es tu código de recuperación ${recoveryCode}</p>
+    <p>Para restablecer tu cuenta pulsa en este <a href="http://localhost:4000/users/recovery/${recoveryCode}">enlace</a></p>
     `;
 
     // Enviamos el email de verificación.
