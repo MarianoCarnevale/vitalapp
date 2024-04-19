@@ -1,7 +1,7 @@
 // Importamos las dependencias.
 import nodemailer from 'nodemailer';
 
-// Importamos los errores.
+// Importamos manejador de errores.
 import { generateError } from './errors/generateError.js';
 
 // Obtenemos las variables de entorno necesarias.

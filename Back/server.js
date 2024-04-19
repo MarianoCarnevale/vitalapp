@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { router } from './src/routes/index.js';
 import cors from 'cors';
 import { PORT } from './env.js';
+import { router } from './src/routes/index.js';
 
 const app = express();
 
@@ -12,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(fileUpload());
 app.use(morgan('dev'));
+
 app.use('/uploads', express.static('./uploads'));
 
 app.use(cors());

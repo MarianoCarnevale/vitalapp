@@ -1,16 +1,16 @@
+// Importamos las dependencias.
 import express from 'express';
 
+// Importamos los controladores.
 import {
-  // updateUserAvatarController,
-  // deleteUserController,
-  // updateUserController,
-  // getOwnUserController,
-  // getUserProfileController,
-  // loginUserController,
   newUserController,
   validateUserController,
+  loginUserController,
+  recoverPassController,
+  updatePassController,
 } from '../controllers/users/index.js';
 
+// Importamos los middlewares.
 import {
   // authUserController,
   userExistsController,
@@ -26,39 +26,10 @@ userRouter.post('/users/register', newUserController);
 userRouter.put('/users/validate/:validation_code', validateUserController);
 
 // Login de usuario.
-// userRouter.post('/users/login', loginUserController);
+userRouter.post('/users/login', loginUserController);
 
-// Obtener perfil público de un usuario.
-// userRouter.get(
-//   '/users/:userId',
-//   userExistsController,
-//   getUserProfileController
-// );
+// Envío de recuperación de código de contraseña.
+userRouter.post('/users/recoverpass', recoverPassController);
 
-// Obtener perfil privado de un usuario.
-// userRouter.get(
-//   '/users',
-//   authUserController,
-//   userExistsController,
-//   getOwnUserController
-// );
-
-// Editar un usuario.
-// userRouter.put(
-//   '/users',
-//   authUserController,
-//   userExistsController,
-//   updateUserController
-// );
-
-// Editar el avatar de un usuario.
-// userRouter.put(
-//   '/users/avatar',
-//   authUserController,
-//   userExistsController,
-//   updateUserAvatarController
-// );
-
-// Eliminar un usuario.
-
-// userRouter.delete('/users', authUserController, deleteUserController);
+// Actualizar contraseña.
+userRouter.put('/users/updatepass', updatePassController);
