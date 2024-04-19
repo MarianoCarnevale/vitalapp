@@ -12,10 +12,12 @@ const initDb = async () => {
     await pool.query(`USE ${MYSQL_DATABASE}`);
     console.log('Base de datos en uso ✅ 📑');
 
-    // Eliminar las tablas tweets y users si existen
-    console.log('Eliminando las tablas tweets y users si existen 🗑');
+    // Eliminar las tablas ratings , responses , consultations , doctors_desciplines , desciplines , doctors , users si existen
+    console.log(
+      'Eliminando las tablas ratings , responses , consultations , doctors_desciplines , desciplines , doctors , users si existen '
+    );
     await pool.query(
-      'DROP TABLE IF EXISTS ratings , responses , consultations , doctors_desciplines , desciplines , doctors , users'
+      'DROP TABLE IF EXISTS ratings , responses , consultations , doctors_disciplines , disciplines , doctors , users'
     );
     console.log('Tablas eliminadas ✅ 🗑');
 
@@ -59,16 +61,30 @@ const initDb = async () => {
     console.log('Tabla doctors creada ✅ 📑');
 
     // Crear la tabla doctors_desciplines
-    console.log('Creando la tabla doctors_desciplines 📑');
+    console.log('Creando la tabla desciplines 📑');
     await pool.query(`
         CREATE TABLE disciplines (
           discipline_id VARCHAR(35) PRIMARY KEY NOT NULL,
           name VARCHAR(30) NOT NULL
          );
         `);
-    console.log('Tabla doctors_desciplines creada ✅ 📑');
+    console.log('Tabla desciplines creada ✅ 📑');
 
-    // Crear la tabla doctors_desciplines
+    // Crear la tabla doctors_disciplines
+    console.log('Creando la tabla doctors_disciplines 📑');
+    await pool.query(`
+    CREATE TABLE doctors_disciplines (
+      doctor_id VARCHAR(35) NOT NULL,
+      discipline_id VARCHAR(32) NOT NULL,
+      experience DATE NOT NULL,
+      PRIMARY KEY (doctor_id, discipline_id),
+      FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id),
+      FOREIGN KEY (discipline_id) REFERENCES disciplines(discipline_id)
+     );
+        `);
+    console.log('Tabla doctors_disciplines creada ✅ 📑');
+
+    // Crear tabla consultations
     console.log('Creando la tabla consultations 📑');
     await pool.query(`
            CREATE TABLE consultations (
