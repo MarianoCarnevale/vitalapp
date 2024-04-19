@@ -5,7 +5,7 @@ import express from 'express';
 import {
   loginUserController,
   recoverPassController,
-  // updatePassController,
+  updatePassController,
 } from '../controllers/users/index.js';
 
 // Importamos los middlewares.
@@ -20,5 +20,5 @@ userRouter.post('/users/login', loginUserController);
 // Envío de recuperación de código de contraseña.
 userRouter.post('/users/recoverpass', recoverPassController);
 
-// // Actualizar contraseña.
-// userRouter.put('/users/updatepass', authUserController, updatePassController);
+// Actualizar contraseña.
+userRouter.put('/users/updatepass', updatePassController);

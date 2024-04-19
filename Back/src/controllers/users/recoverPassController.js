@@ -6,7 +6,6 @@ import { sendEmailUtil } from '../../utils/sendEmailUtil.js';
 
 // Importamos la utilidad para generar un error.
 import { generateError } from '../../utils/errors/generateError.js';
-import { getRecoverPassByEmailModel } from '../../models/users/getRecoverPassByEmailModel.js';
 
 export const recoverPassController = async (req, res, next) => {
   try {
@@ -26,6 +25,14 @@ export const recoverPassController = async (req, res, next) => {
     if (!user) {
       throw generateError(
         'No existe ningún usuario registado con ese email',
+        401
+      );
+    }
+
+    // Si existe un usuario registrado con ese email, pero no esta activado creamos un error
+    if (!user.is_active) {
+      throw generateError(
+        'Este usuario está pendiente de activación, revisa el correo',
         401
       );
     }
