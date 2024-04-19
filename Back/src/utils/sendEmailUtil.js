@@ -30,6 +30,6 @@ export const sendEmailUtil = async (to, subject, text) => {
     console.log('Email enviado ✅ 📧');
   } catch (error) {
     console.error(error);
-    throw generateError('Ha ocurrido un error al enviar el mensaje', 400);
+    throw generateError('Error al enviar el email', 500);
   }
 };

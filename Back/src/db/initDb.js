@@ -23,13 +23,13 @@ const initDb = async () => {
     console.log('Creando la tabla users 📑');
     await pool.query(`
     CREATE TABLE users (
-      user_id VARCHAR(35) PRIMARY KEY NOT NULL,
+      user_id VARCHAR(100) PRIMARY KEY NOT NULL,
       email VARCHAR(100) UNIQUE NOT NULL,
       username VARCHAR(30) UNIQUE NOT NULL,
-      password VARCHAR(30) NOT NULL,
+      password VARCHAR(100) NOT NULL,
       role ENUM("doctor" , "patient") NOT NULL,
-      validation_code VARCHAR(35) NOT NULL,
-      recovery_code VARCHAR(35) NOT NULL,
+      validation_code VARCHAR(100) NOT NULL,
+      recovery_code VARCHAR(100) NOT NULL,
       first_name VARCHAR(30) NOT NULL,
       last_name VARCHAR(30),
       first_surname VARCHAR(30) NOT NULL,
