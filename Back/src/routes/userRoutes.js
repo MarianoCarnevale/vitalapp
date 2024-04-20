@@ -8,11 +8,12 @@ import {
   loginUserController,
   recoverPassController,
   updatePassController,
+  updateUserController,
 } from '../controllers/users/index.js';
 
 // Importamos los middlewares.
 import {
-  // authUserController,
+  authUserController,
   userExistsController,
 } from '../middlewares/index.js';
 
@@ -33,3 +34,11 @@ userRouter.post('/users/recoverpass', recoverPassController);
 
 // Actualizar contraseña.
 userRouter.put('/users/update/:recovery_code', updatePassController);
+
+// Actualizar informamción de usuario
+userRouter.put(
+  '/users/actualizar',
+  authUserController,
+  userExistsController,
+  updateUserController
+);

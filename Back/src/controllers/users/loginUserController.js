@@ -46,7 +46,7 @@ export const loginUserController = async (req, res, next) => {
 
     // Objeto con la información del usuario que se enviará en el token.
     const tokenInfo = {
-      id: user.id,
+      id: user.user_id,
       role: user.role,
     };
 
