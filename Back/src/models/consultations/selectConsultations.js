@@ -1,4 +1,3 @@
-import { MYSQL_DATABASE } from "../../../env.js";
 import { getPool } from "../../db/getPool.js"
 import { generateError } from "../../utils/errors/generateError.js";
 
