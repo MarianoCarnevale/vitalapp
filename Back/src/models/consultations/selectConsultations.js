@@ -1,13 +1,17 @@
 import { getPool } from "../../db/getPool.js"
 import { generateError } from "../../utils/errors/generateError.js";
 
-export const selectConsultations = async () => {
+export const selectConsultations = async (query) => {
   try {
     //Esperamos conexion de la base de datos
     const pool = await getPool();
-
-    //Peticon a la base de datos
-    const [consultations] = await pool.query(`SELECT * FROM vitalapp.consultations`);
+    
+    if(query){
+      const [consultations] = await pool.query(query);
+    }else{
+      //Peticon a la base de datos
+      const [consultations] = await pool.query(`SELECT * FROM vitalapp.consultations`);
+    }
     
     //retorno de los datos
     return consultations;

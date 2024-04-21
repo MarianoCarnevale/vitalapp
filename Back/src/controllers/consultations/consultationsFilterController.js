@@ -1,33 +1,39 @@
 import { selectConsultationsByFilter } from "../../models/consultations/index.js";
+import { severityValidation } from "../../utils/severityValidation.js";
 
 export const consultationsFilterController= async (req ,res ,next) => {
-  try {
 
+  try {
     //Sacar todos los parametros del body
     const  {
     username,
     name,
     last_name,
     user_type,
+    severity,
     speciality,
     order
   }  = req.body
 
+    
   //Creamos un array vacio 
   let filter = []
 
   //Empezamos a añadir filtros sengun existan 
-  if(!!username){
+  if(username){
     filter.push(' AND ',`username = ${username}`)};
-  if(!!name){
+  if(name){
     filter.push(' AND ',`name = ${name}`) };
-  if(!!last_name){
+  if(last_name){
     filter.push(' AND ',`last_name = ${last_name}`) };
-  if(!!user_type){
+  if(user_type){
     filter.push(' AND ',`user_type = ${user_type}`) };
-  if(!!speciality){
+  if(severity){
+    severityValidation(severity)
+    filter.push(' AND ',`severity = ${severity}`)};
+  if(speciality){
     filter.push(' AND ',`speciality = ${speciality}`) };
-  if(!!order){
+  if(order){
     filter.push(' AND ',`order = ${order}`) };
   
   //Eliminamos el primer And del array

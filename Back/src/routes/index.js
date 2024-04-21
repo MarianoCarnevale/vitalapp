@@ -10,4 +10,4 @@ export const router = express.Router();
 
 // Usamos los routers de usuarios.
 router.use(userRouter);
-router.use('/consultations',consultationsRouter);
+router.use(consultationsRouter);

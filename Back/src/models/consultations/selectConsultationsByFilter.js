@@ -6,6 +6,8 @@ export const selectConsultationsByFilter = async (filter) => {
     //Esperamos conexion de la base de datos
     const pool = await getPool();
 
+    //Aqui va el schema de la base crear una nueva consulta
+
     //Peticon a la base de datos
     //Unimos el WHERE con los filtros que llegan de el controlador
     const [consultations] = await pool.query(`
