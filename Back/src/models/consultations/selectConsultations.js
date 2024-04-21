@@ -10,7 +10,8 @@ export const selectConsultations = async (query) => {
       const [consultations] = await pool.query(query);
     }else{
       //Peticon a la base de datos
-      const [consultations] = await pool.query(`SELECT * FROM vitalapp.consultations`);
+      const [consultations] = await pool.query(`SELECT * 
+      FROM vitalapp.consultations`);
     }
     
     //retorno de los datos

@@ -1,4 +1,5 @@
 import { selectConsultationsByFilter } from "../../models/consultations/index.js";
+import { filter } from "../../utils/Filter.js";
 import { severityValidation } from "../../utils/severityValidation.js";
 
 export const consultationsFilterController= async (req ,res ,next) => {
@@ -17,36 +18,28 @@ export const consultationsFilterController= async (req ,res ,next) => {
 
     
   //Creamos un array vacio 
-  let filter = []
+  let filtro = []
 
   //Empezamos a añadir filtros sengun existan 
-  if(username){
-    filter.push(' AND ',`username = ${username}`)};
-  if(name){
-    filter.push(' AND ',`name = ${name}`) };
-  if(last_name){
-    filter.push(' AND ',`last_name = ${last_name}`) };
-  if(user_type){
-    filter.push(' AND ',`user_type = ${user_type}`) };
-  if(severity){
-    severityValidation(severity)
-    filter.push(' AND ',`severity = ${severity}`)};
-  if(speciality){
-    filter.push(' AND ',`speciality = ${speciality}`) };
-  if(order){
-    filter.push(' AND ',`order = ${order}`) };
+  filter(filtro, 'username', username);
+  filter(filtro, 'firtsname', firstname);
+  filter(filtro, 'lastname', last_name);
+  filter(filtro, 'user_type', user_type);
+  filter(filtro, 'severity', severity);
+  filter(filtro, 'speciality', speciality);
+  //Orden se agrega como GROUP BY orden DES/ASC
   
   //Eliminamos el primer And del array
-  filter = filter.slice(1,filter.length)
+  filtro = filtro.slice(1,filtro.length)
 
   //Unimos todo por espacios
-  filter = filter.join(' ')
+  filtro = filtro.join(' ')
   
   //pasamostodos los elementos que iran en la consulta
   //name = name AND last_name = last_name AND order = order
 
   //recibir datos de la tabla 
-  const [consultations] = await selectConsultationsByFilter(filter);
+  const [consultations] = await selectConsultationsByFilter(filtro);
 
   res.status(200).send({
     status : 'Ok',
