@@ -1,4 +1,7 @@
 import { consultationsController } from "./consultationsController.js";
-import {consultationsSeverityController} from "./consultationsSeverityController.js"
+import {consultationsFilterController} from "./consultationsFilterController.js"
 
-export {consultationsController, consultationsSeverityController};
+export {
+  consultationsController, 
+  consultationsFilterController};
+

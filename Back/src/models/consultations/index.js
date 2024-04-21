@@ -1,4 +1,4 @@
 import { selectConsultations } from "./selectConsultations.js";
-import { selectConsultationsBySeverity } from "./selectConsultationsBySeverity.js";
+import { selectConsultationsByFilter } from "./selectConsultationsByFilter.js";
 
-export {selectConsultations, selectConsultationsBySeverity}
+export {selectConsultations, selectConsultationsByFilter }

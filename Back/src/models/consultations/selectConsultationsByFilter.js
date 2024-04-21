@@ -1,14 +1,15 @@
 import { getPool } from "../../db/getPool.js";
 import { generateError } from "../../utils/errors/generateError.js";
 
-export const selectConsultationsBySeverity = async (severity, user_id) => {
+export const selectConsultationsByFilter = async (filter) => {
   try {
     //Esperamos conexion de la base de datos
     const pool = await getPool();
 
     //Peticon a la base de datos
+    //Unimos el WHERE con los filtros que llegan de el controlador
     const [consultations] = await pool.query(`
-    SELECT * FROM consultations WHERE severity = ? AND user_id = ?`[severity, user_id] 
+    SELECT * FROM vitalapp.consultations WHERE ${filter}` 
   );
     
     //retorno de los datos
