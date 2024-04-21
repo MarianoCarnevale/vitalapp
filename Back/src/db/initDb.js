@@ -50,8 +50,8 @@ const initDb = async () => {
     console.log('Creando la tabla doctors 📑');
     await pool.query(`
     CREATE TABLE doctors (
-      doctor_id VARCHAR(35) PRIMARY KEY NOT NULL,
-      user_id VARCHAR(35) NOT NULL,
+      doctor_id VARCHAR(100) PRIMARY KEY NOT NULL,
+      user_id VARCHAR(100) NOT NULL,
       doctor_registration_number VARCHAR(15) NOT NULL,
       FOREIGN KEY (user_id) REFERENCES users(user_id)
       );
@@ -62,7 +62,7 @@ const initDb = async () => {
     console.log('Creando la tabla disciplines 📑');
     await pool.query(`
         CREATE TABLE disciplines (
-          discipline_id VARCHAR(35) PRIMARY KEY NOT NULL,
+          discipline_id VARCHAR(100) PRIMARY KEY NOT NULL,
           name VARCHAR(30) NOT NULL
          );
         `);
@@ -72,8 +72,8 @@ const initDb = async () => {
     console.log('Creando la tabla doctors_disciplines 📑');
     await pool.query(`
     CREATE TABLE doctors_disciplines (
-      doctor_id VARCHAR(35) NOT NULL,
-      discipline_id VARCHAR(32) NOT NULL,
+      doctor_id VARCHAR(100) NOT NULL,
+      discipline_id VARCHAR(100) NOT NULL,
       experience DATE NOT NULL,
       PRIMARY KEY (doctor_id, discipline_id),
       FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id),
@@ -86,10 +86,10 @@ const initDb = async () => {
     console.log('Creando la tabla consultations 📑');
     await pool.query(`
            CREATE TABLE consultations (
-            consultation_id VARCHAR(35) PRIMARY KEY NOT NULL,
-            user_id VARCHAR(32) NOT NULL,
-            discipline_id VARCHAR(32) NOT NULL,
-            doctor_id VARCHAR(32),
+            consultation_id VARCHAR(100) PRIMARY KEY NOT NULL,
+            user_id VARCHAR(100) NOT NULL,
+            discipline_id VARCHAR(100) NOT NULL,
+            doctor_id VARCHAR(100),
             title VARCHAR(50) NOT NULL,
             description TEXT NOT NULL,
             file VARCHAR(40),
@@ -110,9 +110,9 @@ const initDb = async () => {
     console.log('Creando la tabla responses  📑');
     await pool.query(`
         CREATE TABLE responses (
-          response_id VARCHAR(35) PRIMARY KEY NOT NULL,
-          consultation_id VARCHAR(35) NOT NULL,
-          user_id VARCHAR(35) NOT NULL,
+          response_id VARCHAR(100) PRIMARY KEY NOT NULL,
+          consultation_id VARCHAR(100) NOT NULL,
+          user_id VARCHAR(100) NOT NULL,
           content TEXT NOT NULL,
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
           FOREIGN KEY (consultation_id) REFERENCES consultations(consultation_id),
@@ -125,9 +125,9 @@ const initDb = async () => {
     console.log('Creando la tabla ratings   📑');
     await pool.query(`
         CREATE TABLE ratings (
-          rating_id VARCHAR(35) PRIMARY KEY NOT NULL,
-          response_id VARCHAR(35) NOT NULL,
-          user_id VARCHAR(35) NOT NULL,
+          rating_id VARCHAR(100) PRIMARY KEY NOT NULL,
+          response_id VARCHAR(100) NOT NULL,
+          user_id VARCHAR(100) NOT NULL,
           rating_value TINYINT NOT NULL, 
           FOREIGN KEY (user_id) REFERENCES users(user_id),
           FOREIGN KEY (response_id) REFERENCES responses(response_id)
