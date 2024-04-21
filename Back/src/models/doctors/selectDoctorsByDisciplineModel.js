@@ -1,4 +1,5 @@
 import { getPool } from '../../db/getPool.js';
+import { generateError } from '../../utils/errors/generateError.js';
 export const selectDoctorsByDiscipline = async (discipline_id) => {
   try {
     // Crear la conexión a la base de datos.
@@ -14,14 +15,12 @@ export const selectDoctorsByDiscipline = async (discipline_id) => {
       WHERE users.role = 'doctor' AND disciplines.discipline_id = ? ;`,
       [discipline_id]
     );
-    console.log(doctors);
+
     if (doctors[0] === undefined) {
-      const error = new Error('No such Doctor');
-      error.code = 'DOCTOR SEARCH ERROR';
-      throw error;
+      throw generateError('No doctors found', 404);
     }
 
-    return doctors[0];
+    return doctors;
   } catch (error) {
     console.log('Error finding the doctor', error);
     throw error;

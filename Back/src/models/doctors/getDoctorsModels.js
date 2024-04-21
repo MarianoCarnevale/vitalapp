@@ -12,7 +12,7 @@ export const getDoctorsModel = async (doctor_id) => {
     JOIN disciplines ON doctors_disciplines.discipline_id = disciplines.discipline_id
     WHERE users.role = 'doctor'; `);
 
-    return doctors[0];
+    return doctors;
   } catch (error) {
     console.log('Error finding the doctor', error);
     throw error;

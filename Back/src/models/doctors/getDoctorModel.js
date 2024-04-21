@@ -1,4 +1,5 @@
 import { getPool } from '../../db/getPool.js';
+import { generateError } from '../../utils/errors/generateError.js';
 export const getDoctorModel = async (doctor_id) => {
   try {
     // Crear la conexión a la base de datos.
@@ -15,10 +16,12 @@ export const getDoctorModel = async (doctor_id) => {
       [doctor_id]
     );
 
-    if (doctor[0] === undefined) {
-      const error = new Error('No such Doctor');
-      error.code = 'DOCTOR SEARCH ERROR';
-      throw error;
+    // Si no se encuentra el usuario, lanzar un error.
+    if (doctor.length === 0 || doctor[0] === undefined) {
+      throw generateError(`Doctor not fount`, 404);
+    }
+    if (!doctor[0].is_active) {
+      throw generateError(`Doctor is not active`, 400);
     }
 
     return doctor[0];
