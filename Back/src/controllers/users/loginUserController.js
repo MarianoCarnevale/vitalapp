@@ -24,8 +24,6 @@ export const loginUserController = async (req, res, next) => {
     // Selección del usuario por email.
     const user = await selectUserByEmailModel(email);
 
-    console.log('Usuario obtenido');
-
     // Variable que almacenará un valor booleano indicando si la contraseña es correcto o no.
     let validPass;
 

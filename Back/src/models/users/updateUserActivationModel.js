@@ -1,4 +1,5 @@
 import { getPool } from '../../db/getPool.js';
+import { generateError } from '../../utils/errors/generateError.js';
 
 export const updateUserActivationModel = async (validation_code) => {
   const pool = await getPool();
@@ -11,10 +12,7 @@ export const updateUserActivationModel = async (validation_code) => {
 
   // Si no se ha actualizado ningún usuario, lanzar un error. Si llegó aqui el usuario existe asi que el error no es que no lo encontro sino que no se pudo actualizar.
   if (result.affectedRows === 0) {
-    const error = new Error('No se ha podido activar el usuario');
-    error.httpStatus = 500;
-    error.code = 'UPDATE_USER_ACTIVATION_ERROR';
-    throw error;
+    throw generateError('No se ha podido activar el usuario', 500);
   }
 
   // Devolver el resultado.

@@ -17,6 +17,7 @@ export const newUserController = async (req, res, next) => {
     // Crear una uuid para el codigo de registro.
     const validation_code = crypto.randomUUID();
 
+    // Crear una uuid para el codigo de recuperacion.
     const recovery_code = crypto.randomUUID();
 
     // Insertar el usuario en la base de datos.

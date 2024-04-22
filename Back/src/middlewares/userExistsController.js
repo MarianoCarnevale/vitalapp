@@ -6,8 +6,6 @@ export const userExistsController = async (req, res, next) => {
     // Obtener el id del usuario. Ya sea desde el token o desde los parámetros de la URL.
     const userId = req.user?.id || req.params.user_id;
 
-    console.log(userId);
-
     // Comprobar si existe un usuario con el id proporcionado.
     const user = await selectUserByIdModel(userId);
 

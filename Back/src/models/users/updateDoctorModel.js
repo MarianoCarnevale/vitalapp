@@ -102,8 +102,6 @@ export const updateDoctorModel = async (
       doctor_registration_number,
     ]);
 
-    console.log(doctor);
-
     // Aplicamos lógica para la tabla disciplines
 
     let discplineQuery = `INSERT INTO disciplines (discipline_id, name) values (?, ?)`;
@@ -117,8 +115,6 @@ export const updateDoctorModel = async (
       discipline_name,
     ]);
 
-    console.log(discipline);
-
     // Aplicamos lógica para la tabla disciplines
 
     let doctorDisciplineQuery = `INSERT INTO doctors_disciplines (doctor_id, discipline_id, experience) values (?, ?, ?)`;
@@ -129,8 +125,6 @@ export const updateDoctorModel = async (
       disciplineId,
       experience,
     ]);
-
-    console.log(doctorDiscipline);
 
     // Devolver el resultado.
     return user;

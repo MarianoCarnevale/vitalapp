@@ -30,7 +30,6 @@ export const insertUserService = async (
 
     // Si existe un usuario con ese nombre, lanzamos un error.
     if (existUser) {
-      usernameAlreadyRegisteredError();
       throw generateError('No hay usuarios con ese nombre', 400);
     }
 
@@ -39,7 +38,6 @@ export const insertUserService = async (
 
     // Si existe un usuario con ese email, lanzamos un error.
     if (existUser) {
-      emailAlreadyRegisteredError();
       throw generateError('No hay usuarios con ese email', 400);
     }
 
@@ -63,7 +61,7 @@ export const insertUserService = async (
     );
 
     // Creamos el asunto del email de verificación.
-    const emailSubject = 'Activa tu usuario en Diario de Viajes :)';
+    const emailSubject = 'Activa tu usuario en vitalApp';
 
     // Creamos el cuerpo del email de verificación.
     const emailText = `

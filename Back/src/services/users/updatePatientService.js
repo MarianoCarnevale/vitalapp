@@ -25,14 +25,11 @@ export const updatePatientService = async (userId, body) => {
 
     // Comprobar si ese username ya existe.
     let existUser = await selectUserByUsernameModel(username);
-    console.log(existUser);
 
     // Si existe, comprobar si es el mismo usuario.
     if (existUser && existUser.id !== userId) {
       throw generateError('Ya existe un usuario con ese username', 403);
     }
-
-    console.log('No hay usuarios con ese nombre');
 
     // Comprobar si ese email ya existe.
     existUser = await selectUserByEmailModel(email);
@@ -63,7 +60,6 @@ export const updatePatientService = async (userId, body) => {
     // Devolver el usuario actualizado.
     return user;
   } catch (error) {
-    console.log('Error al actualizar el usuario', error);
     throw error;
   }
 };
