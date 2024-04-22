@@ -20,4 +20,11 @@ export const newUserSchema = joi.object({
     .messages(joiErrorMessages),
   first_name: joi.string().min(3).max(30).required().messages(joiErrorMessages),
   first_surname: joi.string().min(3).max(30).messages(joiErrorMessages),
+  doctor_registration_number: joi
+    .string()
+    .min(0)
+    .max(15)
+    .messages(joiErrorMessages),
+  discipline_name: joi.string().min(0).max(30).messages(joiErrorMessages),
+  experience: joi.date(),
 });

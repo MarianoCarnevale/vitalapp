@@ -2,12 +2,12 @@ import {
   selectUserByEmailModel,
   selectUserByIdModel,
   selectUserByUsernameModel,
-  updateDoctorModel,
+  updateUserModel,
 } from '../../models/users/index.js';
 
 import { generateError } from '../../utils/errors/generateError.js';
 
-export const updateDoctorService = async (userId, body) => {
+export const updateUserService = async (userId, body) => {
   try {
     // Desestructurar la body.
     const {
@@ -21,9 +21,6 @@ export const updateDoctorService = async (userId, body) => {
       adress,
       phone_number,
       birth_date,
-      doctor_registration_number,
-      discipline_name,
-      experience,
     } = body;
 
     // Comprobar si ese username ya existe.
@@ -43,7 +40,7 @@ export const updateDoctorService = async (userId, body) => {
     }
 
     // Actualizar el usuario en la base de datos.
-    await updateDoctorModel(
+    await updateUserModel(
       userId,
       email,
       username,
@@ -54,10 +51,7 @@ export const updateDoctorService = async (userId, body) => {
       bio,
       adress,
       phone_number,
-      birth_date,
-      doctor_registration_number,
-      discipline_name,
-      experience
+      birth_date
     );
 
     // Obtener el usuario actualizado.

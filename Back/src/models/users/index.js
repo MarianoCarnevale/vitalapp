@@ -4,8 +4,8 @@ import { selectUserByUsernameModel } from './selectUserByUsernameModel.js';
 import { selectUserByIdModel } from './selectUserByIdModel.js';
 import { updateUserActivationModel } from './updateUserActivationModel.js';
 import { selectUserByValidationCodeModel } from './selectUserByValidationCodeModel.js';
-import { updatePatientModel } from './updatePatientModel.js';
-import { updateDoctorModel } from './updateDoctorModel.js';
+import { updateUserModel } from './updateUserModel.js';
+import { selectDoctorByDoctorRegistrationNumberModel } from './selectDoctorByDoctorRegistrationNumberModel.js';
 
 export {
   insertUserModel,
@@ -14,6 +14,6 @@ export {
   selectUserByIdModel,
   updateUserActivationModel,
   selectUserByValidationCodeModel,
-  updatePatientModel,
-  updateDoctorModel,
+  updateUserModel,
+  selectDoctorByDoctorRegistrationNumberModel,
 };

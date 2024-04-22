@@ -8,8 +8,17 @@ import { insertUserService } from '../../services/users/insertUserService.js';
 export const newUserController = async (req, res, next) => {
   try {
     // Obtener el cuerpo de la petición.
-    const { username, email, password, role, first_name, first_surname } =
-      req.body;
+    const {
+      username,
+      email,
+      password,
+      role,
+      first_name,
+      first_surname,
+      doctor_registration_number,
+      discipline_name,
+      experience,
+    } = req.body;
 
     // Validar el body con el esquema newUserSchema.
     await validateSchemaUtil(newUserSchema, req.body);
@@ -29,7 +38,10 @@ export const newUserController = async (req, res, next) => {
       validation_code,
       recovery_code,
       first_name,
-      first_surname
+      first_surname,
+      doctor_registration_number,
+      discipline_name,
+      experience
     );
 
     // Responder al cliente.

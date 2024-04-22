@@ -1,7 +1,7 @@
 import joi from 'joi';
 import { joiErrorMessages } from '../joiErrorMessages.js';
 
-export const updatePatientSchema = joi.object({
+export const updateUserSchema = joi.object({
   email: joi.string().email().required().messages(joiErrorMessages),
   username: joi.string().min(3).max(30).required().messages(joiErrorMessages),
   first_name: joi.string().min(3).max(30).required().messages(joiErrorMessages),
