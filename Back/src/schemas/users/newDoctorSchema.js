@@ -1,8 +1,10 @@
-// Importar joi
-import joi from 'joi';
+// Importar joi y joidate y extender una encima de la otra en una constante
+import BaseJoi from 'joi';
+import JoiDate from '@joi/date';
+const joi = BaseJoi.extend(JoiDate);
 import { joiErrorMessages } from '../joiErrorMessages.js';
 
-export const newUserSchema = joi.object({
+export const newDoctorSchema = joi.object({
   username: joi.string().min(3).max(30).required().messages(joiErrorMessages),
   email: joi.string().email().required().messages(joiErrorMessages),
   password: joi
@@ -25,4 +27,16 @@ export const newUserSchema = joi.object({
     .max(30)
     .required()
     .messages(joiErrorMessages),
+  doctor_registration_number: joi
+    .string()
+    .min(0)
+    .max(15)
+    .messages(joiErrorMessages),
+  discipline_name: joi
+    .string()
+    .min(0)
+    .max(30)
+    .required()
+    .messages(joiErrorMessages),
+  experience: joi.date().format('YYYY-MM-DD').required(),
 });

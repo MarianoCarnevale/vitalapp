@@ -7,3 +7,6 @@ export { userExistsController,
   responseExistsController
 };
 
+import { authUserController } from './authUserController.js';
+
+export { userExistsController, authUserController };

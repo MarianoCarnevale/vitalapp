@@ -11,15 +11,12 @@ export const recoverPassController = async (req, res, next) => {
   try {
     // Obtener los datos del body.
     const { email } = req.body;
-    console.log('Cogimos el email del req.body');
 
     // Validamos los datos con Joi.
     await validateSchemaUtil(recoverPassSchema, req.body);
 
     // Selección del usuario por email.
     const user = await selectUserByEmailModel(email);
-
-    console.log(user);
 
     // Si no existe un usuario registrado con ese email, creamos un error
     if (!user) {

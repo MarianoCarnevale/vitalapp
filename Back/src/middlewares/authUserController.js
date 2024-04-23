@@ -1,15 +1,18 @@
-import { notAuthenticatedError } from '../services/errorService.js';
+// Importar los errores personalizados.
+import { generateError } from '../utils/errors/generateError.js';
 
+// Importar las utilidades.
 import { validateTokenUtil } from '../utils/validateTokenUtil.js';
 
 export const authUserController = async (req, res, next) => {
   try {
-    
+
+    // Guardamos el token en authorization.
     const { authorization } = req.headers;
 
     // Si no se envía el token, lanzamos un error.
     if (!authorization) {
-      notAuthenticatedError();
+      throw generateError('No se ha verificado la información del token', 401);
     }
 
     // Variable que almacena la info del token.

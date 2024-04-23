@@ -4,19 +4,34 @@ import { newUserSchema } from '../../schemas/users/newUserSchema.js';
 
 // Importamos los servicios.
 import { insertUserService } from '../../services/users/insertUserService.js';
+import { newDoctorSchema } from '../../schemas/users/newDoctorSchema.js';
 
 export const newUserController = async (req, res, next) => {
   try {
     // Obtener el cuerpo de la petición.
-    const { username, email, password, role, first_name, first_surname } =
-      req.body;
+    const {
+      username,
+      email,
+      password,
+      role,
+      first_name,
+      first_surname,
+      doctor_registration_number,
+      discipline_name,
+      experience,
+    } = req.body;
 
-    // Validar el body con el esquema newUserSchema.
-    await validateSchemaUtil(newUserSchema, req.body);
+    // Validar el body si el rol es médico.
+    if (role === 'doctor') {
+      await validateSchemaUtil(newDoctorSchema, req.body);
+    } else {
+      await validateSchemaUtil(newUserSchema, req.body);
+    }
 
     // Crear una uuid para el codigo de registro.
     const validation_code = crypto.randomUUID();
 
+    // Crear una uuid para el codigo de recuperacion.
     const recovery_code = crypto.randomUUID();
 
     // Insertar el usuario en la base de datos.
@@ -28,7 +43,10 @@ export const newUserController = async (req, res, next) => {
       validation_code,
       recovery_code,
       first_name,
-      first_surname
+      first_surname,
+      doctor_registration_number,
+      discipline_name,
+      experience
     );
 
     // Responder al cliente.

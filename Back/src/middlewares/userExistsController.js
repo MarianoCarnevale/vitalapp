@@ -4,10 +4,10 @@ import { generateError } from '../utils/errors/generateError.js';
 export const userExistsController = async (req, res, next) => {
   try {
     // Obtener el id del usuario. Ya sea desde el token o desde los parámetros de la URL.
-    const user_id = req.user?.user_id || req.params.user_id;
+    const userId = req.user?.id || req.params.user_id;
 
     // Comprobar si existe un usuario con el id proporcionado.
-    const user = await selectUserByIdModel(user_id);
+    const user = await selectUserByIdModel(userId);
 
     // Si no se encuentra el usuario, lanzar un error.
     if (!user) {
