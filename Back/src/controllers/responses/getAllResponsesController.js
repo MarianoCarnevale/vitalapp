@@ -7,8 +7,8 @@ export const getAllResponsesController = async (req, res, next) => {
     
     const { consultation_id } = req.params;
 
-    const responses = await selectAllResponsesByConsultationModel(consultation_id);
-    
+    const responses  = await selectAllResponsesByConsultationModel(consultation_id);
+    console.log(responses);
     if (!responses?.length) {
       throw generateError('No hay respuestas', 404);
     };

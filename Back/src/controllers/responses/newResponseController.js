@@ -5,13 +5,10 @@ import { validateSchemaUtil } from "../../utils/validateSchemaUtil.js";
 export const newResponseController = async (req, res, next) => {
   try {
     // Obtengo la id del usuario.
-    const user_id = req.user.id;
-
-    // Obtener el cuerpo de la petición.
-    const { content } = req.body;
+    const { consultation_id, user_id, content } = req.body;
 
     // Validar el body con el esquema newUserSchema.
-    await validateSchemaUtil(newResponseSchema, { content });
+    // await validateSchemaUtil(newResponseSchema, { content });
 
     // Insertar la respuesta en la base de datos.
     const response = await insertResponseService(consultation_id, user_id, content);

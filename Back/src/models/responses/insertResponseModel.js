@@ -6,7 +6,7 @@ export const insertResponseModel = async (response_id, consultation_id, user_id,
     const pool = await getPool();
 
     // Crear la query base.
-    let query = `INSERT INTO responses (response_id, consultation_id, user_id, content) VALUES (?, ?, ?)`;
+    let query = `INSERT INTO responses (response_id, consultation_id, user_id, content) VALUES (?, ?, ?, ?)`;
 
     // Crear los valores para la query.
     let values = [response_id, consultation_id, user_id, content];
