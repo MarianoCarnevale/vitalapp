@@ -6,7 +6,6 @@ import { validateTokenUtil } from '../utils/validateTokenUtil.js';
 
 export const authUserController = async (req, res, next) => {
   try {
-
     // Guardamos el token en authorization.
     const { authorization } = req.headers;
 
@@ -18,6 +17,9 @@ export const authUserController = async (req, res, next) => {
     // Variable que almacena la info del token.
     const tokenInfo = await validateTokenUtil(authorization);
 
+    if (!tokenInfo) {
+     throw generateError('Hubo un error con la validación del token', 401)
+    }
     // Añadimos la info del token a la request en la propiedad "user".
     req.user = tokenInfo;
 

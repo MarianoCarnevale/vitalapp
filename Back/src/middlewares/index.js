@@ -6,7 +6,3 @@ export { userExistsController,
   authUserController, 
   responseExistsController
 };
-
-import { authUserController } from './authUserController.js';
-
-export { userExistsController, authUserController };

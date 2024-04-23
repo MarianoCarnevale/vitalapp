@@ -11,6 +11,6 @@ export const validateTokenUtil = async (token) => {
   try {
     return jwt.verify(token, SECRET);
   } catch (error) {
-     generateError('Ha habido un error con la verificación del token', 401);
+     throw generateError('Ha habido un error con la verificación del token', 401);
     }
   };
