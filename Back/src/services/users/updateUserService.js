@@ -23,21 +23,40 @@ export const updateUserService = async (userId, body) => {
       birth_date,
     } = body;
 
-    // Comprobar si ese username ya existe.
-    let existUser = await selectUserByUsernameModel(username);
+    // Obtener el usuario actual.
+    const currentUser = await selectUserByIdModel(userId);
 
-    // Si existe, comprobar si es el mismo usuario.
-    if (existUser && existUser.id !== userId) {
-      throw generateError('Ya existe un usuario con ese username', 403);
+    // Comprobar si el username ha cambiado y, si es así, si el nuevo username ya existe.
+    if (username !== currentUser.username) {
+      const existUser = await selectUserByUsernameModel(username);
+      if (existUser) {
+        throw generateError('Ya existe un usuario con ese username', 403);
+      }
     }
 
-    // Comprobar si ese email ya existe.
-    existUser = await selectUserByEmailModel(email);
-
-    // Si existe, comprobar si es el mismo usuario.
-    if (existUser && existUser.id !== userId) {
-      throw generateError('Ya existe un usuario con ese email', 403);
+    // Comprobar si el email ha cambiado y, si es así, si el nuevo email ya existe.
+    if (email !== currentUser.email) {
+      const existUser = await selectUserByEmailModel(email);
+      if (existUser) {
+        throw generateError('Ya existe un usuario con ese email', 403);
+      }
     }
+
+    // // Comprobar si ese username ya existe.
+    // let existUser = await selectUserByUsernameModel(username);
+
+    // // Si existe, comprobar si es el mismo usuario.
+    // if (existUser && existUser.id !== userId) {
+    //   throw generateError('Ya existe un usuario con ese username', 403);
+    // }
+
+    // // Comprobar si ese email ya existe.
+    // existUser = await selectUserByEmailModel(email);
+
+    // // Si existe, comprobar si es el mismo usuario.
+    // if (existUser && existUser.id !== userId) {
+    //   throw generateError('Ya existe un usuario con ese email', 403);
+    // }
 
     // Actualizar el usuario en la base de datos.
     await updateUserModel(

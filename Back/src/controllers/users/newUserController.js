@@ -4,6 +4,7 @@ import { newUserSchema } from '../../schemas/users/newUserSchema.js';
 
 // Importamos los servicios.
 import { insertUserService } from '../../services/users/insertUserService.js';
+import { newDoctorSchema } from '../../schemas/users/newDoctorSchema.js';
 
 export const newUserController = async (req, res, next) => {
   try {
@@ -20,8 +21,12 @@ export const newUserController = async (req, res, next) => {
       experience,
     } = req.body;
 
-    // Validar el body con el esquema newUserSchema.
-    await validateSchemaUtil(newUserSchema, req.body);
+    // Validar el body si el rol es médico.
+    if (role === 'doctor') {
+      await validateSchemaUtil(newDoctorSchema, req.body);
+    } else {
+      await validateSchemaUtil(newUserSchema, req.body);
+    }
 
     // Crear una uuid para el codigo de registro.
     const validation_code = crypto.randomUUID();

@@ -38,7 +38,7 @@ const initDb = async () => {
       bio VARCHAR(255),
       adress VARCHAR(100),
       phone_number VARCHAR(15),
-      birth_date DATETIME,
+      birth_date DATE,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       is_active BOOLEAN DEFAULT False

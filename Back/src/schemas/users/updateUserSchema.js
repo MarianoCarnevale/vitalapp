@@ -1,4 +1,8 @@
-import joi from 'joi';
+// Importar joi y joidate y extender una encima de la otra en una constante
+import BaseJoi from 'joi';
+import JoiDate from '@joi/date';
+const joi = BaseJoi.extend(JoiDate);
+
 import { joiErrorMessages } from '../joiErrorMessages.js';
 
 export const updateUserSchema = joi.object({
@@ -16,5 +20,5 @@ export const updateUserSchema = joi.object({
   bio: joi.string().min(0).max(255).messages(joiErrorMessages),
   adress: joi.string().min(0).max(100).messages(joiErrorMessages),
   phone_number: joi.string().min(0).max(15).messages(joiErrorMessages),
-  birth_date: joi.date(),
+  birth_date: joi.date().format('YYYY-MM-DD'),
 });
