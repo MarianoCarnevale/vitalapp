@@ -1,12 +1,15 @@
-import { selectResponseByIdModel } from '../../models/responses/index.js';
+import { selectAllResponsesByConsultationModel } from '../../models/responses/index.js';
 
-export const getSingleTweetController = async (req, res, next) => {
+export const getSingleResponseController = async (req, res, next) => {
   try {
-    // Obtener el id de la respuesta.
-    const { response_id } = req.params;
 
-    // Obtener el tweet.
-    const response = await selectResponseByIdModel(response_id);
+
+    // Obtener el id de la respuesta.
+    const { consultation_id } = req.params;
+
+    // Obtener la consulta.
+    const response = await selectAllResponsesByConsultationModel(consultation_id);
+
 
     // Responder con la respuesta.
     res.status(200).send({

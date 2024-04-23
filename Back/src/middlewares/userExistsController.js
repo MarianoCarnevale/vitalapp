@@ -1,5 +1,5 @@
 import { selectUserByIdModel } from '../models/users/index.js';
-import { notFoundError } from '../services/errorService.js';
+import { generateError } from '../utils/errors/generateError.js';
 
 export const userExistsController = async (req, res, next) => {
   try {
