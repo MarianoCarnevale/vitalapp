@@ -8,7 +8,6 @@ export const getDoctorsController = async (req, res, next) => {
     // filtrar doctores activos
     const activeDoctors = doctors.filter((doctor) => doctor.is_active);
 
-    // Responder con el tweet.
     res.status(200).send({
       status: 'Ok',
       message: 'All Doctors obtained',
