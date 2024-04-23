@@ -13,9 +13,10 @@ app.use(express.json());
 app.use(fileUpload());
 app.use(morgan('dev'));
 
+app.use('/uploads', express.static('./uploads'));
+
 app.use(cors());
 
-// Middlewares de gestion de rutas
 // Middleware que indica a express dónde están las rutas.
 app.use(router);
 
