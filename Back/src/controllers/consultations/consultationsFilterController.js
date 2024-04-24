@@ -19,7 +19,6 @@ export const consultationsFilterController= async (req ,res ,next) => {
   let filtro = ["WHERE"]
   
   //Empezamos a añadir filtros sengun existan 
-  console.log(rol === "doctor");
   if(rol === "doctor"){
     filter(filtro, 'doctor_Name', firstname);
     filter(filtro, 'doctor_last_name', last_name);
@@ -45,8 +44,6 @@ export const consultationsFilterController= async (req ,res ,next) => {
 
   //recibir datos de la tabla 
   const [consultations] = await selectConsultations(filtro);
-
-  console.log(consultations);
 
   res.status(200).send({
     status : 'Ok',

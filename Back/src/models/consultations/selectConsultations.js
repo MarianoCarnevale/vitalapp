@@ -6,7 +6,6 @@ export const selectConsultations = async (filter, next) => {
     //Esperamos conexion de la base de datos
     const pool = await getPool();
     if(!filter){filter = ''}
-    console.log(filter);
   
     //Consulta con datos desde la tabla consultations y subconsulta con todos los datos de los medicos y su join para ligarlos con su correspondiente consulta
     
