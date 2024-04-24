@@ -1,4 +1,4 @@
-import { selectConsultationsByFilter } from "../../models/consultations/index.js";
+import { selectConsultations } from "../../models/consultations/index.js";
 import { filter } from "../../utils/Filter.js";
 import { severityValidation } from "../../utils/severityValidation.js";
 
@@ -7,39 +7,46 @@ export const consultationsFilterController= async (req ,res ,next) => {
   try {
     //Sacar todos los parametros del body
     const  {
-    username,
-    name,
+    firstname,
     last_name,
-    user_type,
+    rol,
+    date,
     severity,
-    speciality,
-    order
+    speciality
   }  = req.body
 
-    
-  //Creamos un array vacio 
-  let filtro = []
-
+  //Creamos un array con el filtro Where para el sql 
+  let filtro = ["WHERE"]
+  
   //Empezamos a añadir filtros sengun existan 
-  filter(filtro, 'username', username);
-  filter(filtro, 'firtsname', firstname);
-  filter(filtro, 'lastname', last_name);
-  filter(filtro, 'user_type', user_type);
-  filter(filtro, 'severity', severity);
+  console.log(rol === "doctor");
+  if(rol === "doctor"){
+    filter(filtro, 'doctor_Name', firstname);
+    filter(filtro, 'doctor_last_name', last_name);
+  }else{
+    filter(filtro, 'U.first_name', firstname);
+    filter(filtro, 'U.last_name', last_name);
+  }
+  
+  filter(filtro, 'C.severity', severity);
   filter(filtro, 'speciality', speciality);
+  filter(filtro, 'C.created_at', date);
   //Orden se agrega como GROUP BY orden DES/ASC
   
   //Eliminamos el primer And del array
-  filtro = filtro.slice(1,filtro.length)
+  filtro[1] = filtro[1].slice(5, filtro[1].length)
 
   //Unimos todo por espacios
   filtro = filtro.join(' ')
   
+  console.log(filtro);
   //pasamostodos los elementos que iran en la consulta
   //name = name AND last_name = last_name AND order = order
 
   //recibir datos de la tabla 
-  const [consultations] = await selectConsultationsByFilter(filtro);
+  const [consultations] = await selectConsultations(filtro);
+
+  console.log(consultations);
 
   res.status(200).send({
     status : 'Ok',

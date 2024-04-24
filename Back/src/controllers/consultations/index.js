@@ -1,11 +1,12 @@
 import { consultationsController } from "./consultationsController.js";
 import {consultationsFilterController} from "./consultationsFilterController.js"
-import { putConsultationsController } from "./putConsultationsController.js";
-
+import { deleteConsultationController } from "./deleteConsultationController.js";
+import { postConsultationsController } from "./postConsultationsController.js";
 
 export {
   consultationsController, 
   consultationsFilterController,
-  putConsultationsController
+  postConsultationsController,
+  deleteConsultationController
 };
 

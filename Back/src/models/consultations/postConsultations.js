@@ -1,9 +1,9 @@
 import { getPool } from "../../db/getPool.js"
 import { generateError } from "../../utils/errors/generateError.js";
 
-export const putConsultations = async (data, next) => {
-    const {
-      consultation_id, 
+export const postConsultations = async (data, next) => {
+    const { 
+      consultation_id,
       user_id, doctor_id, 
       title, 
       description, 
@@ -11,6 +11,8 @@ export const putConsultations = async (data, next) => {
       discipline_id, 
       severity
     } = data
+
+    // const consultation_id = crypto.randomUUID();
 
     //Esperamos conexion de la base de datos
     const pool = await getPool();
@@ -30,6 +32,6 @@ export const putConsultations = async (data, next) => {
     if (result.affectedRows === 0) {
       throw generateError('No se ha podido insertar el usuario', 500);
     }
-    message = "Consultations created"
+    return "Consultations created";
 
 }
