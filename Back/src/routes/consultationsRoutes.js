@@ -24,4 +24,4 @@ consultationsRouter.get('/consultations/user/:user_id',consultationByUser )
 consultationsRouter.get('/consultations/doctor/:doctor_id',consultationByUser )
 
 //filtro de busqueda
-consultationsRouter.get('/consultations/search/hola', consultationsFilterController)
+consultationsRouter.get('/consultations/search/consultation', consultationsFilterController)
