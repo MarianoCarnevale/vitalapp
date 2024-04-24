@@ -19,5 +19,10 @@ export const newUserSchema = joi.object({
     .required()
     .messages(joiErrorMessages),
   first_name: joi.string().min(3).max(30).required().messages(joiErrorMessages),
-  first_surname: joi.string().min(3).max(30).messages(joiErrorMessages),
+  first_surname: joi
+    .string()
+    .min(3)
+    .max(30)
+    .required()
+    .messages(joiErrorMessages),
 });

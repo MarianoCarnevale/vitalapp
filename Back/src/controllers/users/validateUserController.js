@@ -3,11 +3,8 @@ import { updateUserActivationModel } from '../../models/users/index.js';
 
 export const validateUserController = async (req, res, next) => {
   try {
-    console.log('validateUserController');
     // Obtener el código de registro.
     const { validation_code } = req.params;
-
-    console.log(validation_code);
 
     // Verificar si existe un usuario con ese código de registro.
     await selectUserByValidationCodeModel(validation_code);

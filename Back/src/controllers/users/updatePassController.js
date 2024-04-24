@@ -14,18 +14,15 @@ export const updatePassController = async (req, res, next) => {
   try {
     // Obtener los datos del body.
     const { password } = req.body;
-    console.log(password);
+
     // Obtener el recovery_code de los params
     const { recovery_code } = req.params;
-    console.log(recovery_code);
 
     // Validamos los datos con Joi.
     await validateSchemaUtil(updatePassSchema, req.body);
 
     // Selección del usuario por email.
     const user = await selectUserByRecoveryCodeModel(recovery_code);
-
-    console.log(user);
 
     // Si no existe un usuario registrado con ese email, creamos un error
     if (!user) {

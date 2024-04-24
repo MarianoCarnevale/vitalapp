@@ -1,7 +1,8 @@
 import { userExistsController } from './userExistsController.js';
+import { authUserController } from './authUserController.js';
+import { responseExistsController } from './responseExistsController.js';
 
-export { userExistsController };
-
-// import { authUserController } from './authUserController.js';
-
-// export { authUserController };
+export { userExistsController, 
+  authUserController, 
+  responseExistsController
+};
