@@ -31,6 +31,7 @@ export const newDoctorSchema = joi.object({
     .string()
     .min(0)
     .max(15)
+    .required()
     .messages(joiErrorMessages),
   discipline_name: joi
     .string()
