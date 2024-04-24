@@ -6,7 +6,7 @@ export const deleteResponseModel = async (response_id) => {
     const pool = await getPool();
 
     // Eliminar la respuesta de la base de datos.
-    const [result] = await pool.query(`DELETE FROM responses WHERE id = ?`, [
+    const [result] = await pool.query(`DELETE FROM responses WHERE response_id = ?`, [
       response_id,
     ]);
 

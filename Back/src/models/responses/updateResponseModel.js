@@ -16,7 +16,7 @@ export const updateResponseModel = async (response_id, content) => {
     values.push(response_id);
 
     // Actualizar la respuesta en la base de datos.
-    const [result] = await pool.query(query, values);
+    const result = await pool.query(query, values);
 
     // Verificar si el update afectó a alguna línea.
     if (result.affectedRows === 0) {
@@ -26,7 +26,7 @@ export const updateResponseModel = async (response_id, content) => {
     }
 
     // Buscar la respuesta actualizada.
-    const [response] = await pool.query(`SELECT * FROM responses WHERE response_id = ?`, id);
+    const [response] = await pool.query(`SELECT * FROM responses WHERE response_id = ?`, response_id);
 
     // Devolver la respuesta.
     return response[0];

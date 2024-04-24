@@ -4,10 +4,10 @@ import { notAuthorizedError } from '../errorService.js';
 export const updateResponseService = async (user_id, response_id, content) => {
   try {
     // Recuperar la de la base de datos.
-    const oldResponse = await selectResponseByIdModel(response_id);
-
+    const  oldResponse = await selectResponseByIdModel(response_id);
+    
     // Comprobar si el user_id es el mismo que el de la respuesta.
-    if (oldResponse.user_id !== user_id) {
+    if (oldResponse[0].user_id !== user_id) {
       notAuthorizedError();
     };
 

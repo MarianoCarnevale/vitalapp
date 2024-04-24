@@ -6,7 +6,7 @@ export const selectResponseByIdModel = async (response_id) => {
     const pool = await getPool();
 
     // Obtener el tweet.
-    const [response] = await pool.query(`SELECT * FROM responses WHERE id = ?`, [
+    const response = await pool.query(`SELECT * FROM responses WHERE response_id = ?`, [
       response_id,
     ]);
 

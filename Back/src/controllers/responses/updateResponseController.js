@@ -5,14 +5,12 @@ import { updateResponseService } from "../../services/responses/updateResponseSe
 export const updateResponseController = async (req, res, next) => {
   try {
     // Obtener el id del usuario.
-    const user_id = req.user.id;
-
+    const user_id = req.body.user_id;
     // Obtener el id de la respuesta.
     const { response_id } = req.params;
-
+    
     // Obtener el contenido de la respuesta.
     const { content } = req.body;
-
     // Validar el contenido con Joi.
     await validateSchemaUtil(updateResponseSchema, { content });
 

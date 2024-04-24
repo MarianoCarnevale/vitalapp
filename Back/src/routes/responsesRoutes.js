@@ -19,4 +19,4 @@ responsesRouter.put('/responses/:response_id', responseExistsController, updateR
 // responsesRouter.get('/responses/:responseId', responseExistsController, getSingleResponseController);
 
 // Borrar una respuesta
-responsesRouter.delete('/responses/:responseId', responseExistsController, deleteResponseController);
+responsesRouter.delete('/responses/:response_id', responseExistsController, deleteResponseController);
