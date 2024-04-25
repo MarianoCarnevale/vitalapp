@@ -16,15 +16,15 @@ export const newConsultationService = async (data, image) => {
     // Creamos una id para el tweet.
     data.consultation_id = crypto.randomUUID();
 
-    if(image){
+    if (image) {
       // Creamos un nombre para la imagen si existe.
       let imgName = image && `${crypto.randomUUID()}.jpg`;
-  
-      data.file = imgName
-    }
 
+      data.file = imgName;
+    }
+    console.log(data);
     // Insertamos el tweet en la base de datos.
-    const [consultations] = await postConsultations(data);
+    await postConsultations(data);
 
     // Si hay tweet e imagen, creamos el directorio si no existe
     if (image) {
@@ -56,7 +56,7 @@ export const newConsultationService = async (data, image) => {
       }
     }
 
-    return consultations;
+    // return consultations;
   } catch (error) {
     console.log('Error al insertar el la consulta', error);
     throw error;
