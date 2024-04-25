@@ -1,10 +1,12 @@
 import { getPool } from "../../db/getPool.js"
 import { generateError } from "../../utils/errors/generateError.js";
 
-export const selectConsultations = async (filter, next) => {
+export const selectConsultations = async (filter) => {
   try {
     //Esperamos conexion de la base de datos
     const pool = await getPool();
+
+    console.log(filter);
     if(!filter){filter = ''}
   
     //Consulta con datos desde la tabla consultations y subconsulta con todos los datos de los medicos y su join para ligarlos con su correspondiente consulta

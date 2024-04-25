@@ -27,7 +27,7 @@ export const newConsultationService = async (data, image) => {
     const [consultations] = await postConsultations(data);
 
     // Si hay tweet e imagen, creamos el directorio si no existe
-    if (tweet && image) {
+    if (image) {
       // Ruta donde se guardará el archivo.
       const uploadsDir = path.join(
         process.cwd(),
@@ -58,7 +58,7 @@ export const newConsultationService = async (data, image) => {
 
     return consultations;
   } catch (error) {
-    console.log('Error al insertar el tweet', error);
+    console.log('Error al insertar el la consulta', error);
     throw error;
   }
 };

@@ -25,11 +25,10 @@ export const postConsultationsController = async(req, res, next) =>{
     }
 
     //hacemos la consulta a la base de datos
-   const message = newConsultationService(data);
+   const consultations = newConsultationService(data);
 
     res.status(200).send({
-      status: 'Ok',
-      message : message
+      status: 'Consultations created',
     })
   } catch (error) {
     next(error)
