@@ -1,0 +1,636 @@
+{
+	"info": {
+		"_postman_id": "e7098a11-1631-434c-873b-369dcb8f77ed",
+		"name": "vitalApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34403849"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"MartinCastro\",\r\n    \"email\": \"castro.cores77@gmail.com\",\r\n    \"password\": \"Martin1234.\",\r\n    \"role\": \"doctor\",\r\n    \"first_name\": \"Martín\",\r\n    \"first_surname\": \"Castro\",\r\n    \"doctor_registration_number\" : \"1111111\",\r\n    \"discipline_name\": \"Cardiología\",\r\n    \"experience\" : \"2020-12-03\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/users/validate/d6723cc8-e6bf-4d9e-ad77-7fb499ef66d7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"validate",
+						"d6723cc8-e6bf-4d9e-ad77-7fb499ef66d7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"castro.cores77@gmail.com\",\r\n    \"password\": \"Cores1234.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recover Pass",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"castro.cores77@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/users/recoverpass",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"recoverpass"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Pass",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"Cores1234.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/users/update/841eb058-333d-42c1-b3c4-6fbb326142a3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"update",
+						"841eb058-333d-42c1-b3c4-6fbb326142a3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY5OGI4ZmU4LTc1YjYtNGUwMS05NGFkLTIwMDEwYjc4MGY5NCIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzE0MDUyNTYwLCJleHAiOjE3MTQxMzg5NjB9.H7ncsBfLs91fWZdsG3o3qT_ZCGO1rE0f_lYtxzgf10c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"martincastrocores@gmail.com\",\r\n    \"username\": \"Rober\",\r\n    \"first_name\": \"Roberto\",\r\n    \"last_name\": \"Martín\",\r\n    \"first_surname\": \"Casddtro\",\r\n    \"last_surname\": \"Martínez\",\r\n    \"bio\": \"Hola soy PabloMartinez\",\r\n    \"adress\": \"Calle Falsa 123 primero\",\r\n    \"phone_number\": \"+34666777888\",\r\n    \"birth_date\": \"1999-03-12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/users/6481ea90-cf95-4e3f-90db-699b8c2717af",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"6481ea90-cf95-4e3f-90db-699b8c2717af"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Doctor ( No usar )",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiZjAyYTQ2LWEyYjktNDEzYi1hOGM5LThlZmMyZTc5MzYzYiIsInJvbGUiOiJkb2N0b3IiLCJpYXQiOjE3MTM3OTgyMzUsImV4cCI6MTcxMzg4NDYzNX0.3k4L66DqlIVCzGeMtUUDxxlZQVEIRC_1jJYUzaZqurM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"castro.cores77@gmail.com\",\r\n    \"username\": \"aaaaa\",\r\n    \"first_name\": \"Maritn\",\r\n    \"last_name\": \"Martín\",\r\n    \"first_surname\": \"aaaa\",\r\n    \"last_surname\": \"Martínez\",\r\n    \"bio\": \"Hola soy PabloMartinez\",\r\n    \"adress\": \"Calle Falsa 123 primero\",\r\n    \"phone_number\": \"+34666777888\",\r\n    \"birth_date\": \"1999-03-12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/users/5ee44485-6222-481f-a7fc-a50a052c7943",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"5ee44485-6222-481f-a7fc-a50a052c7943"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Doctors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/doctors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"doctors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One Doctor by DoctorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/doctor/de001abf-542d-473c-8654-fcc5dd89bdf4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"doctor",
+						"de001abf-542d-473c-8654-fcc5dd89bdf4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Disciplines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/disciplines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"disciplines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One consultation by consultationId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/consultations/895b62d6-fc59-4cdc-8b42-6b98c74d484b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"consultations",
+						"895b62d6-fc59-4cdc-8b42-6b98c74d484b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Consulations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/consultations/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"consultations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Table consulations by userId (el que crea la consulta)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/consultations/user/de001abf-542d-473c-8654-fcc5dd89bdf4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"consultations",
+						"user",
+						"de001abf-542d-473c-8654-fcc5dd89bdf4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One consultation by doctorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/consultations/doctor/doctor_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"consultations",
+						"doctor",
+						"doctor_id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter Consultation",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"speciality\": \"Cardiología\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/consultations/search/consultation/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"consultations",
+						"search",
+						"consultation",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Consultation",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/consultations/f6afd7e5-2cb9-4572-a9ad-3dcdbcfd40b6/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"consultations",
+						"f6afd7e5-2cb9-4572-a9ad-3dcdbcfd40b6",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear consultation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\" : \"f98b8fe8-75b6-4e01-94ad-20010b780f94\",\r\n    \"doctor_id\" : \"de001abf-542d-473c-8654-fcc5dd89bdf4\",\r\n    \"title\" : \"8 Consulta\",\r\n    \"description\" : \"Esta es la 8 consulta\",\r\n    \"discipline_id\" : \"d5fdc98a-ec51-4f14-8b32-c7d6460db2e9\",\r\n    \"severity\" : \"Low\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/consultations/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"consultations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Table consultations by doctorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/consultations/doctor/de001abf-542d-473c-8654-fcc5dd89bdf4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"consultations",
+						"doctor",
+						"de001abf-542d-473c-8654-fcc5dd89bdf4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una respuesta propia",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/consultations/:consultation_id/responses/:response_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"consultations",
+						":consultation_id",
+						"responses",
+						":response_id"
+					],
+					"variable": [
+						{
+							"key": "consultation_id",
+							"value": ""
+						},
+						{
+							"key": "response_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las respuestas de una consulta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/responses/:consultation_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"responses",
+						":consultation_id"
+					],
+					"variable": [
+						{
+							"key": "consultation_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear respuesta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"content\": \"Respuesta de paciente 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/responses/:consultation_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"responses",
+						":consultation_id"
+					],
+					"variable": [
+						{
+							"key": "consultation_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar respuesta",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"content\": \"Perdón me he equivocado en mi respuesta doctor, gracias\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/responses/:response_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"responses",
+						":response_id"
+					],
+					"variable": [
+						{
+							"key": "response_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
