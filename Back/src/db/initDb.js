@@ -60,22 +60,33 @@ const initDb = async () => {
     `);
     console.log('Tabla doctors creada ✅ 📑');
 
-    // Crear la tabla doctors_desciplines
-    console.log('Creando la tabla doctors_disciplines 📑');
+    // Crear la tabla disciplines
+    console.log('Creando la tabla disciplines 📑');
     await pool.query(`
         CREATE TABLE disciplines (
-          discipline_id VARCHAR(100) PRIMARY KEY NOT NULL,
+          discipline_id TINYINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
           name VARCHAR(30) NOT NULL
          );
         `);
     console.log('Tabla disciplines creada ✅ 📑');
+
+    // Insertamos datos en tabla disciplinas
+    await pool.query(`
+        INSERT INTO disciplines (name) VALUES 
+          ('Familia'),
+          ('Traumatología'),
+          ('Cardiología'),
+        ('Oftalmología')
+        ;
+        `);
+    console.log('Disciplines insertadas ✅ 📑');
 
     // Crear la tabla doctors_disciplines
     console.log('Creando la tabla doctors_disciplines 📑');
     await pool.query(`
     CREATE TABLE doctors_disciplines (
       doctor_id VARCHAR(100) NOT NULL,
-      discipline_id VARCHAR(100) NOT NULL,
+      discipline_id TINYINT NOT NULL,
       experience DATE NOT NULL,
       PRIMARY KEY (doctor_id, discipline_id),
       FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id),
@@ -90,7 +101,7 @@ const initDb = async () => {
            CREATE TABLE consultations (
             consultation_id VARCHAR(100) PRIMARY KEY NOT NULL,
             user_id VARCHAR(100) NOT NULL,
-            discipline_id VARCHAR(100) NOT NULL,
+            discipline_id TINYINT NOT NULL,
             doctor_id VARCHAR(100),
             title VARCHAR(50) NOT NULL,
             description TEXT NOT NULL,
