@@ -6,12 +6,12 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { TokenProvider } from "./contexts/TokenContext.jsx";
+import { UserTokenProvider } from "./contexts/UserTokenContext.jsx";
 
 function App() {
   return (
     <>
-      <TokenProvider>
+      <UserTokenProvider>
         <Header />
         <main>
           <Routes>
@@ -21,7 +21,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
-      </TokenProvider>
+      </UserTokenProvider>
     </>
   );
 }

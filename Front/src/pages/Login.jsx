@@ -2,14 +2,14 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { loginSchema } from "../schemas/loginSchema.js";
-import { TokenContext } from "../contexts/TokenContext.jsx";
+import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Login = () => {
   // Traemos el token del tokenContext
-  const { token, setToken } = useContext(TokenContext);
+  const { token, setToken } = useContext(UserTokenContext);
   // Creamos un estado que guarde los errores que nos mande el back si existen
   const [errorBack, setErrorBack] = useState(null);
 
