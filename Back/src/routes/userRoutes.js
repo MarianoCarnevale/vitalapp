@@ -10,6 +10,7 @@ import {
   updatePassController,
   updateUserController,
   updateUserAvatarController,
+  getOwnUserController,
 } from '../controllers/users/index.js';
 
 // Importamos los middlewares.
@@ -20,6 +21,14 @@ import {
 
 // Creamos un router.
 export const userRouter = express.Router();
+
+// Obtener perfil privado de un usuario.
+userRouter.get(
+  '/users',
+  authUserController,
+  userExistsController,
+  getOwnUserController
+);
 
 // Crear un usuario pendiente de activar.
 userRouter.post('/users/register', newUserController);
