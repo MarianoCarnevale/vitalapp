@@ -21,13 +21,12 @@ export const selectConsultations = async (filter) => {
   FROM consultations C
   LEFT JOIN (
       SELECT D.doctor_id as doctor_id, U.first_name AS doctor_first_name, U.last_name AS doctor_last_name,DS.name AS speciality,
-      AVG(R.rating_value) AS doctor_rating
+      R.rating_value AS doctor_rating
       FROM doctors D 
       INNER JOIN users U ON D.user_id = U.user_id
       INNER JOIN doctors_disciplines DDS ON D.doctor_id = DDS.doctor_id
       INNER JOIN disciplines DS ON DS.discipline_id = DDS.discipline_id
-      LEFT JOIN ratings R ON U.user_id = R.user_id
-      GROUP BY D.doctor_id, U.first_name, U.last_name, DS.name
+      LEFT JOIN ratings R ON U.user_id = R.rating_id
   ) AS doctor ON C.doctor_id = doctor.doctor_id
   JOIN users U ON C.user_id = U.user_id
           ${filter}`);
