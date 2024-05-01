@@ -25,13 +25,18 @@ export const insertDoctorModel = async (
     doctor_registration_number,
   ]);
 
-  // Creamos la query para sacar la id de la disciplina elegida
-  let disciplineQuery = `SELECT discipline_id FROM disciplines WHERE name = ? `;
+  // Aplicamos lógica para la tabla disciplines
+
+  let disciplineQuery = `INSERT INTO disciplines (discipline_id, name) values (?, ?)`;
+
+  // Creamos el id de disciplina
+  const disciplineId = crypto.randomUUID();
 
   // Actualizamos disciplina
-  const [discipline] = await pool.query(disciplineQuery, [discipline_name]);
-
-  console.log(discipline[0].discipline_id);
+  const [discipline] = await pool.query(disciplineQuery, [
+    disciplineId,
+    discipline_name,
+  ]);
 
   // Aplicamos lógica para la tabla disciplines
 
@@ -40,7 +45,7 @@ export const insertDoctorModel = async (
   // Actualizamos disciplina
   const [doctorDiscipline] = await pool.query(doctorDisciplineQuery, [
     doctorId,
-    discipline[0].discipline_id,
+    disciplineId,
     experience,
   ]);
 

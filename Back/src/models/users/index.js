@@ -6,7 +6,6 @@ import { updateUserActivationModel } from './updateUserActivationModel.js';
 import { selectUserByValidationCodeModel } from './selectUserByValidationCodeModel.js';
 import { updateUserModel } from './updateUserModel.js';
 import { selectDoctorByDoctorRegistrationNumberModel } from './selectDoctorByDoctorRegistrationNumberModel.js';
-import { updateDoctorModel } from './updateDoctorModel.js';
 
 export {
   insertUserModel,
@@ -17,5 +16,4 @@ export {
   selectUserByValidationCodeModel,
   updateUserModel,
   selectDoctorByDoctorRegistrationNumberModel,
-  updateDoctorModel,
 };
