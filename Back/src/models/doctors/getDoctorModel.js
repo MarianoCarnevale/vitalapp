@@ -8,11 +8,34 @@ export const getDoctorModel = async (doctor_id) => {
     // Obtener el doctor.
     const [doctor] = await pool.query(
       `
-      SELECT * FROM users
-      JOIN doctors ON users.user_id = doctors.user_id
-      JOIN doctors_disciplines ON doctors.doctor_id = doctors_disciplines.doctor_id
-      JOIN disciplines ON doctors_disciplines.discipline_id = disciplines.discipline_id
-      WHERE users.role = 'doctor' AND doctors.doctor_id = ?`,
+      SELECT 
+      u.user_id,
+      u.email,
+      u.username,
+      u.first_name,
+      u.last_name,
+      u.last_name,
+      u.is_active,
+      d.name,
+      AVG(r.rating_value) AS avg_rating
+  FROM 
+      users u
+  JOIN 
+      doctors doc ON u.user_id = doc.user_id
+  JOIN 
+      doctors_disciplines dd ON doc.doctor_id = dd.doctor_id
+  JOIN 
+      disciplines d ON dd.discipline_id = d.discipline_id
+  LEFT JOIN 
+      consultations c ON doc.doctor_id = c.doctor_id
+  LEFT JOIN 
+      responses res ON c.consultation_id = res.consultation_id
+  LEFT JOIN 
+      ratings r ON res.response_id = r.response_id
+  WHERE 
+      u.role = 'doctor' AND doc.doctor_id = ?
+  GROUP BY 
+      u.user_id, u.first_name, d.name;`,
       [doctor_id]
     );
 
