@@ -65,21 +65,61 @@ const initDb = async () => {
     await pool.query(`
         CREATE TABLE disciplines (
           discipline_id TINYINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-          name VARCHAR(30) NOT NULL
+
+          discipline_name VARCHAR(30) NOT NULL
+
          );
         `);
     console.log('Tabla disciplines creada ✅ 📑');
 
     // Insertamos datos en tabla disciplinas
     await pool.query(`
-        INSERT INTO disciplines (name) VALUES 
-          ('Familia'),
-          ('Traumatología'),
-          ('Cardiología'),
-        ('Oftalmología')
-        ;
-        `);
-    console.log('Disciplines insertadas ✅ 📑');
+
+    INSERT INTO disciplines (discipline_name) VALUES 
+    ('Medicina Familiar'),
+    ('Anatomía Patológica'),
+    ('Anestesiología'),
+    ('Bioquímica Clínica'),
+    ('Cardiología'),
+    ('Cirugía Cardiovascular'),
+    ('Cirugía General'),
+    ('Cirugía Plástica'),
+    ('Dermatología'),
+    ('Endocrinología'),
+    ('Farmacología Clínica'),
+    ('Fisioterapia'),
+    ('Gastroenterología'),
+    ('Genética Médica'),
+    ('Ginecología'),
+    ('Hematología'),
+    ('Infectología'),
+    ('Medicina Deportiva'),
+    ('Medicina General'),
+    ('Medicina Interna'),
+    ('Microbiología'),
+    ('Nefrología'),
+    ('Neumología'),
+    ('Neurocirugía'),
+    ('Neurología'),
+    ('Nutriología'),
+    ('Obstetricia'),
+    ('Oftalmología'),
+    ('Oncología'),
+    ('Ortopedia'),
+    ('Otorrinolaringología'),
+    ('Patología Clínica'),
+    ('Pediatría'),
+    ('Psiquiatría'),
+    ('Radiología'),
+    ('Reumatología'),
+    ('Terapia Intensiva'),
+    ('Terapia Ocupacional'),
+    ('Traumatología'),
+    ('Urología')
+    ;
+`);
+    console.log('Especialidades médicas insertadas correctamente.');
+
 
     // Crear la tabla doctors_disciplines
     console.log('Creando la tabla doctors_disciplines 📑');
