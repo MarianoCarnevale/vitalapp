@@ -7,6 +7,7 @@ import { selectUserByValidationCodeModel } from './selectUserByValidationCodeMod
 import { updateUserModel } from './updateUserModel.js';
 import { selectDoctorByDoctorRegistrationNumberModel } from './selectDoctorByDoctorRegistrationNumberModel.js';
 import { updateDoctorModel } from './updateDoctorModel.js';
+import { selectDoctorByUserIdModel } from './selectDoctorByUserIdModel.js';
 
 export {
   insertUserModel,
@@ -18,4 +19,5 @@ export {
   updateUserModel,
   selectDoctorByDoctorRegistrationNumberModel,
   updateDoctorModel,
+  selectDoctorByUserIdModel,
 };

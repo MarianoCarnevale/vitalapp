@@ -21,6 +21,7 @@ export const UserTokenProvider = ({ children }) => {
       console.log(user);
     } catch (error) {
       console.error(error);
+      localStorage.removeItem("token");
     }
   };
 

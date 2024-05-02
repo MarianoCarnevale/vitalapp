@@ -5,13 +5,12 @@ import { loginSchema } from "../schemas/loginSchema.js";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   // Traemos el token del tokenContext
   const { token, setToken } = useContext(UserTokenContext);
-  // Creamos un estado que guarde los errores que nos mande el back si existen
-  const [errorBack, setErrorBack] = useState(null);
 
   const {
     register,
@@ -34,12 +33,16 @@ const Login = () => {
         "http://localhost:4000/users/login",
         data
       );
-      localStorage.setItem("token", response.data.data.token);
-      setToken(response.data.data.token);
-      reset();
-      navigate("/");
+
+      if (response.data.status === "ok") {
+        // toast.success("Usuario logueado correctamente");
+        localStorage.setItem("token", response.data.data.token);
+        setToken(response.data.data.token);
+        reset();
+        navigate("/");
+      }
     } catch (error) {
-      setErrorBack(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   });
 
@@ -49,6 +52,7 @@ const Login = () => {
     </div>
   ) : (
     <div className="w-3/4 m-auto shadow-lg rounded-xl p-4">
+      <ToastContainer />
       <h1 className="text-3xl my-4">Register</h1>
       <form onSubmit={onSubmit} className="flex flex-col space-y-4 ">
         {/* email */}
@@ -87,7 +91,6 @@ const Login = () => {
         <button type="submit" className="border border-black p-2">
           Enviar
         </button>
-        {errorBack && <p>{errorBack}</p>}
       </form>
     </div>
   );
