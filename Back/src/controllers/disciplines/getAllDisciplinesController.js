@@ -5,7 +5,7 @@ export const getAllDisciplinesController = async (req, res, next) => {
     // obtener todas las especialidades
     const disciplines = await getAllDisciplinesModel();
 
-    // Responder con el tweet.
+    // Responder con las disciplinas.
     res.status(200).send({
       status: 'Ok',
       message: 'All disciplines obtained',

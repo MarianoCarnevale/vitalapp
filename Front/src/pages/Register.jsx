@@ -42,6 +42,14 @@ const Register = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     delete data.confirmarpassword;
+
+    let fechaExperience = data.fechaexperience;
+
+    const [dia, mes, ano] = fechaExperience.split("/");
+    let fechaExperienceChange = `${ano}-${mes}-${dia}`;
+
+    data.experience = fechaExperienceChange;
+    console.log(data);
     try {
       const response = await axios.post(
         "http://localhost:3000/users/register",
@@ -154,6 +162,7 @@ const Register = () => {
             </label>
             <input
               type="text"
+
               className="border-2 border-cyan-700 p-2 rounded"
               {...register("experience")}
             />

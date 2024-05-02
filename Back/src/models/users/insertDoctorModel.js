@@ -28,6 +28,7 @@ export const insertDoctorModel = async (
   // Creamos la query para sacar la id de la disciplina elegida
   let disciplineQuery = `SELECT discipline_id FROM disciplines WHERE discipline_name = ? `;
 
+
   // Actualizamos disciplina
   const [discipline] = await pool.query(disciplineQuery, [discipline_name]);
 

@@ -65,13 +65,16 @@ const initDb = async () => {
     await pool.query(`
         CREATE TABLE disciplines (
           discipline_id TINYINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+
           discipline_name VARCHAR(30) NOT NULL
+
          );
         `);
     console.log('Tabla disciplines creada ✅ 📑');
 
     // Insertamos datos en tabla disciplinas
     await pool.query(`
+
     INSERT INTO disciplines (discipline_name) VALUES 
     ('Medicina Familiar'),
     ('Anatomía Patológica'),
@@ -116,6 +119,7 @@ const initDb = async () => {
     ;
 `);
     console.log('Especialidades médicas insertadas correctamente.');
+
 
     // Crear la tabla doctors_disciplines
     console.log('Creando la tabla doctors_disciplines 📑');

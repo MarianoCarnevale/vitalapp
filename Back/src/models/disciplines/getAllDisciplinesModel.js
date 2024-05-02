@@ -13,7 +13,7 @@ export const getAllDisciplinesModel = async () => {
     );
     return disciplines;
   } catch (error) {
-    console.log('Error finding the doctor', error);
+    // console.log(error.message);
     throw error;
   }
 };
