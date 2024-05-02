@@ -16,7 +16,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     watch,
     reset,
   } = useForm({
@@ -189,7 +189,7 @@ const Register = () => {
           {...register("first_surname")}
         />
         {errors.first_surname && <p>{errors.first_surname.message}</p>}
-        <button className="border p-2" disabled={!isValid}>
+        <button className="border p-2">
           Enviar
         </button>
       </form>
