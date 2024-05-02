@@ -38,7 +38,7 @@ const initDb = async () => {
       last_surname VARCHAR(30),
       avatar VARCHAR(50),
       bio VARCHAR(255),
-      adress VARCHAR(100),
+      address VARCHAR(100),
       phone_number VARCHAR(15),
       birth_date DATE,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

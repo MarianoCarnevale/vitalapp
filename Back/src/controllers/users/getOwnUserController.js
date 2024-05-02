@@ -8,6 +8,12 @@ export const getOwnUserController = async (req, res, next) => {
     // Buscamos el usuario en la base de datos. Si hemos llegado hasta aquí, el usuario existe.
     const user = await selectUserByIdModel(id);
 
+    // Eliminamos los datos que no queremos enviar en la petición de User
+
+    delete user.password;
+    delete user.validation_code;
+    delete user.recovery_code;
+
     // Devolvemos el usuario.
     res.status(200).send({
       status: 'ok',

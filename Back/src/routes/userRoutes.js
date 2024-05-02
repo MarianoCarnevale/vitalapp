@@ -55,7 +55,7 @@ userRouter.put(
 
 // Actualizar informamción de usuario
 userRouter.put(
-  '/users/:user_id',
+  '/users/update',
   authUserController,
   userExistsController,
   updateUserController
