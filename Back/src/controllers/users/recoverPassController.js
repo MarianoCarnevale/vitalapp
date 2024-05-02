@@ -42,8 +42,7 @@ export const recoverPassController = async (req, res, next) => {
 
     // Creamos el cuerpo del email de verificación.
     const emailText = `
-    <p>Para restablecer tu cuenta pulsa en este <a href="http://localhost:4000/users/recovery/${recoveryCode}">enlace</a></p>
-    `;
+    <p>Para restablecer tu cuenta pulsa en este <a href="${process.env.RECOVERY_URL}/${recoveryCode}">enlace</a></p>    `;
 
     // Enviamos el email de verificación.
     await sendEmailUtil(email, emailSubject, emailText);

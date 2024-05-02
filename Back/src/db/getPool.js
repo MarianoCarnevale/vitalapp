@@ -8,6 +8,7 @@ import {
   MYSQL_PASSWORD,
   MYSQL_DATABASE,
 } from '../../env.js';
+import { generateError } from '../utils/errors/generateError.js';
 
 // Crear una variable para almacenar el pool de conexiones
 let pool;
@@ -39,6 +40,6 @@ export const getPool = async () => {
 
     return pool;
   } catch (error) {
-    console.log(error);
+    throw new generateError('Error al conectar con la base de datos', 500);
   }
 };

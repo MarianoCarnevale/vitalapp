@@ -96,8 +96,7 @@ export const insertUserService = async (
     const emailText = `
     ¡Bienvenid@ ${username} a VitalApp!
     Gracias por registrarte en nuestra aplicación. Para activar tu cuenta, haz click en el siguiente enlace:
-    <a href="http://localhost:5173/validate/${validation_code}">Activa tu cuenta</a>
-    `;
+    <a href="${process.env.VALIDATION_URL}/${validation_code}">Activa tu cuenta</a>    `;
 
     // Enviamos el email de verificación.
     await sendEmailUtil(email, emailSubject, emailText);

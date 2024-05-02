@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { registerSchema } from "../schemas/registerSchema";
-// import { registerDoctorSchema } from "../schemas/registerDoctorSchema";
+import { registerDoctorSchema } from "../schemas/registerDoctorSchema";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
@@ -21,10 +21,10 @@ const Register = () => {
     reset,
   } = useForm({
     mode: "onTouched",
-    resolver: joiResolver(registerSchema),
-    // resolver: joiResolver(
-    //   role === "doctor" ? registerDoctorSchema : registerSchema
-    // ),
+    // resolver: joiResolver(registerSchema),
+    resolver: joiResolver(
+      role === "doctor" ? registerDoctorSchema : registerSchema
+    ),
   });
 
   useEffect(() => {
@@ -44,6 +44,14 @@ const Register = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     delete data.confirmarpassword;
+
+    let fechaExperience = data.fechaexperience;
+
+    const [dia, mes, ano] = fechaExperience.split("/");
+    let fechaExperienceChange = `${ano}-${mes}-${dia}`;
+
+    data.experience = fechaExperienceChange;
+    console.log(data);
     try {
       const response = await axios.post(
         "http://localhost:3000/users/register",
@@ -155,6 +163,7 @@ const Register = () => {
             </label>
             <input
               type="date"
+              placeholder="YYYY-MM-DD"
               className="border-2 border-cyan-700 p-2 rounded"
               {...register("experience")}
             />
