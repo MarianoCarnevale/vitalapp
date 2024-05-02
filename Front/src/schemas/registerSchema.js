@@ -1,8 +1,6 @@
 // Importar joi
 // Importar joi y joidate y extender una encima de la otra en una constante
-import BaseJoi from "joi";
-import JoiDate from "@joi/date";
-const joi = BaseJoi.extend(JoiDate);
+import joi from "joi";
 import { joiErrorMessages } from "./joiErrorMessages.js";
 
 export const registerSchema = joi.object({
@@ -25,11 +23,10 @@ export const registerSchema = joi.object({
     .valid(joi.ref("password"))
     .required()
     .messages(joiErrorMessages),
-  role: joi
-    .string()
-    .valid("doctor", "patient")
-    .required()
-    .messages(joiErrorMessages),
+  role: joi.string().valid("doctor", "patient").required().messages({
+    "string.empty": 'El campo "{#key}" no debe estar vacío',
+    "any.only": 'El campo debe ser "doctor" o "paciente"',
+  }),
   first_name: joi.string().min(3).max(30).required().messages(joiErrorMessages),
   first_surname: joi
     .string()
@@ -37,26 +34,4 @@ export const registerSchema = joi.object({
     .max(30)
     .required()
     .messages(joiErrorMessages),
-  // doctor_registration_number: joi
-  //   .string()
-  //   .min(0)
-  //   .max(15)
-  //   .required()
-  //   .messages(joiErrorMessages)
-  //   .when("role", {
-  //     is: "doctor",
-  //     then: joi.required(),
-  //   }),
-  // discipline_name: joi.string().when("role", {
-  //   is: "doctor",
-  //   then: joi.any(),
-  // }),
-  // experience: joi.any().when("role", {
-  //   is: "doctor",
-  //   then: joi
-  //     .date()
-  //     .format("YYYY-MM-DD")
-  //     .required()
-  //     .messages({ "date.format": "La fecha debe tener el formato YYYY-MM-DD" }),
-  // }),
 });

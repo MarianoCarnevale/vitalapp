@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { registerSchema } from "../schemas/registerSchema";
-// import { registerDoctorSchema } from "../schemas/registerDoctorSchema";
+import { registerDoctorSchema } from "../schemas/registerDoctorSchema";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
@@ -16,15 +16,14 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
     reset,
   } = useForm({
     mode: "onTouched",
-    resolver: joiResolver(registerSchema),
-    // resolver: joiResolver(
-    //   role === "doctor" ? registerDoctorSchema : registerSchema
-    // ),
+    resolver: joiResolver(
+      role === "doctor" ? registerDoctorSchema : registerSchema
+    ),
   });
 
   useEffect(() => {
@@ -33,7 +32,6 @@ const Register = () => {
         const response = await axios.get("http://localhost:3000/disciplines");
         const disciplinesArray = Object.values(response.data.data.disciplines); // Cambia esto
         setDiscipline(disciplinesArray);
-        console.log(disciplinesArray);
       } catch (error) {
         console.error(error);
       }
@@ -52,6 +50,7 @@ const Register = () => {
 
       if (response.data.status === "ok") {
         toast.success("Usuario registrado correctamente");
+        console.log(response.data.message);
         reset();
         return;
       }
@@ -125,7 +124,7 @@ const Register = () => {
         {errors.role && <p>{errors.role.message}</p>}
         {role === "doctor" && (
           <>
-            <label htmlFor="registration_number" className="font-bold">
+            <label htmlFor="doctor_registration_number" className="font-bold">
               Número de Registro de colegiado
             </label>
             <input
@@ -154,10 +153,11 @@ const Register = () => {
               Experiencia desde
             </label>
             <input
-              type="date"
+              type="text"
               className="border-2 border-cyan-700 p-2 rounded"
               {...register("experience")}
             />
+            {errors.experience && <p>{errors.experience.message}</p>}
           </>
         )}
         {/* first_name */}
@@ -180,7 +180,9 @@ const Register = () => {
           {...register("first_surname")}
         />
         {errors.first_surname && <p>{errors.first_surname.message}</p>}
-        <button className="border p-2">Enviar</button>
+        <button className="border p-2" disabled={!isValid}>
+          Enviar
+        </button>
       </form>
     </div>
   );
