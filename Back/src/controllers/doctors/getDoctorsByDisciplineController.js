@@ -4,10 +4,10 @@ export const getDoctorsByDisciplineController = async (req, res, next) => {
   try {
     const { discipline_id } = req.params;
 
-    // Obtener el doctor.
+    // Obtener doctors.
     const doctors = await selectDoctorsByDiscipline(discipline_id);
 
-    // Responder con el tweet.
+    // Responder con el doctors.
     res.status(200).send({
       status: 'Ok',
       message: 'Doctors obtained',
