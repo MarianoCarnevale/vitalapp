@@ -6,6 +6,7 @@ export const getDoctorModel = async (doctor_id) => {
     const pool = await getPool();
 
     // Obtener el doctor.
+    // query con ratings
     const [doctor] = await pool.query(
       `
       SELECT 
