@@ -1,36 +1,48 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { VITE_BASE_URL } from "../config/env";
 
+// Creación del contexto UserTokenContext
 export const UserTokenContext = createContext();
 
+// Proveedor del contexto UserTokenContext
 export const UserTokenProvider = ({ children }) => {
+  // Estado para almacenar el token del usuario
   const [token, setToken] = useState(localStorage.getItem("token") || null);
+  // Estado para almacenar los datos del usuario
   const [user, setUser] = useState(null);
 
+  // Función para obtener los datos del usuario a partir del token
   const getUser = async (token) => {
     try {
       console.log(token);
-      const response = await axios.get("http://localhost:4000/users", {
+      // Realiza una solicitud GET a la API para obtener los datos del usuario
+      const response = await axios.get(`${VITE_BASE_URL}/users`, {
         headers: {
           Authorization: `${token}`,
         },
       });
       console.log(response);
+      // Establece los datos del usuario en el estado
       setUser(response.data.data.user);
       console.log(user);
     } catch (error) {
       console.error(error);
-      localStorage.removeItem("token");
+      // Si hay un error, elimina el token del almacenamiento local
+      // localStorage.removeItem("token");
     }
   };
 
+  // Cuando el token cambia, obtiene los datos del usuario
   useEffect(() => {
     getUser(token);
   }, [token]);
 
+  // Valores que se proporcionarán a los consumidores del contexto
   const UserTokenValues = { user, token, setToken };
 
+  // Proporciona el contexto a los componentes hijos
   return (
     <UserTokenContext.Provider value={UserTokenValues}>
       {children}
@@ -38,6 +50,7 @@ export const UserTokenProvider = ({ children }) => {
   );
 };
 
+// Verificación de tipos de las props
 UserTokenProvider.propTypes = {
   children: PropTypes.node,
 };

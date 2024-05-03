@@ -1,3 +1,4 @@
+// Importamos las librerías y componentes necesarios
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -6,13 +7,15 @@ import { registerDoctorSchema } from "../schemas/registerDoctorSchema";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
+import { VITE_BASE_URL } from "../config/env.js";
 
+// Definimos el componente Register
 const Register = () => {
+  // Definimos el estado inicial para el rol y la disciplina
   const [role, setRole] = useState("Selecciona un rol");
   const [discipline, setDiscipline] = useState([]);
 
-  // Combina tus esquemas
-
+  // Inicializamos useForm y definimos la configuración
   const {
     register,
     handleSubmit,
@@ -26,11 +29,13 @@ const Register = () => {
     ),
   });
 
+  // Usamos useEffect para obtener las disciplinas cuando el componente se monta
   useEffect(() => {
     const fetchDiscipline = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/disciplines");
-        const disciplinesArray = Object.values(response.data.data.disciplines); // Cambia esto
+        const response = await axios.get(`${VITE_BASE_URL}/disciplines`);
+        const disciplinesArray = Object.values(response.data.data.disciplines);
+        //
         setDiscipline(disciplinesArray);
       } catch (error) {
         console.error(error);
@@ -40,31 +45,23 @@ const Register = () => {
     fetchDiscipline();
   }, []);
 
+  // Definimos la función que se ejecutará cuando el formulario se envíe
   const onSubmit = handleSubmit(async (data) => {
     delete data.confirmarpassword;
 
-    let fechaExperience = data.fechaexperience;
-
-    const [dia, mes, ano] = fechaExperience.split("/");
-    let fechaExperienceChange = `${ano}-${mes}-${dia}`;
-
-    data.experience = fechaExperienceChange;
-    console.log(data);
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/register",
+        `${VITE_BASE_URL}/users/register`,
         data
       );
 
       if (response.data.status === "ok") {
         toast.success("Usuario registrado correctamente");
-        console.log(response.data.message);
         reset();
         return;
       }
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error.response.data.message);
     }
   });
 
@@ -143,6 +140,7 @@ const Register = () => {
             {errors.doctor_registration_number && (
               <p>{errors.doctor_registration_number.message}</p>
             )}
+            {/* Discipline */}
             <label htmlFor="discipline_name" className="font-bold">
               Especialidad
             </label>
@@ -162,7 +160,6 @@ const Register = () => {
             </label>
             <input
               type="text"
-
               className="border-2 border-cyan-700 p-2 rounded"
               {...register("experience")}
             />
@@ -189,9 +186,7 @@ const Register = () => {
           {...register("first_surname")}
         />
         {errors.first_surname && <p>{errors.first_surname.message}</p>}
-        <button className="border p-2">
-          Enviar
-        </button>
+        <button className="border p-2">Enviar</button>
       </form>
     </div>
   );

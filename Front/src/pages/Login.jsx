@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { VITE_BASE_URL } from "../config/env.js";
 
 const Login = () => {
   // Traemos el token del tokenContext
@@ -16,7 +17,6 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
   } = useForm({
     mode: "onTouched",
@@ -26,16 +26,10 @@ const Login = () => {
   let navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data); // Imprime los datos del formulario
-    delete data.confirmarpassword;
     try {
-      const response = await axios.post(
-        "http://localhost:4000/users/login",
-        data
-      );
+      const response = await axios.post(`${VITE_BASE_URL}/users/login`, data);
 
       if (response.data.status === "ok") {
-        // toast.success("Usuario logueado correctamente");
         localStorage.setItem("token", response.data.data.token);
         setToken(response.data.data.token);
         reset();
@@ -75,19 +69,7 @@ const Login = () => {
           {...register("password")}
         />
         {errors.password && <p>{errors.password.message}</p>}
-        {/* pass2 */}
-        <label htmlFor="password2" className="font-bold">
-          Confirmar Password
-        </label>
-        <input
-          type="password"
-          className="border-2 border-cyan-700 p-2 rounded"
-          {...register("confirmarpassword", {
-            validate: (value) =>
-              value === watch("password") || "Las contraseñas no coinciden",
-          })}
-        />
-        {errors.confirmarpassword && <p>{errors.confirmarpassword.message}</p>}{" "}
+
         <button type="submit" className="border border-black p-2">
           Enviar
         </button>
