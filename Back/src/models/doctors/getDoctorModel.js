@@ -6,7 +6,6 @@ export const getDoctorModel = async (doctor_id) => {
     const pool = await getPool();
 
     // Obtener el doctor.
-    // query con ratings
     const [doctor] = await pool.query(
       `
       SELECT 
@@ -34,7 +33,9 @@ export const getDoctorModel = async (doctor_id) => {
   LEFT JOIN 
       ratings r ON res.response_id = r.response_id
   WHERE 
-      u.role = 'doctor' AND doc.doctor_id = ?
+      u.role = 'doctor' 
+      AND doc.doctor_id = ?
+      AND u.is_active = 1 
   GROUP BY 
       u.user_id, u.first_name, d.name;`,
       [doctor_id]
