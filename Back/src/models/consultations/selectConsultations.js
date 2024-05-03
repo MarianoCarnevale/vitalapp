@@ -20,7 +20,7 @@ export const selectConsultations = async (filter) => {
     C.title, C.description, C.file, C.severity, C.created_at
   FROM consultations C
   LEFT JOIN (
-      SELECT D.doctor_id as doctor_id, U.first_name AS doctor_first_name, U.last_name AS doctor_last_name,DS.name AS speciality,
+      SELECT D.doctor_id as doctor_id, U.first_name AS doctor_first_name, U.last_name AS doctor_last_name,DS.discipline_name AS speciality,
       R.rating_value AS doctor_rating
       FROM doctors D 
       INNER JOIN users U ON D.user_id = U.user_id

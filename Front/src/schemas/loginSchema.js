@@ -16,9 +16,4 @@ export const loginSchema = joi.object({
     )
     .required()
     .messages(joiErrorMessages),
-  confirmarpassword: joi
-    .any()
-    .valid(joi.ref("password"))
-    .required()
-    .messages(joiErrorMessages),
 });
