@@ -33,7 +33,7 @@ export const selectDoctorsByDiscipline = async (discipline_id) => {
   LEFT JOIN 
       ratings r ON res.response_id = r.response_id
   WHERE 
-      u.role = 'doctor' AND dd.discipline_id = ?
+      u.role = 'doctor' AND dd.discipline_id = ? AND u.is_active = 1
   GROUP BY 
       u.user_id, u.first_name, d.name;`,
       [discipline_id]
@@ -45,7 +45,6 @@ export const selectDoctorsByDiscipline = async (discipline_id) => {
 
     return doctors;
   } catch (error) {
-    // console.log(error.message);
     throw error;
   }
 };

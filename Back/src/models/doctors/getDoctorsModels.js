@@ -1,5 +1,5 @@
 import { getPool } from '../../db/getPool.js';
-export const getDoctorsModel = async (doctor_id) => {
+export const getDoctorsModel = async () => {
   try {
     // Crear la conexión a la base de datos.
     const pool = await getPool();
@@ -31,13 +31,12 @@ LEFT JOIN
 LEFT JOIN 
     ratings r ON res.response_id = r.response_id
 WHERE 
-    u.role = 'doctor'
+    u.role = 'doctor' AND u.is_active = 1
 GROUP BY 
     u.user_id, u.first_name, d.name;`);
 
     return doctors;
   } catch (error) {
-    // console.log(error.message);
     throw error;
   }
 };

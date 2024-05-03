@@ -7,14 +7,11 @@ export const getDoctorsByDisciplineController = async (req, res, next) => {
     // Obtener el doctor.
     const doctors = await selectDoctorsByDiscipline(discipline_id);
 
-    // filtrar doctores activos
-    const activeDoctors = doctors.filter((doctor) => doctor.is_active);
-
     // Responder con el tweet.
     res.status(200).send({
       status: 'Ok',
       message: 'Doctors obtained',
-      data: { activeDoctors },
+      data: { doctors },
     });
   } catch (error) {
     next(error);
