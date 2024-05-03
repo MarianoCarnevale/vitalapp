@@ -38,7 +38,7 @@ const initDb = async () => {
       last_surname VARCHAR(30),
       avatar VARCHAR(50),
       bio VARCHAR(255),
-      adress VARCHAR(100),
+      address VARCHAR(100),
       phone_number VARCHAR(15),
       birth_date DATE,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -64,11 +64,62 @@ const initDb = async () => {
     console.log('Creando la tabla doctors_disciplines 📑');
     await pool.query(`
         CREATE TABLE disciplines (
-          discipline_id VARCHAR(100) PRIMARY KEY NOT NULL,
-          name VARCHAR(30) NOT NULL
+          discipline_id TINYINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+
+          discipline_name VARCHAR(30) NOT NULL
+
          );
         `);
     console.log('Tabla disciplines creada ✅ 📑');
+
+    // Insertamos datos en tabla disciplinas
+    await pool.query(`
+
+    INSERT INTO disciplines (discipline_name) VALUES 
+    ('Medicina Familiar'),
+    ('Anatomía Patológica'),
+    ('Anestesiología'),
+    ('Bioquímica Clínica'),
+    ('Cardiología'),
+    ('Cirugía Cardiovascular'),
+    ('Cirugía General'),
+    ('Cirugía Plástica'),
+    ('Dermatología'),
+    ('Endocrinología'),
+    ('Farmacología Clínica'),
+    ('Fisioterapia'),
+    ('Gastroenterología'),
+    ('Genética Médica'),
+    ('Ginecología'),
+    ('Hematología'),
+    ('Infectología'),
+    ('Medicina Deportiva'),
+    ('Medicina General'),
+    ('Medicina Interna'),
+    ('Microbiología'),
+    ('Nefrología'),
+    ('Neumología'),
+    ('Neurocirugía'),
+    ('Neurología'),
+    ('Nutriología'),
+    ('Obstetricia'),
+    ('Oftalmología'),
+    ('Oncología'),
+    ('Ortopedia'),
+    ('Otorrinolaringología'),
+    ('Patología Clínica'),
+    ('Pediatría'),
+    ('Psiquiatría'),
+    ('Radiología'),
+    ('Reumatología'),
+    ('Terapia Intensiva'),
+    ('Terapia Ocupacional'),
+    ('Traumatología'),
+    ('Urología')
+    ;
+`);
+    console.log('Especialidades médicas insertadas correctamente.');
+
 
     // Crear la tabla doctors_disciplines
     console.log('Creando la tabla doctors_disciplines 📑');

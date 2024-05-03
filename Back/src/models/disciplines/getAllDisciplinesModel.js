@@ -11,9 +11,9 @@ export const getAllDisciplinesModel = async () => {
       SELECT * FROM disciplines;
       `
     );
-    return disciplines[0];
+    return disciplines;
   } catch (error) {
-    console.log('Error finding the doctor', error);
+    // console.log(error.message);
     throw error;
   }
 };

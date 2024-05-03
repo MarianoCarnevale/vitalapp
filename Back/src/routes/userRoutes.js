@@ -37,7 +37,7 @@ userRouter.put('/users/update/:recovery_code', updatePassController);
 
 // Actualizar informamción de usuario
 userRouter.put(
-  '/users/:user_id',
+  '/users/update',
   authUserController,
   userExistsController,
   updateUserController

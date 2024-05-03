@@ -1,12 +1,14 @@
 // Importar joi y joidate y extender una encima de la otra en una constante
-import BaseJoi from 'joi';
-import JoiDate from '@joi/date';
-const joi = BaseJoi.extend(JoiDate);
-import { joiErrorMessages } from '../joiErrorMessages.js';
+import joi from "joi";
+import { joiErrorMessages } from "./joiErrorMessages.js";
 
-export const newDoctorSchema = joi.object({
+export const registerDoctorSchema = joi.object({
   username: joi.string().min(3).max(30).required().messages(joiErrorMessages),
-  email: joi.string().email().required().messages(joiErrorMessages),
+  email: joi
+    .string()
+    .email({ tlds: { allow: false } })
+    .required()
+    .messages(joiErrorMessages),
   password: joi
     .string()
     .min(4)
@@ -15,11 +17,15 @@ export const newDoctorSchema = joi.object({
     )
     .required()
     .messages(joiErrorMessages),
-  role: joi
-    .string()
-    .valid('doctor', 'patient')
+  confirmarpassword: joi
+    .any()
+    .valid(joi.ref("password"))
     .required()
     .messages(joiErrorMessages),
+  role: joi.string().valid("doctor", "patient").required().messages({
+    "string.empty": 'El campo "{#key}" no debe estar vacío',
+    "any.only": 'El campo debe ser "doctor" o "paciente"',
+  }),
   first_name: joi.string().min(3).max(30).required().messages(joiErrorMessages),
   first_surname: joi
     .string()
@@ -39,5 +45,12 @@ export const newDoctorSchema = joi.object({
     .max(30)
     .required()
     .messages(joiErrorMessages),
-  experience: joi.date().format('YYYY-MM-DD').required(),
+  experience: joi
+    .string()
+    .pattern(/^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)
+    .required()
+    .messages({
+      ...joiErrorMessages,
+      "string.pattern.base": 'El formato debe ser "YYYY-MM-DD"',
+    }),
 });
