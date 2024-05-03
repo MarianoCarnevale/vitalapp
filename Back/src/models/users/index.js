@@ -18,6 +18,6 @@ export {
   selectUserByValidationCodeModel,
   updateUserModel,
   selectDoctorByDoctorRegistrationNumberModel,
-  // updateDoctorModel
+  updateDoctorModel,
   selectDoctorByUserIdModel,
 };
