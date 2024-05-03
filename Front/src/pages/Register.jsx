@@ -1,35 +1,73 @@
+// Importamos las librerías y componentes necesarios
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { registerSchema } from "../schemas/registerSchema";
-//import { useState } from "react";
+import { registerDoctorSchema } from "../schemas/registerDoctorSchema";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState, useEffect } from "react";
+import { VITE_BASE_URL } from "../config/env.js";
+
+// Definimos el componente Register
 const Register = () => {
+  // Definimos el estado inicial para el rol y la disciplina
+  const [role, setRole] = useState("Selecciona un rol");
+  const [discipline, setDiscipline] = useState([]);
+
+  // Inicializamos useForm y definimos la configuración
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     mode: "onTouched",
-    resolver: joiResolver(registerSchema),
+    resolver: joiResolver(
+      role === "doctor" ? registerDoctorSchema : registerSchema
+    ),
   });
 
+  // Usamos useEffect para obtener las disciplinas cuando el componente se monta
+  useEffect(() => {
+    const fetchDiscipline = async () => {
+      try {
+        const response = await axios.get(`${VITE_BASE_URL}/disciplines`);
+        const disciplinesArray = Object.values(response.data.data.disciplines);
+        //
+        setDiscipline(disciplinesArray);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchDiscipline();
+  }, []);
+
+  // Definimos la función que se ejecutará cuando el formulario se envíe
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data); // Imprime los datos del formulario
     delete data.confirmarpassword;
+
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/register",
+        `${VITE_BASE_URL}/users/register`,
         data
       );
-      console.log(response.data);
+
+      if (response.data.status === "ok") {
+        toast.success("Usuario registrado correctamente");
+        reset();
+        return;
+      }
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     }
   });
 
   return (
     <div className="w-3/4 m-auto shadow-lg rounded-xl p-4">
+      <ToastContainer />
       <h1 className="text-3xl my-4">Register</h1>
       <form onSubmit={onSubmit} className="flex flex-col space-y-4 ">
         {/* username */}
@@ -82,12 +120,52 @@ const Register = () => {
         <select
           className="border-2 border-cyan-700 p-2 rounded"
           {...register("role", { required: true })}
+          onChange={(e) => setRole(e.target.value)}
         >
           <option value="">Selecciona un rol</option>
-          <option value="doctor">Doctor</option>
           <option value="patient">Paciente</option>
+          <option value="doctor">Doctor</option>
         </select>
         {errors.role && <p>{errors.role.message}</p>}
+        {role === "doctor" && (
+          <>
+            <label htmlFor="doctor_registration_number" className="font-bold">
+              Número de Registro de colegiado
+            </label>
+            <input
+              type="text"
+              className="border-2 border-cyan-700 p-2 rounded"
+              {...register("doctor_registration_number")}
+            />
+            {errors.doctor_registration_number && (
+              <p>{errors.doctor_registration_number.message}</p>
+            )}
+            {/* Discipline */}
+            <label htmlFor="discipline_name" className="font-bold">
+              Especialidad
+            </label>
+            <select
+              className="border-2 border-cyan-700 p-2 rounded"
+              {...register("discipline_name")}
+            >
+              {discipline.map((disc, index) => (
+                <option key={index} value={disc.discipline_name}>
+                  {disc.discipline_name}
+                </option>
+              ))}
+            </select>
+            {errors.discipline_name && <p>{errors.discipline_name.message}</p>}
+            <label htmlFor="experience" className="font-bold">
+              Experiencia desde
+            </label>
+            <input
+              type="text"
+              className="border-2 border-cyan-700 p-2 rounded"
+              {...register("experience")}
+            />
+            {errors.experience && <p>{errors.experience.message}</p>}
+          </>
+        )}
         {/* first_name */}
         <label htmlFor="first_name" className="font-bold">
           First Name

@@ -1,9 +1,8 @@
-// Importar joi
 // Importar joi y joidate y extender una encima de la otra en una constante
 import joi from "joi";
 import { joiErrorMessages } from "./joiErrorMessages.js";
 
-export const registerSchema = joi.object({
+export const registerDoctorSchema = joi.object({
   username: joi.string().min(3).max(30).required().messages(joiErrorMessages),
   email: joi
     .string()
@@ -34,4 +33,24 @@ export const registerSchema = joi.object({
     .max(30)
     .required()
     .messages(joiErrorMessages),
+  doctor_registration_number: joi
+    .string()
+    .min(1)
+    .max(15)
+    .required()
+    .messages(joiErrorMessages),
+  discipline_name: joi
+    .string()
+    .min(0)
+    .max(30)
+    .required()
+    .messages(joiErrorMessages),
+  experience: joi
+    .string()
+    .pattern(/^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)
+    .required()
+    .messages({
+      ...joiErrorMessages,
+      "string.pattern.base": 'El formato debe ser "YYYY-MM-DD"',
+    }),
 });

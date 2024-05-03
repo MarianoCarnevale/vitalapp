@@ -45,7 +45,7 @@ export const selectDoctorsByDiscipline = async (discipline_id) => {
 
     return doctors;
   } catch (error) {
-    console.log('Error finding the doctor', error);
+    // console.log(error.message);
     throw error;
   }
 };

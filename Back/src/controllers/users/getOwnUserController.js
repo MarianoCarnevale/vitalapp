@@ -1,19 +1,44 @@
-import { selectUserByIdModel } from '../../models/users/index.js';
+import {
+  selectDoctorByUserIdModel,
+  selectUserByIdModel,
+} from '../../models/users/index.js';
 
 export const getOwnUserController = async (req, res, next) => {
   try {
     // Obtenemos la id del usuario de la request.
     const { id } = req.user;
+    // Obtenemos el rol del usuario para tratar información dependiendo si es medico o paciente
+    const { role } = req.user;
 
-    // Buscamos el usuario en la base de datos. Si hemos llegado hasta aquí, el usuario existe.
-    const user = await selectUserByIdModel(id);
+    if (role === 'patient') {
+      // Buscamos el usuario en la base de datos. Si hemos llegado hasta aquí, el usuario existe.
+      const user = await selectUserByIdModel(id);
 
-    // Devolvemos el usuario.
-    res.status(200).send({
-      status: 'ok',
-      message: 'Usuario obtenido',
-      data: { user },
-    });
+      // Eliminamos los datos que no queremos enviar en la petición de User
+
+      delete user.password;
+      delete user.validation_code;
+      delete user.recovery_code;
+
+      // Devolvemos el usuario.
+      res.status(200).send({
+        status: 'ok',
+        message: 'Usuario paciente obtenido',
+        data: { user },
+      });
+    }
+
+    if (role === 'doctor') {
+      // Buscamos el usuario en la base de datos. Si hemos llegado hasta aquí, el usuario existe.
+      const user = await selectDoctorByUserIdModel(id);
+
+      // Devolvemos el usuario.
+      res.status(200).send({
+        status: 'ok',
+        message: 'Usuario doctor obtenido',
+        data: { user },
+      });
+    }
   } catch (error) {
     next(error);
   }

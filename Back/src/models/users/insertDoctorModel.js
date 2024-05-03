@@ -25,12 +25,14 @@ export const insertDoctorModel = async (
   ]);
 
   // Creamos la query para sacar la id de la disciplina elegida
-  let disciplineQuery = `SELECT discipline_id FROM disciplines WHERE name = ? `;
+  let disciplineQuery = `SELECT discipline_id FROM disciplines WHERE discipline_name = ? `;
+
 
   // Actualizamos disciplina
-  const [discipline] = await pool.query(disciplineQuery, [discipline_name]);
-
-  console.log(discipline[0].discipline_id);
+  const [discipline] = await pool.query(disciplineQuery, [
+    disciplineId,
+    discipline_name,
+  ]);
 
   console.log(disciplineId);
 
@@ -41,7 +43,7 @@ export const insertDoctorModel = async (
   // Actualizamos tabla doctor_disciplina
   const [doctorDiscipline] = await pool.query(doctorDisciplineQuery, [
     doctorId,
-    discipline[0].discipline_id,
+    disciplineId,
     experience,
   ]);
 

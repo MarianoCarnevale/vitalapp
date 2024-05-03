@@ -29,7 +29,7 @@ export const newDoctorSchema = joi.object({
     .messages(joiErrorMessages),
   doctor_registration_number: joi
     .string()
-    .min(0)
+    .min(1)
     .max(15)
     .required()
     .messages(joiErrorMessages),

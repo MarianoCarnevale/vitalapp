@@ -37,7 +37,7 @@ GROUP BY
 
     return doctors;
   } catch (error) {
-    console.log('Error finding the doctor', error);
+    // console.log(error.message);
     throw error;
   }
 };
