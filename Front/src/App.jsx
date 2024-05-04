@@ -18,11 +18,10 @@ function App() {
         <main>
           <Routes>
             {/* //* Rutas públicas */}
-            <Route element={<PublicRoute />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-            </Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route element={<PublicRoute />}></Route>
 
             {/* //* Rutas ocultas */}
 

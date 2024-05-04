@@ -2,17 +2,23 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header>
+    <header className="w-full shadow-sm">
       <nav>
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
+        <ul className="flex p-4 items-center gap-4 max-w-screen-xl m-auto">
+          <li className="flex-grow">
+            <NavLink to="/">
+              <img src="/images/logo-vitalapp.svg" alt="Logo" />
+            </NavLink>
           </li>
-          <li>
-            <NavLink to="/register">Registro</NavLink>
+          <li className="bg-primary px-4 py-1 rounded-md">
+            <NavLink to="/register" className="text-white font-bold">
+              Registro
+            </NavLink>
           </li>
-          <li>
-            <NavLink to="/login">Login</NavLink>
+          <li className="bg-primary px-4 py-1 rounded-md">
+            <NavLink to="/login" className="text-white font-bold">
+              Login
+            </NavLink>
           </li>
         </ul>
       </nav>
