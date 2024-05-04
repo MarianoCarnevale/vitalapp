@@ -16,7 +16,7 @@ export const getDoctorModel = async (doctor_id) => {
       u.last_name,
       u.last_name,
       u.is_active,
-      d.name,
+      d.discipline_name,
       AVG(r.rating_value) AS avg_rating
   FROM 
       users u
@@ -37,7 +37,7 @@ export const getDoctorModel = async (doctor_id) => {
       AND doc.doctor_id = ?
       AND u.is_active = 1 
   GROUP BY 
-      u.user_id, u.first_name, d.name;`,
+      u.user_id, u.first_name, d.discipline_name;`,
       [doctor_id]
     );
 

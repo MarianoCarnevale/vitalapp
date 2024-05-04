@@ -14,7 +14,7 @@ export const getDoctorsModel = async () => {
     u.last_name,
     u.last_name,
     u.is_active,
-    d.name,
+    d.discipline_name,
     AVG(r.rating_value) AS avg_rating
 FROM 
     users u
@@ -33,7 +33,7 @@ LEFT JOIN
 WHERE 
     u.role = 'doctor' AND u.is_active = 1
 GROUP BY 
-    u.user_id, u.first_name, d.name;`);
+    u.user_id, u.first_name, d.discipline_name;`);
 
     return doctors;
   } catch (error) {
