@@ -60,7 +60,7 @@ const initDb = async () => {
     `);
     console.log('Tabla doctors creada ✅ 📑');
 
-    // Crear la tabla disciplines
+    // Crear la tabla doctors_desciplines
     console.log('Creando la tabla disciplines 📑');
     await pool.query(`
         CREATE TABLE disciplines (
@@ -119,7 +119,6 @@ const initDb = async () => {
     ;
 `);
     console.log('Especialidades médicas insertadas correctamente.');
-
 
     // Crear la tabla doctors_disciplines
     console.log('Creando la tabla doctors_disciplines 📑');

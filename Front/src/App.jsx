@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { UserTokenProvider } from "./contexts/UserTokenContext.jsx";
+import RecoverPassword from "./pages/RecoverPassword.jsx";
 
 function App() {
   return (
@@ -18,10 +19,12 @@ function App() {
         <main>
           <Routes>
             {/* //* Rutas públicas */}
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route element={<PublicRoute />}></Route>
+            <Route element={<PublicRoute />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/recoverPassword" element={<RecoverPassword />} />
+            </Route>
 
             {/* //* Rutas ocultas */}
 

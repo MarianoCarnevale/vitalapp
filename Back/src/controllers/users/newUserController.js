@@ -17,8 +17,7 @@ export const newUserController = async (req, res, next) => {
       first_name,
       first_surname,
       doctor_registration_number,
-      discipline_name,
-      experience,
+      disciplines,
     } = req.body;
 
     // Validar el body si el rol es médico.
@@ -45,8 +44,7 @@ export const newUserController = async (req, res, next) => {
       first_name,
       first_surname,
       doctor_registration_number,
-      discipline_name,
-      experience
+      disciplines
     );
 
     // Responder al cliente.

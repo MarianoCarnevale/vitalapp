@@ -33,11 +33,29 @@ export const newDoctorSchema = joi.object({
     .max(15)
     .required()
     .messages(joiErrorMessages),
-  discipline_name: joi
-    .string()
-    .min(0)
-    .max(30)
-    .required()
-    .messages(joiErrorMessages),
-  experience: joi.date().format('YYYY-MM-DD').required(),
+  disciplines: joi.object({
+    first_discipline: joi
+      .array()
+      .required()
+      .items(
+        joi.string().required(),
+        joi.date().format('YYYY-MM-DD').required()
+      )
+      .required()
+      .messages(joiErrorMessages),
+    second_discipline: joi
+      .array()
+      .items(
+        joi.string().required(),
+        joi.date().format('YYYY-MM-DD').required()
+      )
+      .messages(joiErrorMessages),
+    third_discipline: joi
+      .array()
+      .items(
+        joi.string().required(),
+        joi.date().format('YYYY-MM-DD').required()
+      )
+      .messages(joiErrorMessages),
+  }),
 });
