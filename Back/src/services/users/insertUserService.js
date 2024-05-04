@@ -26,7 +26,8 @@ export const insertUserService = async (
   first_name,
   first_surname,
   doctor_registration_number,
-  disciplines
+  discipline_name,
+  experience
 ) => {
   try {
     // Buscamos en la base de datos algún usuario con ese nombre.
@@ -80,7 +81,12 @@ export const insertUserService = async (
     //Insertamos los datos del usuario en las tablas relacionadas con doctor si lo es
 
     if (role === 'doctor') {
-      await insertDoctorModel(user_id, doctor_registration_number, disciplines);
+      await insertDoctorModel(
+        user_id,
+        doctor_registration_number,
+        discipline_name,
+        experience
+      );
     }
 
     // Creamos el asunto del email de verificación.

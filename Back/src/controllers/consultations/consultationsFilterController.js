@@ -8,34 +8,34 @@ export const consultationsFilterController = async (req, res, next) => {
     const { firstname, last_name, rol, date, severity, speciality } = req.body;
 
     //Creamos un array con el filtro Where para el sql
-    let array_filter = ['WHERE'];
+    let filtro = ['WHERE'];
 
     //Empezamos a añadir filtros sengun existan
     if (rol === 'doctor') {
-      filter(array_filter, 'doctor_Name', firstname);
-      filter(array_filter, 'doctor_last_name', last_name);
+      filter(filtro, 'doctor_Name', firstname);
+      filter(filtro, 'doctor_last_name', last_name);
     } else {
-      filter(array_filter, 'U.first_name', firstname);
-      filter(array_filter, 'U.last_name', last_name);
+      filter(filtro, 'U.first_name', firstname);
+      filter(filtro, 'U.last_name', last_name);
     }
 
-    filter(array_filter, 'C.severity', severity);
-    filter(array_filter, 'speciality', speciality);
-    filter(array_filter, 'C.created_at', date);
+    filter(filtro, 'C.severity', severity);
+    filter(filtro, 'speciality', speciality);
+    filter(filtro, 'C.created_at', date);
     //Orden se agrega como GROUP BY orden DES/ASC
-    console.log(array_filter);
+    console.log(filtro);
     //Eliminamos el primer And del array
-    array_filter[1] = array_filter[1].slice(5, array_filter[1].length);
+    filtro[1] = filtro[1].slice(5, filtro[1].length);
 
     //Unimos todo por espacios
-    array_filter = array_filter.join(' ');
+    filtro = filtro.join(' ');
 
-    console.log(array_filter);
+    console.log(filtro);
     //pasamostodos los elementos que iran en la consulta
     //name = name AND last_name = last_name AND order = order
 
     //recibir datos de la tabla
-    const [consultations] = await selectConsultations(array_filter);
+    const [consultations] = await selectConsultations(filtro);
 
     res.status(200).send({
       status: 'Ok',

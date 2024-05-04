@@ -30,6 +30,7 @@ export const postConsultations = async (data, img) => {
   ]);
 
   // const consultations = selectConsultations(`WHERE C.consultation_id = ${consultation_id}`)
+  // console.log(consultations);
   // Verificar si el insert afectó a alguna línea.
   if (result.affectedRows === 0) {
     throw generateError('No se ha podido insertar el usuario', 500);

@@ -2,12 +2,12 @@ import {
   selectUserByEmailModel,
   selectUserByIdModel,
   selectUserByUsernameModel,
-  updateUserModel,
+  updateDoctorModel,
 } from '../../models/users/index.js';
 
 import { generateError } from '../../utils/errors/generateError.js';
 
-export const updateUserService = async (userId, body) => {
+export const updateDoctorService = async (userId, body) => {
   try {
     // Desestructurar la body.
     const {
@@ -22,6 +22,9 @@ export const updateUserService = async (userId, body) => {
       adress,
       phone_number,
       birth_date,
+      doctor_registration_number,
+      discipline_name,
+      experience,
     } = body;
 
     // Obtener el usuario actual.
@@ -44,7 +47,7 @@ export const updateUserService = async (userId, body) => {
     }
 
     // Actualizar el usuario en la base de datos.
-    await updateUserModel(
+    await updateDoctorModel(
       userId,
       email,
       username,
@@ -56,7 +59,10 @@ export const updateUserService = async (userId, body) => {
       bio,
       adress,
       phone_number,
-      birth_date
+      birth_date,
+      doctor_registration_number,
+      discipline_name,
+      experience
     );
 
     // Obtener el usuario actualizado.

@@ -18,7 +18,7 @@ export const authUserController = async (req, res, next) => {
     const tokenInfo = await validateTokenUtil(authorization);
 
     if (!tokenInfo) {
-      throw generateError('Hubo un error con la validación del token', 401);
+     throw generateError('Hubo un error con la validación del token', 401)
     }
     // Añadimos la info del token a la request en la propiedad "user".
     req.user = tokenInfo;

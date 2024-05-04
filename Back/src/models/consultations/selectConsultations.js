@@ -33,6 +33,6 @@ export const selectConsultations = async (filter) => {
 
     return [consultations];
   } catch (error) {
-    throw generateError('consulta no encontrada', 404);
+    throw generateError('consultations table not found', 404);
   }
 };
