@@ -3,6 +3,7 @@ import joi from 'joi';
 import { joiErrorMessagesConsultations } from './joiErrorMessagesConsultations.js';
 
 export const newConsultationsSchema = joi.object({
+  consultation_id: joi.number().required(),
   user_id: joi.number().required(),
   doctor_id: joi.number().required(),
   title: joi.string().min(3).max(30).required().messages(joiErrorMessagesConsultations),

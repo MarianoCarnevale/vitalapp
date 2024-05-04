@@ -7,6 +7,7 @@ export const getDoctorController = async (req, res, next) => {
     // obtener el doctor
     const doctor = await getDoctorModel(doctor_id);
 
+    // Responder con el tweet.
     res.status(200).send({
       status: 'Ok',
       message: 'Doctor obtained',
