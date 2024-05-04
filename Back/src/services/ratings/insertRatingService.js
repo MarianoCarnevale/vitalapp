@@ -1,11 +1,15 @@
 import { insertRatingModel } from '../../models/ratings/insertRatingsModel.js';
+import { selectRatingsModel } from '../../models/ratings/selectRatingsModel.js';
+import { generateError } from '../../utils/errors/generateError.js';
 
 export const insertRatingService = async ( data ) => {
   try {
-    // Creamos una id para la respuesta.
-    // const newRating_id = crypto.randomUUID();
+    //evitar que se agrege una valoracion a una respuesta ya valorada
 
-    // data.rating_id = newRating_id;
+    // Creamos una id para la respuesta.
+    const newRating_id = crypto.randomUUID();
+
+    data.rating_id = newRating_id;
 
     // Insertamos la respuesta en la base de datos.
     const rating = await insertRatingModel(data);

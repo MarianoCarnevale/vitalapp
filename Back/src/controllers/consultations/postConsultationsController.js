@@ -8,14 +8,16 @@ import { validateSchemaUtil } from "../../utils/validateSchemaUtil.js";
 export const postConsultationsController = async(req, res, next) =>{
   try {  
     //Sacamos los datos del body
+    const user_id = req.user_id
     const data = req.body;
-  
+    data.user_id = user_id;
+    
     //comprobamos que no falte ningun paramtetro
-    if(data.length <= 8){
-      throw generateError('There are missing parameters, please make sure that the order of the parameters is as follows: consultation_id, user_id, doctor_id, e-mail, title, symptoms, photo/file, specialty, severity',400)
+    if(Object.keys(data).length < 6){
+      throw generateError(`Fatlan parametros necesitas pasar: consultation_id, user_id, doctor_id, title, description, file, discipline_id, severity, `, 400)
     }
     
-    // await validateSchemaUtil(newConsultationsSchema, data);
+    await validateSchemaUtil(newConsultationsSchema, data);
 
     const img = req.files?.image;
     
@@ -25,7 +27,7 @@ export const postConsultationsController = async(req, res, next) =>{
     }
 
     //hacemos la consulta a la base de datos
-   const consultations = newConsultationService(data);
+   const consultations = newConsultationService(data, img);
 
     res.status(200).send({
       status: 'Consultations created',
