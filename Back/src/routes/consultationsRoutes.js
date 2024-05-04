@@ -1,5 +1,10 @@
 import express from 'express';
-import { consultationsController, postConsultationsController,consultationsFilterController, deleteConsultationController } from '../controllers/consultations/index.js';
+import {
+  consultationsController,
+  postConsultationsController,
+  consultationsFilterController,
+  deleteConsultationController,
+} from '../controllers/consultations/index.js';
 import { consultationByUser } from '../controllers/consultations/ConsultationByUser.js';
 import { authUserController } from '../middlewares/authUserController.js';
 
@@ -7,22 +12,35 @@ export const consultationsRouter = express.Router();
 
 //Importando controladores
 //Crear consulta
-consultationsRouter.post('/consultations/',authUserController, postConsultationsController);
+consultationsRouter.post(
+  '/consultations',
+  authUserController,
+  postConsultationsController
+);
 
 //Borrar consulta
-consultationsRouter.delete('/consultations/:consultation_id',authUserController, deleteConsultationController);
+consultationsRouter.delete(
+  '/consultations/:consultation_id',
+  deleteConsultationController
+);
 
 //Conseguir todas las consultas
 consultationsRouter.get('/consultations/',authUserController, consultationsController);
 
 //Conseguir consulta especifica
-consultationsRouter.get('/consultations/:consultation_id',authUserController, consultationsController);
+consultationsRouter.get(
+  '/consultations/:consultation_id',
+  consultationsController
+);
 
 //Conseguir consulta por usuario(paciente)
-consultationsRouter.get('/consultations/user/:user_id',authUserController, consultationByUser )
+consultationsRouter.get('/consultations/user/:user_id', consultationByUser);
 
 //Conseguir consulta por usuario(medico)
-consultationsRouter.get('/consultations/doctor/:doctor_id',authUserController, consultationByUser )
+consultationsRouter.get('/consultations/doctor/:doctor_id', consultationByUser);
 
 //filtro de busqueda
-consultationsRouter.get('/consultations/search/consultation',authUserController, consultationsFilterController)
+consultationsRouter.get(
+  '/consultations/search/consultation',
+  consultationsFilterController
+);
