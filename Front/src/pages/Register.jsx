@@ -66,59 +66,74 @@ const Register = () => {
   });
 
   return (
-    <div className="w-3/4 m-auto shadow-lg rounded-xl p-4">
+    <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white ">
       <ToastContainer />
-      <h1 className="text-3xl my-4">Register</h1>
+      <h1 className="text-3xl my-4 text-primary font-semibold ">Register</h1>
       <form onSubmit={onSubmit} className="flex flex-col space-y-4 ">
         {/* username */}
-        <label htmlFor="username" className="font-bold ">
+        <label htmlFor="username" className="font-bold text-secondary">
           User Name
         </label>
         <input
+          id="username"
           type="text"
-          className="border-2 border-cyan-700 p-2 rounded"
+          className="border-2 border-primary p-2 rounded"
           {...register("username")}
         />
-        {errors.username && <p>{errors.username.message}</p>}
+        {errors.username && (
+          <p className="text-red-500 font-bold">{errors.username.message}</p>
+        )}
         {/* email */}
-        <label htmlFor="email" className="font-bold">
+        <label htmlFor="email" className="font-bold text-secondary">
           Email
         </label>
         <input
+          id="email"
           type="email"
-          className="border-2 border-cyan-700 p-2 rounded"
+          className="border-2 border-primary p-2 rounded"
           {...register("email")}
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && (
+          <p className="text-red-500 font-bold">{errors.email.message}</p>
+        )}
         {/* pass1 */}
-        <label htmlFor="password" className="font-bold">
+        <label htmlFor="password" className="font-bold text-secondary">
           Password
         </label>
         <input
+          id="password"
           type="password"
-          className="border-2 border-cyan-700 p-2 rounded"
+          className="border-2 border-primary p-2 rounded"
           {...register("password")}
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && (
+          <p className="text-red-500 font-bold">{errors.password.message}</p>
+        )}
         {/* pass2 */}
-        <label htmlFor="password2" className="font-bold">
+        <label htmlFor="password2" className="font-bold text-secondary">
           Confirmar Password
         </label>
         <input
+          id="password2"
           type="password"
-          className="border-2 border-cyan-700 p-2 rounded"
+          className="border-2 border-primary p-2 rounded"
           {...register("confirmarpassword", {
             validate: (value) =>
               value === watch("password") || "Las contraseñas no coinciden",
           })}
         />
-        {errors.confirmarpassword && <p>{errors.confirmarpassword.message}</p>}{" "}
+        {errors.confirmarpassword && (
+          <p className="text-red-500 font-bold">
+            {errors.confirmarpassword.message}
+          </p>
+        )}{" "}
         {/* role */}
-        <label htmlFor="role" className="font-bold">
+        <label htmlFor="role" className="font-bold text-secondary">
           Role
         </label>
         <select
-          className="border-2 border-cyan-700 p-2 rounded"
+          id="role"
+          className="border-2 border-primary p-2 rounded"
           {...register("role", { required: true })}
           onChange={(e) => setRole(e.target.value)}
         >
@@ -126,26 +141,38 @@ const Register = () => {
           <option value="patient">Paciente</option>
           <option value="doctor">Doctor</option>
         </select>
-        {errors.role && <p>{errors.role.message}</p>}
+        {errors.role && (
+          <p className="text-red-500 font-bold">{errors.role.message}</p>
+        )}
         {role === "doctor" && (
           <>
-            <label htmlFor="doctor_registration_number" className="font-bold">
+            <label
+              htmlFor="doctor_registration_number"
+              className="font-bold text-secondary"
+            >
               Número de Registro de colegiado
             </label>
             <input
+              id="doctor_registration_number"
               type="text"
-              className="border-2 border-cyan-700 p-2 rounded"
+              className="border-2 border-primary p-2 rounded"
               {...register("doctor_registration_number")}
             />
             {errors.doctor_registration_number && (
-              <p>{errors.doctor_registration_number.message}</p>
+              <p className="text-red-500 font-bold">
+                {errors.doctor_registration_number.message}
+              </p>
             )}
             {/* Discipline */}
-            <label htmlFor="discipline_name" className="font-bold">
+            <label
+              htmlFor="discipline_name"
+              className="font-bold text-secondary"
+            >
               Especialidad
             </label>
             <select
-              className="border-2 border-cyan-700 p-2 rounded"
+              id="discipline_name"
+              className="border-2 border-primary p-2 rounded"
               {...register("discipline_name")}
             >
               {discipline.map((disc, index) => (
@@ -154,39 +181,58 @@ const Register = () => {
                 </option>
               ))}
             </select>
-            {errors.discipline_name && <p>{errors.discipline_name.message}</p>}
-            <label htmlFor="experience" className="font-bold">
+            {errors.discipline_name && (
+              <p className="text-red-500 font-bold">
+                {errors.discipline_name.message}
+              </p>
+            )}
+            <label htmlFor="experience" className="font-bold text-secondary">
               Experiencia desde
             </label>
             <input
+              id="experience"
               type="text"
-              className="border-2 border-cyan-700 p-2 rounded"
+              className="border-2 border-primary p-2 rounded"
               {...register("experience")}
             />
-            {errors.experience && <p>{errors.experience.message}</p>}
+            {errors.experience && (
+              <p className="text-red-500 font-bold">
+                {errors.experience.message}
+              </p>
+            )}
           </>
         )}
         {/* first_name */}
-        <label htmlFor="first_name" className="font-bold">
+        <label htmlFor="first_name" className="font-bold text-secondary">
           First Name
         </label>
         <input
+          id="first_name"
           type="text"
-          className="border-2 border-cyan-700 p-2 rounded"
+          className="border-2 border-primary p-2 rounded"
           {...register("first_name")}
         />
-        {errors.first_name && <p>{errors.first_name.message}</p>}
+        {errors.first_name && (
+          <p className="text-red-500 font-bold">{errors.first_name.message}</p>
+        )}
         {/* first_surname */}
-        <label htmlFor="first_surname" className="font-bold">
+        <label htmlFor="first_surname" className="font-bold text-secondary">
           First Surname
         </label>
         <input
+          id="first_surname"
           type="text"
-          className="border-2 border-cyan-700 p-2 rounded"
+          className="border-2 border-primary p-2 rounded"
           {...register("first_surname")}
         />
-        {errors.first_surname && <p>{errors.first_surname.message}</p>}
-        <button className="border p-2">Enviar</button>
+        {errors.first_surname && (
+          <p className="text-red-500 font-bold">
+            {errors.first_surname.message}
+          </p>
+        )}
+        <button className="border p-2 bg-primary rounded-md text-white font-semibold">
+          Enviar
+        </button>
       </form>
     </div>
   );

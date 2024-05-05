@@ -7,8 +7,9 @@ export default {
         primary: "#0398AE",
         secondary: "#878787",
       },
-      boxShadow: {
-        custom: "0 16px 16px rgba(0, 0, 0, 0.16)",
+      backgroundImage: {
+        "hero-pattern": "url('./public/images/background-home.jpg')",
+        // ...
       },
     },
   },
