@@ -8,8 +8,17 @@ export default {
         secondary: "#878787",
       },
       backgroundImage: {
-        "hero-pattern": "url('./public/images/background-home.jpg')",
+        "hero-pattern": "url('/images/background-home.jpg')",
         // ...
+      },
+      keyframes: {
+        fadein: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
+      animation: {
+        fadein: "fadein 1s ease-out",
       },
     },
   },

@@ -17,7 +17,7 @@ const Main = () => {
   console.log(token);
   return (
     <main
-      className={`bg-cover pt-32 ${
+      className={`bg-cover pt-32 pb-16 ${
         token ? "bg-white" : "bg-hero-pattern bg-no-repeat"
       }`}
     >
@@ -27,10 +27,13 @@ const Main = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/users/validate/:validationCode"
+            element={<Validate />}
+          />
         </Route>
         {/* //* Rutas ocultas */}
 
-        <Route path="/users/validate/:validationCode" element={<Validate />} />
         {/* //* Rutas privadas */}
         <Route element={<PrivateRoute />}>
           {" "}

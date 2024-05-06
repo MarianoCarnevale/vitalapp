@@ -1,15 +1,35 @@
 // Importa los hooks y las librerías necesarias
-import { useParams } from "react-router-dom"; // Hook de React Router para acceder a los parámetros de la ruta
-import axios from "axios"; // Librería para hacer solicitudes HTTP
-import { useEffect } from "react"; // Hook de React para efectos secundarios
-import { toast, ToastContainer } from "react-toastify"; // Componentes para mostrar notificaciones
-import "react-toastify/dist/ReactToastify.css"; // Estilos para las notificaciones
-import { VITE_BASE_URL } from "../config/env.js"; // Importa la URL base del servidor desde las variables de entorno
-
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { VITE_BASE_URL } from "../config/env.js";
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
 // Componente para la página de validación
 const ValidationPage = () => {
+  const [currentStep, setCurrentStep] = useState(0);
   // Obtiene el código de validación de los parámetros de la ruta
   const { validationCode } = useParams();
+
+  const onboardingSteps = [
+    {
+      title: "Bienvenido a VitalApp",
+      image: "/images/onboarding-1.svg",
+      text: "Texto para la etapa 1",
+    },
+    {
+      title: "Gestiona tus consultas médicas",
+      image: "/images/onboarding-2.svg",
+      text: "Texto para la etapa 2",
+    },
+    {
+      title: "Gestiona tus consultas médicas",
+      image: "/images/onboarding-2.svg",
+      text: "Texto para la etapa 2",
+    },
+  ];
 
   // Cuando el componente se monta o el código de validación cambia, valida el usuario
   useEffect(() => {
@@ -27,16 +47,66 @@ const ValidationPage = () => {
 
     // Llama a la función para validar el usuario
     validateUser();
-  }, [validationCode]); // Dependencia del efecto: se ejecuta cuando validationCode cambia
+  }, [validationCode]);
 
-  // Renderiza el componente
-  return (
-    <div>
-      <ToastContainer /> {/* Contenedor para las notificaciones */}
-      <h1>Página de validación</h1>
-      {/* Aquí puedes agregar más contenido a tu página de validación */}
-    </div>
-  );
+  const handleNext = () => {
+    setCurrentStep((prevStep) => prevStep + 1);
+  };
+
+  const handleSkip = () => {
+    setCurrentStep(onboardingSteps.length);
+  };
+
+  if (currentStep < onboardingSteps.length) {
+    const step = onboardingSteps[currentStep];
+    // Renderiza el componente
+    return (
+      <>
+        <ToastContainer />
+        <div
+          key={currentStep}
+          className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg items-center bg-white flex flex-col gap-16 py-16 px-10 animate-fadein "
+        >
+          <h2 className="text-primary font-bold text-center text-3xl">
+            {step.title}
+          </h2>
+          <img
+            className="max-h-48"
+            src={step.image}
+            alt={`Imagen ${currentStep + 1}`}
+          />
+          <p>{step.text}</p>
+          <div className="flex justify-center space-x-2 mb-4">
+            {onboardingSteps.map((step, index) => (
+              <div
+                key={index}
+                className={`h-4 w-4 rounded-full cursor-pointer ${
+                  index === currentStep ? "bg-primary" : "bg-gray-300"
+                }`}
+                onClick={() => setCurrentStep(index)}
+              />
+            ))}
+          </div>
+          <div className="flex gap-5 w-full">
+            <button
+              onClick={handleNext}
+              className="border p-2 bg-primary rounded-md text-white font-semibold flex-grow"
+            >
+              Next
+            </button>
+            <button
+              onClick={handleSkip}
+              className="border p-2 bg-primary rounded-md text-white font-semibold flex-grow"
+            >
+              Skip
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 // Exporta el componente
