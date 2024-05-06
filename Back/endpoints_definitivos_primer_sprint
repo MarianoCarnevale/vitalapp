@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "19c18402-f0d8-4bef-8497-46a9d3ed7db9",
+		"_postman_id": "e7098a11-1631-434c-873b-369dcb8f77ed",
 		"name": "vitalApp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "32781496"
+		"_exporter_id": "34403849"
 	},
 	"item": [
 		{
@@ -463,10 +463,16 @@
 			"name": "Borrar una respuesta propia",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"user_id\": \"8\",\r\n  \"consultation_id\": \"5\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -474,15 +480,27 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/responses/7",
+					"raw": "http://localhost:4000/consultations/:consultation_id/responses/:response_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
+						"consultations",
+						":consultation_id",
 						"responses",
-						"7"
+						":response_id"
+					],
+					"variable": [
+						{
+							"key": "consultation_id",
+							"value": ""
+						},
+						{
+							"key": "response_id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -495,7 +513,13 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "",
@@ -506,14 +530,21 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/responses",
+					"raw": "http://localhost:4000/responses/:consultation_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
-						"responses"
+						"responses",
+						":consultation_id"
+					],
+					"variable": [
+						{
+							"key": "consultation_id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -523,10 +554,16 @@
 			"name": "Crear respuesta",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"consultation_id\" : \"00396242-b771-4d6e-b3de-8cecd5c35be2\",\r\n  \"user_id\": \"f98b8fe8-75b6-4e01-94ad-20010b780f94\",\r\n  \"content\": \"Respuesta de paciente 1\"\r\n}",
+					"raw": "{\r\n  \"content\": \"Respuesta de paciente 1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -534,14 +571,21 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/responses",
+					"raw": "http://localhost:4000/responses/:consultation_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
-						"responses"
+						"responses",
+						":consultation_id"
+					],
+					"variable": [
+						{
+							"key": "consultation_id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -551,10 +595,16 @@
 			"name": "Modificar respuesta",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"user_id\": \"f98b8fe8-75b6-4e01-94ad-20010b780f94\",\r\n  \"content\": \"Perdón me he equivocado en mi respuesta doctor, gracias\"\r\n}",
+					"raw": "{\r\n  \"content\": \"Perdón me he equivocado en mi respuesta doctor, gracias\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -562,7 +612,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/responses/5f309bce-dacf-41f3-b4e0-8705051dba61",
+					"raw": "http://localhost:4000/responses/:response_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -570,7 +620,13 @@
 					"port": "4000",
 					"path": [
 						"responses",
-						"5f309bce-dacf-41f3-b4e0-8705051dba61"
+						":response_id"
+					],
+					"variable": [
+						{
+							"key": "response_id",
+							"value": ""
+						}
 					]
 				}
 			},
