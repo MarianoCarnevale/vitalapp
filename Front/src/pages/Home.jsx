@@ -1,17 +1,12 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserTokenContext } from "../contexts/UserTokenContext";
-import { FindDoctor } from "../components/FindDoctor.jsx";
 
 const Home = () => {
-  const { user } = useContext(UserTokenContext);
-
-  return user ? (
+  const { token } = useContext(UserTokenContext);
+  useEffect(() => {}, [token]);
+  return (
     <div>
-      <h1>Home con user</h1>
-    </div>
-  ) : (
-    <div>
-      <FindDoctor />
+      <h1>Home</h1>
     </div>
   );
 };
