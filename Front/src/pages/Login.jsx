@@ -11,7 +11,7 @@ import { VITE_BASE_URL } from "../config/env.js";
 
 const Login = () => {
   // Traemos el token del tokenContext
-  const { token, setToken } = useContext(UserTokenContext);
+  const { setToken, user } = useContext(UserTokenContext);
 
   const {
     register,
@@ -33,16 +33,19 @@ const Login = () => {
         localStorage.setItem("token", response.data.data.token);
         setToken(response.data.data.token);
         reset();
-        navigate("/");
       }
     } catch (error) {
       toast.error(error.response.data.message);
     }
   });
 
-  return token ? (
+  if (user) {
+    navigate("/");
+  }
+
+  return user ? (
     <div>
-      <h1>Tienes el token</h1>
+      <h1>Tienes el user</h1>
     </div>
   ) : (
     <div className="w-3/4 m-auto shadow-lg rounded-xl p-4">

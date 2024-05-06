@@ -13,12 +13,11 @@ import Search from "../pages/Search.jsx";
 import Profile from "../pages/Profile.jsx";
 
 const Main = () => {
-  const { token } = useContext(UserTokenContext);
-  console.log(token);
+  const { user } = useContext(UserTokenContext);
   return (
     <main
       className={`bg-cover pt-32 pb-16 ${
-        token ? "bg-white" : "bg-hero-pattern bg-no-repeat"
+        user ? "bg-white" : "bg-hero-pattern bg-no-repeat"
       }`}
     >
       <Routes>
