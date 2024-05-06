@@ -5,7 +5,7 @@ import { updateResponseService } from "../../services/responses/updateResponseSe
 export const updateResponseController = async (req, res, next) => {
   try {
     // Obtener el id del usuario.
-    const user_id = req.body.user_id;
+    const user_id = req.user.id;
     // Obtener el id de la respuesta.
     const { response_id } = req.params;
     
@@ -28,4 +28,3 @@ export const updateResponseController = async (req, res, next) => {
     next(error);
   }
 };
-
