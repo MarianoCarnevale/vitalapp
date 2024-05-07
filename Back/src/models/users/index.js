@@ -8,6 +8,7 @@ import { updateUserModel } from './updateUserModel.js';
 import { selectDoctorByDoctorRegistrationNumberModel } from './selectDoctorByDoctorRegistrationNumberModel.js';
 import { updateDoctorModel } from './updateDoctorModel.js';
 import { selectDoctorByUserIdModel } from './selectDoctorByUserIdModel.js';
+import { selectAllPatientsModel } from './selectAllPatientsModel.js';
 
 export {
   insertUserModel,
@@ -20,4 +21,5 @@ export {
   selectDoctorByDoctorRegistrationNumberModel,
   updateDoctorModel,
   selectDoctorByUserIdModel,
+  selectAllPatientsModel,
 };

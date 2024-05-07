@@ -6,6 +6,7 @@ import { updatePassController } from './updatePassController.js';
 import { updateUserController } from './updateUserController.js';
 import { updateUserAvatarController } from './updateUserAvatarController.js';
 import { getOwnUserController } from './getOwnUserController.js';
+import { getPatientsController } from './getPatientsController.js';
 
 export {
   loginUserController,
@@ -16,4 +17,5 @@ export {
   updateUserController,
   updateUserAvatarController,
   getOwnUserController,
+  getPatientsController,
 };
