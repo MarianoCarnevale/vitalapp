@@ -9,7 +9,7 @@ export default {
       },
       backgroundImage: {
         "hero-pattern": "url('/images/background-home.jpg')",
-        // ...
+        "menu-lines": "url('/images/fondo-menu.svg')",
       },
       keyframes: {
         fadein: {
