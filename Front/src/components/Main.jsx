@@ -21,9 +21,9 @@ const Main = () => {
       }`}
     >
       <Routes>
+        <Route path="/" element={<Home />} />
         {/* //* Rutas públicas */}
         <Route element={<PublicRoute />}>
-          <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route
@@ -35,8 +35,7 @@ const Main = () => {
 
         {/* //* Rutas privadas */}
         <Route element={<PrivateRoute />}>
-          {" "}
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/consultations" element={<Consultation />} />
           <Route path="/search" element={<Search />} />
           <Route path="/user" element={<Profile />} />
