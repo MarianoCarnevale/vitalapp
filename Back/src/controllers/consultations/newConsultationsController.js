@@ -6,8 +6,8 @@ import { validateSchemaUtil } from "../../utils/validateSchemaUtil.js";
 
 export const newConsultationsController = async(req, res, next) =>{
   try {  
-    //Sacamos los datos del body
-    const user_id = req.user_id
+    //Sacamos los datos del usuario
+    const user_id = req.user.id;
     const data = req.body;
     data.user_id = user_id;
     
@@ -18,7 +18,7 @@ export const newConsultationsController = async(req, res, next) =>{
     
     await validateSchemaUtil(newConsultationsSchema, data);
 
-    const img = req.files?.image;
+    const img = req.file?.image;
     
 
     if(img){

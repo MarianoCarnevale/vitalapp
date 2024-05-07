@@ -3,11 +3,11 @@ import { generateError } from "../utils/errors/generateError.js"
 
 export const userValidationController = async (req, res, next) => {
 
-  const { consultation_id, doctor_id } = req.params
+  const { consultation_id } = req.params;
   
-  const { user_id } = req.user
+  const { user_id } = req.user.id;
 
-  let array_filter
+  let array_filter;
   try {
 
     if (user_id) {

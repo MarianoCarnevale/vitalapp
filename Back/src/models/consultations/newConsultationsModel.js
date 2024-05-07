@@ -1,7 +1,7 @@
 import { getPool } from '../../db/getPool.js';
 import { generateError } from '../../utils/errors/generateError.js';
 
-export const newConsultationsModel = async (data, img) => {
+export const newConsultationsModel = async (data, file) => {
   try {
     
     const {
@@ -24,16 +24,16 @@ export const newConsultationsModel = async (data, img) => {
       doctor_id,
       title,
       description,
-      img,
+      file,
       discipline_id,
       severity,
     ]);
   
     // Verificar si el insert afectó a alguna línea.
     if (result.affectedRows === 0) {
-      throw generateError('No se ha podido insertar el usuario', 500);
+      throw generateError('No se ha podido insertar la consulta', 500);
     };
   } catch (error) {
-    console.log('Error al insertar usuario: ',error);
+    console.log('Error al insertar consulta: ',error);
   }
 };

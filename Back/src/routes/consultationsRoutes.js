@@ -62,10 +62,10 @@ consultationsRouter.get(
   consultationsController
 );
 
-//actualizar consulta
-consultationsRouter.put(
-  '/consultations/update/:consultation_id',
-  authUserController,
-  userValidationController,
-  ConsultationFileController
-);
+// //actualizar consulta
+// consultationsRouter.put(
+//   '/consultations/update/:consultation_id',
+//   authUserController,
+//   userValidationController,
+//   ConsultationFileController
+// );
