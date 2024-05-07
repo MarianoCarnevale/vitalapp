@@ -26,9 +26,11 @@ export const FindDoctor = () => {
   console.log(doctors);
   return (
     <div className="flex flex-col justify-center items-center p-5 my-10">
-      <div className="flex justify-between mb-5">
+      <div className="flex justify-around gap-5 mb-5">
         <button
-          className="border border-black p-2"
+          className={`${
+            filterCaracter ? "bg-slate-400" : "bg-white"
+          } border border-primary text-primary py-2 px-6 rounded-full`}
           onClick={() => {
             setFilterCaracter(!filterCaracter);
             setFilterDisciplines(false);
@@ -37,7 +39,9 @@ export const FindDoctor = () => {
           Nombre
         </button>
         <button
-          className="border border-black p-2"
+          className={`${
+            filterDisciplines ? "bg-slate-400" : "bg-white"
+          } border border-primary text-primary py-2 px-6 rounded-full`}
           onClick={() => {
             setFilterDisciplines(!filterDisciplines);
             setFilterCaracter(false);
@@ -47,14 +51,14 @@ export const FindDoctor = () => {
         </button>
       </div>
       <input
-        className="border border-black mb-5 p-2"
+        className="border border-primary placeholder-primary rounded-full mb-5 px-10 py-2"
         type="text"
         placeholder={
           filterDisciplines ? "Busca una especialidad..." : "Busca un doctor..."
         }
         onChange={(e) => setName(e.target.value.toLowerCase())}
       />
-      <ul className="bg-white p-5 border border-black">
+      <ul className="flex flex-col gap-5 bg-white p-5 border border-primary rounded-sm max-h-72 overflow-scroll">
         {doctors
           .filter((doctor) =>
             filterCaracter
@@ -73,9 +77,16 @@ export const FindDoctor = () => {
           )
           .map((doctor) => {
             return (
-              <li key={doctor.user_id}>
-                {doctor.first_name} {doctor.first_surname}
-                -- {doctor.discipline_name}
+              <li
+                className="flex justify-between items-center  gap-5 border border-primary py-1 px-4 text-primary font-bold rounded-full grow"
+                key={doctor.user_id}
+              >
+                <p>
+                  {doctor.first_name} {doctor.first_surname}
+                </p>
+                <p className="border-primary text-white text-sm rounded-full bg-primary p-2">
+                  {doctor.discipline_name}
+                </p>
               </li>
             );
           })}
