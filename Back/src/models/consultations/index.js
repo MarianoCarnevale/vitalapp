@@ -1,7 +1,6 @@
-import { consultationByUser } from "../../controllers/consultations/ConsultationByUser.js";
-import { deleteConsultation } from "./deleteConsultation.js";
-import { postConsultations } from "./postConsultations.js";
-import { selectConsultations } from "./selectConsultations.js";
-// import { selectConsultationsByFilter } from "./selectConsultationsByFilter.js";
+import { deleteConsultationModel } from "./deleteConsultationModel.js";
+import { newConsultationsModel } from "./newConsultationsModel.js";
+import { selectConsultationsModel } from "./selectConsultationsModel.js";
+import { updateConsultationFileModel } from "./updateConsultationFileModel.js";
 
-export { selectConsultations, postConsultations, deleteConsultation, consultationByUser}
+export { selectConsultationsModel, newConsultationsModel, deleteConsultationModel, updateConsultationFileModel}

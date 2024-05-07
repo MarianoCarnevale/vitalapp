@@ -1,7 +1,7 @@
 import { getPool } from '../../db/getPool.js';
 import { generateError } from '../../utils/errors/generateError.js';
 
-export const selectConsultations = async (filter) => {
+export const selectConsultationsModel = async (filter) => {
   try {
     //Esperamos conexion de la base de datos
     const pool = await getPool();
@@ -13,7 +13,7 @@ export const selectConsultations = async (filter) => {
     const [consultations] = await pool.query(`
     SELECT 
     C.consultation_id, 
-    doctor.doctor_id, doctor.doctor_first_name AS doctor_Name,doctor.doctor_last_name AS doctor_last_name,
+    doctor.doctor_id AS doctor_id, doctor.doctor_first_name AS doctor_Name,doctor.doctor_last_name AS doctor_last_name,
     doctor.speciality AS speciality ,
     doctor.doctor_rating,
     U.user_id, U.first_name, U.last_name,
@@ -33,6 +33,6 @@ export const selectConsultations = async (filter) => {
 
     return [consultations];
   } catch (error) {
-    throw generateError('consultations table not found', 404);
+    throw generateError('consulta no encontrada', 404);
   }
 };
