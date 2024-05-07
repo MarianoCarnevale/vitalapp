@@ -4,15 +4,15 @@ import { joiErrorMessages } from "./joiErrorMessages";
 export const updatePasswordSchema = joi.object({
   password: joi
     .string()
-    .required()
     .min(4)
     .pattern(
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@¡!$%^&*()_+|~=`{}:";'<>¿?,.])[a-zA-Z0-9@¡!$%^&*()_+|~=`{}:";'<>¿?,.]{8,}$/
     )
-    .label("password")
+    .required()
     .messages(joiErrorMessages),
   confirmarpassword: joi
-    .required()
+    .any()
     .valid(joi.ref("password"))
+    .required()
     .messages(joiErrorMessages),
 });

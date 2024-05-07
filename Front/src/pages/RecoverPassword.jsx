@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 import { VITE_BASE_URL } from "../config/env.js";
 import { recoverPasswordSchema } from "../schemas/recoverPasswordSchema.js";
 
@@ -25,17 +25,21 @@ const RecoverPassword = () => {
       );
 
       if (response.data.status === "ok") {
+        console.log("todo bien");
         toast.success("Password recovery mail is sent at your mail");
         reset();
         return;
       }
     } catch (error) {
+      console.log("todo mal");
+
       toast.error(error.response.data.message);
     }
   });
   return (
     <>
       <h1 className="text-3xl my-4">Recover Password</h1>
+      <ToastContainer />
       <form onSubmit={onSubmit} className="flex flex-col space-y-4 ">
         <div className="w-3/4 m-auto shadow-lg rounded-xl p-4">
           <label htmlFor="email" className="font-bold">

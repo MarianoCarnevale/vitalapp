@@ -25,6 +25,7 @@ const Main = () => {
       <Routes>
         {/* //* Rutas públicas */}
         <Route element={<PublicRoute />}>
+          <Route path="/recoverPassword" element={<RecoverPassword />} />
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -32,7 +33,6 @@ const Main = () => {
             path="/users/validate/:validationCode"
             element={<Validate />}
           />
-          <Route path="/recoverPassword" element={<RecoverPassword />} />
         </Route>
         <Route
           path="/updatePassword/:recoveryCode"

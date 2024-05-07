@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { updatePasswordSchema } from "../schemas/updatePasswordSchema.js";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { VITE_BASE_URL } from "../config/env.js";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { updatePasswordSchema } from "../schemas/updatePasswordSchema.js";
 
 const UpdatePassword = () => {
   const { recoveryCode } = useParams();
@@ -24,13 +24,15 @@ const UpdatePassword = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
+    const { confirmarpassword, ...password } = data;
+
+    console.log(password);
     try {
       setIsLoading(true);
-      const response = await axios.post(
+      const response = await axios.put(
         `${VITE_BASE_URL}/users/update/${recoveryCode}`,
-        data
+        password
       );
-
       if (response.data.status === "ok") {
         toast.success("Password is restored");
         setTimeout(() => {
@@ -46,6 +48,7 @@ const UpdatePassword = () => {
   return (
     <>
       <h1 className="text-3xl my-4">Update Password</h1>
+      <ToastContainer />
       {isLoading ? (
         <p>Loading...</p>
       ) : (
