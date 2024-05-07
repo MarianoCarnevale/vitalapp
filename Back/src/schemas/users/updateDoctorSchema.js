@@ -4,6 +4,14 @@ import { joiErrorMessages } from '../joiErrorMessages.js';
 export const updateDoctorSchema = joi.object({
   email: joi.string().email().required().messages(joiErrorMessages),
   username: joi.string().min(3).max(30).required().messages(joiErrorMessages),
+  password: joi
+    .string()
+    .min(4)
+    .pattern(
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@¡!$%^&*()_+|~=`{}:";'<>¿?,.])[a-zA-Z0-9@¡!$%^&*()_+|~=`{}:";'<>¿?,.]{8,}$/
+    )
+    .required()
+    .messages(joiErrorMessages),
   first_name: joi.string().min(3).max(30).required().messages(joiErrorMessages),
   last_name: joi.string().min(3).max(30).messages(joiErrorMessages),
   first_surname: joi

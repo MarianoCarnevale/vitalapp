@@ -1,23 +1,31 @@
-import { newResponseSchema } from "../../schemas/responses/newResponseSchema.js";
-import { insertResponseService } from "../../services/responses/insertResponseService.js";
-import { validateSchemaUtil } from "../../utils/validateSchemaUtil.js";
+import { newResponseSchema } from '../../schemas/responses/newResponseSchema.js';
+import { insertResponseService } from '../../services/responses/insertResponseService.js';
+import { validateSchemaUtil } from '../../utils/validateSchemaUtil.js';
 
 export const newResponseController = async (req, res, next) => {
   try {
     // Obtengo la id del usuario.
-    const { consultation_id, user_id, content } = req.body;
+    const user_id = req.user.id;
+    // Obtengo la consulta.
+    const { consultation_id } = req.params;
+    // Obtengo el contenido.
+    const { content } = req.body;
 
-    // Validar el body con el esquema newUserSchema.
-    // await validateSchemaUtil(newResponseSchema, { content });
+    // Validar el body con el esquema newResponseSchema.
+    await validateSchemaUtil(newResponseSchema, { content });
 
     // Insertar la respuesta en la base de datos.
-    const response = await insertResponseService(consultation_id, user_id, content);
+    const response = await insertResponseService(
+      consultation_id,
+      user_id,
+      content
+    );
 
     // Responder al cliente.
     res.status(201).send({
       status: 'ok',
       message: 'Respuesta creada',
-      data: { response }
+      data: { response },
     });
   } catch (error) {
     next(error);

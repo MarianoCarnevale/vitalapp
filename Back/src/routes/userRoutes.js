@@ -9,6 +9,8 @@ import {
   recoverPassController,
   updatePassController,
   updateUserController,
+  updateUserAvatarController,
+  getOwnUserController,
 } from '../controllers/users/index.js';
 
 // Importamos los middlewares.
@@ -19,6 +21,14 @@ import {
 
 // Creamos un router.
 export const userRouter = express.Router();
+
+// Obtener perfil privado de un usuario.
+userRouter.get(
+  '/users',
+  authUserController,
+  userExistsController,
+  getOwnUserController
+);
 
 // Crear un usuario pendiente de activar.
 userRouter.post('/users/register', newUserController);
@@ -35,9 +45,17 @@ userRouter.post('/users/recoverpass', recoverPassController);
 // Actualizar contraseña.
 userRouter.put('/users/update/:recovery_code', updatePassController);
 
+// Editar el avatar de un usuario.
+userRouter.put(
+  '/users/avatar',
+  authUserController,
+  userExistsController,
+  updateUserAvatarController
+);
+
 // Actualizar informamción de usuario
 userRouter.put(
-  '/users/:user_id',
+  '/users/update',
   authUserController,
   userExistsController,
   updateUserController

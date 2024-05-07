@@ -1,3 +1,5 @@
+// Importar el módulo bcrypt.
+import bcrypt from 'bcrypt';
 import { getPool } from '../../db/getPool.js';
 import { generateError } from '../../utils/errors/generateError.js';
 
@@ -5,6 +7,7 @@ export const updateUserModel = async (
   userId,
   email,
   username,
+  password,
   first_name,
   last_name,
   first_surname,
@@ -16,11 +19,14 @@ export const updateUserModel = async (
 ) => {
   const pool = await getPool();
 
+  // Hasheamos el nuevo password
+  const passwordHashed = await bcrypt.hash(password, 10);
+
   // Crear la query.
-  let query = `UPDATE users SET email = ?, username = ?, first_name = ?`;
+  let query = `UPDATE users SET email = ?, username = ?, password = ?, first_name = ?`;
 
   // Crear el array de valores obligados menos el primer apellido
-  let values = [email, username, first_name];
+  let values = [email, username, passwordHashed, first_name];
 
   // Si hay segundo nombre, lo añadimos
   if (last_name) {
