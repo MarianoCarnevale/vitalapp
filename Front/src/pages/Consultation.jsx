@@ -38,7 +38,7 @@ const Consultation = () => {
           Title
         </h2>
         
-        <input className="border-2 mt-5 mx-3 border-primary rounded-sm w-11/12 p-2 md:p-2"
+        <input className="input"
           
           type="text"
           placeholder="Title"
