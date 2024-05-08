@@ -6,9 +6,12 @@ import { FindPatient } from "../components/FindPatient.jsx";
 
 const Home = () => {
   const { user } = useContext(UserTokenContext);
-
   return user ? (
-    <FindPatient />
+    user.role === "doctor" ? (
+      <FindPatient />
+    ) : (
+      <FindDoctor />
+    )
   ) : (
     <>
       <h1 className="w-2/4 py-5 text-center m-auto text-5xl font-bold text-white">
