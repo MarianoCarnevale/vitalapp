@@ -36,7 +36,7 @@ export const FindPatient = () => {
       <div className="flex gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className=""
+          className="w-full"
           type="text"
           placeholder="Busca un paciente..."
           onChange={(e) => setName(e.target.value.toLowerCase())}

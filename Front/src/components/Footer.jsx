@@ -13,7 +13,6 @@ const Footer = () => {
         >
           <img className="m-auto" src="/images/icon-home.svg" alt="Home" />
         </NavLink>
-
         <NavLink
           to="/consultations"
           className="rounded-2xl py-2 focus:bg-secondary-light flex-grow"

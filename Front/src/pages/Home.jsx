@@ -3,15 +3,15 @@ import { UserTokenContext } from "../contexts/UserTokenContext";
 
 import { FindDoctor } from "../components/FindDoctor.jsx";
 import { FindPatient } from "../components/FindPatient.jsx";
+import { DateNow } from "../components/DateNow.jsx";
 
 const Home = () => {
   const { user } = useContext(UserTokenContext);
   return user ? (
-    user.role === "doctor" ? (
-      <FindPatient />
-    ) : (
-      <FindDoctor />
-    )
+    <>
+      <DateNow />
+      {user.role === "doctor" ? <FindPatient /> : <FindDoctor />}
+    </>
   ) : (
     <>
       <h1 className="w-2/4 py-5 text-center m-auto text-5xl font-bold text-white">
