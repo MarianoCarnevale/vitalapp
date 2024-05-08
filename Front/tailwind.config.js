@@ -6,6 +6,11 @@ export default {
       colors: {
         primary: "#0398AE",
         secondary: "#878787",
+        "secondary-light": "#ececec",
+      },
+      //shadow
+      boxShadow: {
+        sup: "1px -14px 32px -18px rgba(0,0,0,0.27);",
       },
       backgroundImage: {
         "hero-pattern": "url('/images/background-home.jpg')",
