@@ -27,7 +27,6 @@ const Main = () => {
         {/* //* Rutas públicas */}
         <Route element={<PublicRoute />}>
           <Route path="/recover" element={<RecoverPassword />} />
-
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route
