@@ -25,12 +25,14 @@ export const FindDoctor = () => {
 
   console.log(doctors);
   return (
-    <div className="flex flex-col justify-center items-center p-5 my-10">
-      <div className="flex justify-around gap-5 mb-5">
+    <section className="w-5/6 py-10 m-auto flex flex-col gap-4 items-center max-w-md">
+      <div className="flex w-full gap-4">
         <button
           className={`${
-            filterCaracter ? "bg-slate-400" : "bg-white"
-          } border border-primary text-primary py-2 px-6 rounded-full`}
+            filterCaracter
+              ? "bg-primary text-white border-2 border-white"
+              : "bg-white"
+          } flex-grow border border-primary text-primary py-2 px-6 rounded-full`}
           onClick={() => {
             setFilterCaracter(!filterCaracter);
             setFilterDisciplines(false);
@@ -40,8 +42,10 @@ export const FindDoctor = () => {
         </button>
         <button
           className={`${
-            filterDisciplines ? "bg-slate-400" : "bg-white"
-          } border border-primary text-primary py-2 px-6 rounded-full`}
+            filterDisciplines
+              ? "bg-primary text-white border-2 border-white"
+              : "bg-white"
+          } flex-grow border border-primary text-primary py-2 px-6 rounded-full`}
           onClick={() => {
             setFilterDisciplines(!filterDisciplines);
             setFilterCaracter(false);
@@ -50,15 +54,21 @@ export const FindDoctor = () => {
           Especialidades
         </button>
       </div>
-      <input
-        className="border border-primary placeholder-primary rounded-full mb-5 px-10 py-2"
-        type="text"
-        placeholder={
-          filterDisciplines ? "Busca una especialidad..." : "Busca un doctor..."
-        }
-        onChange={(e) => setName(e.target.value.toLowerCase())}
-      />
-      <ul className="flex flex-col gap-5 bg-white p-5 border border-primary rounded-lg max-h-72 overflow-scroll">
+      <div className="flex gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
+        <img src="/images/search-icon.svg" alt="input icon" />
+        <input
+          className=""
+          type="text"
+          placeholder={
+            filterDisciplines
+              ? "Busca una especialidad..."
+              : "Busca un doctor..."
+          }
+          onChange={(e) => setName(e.target.value.toLowerCase())}
+        />
+      </div>
+
+      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-72 max-h-72 overflow-auto shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter
@@ -78,19 +88,19 @@ export const FindDoctor = () => {
           .map((doctor) => {
             return (
               <li
-                className="flex justify-between items-center  gap-5 border border-primary py-1 px-4 text-primary font-bold rounded-full grow"
+                className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
                 key={doctor.user_id}
               >
                 <p>
                   {doctor.first_name} {doctor.first_surname}
                 </p>
-                <p className="border-primary text-white text-sm rounded-full bg-primary p-2">
+                <p className="border-primary text-white text-sm rounded-2xl bg-primary p-2">
                   {doctor.discipline_name}
                 </p>
               </li>
             );
           })}
       </ul>
-    </div>
+    </section>
   );
 };
