@@ -4,7 +4,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { loginSchema } from "../schemas/loginSchema.js";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { VITE_BASE_URL } from "../config/env.js";
@@ -48,35 +48,44 @@ const Login = () => {
       <h1>Tienes el user</h1>
     </div>
   ) : (
-    <div className="w-3/4 m-auto shadow-lg rounded-xl p-4">
+    <div className="w-5/6 flex flex-col m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white ">
       <ToastContainer />
-      <h1 className="text-3xl my-4">Register</h1>
-      <form onSubmit={onSubmit} className="flex flex-col space-y-4 ">
+      <h1 className="text-3xl my-4 text-primary font-semibold">Login</h1>
+      <form onSubmit={onSubmit} className="flex flex-col space-y-4">
         {/* email */}
-        <label htmlFor="email" className="font-bold">
+        <label htmlFor="email" className="font-bold text-secondary">
           Email
         </label>
         <input
           type="email"
-          className="border-2 border-cyan-700 p-2 rounded"
+          className="border-2 border-primary p-2 rounded"
           {...register("email")}
         />
         {errors.email && <p>{errors.email.message}</p>}
         {/* pass1 */}
-        <label htmlFor="password" className="font-bold">
+        <label htmlFor="password" className="font-bold text-secondary">
           Password
         </label>
         <input
           type="password"
-          className="border-2 border-cyan-700 p-2 rounded"
+          className="border-2 border-primary p-2 rounded"
           {...register("password")}
         />
         {errors.password && <p>{errors.password.message}</p>}
 
-        <button type="submit" className="border border-black p-2">
+        <button
+          type="submit"
+          className="border p-2 bg-primary rounded-md text-white font-semibold"
+        >
           Enviar
         </button>
       </form>
+      <Link
+        to="/recover"
+        className="block mt-4 border p-2 bg-primary text-center text-sm rounded-md text-white font-semibold"
+      >
+        ¿Has olvidado tu contraseña?
+      </Link>
     </div>
   );
 };

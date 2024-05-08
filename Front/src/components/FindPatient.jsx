@@ -32,14 +32,17 @@ export const FindPatient = () => {
 
   // console.log(doctors);
   return (
-    <div className="flex flex-col justify-center p-5 my-10 min-w-2/3">
-      <input
-        className="border border-primary placeholder-primary rounded-full mb-5 px-10 py-2"
-        type="text"
-        placeholder="Busca un paciente..."
-        onChange={(e) => setName(e.target.value.toLowerCase())}
-      />
-      <ul className="flex flex-col gap-5 bg-white p-5 border border-primary rounded-sm overflow-scroll min-w-2/3">
+    <section className="w-5/6 py-10 m-auto flex flex-col gap-4 items-center max-w-md">
+      <div className="flex gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
+        <img src="/images/search-icon.svg" alt="input icon" />
+        <input
+          className=""
+          type="text"
+          placeholder="Busca un paciente..."
+          onChange={(e) => setName(e.target.value.toLowerCase())}
+        />
+      </div>
+      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-72 max-h-72 overflow-auto shadow-lg">
         {patients
           .filter((patient) => patient.first_name.toLowerCase().includes(name))
           .sort((a, b) =>
@@ -50,7 +53,7 @@ export const FindPatient = () => {
           .map((patient) => {
             return (
               <li
-                className="flex justify-center items-center  gap-5 border border-primary py-1 px-4 text-primary font-bold rounded-full grow"
+                className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
                 key={patient.user_id}
               >
                 <p>
@@ -60,6 +63,6 @@ export const FindPatient = () => {
             );
           })}
       </ul>
-    </div>
+    </section>
   );
 };

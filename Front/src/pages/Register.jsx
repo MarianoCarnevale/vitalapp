@@ -66,10 +66,10 @@ const Register = () => {
   });
 
   return (
-    <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white ">
+    <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
       <ToastContainer />
-      <h1 className="text-3xl my-4 text-primary font-semibold ">Register</h1>
-      <form onSubmit={onSubmit} className="flex flex-col space-y-4 ">
+      <h1 className="text-3xl my-4 text-primary font-semibold">Register</h1>
+      <form onSubmit={onSubmit} className="flex flex-col space-y-4">
         {/* username */}
         <label htmlFor="username" className="font-bold text-secondary">
           User Name
