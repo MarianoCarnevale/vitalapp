@@ -13,6 +13,7 @@ const UpdatePassword = () => {
   const { recoveryCode } = useParams();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  // usamos useForm para gestionar/vigilar en todo momento los inputs
   const {
     register,
     handleSubmit,
@@ -22,11 +23,11 @@ const UpdatePassword = () => {
     mode: "onTouched",
     resolver: joiResolver(updatePasswordSchema),
   });
-
+  // al hacer click en el button del formulario se ejecuta la siguiente función
   const onSubmit = handleSubmit(async (data) => {
+    // desestructuramos el password para hacer axios
     const { confirmarpassword, ...password } = data;
 
-    console.log(password);
     try {
       setIsLoading(true);
       const response = await axios.put(
@@ -36,8 +37,9 @@ const UpdatePassword = () => {
       if (response.data.status === "ok") {
         toast.success("Password is restored");
         setTimeout(() => {
+          setIsLoading(false);
           navigate("/login");
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       toast.error(error.response.data.message);

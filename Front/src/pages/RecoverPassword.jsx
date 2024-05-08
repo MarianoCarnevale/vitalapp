@@ -7,6 +7,7 @@ import { VITE_BASE_URL } from "../config/env.js";
 import { recoverPasswordSchema } from "../schemas/recoverPasswordSchema.js";
 
 const RecoverPassword = () => {
+  // usamos useForm para gestionar/vigilar en todo momento el input
   const {
     register,
     handleSubmit,
@@ -16,7 +17,7 @@ const RecoverPassword = () => {
     mode: "onTouched",
     resolver: joiResolver(recoverPasswordSchema),
   });
-
+  // al hacer click en el button del formulario se ejecuta la siguiente función
   const onSubmit = handleSubmit(async (data) => {
     try {
       const response = await axios.post(
@@ -25,14 +26,11 @@ const RecoverPassword = () => {
       );
 
       if (response.data.status === "ok") {
-        console.log("todo bien");
         toast.success("Password recovery mail is sent at your mail");
         reset();
         return;
       }
     } catch (error) {
-      console.log("todo mal");
-
       toast.error(error.response.data.message);
     }
   });
