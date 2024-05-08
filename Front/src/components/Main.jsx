@@ -11,6 +11,8 @@ import { useContext } from "react";
 import Consultation from "../pages/Consultation.jsx";
 import Search from "../pages/Search.jsx";
 import Profile from "../pages/Profile.jsx";
+import RecoverPassword from "../pages/RecoverPassword.jsx";
+import UpdatePassword from "../pages/UpdatePassword.jsx";
 
 const Main = () => {
   const { user } = useContext(UserTokenContext);
@@ -24,6 +26,9 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         {/* //* Rutas públicas */}
         <Route element={<PublicRoute />}>
+          <Route path="/recover" element={<RecoverPassword />} />
+          <Route path="/" element={<Home />} />
+
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route
@@ -31,6 +36,10 @@ const Main = () => {
             element={<Validate />}
           />
         </Route>
+        <Route
+          path="/updatePassword/:recoveryCode"
+          element={<UpdatePassword />}
+        />
         {/* //* Rutas ocultas */}
 
         {/* //* Rutas privadas */}
