@@ -9,9 +9,18 @@ const Home = () => {
   return user ? (
     <FindPatient />
   ) : (
-    <div>
+    <>
+      <h1 className="w-2/4 py-5 text-center m-auto text-5xl font-bold text-white">
+        VitalApp
+      </h1>
+      <p className="w-2/4 text-center m-auto text-white py-5">
+        Busca tu médico, o encuentra los médicos de la especialidad seleccionada
+      </p>
       <FindDoctor />
-    </div>
+      {/* <h2 className="w-3/4 py-5 text-center m-auto text-2xl font-bold text-white">
+        Ayudamos a manter tu salud al día sin complicaciones
+      </h2> */}
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useRef } from "react";
 import { UserTokenContext } from "../contexts/UserTokenContext";
 import UseOutsideClick from "../hooks/useOutsideClick";
 

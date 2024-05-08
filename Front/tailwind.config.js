@@ -10,6 +10,7 @@ export default {
       backgroundImage: {
         "hero-pattern": "url('/images/background-home.jpg')",
         "menu-lines": "url('/images/fondo-menu.svg')",
+        "search-icon": "url('/images/search-icon.svg')",
       },
       keyframes: {
         fadein: {
@@ -20,6 +21,12 @@ export default {
       animation: {
         fadein: "fadein 1s ease-out",
       },
+    },
+  },
+  variants: {
+    extend: {
+      opacity: ["responsive", "hover", "focus", "group-hover"],
+      transition: ["responsive", "hover", "focus"],
     },
   },
   plugins: [],
