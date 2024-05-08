@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 
 const Footer = () => {
-  return (
+  const { user } = useContext(UserTokenContext);
+  return user ? (
     <footer className="pt-4 h-24 shadow-sup w-full fixed bottom-0">
       <nav className="w-4/5 m-auto pt-2 flex justify-between">
         <NavLink
@@ -12,7 +15,7 @@ const Footer = () => {
         </NavLink>
 
         <NavLink
-          to="/profile"
+          to="/consultations"
           className="rounded-2xl py-2 focus:bg-secondary-light flex-grow"
         >
           <img className="m-auto" src="/images/icon-consults.svg" alt="Logo" />
@@ -33,6 +36,8 @@ const Footer = () => {
         </NavLink>
       </nav>
     </footer>
+  ) : (
+    <div>Footer</div>
   );
 };
 
