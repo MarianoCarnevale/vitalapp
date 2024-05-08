@@ -276,9 +276,15 @@
 			"name": "One consultation by consultationId",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:4000/consultations/895b62d6-fc59-4cdc-8b42-6b98c74d484b",
+					"raw": "http://localhost:4000/consultations/:consultation_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -286,7 +292,13 @@
 					"port": "4000",
 					"path": [
 						"consultations",
-						"895b62d6-fc59-4cdc-8b42-6b98c74d484b"
+						":consultation_id"
+					],
+					"variable": [
+						{
+							"key": "consultation_id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -316,9 +328,15 @@
 			"name": "Table consulations by userId (el que crea la consulta)",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:4000/consultations/user/de001abf-542d-473c-8654-fcc5dd89bdf4",
+					"raw": "http://localhost:4000/consultations/user/:user_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -327,7 +345,13 @@
 					"path": [
 						"consultations",
 						"user",
-						"de001abf-542d-473c-8654-fcc5dd89bdf4"
+						":user_id"
+					],
+					"variable": [
+						{
+							"key": "user_id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -337,9 +361,15 @@
 			"name": "One consultation by doctorId",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:4000/consultations/doctor/doctor_id",
+					"raw": "http://localhost:4000/consultations/doctor/:doctor_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -348,7 +378,13 @@
 					"path": [
 						"consultations",
 						"doctor",
-						"doctor_id"
+						":doctor_id"
+					],
+					"variable": [
+						{
+							"key": "doctor_id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -392,9 +428,15 @@
 			"name": "Borrar Consultation",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:4000/consultations/f6afd7e5-2cb9-4572-a9ad-3dcdbcfd40b6/",
+					"raw": "http://localhost:4000/consultations/:consultation_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -402,8 +444,13 @@
 					"port": "4000",
 					"path": [
 						"consultations",
-						"f6afd7e5-2cb9-4572-a9ad-3dcdbcfd40b6",
-						""
+						":consultation_id"
+					],
+					"variable": [
+						{
+							"key": "consultation_id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -413,15 +460,23 @@
 			"name": "Crear consultation",
 			"request": {
 				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"user_id\" : \"f98b8fe8-75b6-4e01-94ad-20010b780f94\",\r\n    \"doctor_id\" : \"de001abf-542d-473c-8654-fcc5dd89bdf4\",\r\n    \"title\" : \"8 Consulta\",\r\n    \"description\" : \"Esta es la 8 consulta\",\r\n    \"discipline_id\" : \"d5fdc98a-ec51-4f14-8b32-c7d6460db2e9\",\r\n    \"severity\" : \"Low\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
+				"header": [
+					{
+						"key": "Authorization",
+						"value": ":token",
+						"type": "text"
 					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "content/type",
+							"description": ":file",
+							"type": "file",
+							"src": []
+						}
+					]
 				},
 				"url": {
 					"raw": "http://localhost:4000/consultations/",

@@ -4,7 +4,7 @@ import { filter } from '../../utils/Filter.js';
 
 const Seacrh = (data) => { 
   
-  let array_filter
+  let array_filter;
 
   if (Object.keys(data).length > 0) {
     
@@ -51,13 +51,13 @@ const Seacrh = (data) => {
 export const consultationsController = async (req, res, next) => {
   try {
     //Si se necesita una consulta especifica
-    const { doctor_id, consultation_id } = req.params
+    const { doctor_id, consultation_id } = req.params;
 
-    const { user_id } = req.user
+    const { user_id } = req.user.id;
     //Obtenemos todos los datos de la busqueda por filtro
     const data = req.body;
 
-    let array_filter
+    let array_filter;
     
     //Busqueda segun usuario
     if (user_id) {
@@ -65,6 +65,9 @@ export const consultationsController = async (req, res, next) => {
     }
     if (doctor_id) {
       array_filter = `WHERE doctor.doctor_id = '${doctor_id}'`;
+    }
+    if (consultation_id) {
+      array_filter = `WHERE C.consultation_id = '${consultation_id}'`;
     }
 
     //Busqueda por filtro

@@ -3,7 +3,7 @@ import { newConsultationsModel } from '../../models/consultations/index.js';
 export const
   newConsultationService = async (data, img) => {
   try {
-    // Creamos una id para el tweet.
+    // Creamos una id para la consulta.
     data.consultation_id = crypto.randomUUID();
 
     //Creamos el archivo en la carpeta upload
