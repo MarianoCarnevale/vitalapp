@@ -13,8 +13,8 @@ export const FindDoctor = () => {
     const getDoctors = async () => {
       try {
         const response = await axios.get(`${VITE_BASE_URL}/doctors`);
-        console.log(response.data.data.activeDoctors);
-        setDoctors(response.data.data.activeDoctors);
+        console.log(response.data.data.doctors);
+        setDoctors(response.data.data.doctors);
       } catch (error) {
         console.log(error.message);
       }
