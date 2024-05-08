@@ -25,7 +25,6 @@ const Consultation = () => {
       try {
         const resp = await axios.get(`${VITE_BASE_URL}/disciplines`)
         const disciplines_values = Object.values(resp.data.data.disciplines) 
-        console.log(disciplines_values);
 
         setDiscipline(disciplines_values)
       } catch (error) {
@@ -43,10 +42,8 @@ const Consultation = () => {
         const response = await axios.get(`${VITE_BASE_URL}/doctors/${disciplinesValue}`);
         const doctors_array = Object.values(response.data.data);
         //
-        console.log(doctors_array);
         setDoctors(doctors_array[0]);
         
-        console.log(doctors);
       } catch (error) {
         console.error(error);
       }
