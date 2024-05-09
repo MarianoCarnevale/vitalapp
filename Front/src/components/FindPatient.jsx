@@ -42,7 +42,7 @@ export const FindPatient = () => {
           onChange={(e) => setName(e.target.value.toLowerCase())}
         />
       </div>
-      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-72 max-h-72 overflow-auto shadow-lg">
+      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-72 max-h-72 overflow-auto hide-scrollbar shadow-lg">
         {patients
           .filter((patient) => patient.first_name.toLowerCase().includes(name))
           .sort((a, b) =>
