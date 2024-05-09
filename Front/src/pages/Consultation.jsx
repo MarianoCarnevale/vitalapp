@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { VITE_BASE_URL } from "../config/env.js";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Consultation = () => {
   //Almacenamos los cambios en el useState
@@ -139,23 +141,27 @@ const Consultation = () => {
           },
         }
       );
-      console.log(resp.data.message);
+      toast.success("Consulta enviada correctamente");
     } catch (error) {
-      console.log("Error al hacer submit: ", error);
+      toast.error("Error al enviar la consulta");
     }
   };
 
   return (
     <section className="w-5/6 max-w-md m-auto flex flex-col gap-7 bg-white rounded-md mt-10">
-      {/* Ejemplo de input responsive */}
+      <ToastContainer />
       <h1 className="text-3xl font-bold text-primary ">Crea tu consulta</h1>
 
       <form onSubmit={handleSubmit(OnSubmit)} className="flex flex-col gap-7">
         <li className="list-none w-full">
-          <label className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1">
+          <label
+            htmlFor="discipline"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
             Especialidad
           </label>
           <select
+            id="discipline"
             className="border-2 border-primary p-2 w-full rounded"
             value={disciplinesValue}
             {...register("disciplinesValue")}
@@ -171,16 +177,20 @@ const Consultation = () => {
               </option>
             ))}
           </select>
-          <p className="text-red-500 text-sm sm:text-base pl-5">
+          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
             Error Message
-          </p>
+          </p> */}
         </li>
 
         <li className="list-none w-full">
-          <label className="z-10 font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1">
+          <label
+            htmlFor="doctor"
+            className="z-10 font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
             Doctor
           </label>
           <select
+            id="doctor"
             className="border-2 border-primary p-2 w-full rounded"
             value={doctor_Value}
             {...register("doctor_Value")}
@@ -197,56 +207,68 @@ const Consultation = () => {
             ))}
           </select>
 
-          <p className="text-red-500 text-sm sm:text-base pl-5">
+          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
             Error Message
-          </p>
+          </p> */}
         </li>
         <li className="list-none w-full">
-          <label className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1">
+          <label
+            htmlFor="titulo"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
             Título
           </label>
           <input
+            id="titulo"
             className="border-2 border-primary p-2 w-full rounded"
             type="text"
-            placeholder="titel..."
+            placeholder=""
             {...register("titel")}
           />
-          <p className="text-red-500 text-sm sm:text-base pl-5">
+          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
             Error Message
-          </p>
+          </p> */}
         </li>
         <li className="list-none w-full">
-          <label className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1">
+          <label
+            htmlFor="descripcion"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
             Descripción
           </label>
           <input
+            id="descripcion"
             className="border-2 border-primary p-2 w-full rounded"
             type="text"
-            placeholder="description..."
+            placeholder=""
             {...register("description")}
           />
-          <p className="text-red-500 text-sm sm:text-base pl-5">
+          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
             Error Message
-          </p>
+          </p> */}
         </li>
         <li className="list-none w-full">
-          <label className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1">
+          <label
+            htmlFor="gravedad"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
             Gravedad
           </label>
           <input
+            id="gravedad"
             className="border-2 border-primary p-2 w-full rounded"
             type="text"
-            placeholder="severity..."
+            placeholder=""
             {...register("severity")}
           />
-          <p className="text-red-500 text-sm sm:text-base pl-5">
+          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
             Error Message
-          </p>
+          </p> */}
         </li>
-        <li className="list-none">
+        <li className="list-none w-full">
           <label
             htmlFor="file"
-            className="input bg-primary rounded-lg flex w-2/3 sm:w- h-fit p-2 active:bg-white"
+            className="input bg-primary rounded-lg flex active:bg-white"
           >
             <div className="flex flex-col items-center gap-2 w-full text-white active:text-black">
               <p className=" text-center w-full text-lg">Upload File</p>
@@ -261,7 +283,7 @@ const Consultation = () => {
           </label>
         </li>
         <button
-          className="bg-primary p-2 m-3 mt-5 w-11/12 rounded-md text-white active:bg-white active:text-black border-2 border-primary disabled:bg-gray-500"
+          className="bg-primary p-2 w-full rounded-md text-white active:bg-white active:text-black border-2 border-primary disabled:bg-gray-500"
           disabled={disable}
         >
           Submit
