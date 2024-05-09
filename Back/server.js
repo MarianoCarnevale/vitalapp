@@ -6,6 +6,7 @@ import cors from 'cors';
 import { PORT } from './env.js';
 import { router } from './src/routes/index.js';
 import path from 'path';
+const { UPLOADS_DIR } = process.env;
 
 const app = express();
 
@@ -13,9 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(fileUpload());
 app.use(morgan('dev'));
-
-app.use('/uploads', express.static(path.resolve(process.env.UPLOADS_DIR)));
-
+app.use(express.static(UPLOADS_DIR));
 app.use(cors());
 
 // Middleware que indica a express dónde están las rutas.
