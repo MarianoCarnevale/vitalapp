@@ -14,7 +14,8 @@ export const getDoctorModel = async (doctor_id) => {
       u.username,
       u.first_name,
       u.last_name,
-      u.last_name,
+      u.first_surname,
+      u.last_surname,
       u.is_active,
       d.discipline_name,
       AVG(r.rating_value) AS avg_rating
