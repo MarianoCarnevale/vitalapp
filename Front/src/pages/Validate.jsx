@@ -17,17 +17,17 @@ const ValidationPage = () => {
     {
       title: "Bienvenido a VitalApp",
       image: "/images/onboarding-1.svg",
-      text: "Texto para la etapa 1",
+      text: "Descubre médicos disponibles para atender tus necesidades de salud.",
     },
     {
-      title: "Gestiona tus consultas médicas",
+      title: "Gestiona tus consultas",
       image: "/images/onboarding-2.svg",
-      text: "Texto para la etapa 2",
+      text: "Los pacientes pueden ver detalles y respuestas de consultas, gestionar su perfil, crear nuevas consultas, revisar historial y controlar consultas, eliminando o evaluando respuestas para mejorar el servicio.",
     },
     {
-      title: "Gestiona tus consultas médicas",
+      title: "Administra tu información",
       image: "/images/onboarding-2.svg",
-      text: "Texto para la etapa 2",
+      text: "Administra consultas asignadas, actualiza perfil médico y gestiona historial. Responde consultas especializadas, controla respuestas no valoradas y mejora mediante evaluaciones de calidad para mantener alta valoración del perfil.",
     },
   ];
 
@@ -65,7 +65,7 @@ const ValidationPage = () => {
         <ToastContainer />
         <div
           key={currentStep}
-          className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg items-center bg-white flex flex-col gap-16 py-16 px-10 animate-fadein "
+          className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg items-center bg-white flex flex-col gap-8 py-16 px-10 animate-fadein "
         >
           <h2 className="text-primary font-bold text-center text-3xl">
             {step.title}
@@ -75,7 +75,7 @@ const ValidationPage = () => {
             src={step.image}
             alt={`Imagen ${currentStep + 1}`}
           />
-          <p>{step.text}</p>
+          <p className="text-md w-5/6 text-center">{step.text}</p>
           <div className="flex justify-center space-x-2 mb-4">
             {onboardingSteps.map((step, index) => (
               <div
