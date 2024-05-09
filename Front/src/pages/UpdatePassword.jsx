@@ -49,37 +49,58 @@ const UpdatePassword = () => {
   });
   return (
     <>
-      <h1 className="text-3xl my-4">Update Password</h1>
-      <ToastContainer />
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <form onSubmit={onSubmit} className="flex flex-col space-y-4 ">
-          <label htmlFor="password" className="font-bold">
-            Password
-          </label>
-          <input
-            type="password"
-            className="border-2 border-cyan-700 p-2 rounded"
-            {...register("password")}
-          />
-          {errors.password && <p>{errors.password.message}</p>}
-          <label htmlFor="password2" className="font-bold">
-            Confirmar Password
-          </label>
-          <input
-            type="password"
-            className="border-2 border-cyan-700 p-2 rounded"
-            {...register("confirmarpassword", {
-              validate: (value) =>
-                value === watch("password") || "Las contraseñas no coinciden",
-            })}
-          />
-          {errors.confirmarpassword && (
-            <p>{errors.confirmarpassword.message}</p>
-          )}
-          <button type="submit">Update Password</button>
-        </form>
+        <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
+          <ToastContainer />
+          <h1 className="text-3xl my-4 text-primary font-semibold mb-10">
+            Update Password
+          </h1>
+          <form onSubmit={onSubmit} className="flex flex-col gap-7">
+            <li className="w-full list-none">
+              <label
+                htmlFor="password"
+                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                className="border-2 border-primary p-2 rounded w-full"
+                {...register("password")}
+              />
+              {errors.password && (
+                <p className="text-red-500 font-bold">
+                  {errors.password.message}
+                </p>
+              )}
+            </li>
+            <li className="w-full list-none">
+              <label
+                htmlFor="password2"
+                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+              >
+                Confirmar Password
+              </label>
+              <input
+                type="password"
+                className="border-2 border-primary p-2 rounded w-full"
+                {...register("confirmarpassword", {
+                  validate: (value) =>
+                    value === watch("password") ||
+                    "Las contraseñas no coinciden",
+                })}
+              />
+              {errors.confirmarpassword && (
+                <p className="text-red-500 font-bold">
+                  {errors.confirmarpassword.message}
+                </p>
+              )}
+            </li>
+            <button type="submit">Update Password</button>
+          </form>
+        </div>
       )}
     </>
   );

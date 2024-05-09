@@ -36,23 +36,37 @@ const RecoverPassword = () => {
   });
   return (
     <>
-      <h1 className="text-3xl my-4">Recover Password</h1>
-      <ToastContainer />
-      <form onSubmit={onSubmit} className="flex flex-col space-y-4 ">
-        <div className="w-3/4 m-auto shadow-lg rounded-xl p-4">
-          <label htmlFor="email" className="font-bold">
-            Email
-          </label>
-          <input
-            type="email"
-            className="border-2 border-cyan-700 p-2 rounded"
-            {...register("email")}
-          />
-          {errors.email && <p>{errors.email.message}</p>}
-        </div>
+      <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
+        <ToastContainer />
+        <h1 className="text-3xl my-4 text-primary font-semibold mb-10">
+          Recover Password
+        </h1>
+        <form onSubmit={onSubmit} className="flex flex-col gap-7">
+          <li className="w-full list-none">
+            <label
+              htmlFor="email"
+              className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              className="border-2 border-primary p-2 rounded w-full"
+              {...register("email")}
+            />
+            {errors.email && (
+              <p className="text-red-500 font-bold">{errors.email.message}</p>
+            )}
+          </li>
 
-        <button type="submit">Recover Password</button>
-      </form>
+          <button
+            type="submit"
+            className="border p-2 bg-primary rounded-md text-white font-semibold"
+          >
+            Recover Password
+          </button>
+        </form>
+      </div>
     </>
   );
 };
