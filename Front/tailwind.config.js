@@ -24,7 +24,7 @@ export default {
         },
       },
       animation: {
-        fadein: "fadein 1s ease-out",
+        fadein: "fadein .5s ease-out",
       },
     },
   },
