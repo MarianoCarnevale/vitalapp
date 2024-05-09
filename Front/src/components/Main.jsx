@@ -11,6 +11,7 @@ import { useContext } from "react";
 import Consultation from "../pages/Consultation.jsx";
 import Search from "../pages/Search.jsx";
 import Profile from "../pages/Profile.jsx";
+import Error404 from "../pages/Error404.jsx";
 import RecoverPassword from "../pages/RecoverPassword.jsx";
 import UpdatePassword from "../pages/UpdatePassword.jsx";
 
@@ -24,6 +25,10 @@ const Main = () => {
     >
       <Routes>
         <Route path="/" element={<Home />} />
+
+        {/* Tus rutas existentes */}
+        <Route path="*" element={<Error404 />} />
+
         {/* //* Rutas públicas */}
         <Route element={<PublicRoute />}>
           <Route path="/recover" element={<RecoverPassword />} />
