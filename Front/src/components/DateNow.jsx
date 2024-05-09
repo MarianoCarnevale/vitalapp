@@ -28,6 +28,6 @@ export const DateNow = () => {
   const monthName = months[date.getMonth()];
 
   return (
-    <div className="text-3xl text-center font-bold text-primary p-5">{`${dayName}, ${dayNumber} de ${monthName}`}</div>
+    <div className="w-5/6 max-w-md m-auto text-xl font-bold text-secondary">{`${dayName}, ${dayNumber} de ${monthName}`}</div>
   );
 };

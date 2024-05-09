@@ -25,7 +25,7 @@ export const FindDoctor = () => {
 
   console.log(doctors);
   return (
-    <section className="w-5/6 py-10 m-auto flex flex-col gap-4 items-center max-w-md">
+    <section className="w-5/6 py-4 m-auto flex flex-col gap-5 items-center max-w-md">
       <div className="flex w-full gap-4">
         <button
           className={`${
@@ -54,10 +54,10 @@ export const FindDoctor = () => {
           Especialidades
         </button>
       </div>
-      <div className="flex gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
+      <div className="border flex gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="w-full"
+          className="w-full "
           type="text"
           placeholder={
             filterDisciplines

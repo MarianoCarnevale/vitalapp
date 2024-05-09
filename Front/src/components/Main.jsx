@@ -18,7 +18,7 @@ const Main = () => {
   const { user } = useContext(UserTokenContext);
   return (
     <main
-      className={`bg-cover pt-32 pb-16 ${
+      className={`bg-auto pt-32 pb-16 ${
         user ? "bg-white" : "bg-hero-pattern bg-no-repeat"
       }`}
     >

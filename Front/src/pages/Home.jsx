@@ -9,6 +9,9 @@ const Home = () => {
   const { user } = useContext(UserTokenContext);
   return user ? (
     <>
+      <h1 className="w-5/6 max-w-md m-auto text-primary font-bold text-3xl mt-10">
+        Hoy
+      </h1>
       <DateNow />
       {user.role === "doctor" ? <FindPatient /> : <FindDoctor />}
     </>

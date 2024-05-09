@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return user ? (
-    <header className="w-full shadow-sm fixed bg-primary  bg-menu-lines bg-cover bg-center">
+    <header className="z-20 w-full shadow-sm fixed bg-primary  bg-menu-lines bg-cover bg-center">
       <nav className="flex p-4 items-end gap-4 max-w-screen-xl m-auto h-32 ">
         <li className="flex-grow list-none">
           <NavLink to="/">

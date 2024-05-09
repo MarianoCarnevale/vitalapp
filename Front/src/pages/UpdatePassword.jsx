@@ -98,7 +98,12 @@ const UpdatePassword = () => {
                 </p>
               )}
             </li>
-            <button type="submit">Update Password</button>
+            <button
+              className="border p-2 bg-primary rounded-md text-white font-semibold"
+              type="submit"
+            >
+              Update Password
+            </button>
           </form>
         </div>
       )}
