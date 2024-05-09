@@ -1,18 +1,33 @@
 import { useContext } from "react";
 import { UserTokenContext } from "../contexts/UserTokenContext";
+
 import { FindDoctor } from "../components/FindDoctor.jsx";
+import { FindPatient } from "../components/FindPatient.jsx";
+import { DateNow } from "../components/DateNow.jsx";
 
 const Home = () => {
   const { user } = useContext(UserTokenContext);
-
   return user ? (
-    <div>
-      <h1>Home con user</h1>
-    </div>
+    <>
+      <h1 className="w-5/6 max-w-md m-auto text-primary font-bold text-3xl mt-10">
+        Hoy
+      </h1>
+      <DateNow />
+      {user.role === "doctor" ? <FindPatient /> : <FindDoctor />}
+    </>
   ) : (
-    <div>
+    <>
+      <h1 className="w-2/4 py-5 text-center m-auto text-5xl font-bold text-white">
+        VitalApp
+      </h1>
+      <p className="w-2/4 text-center m-auto text-white py-5">
+        Busca tu médico, o encuentra los médicos de la especialidad seleccionada
+      </p>
       <FindDoctor />
-    </div>
+      {/* <h2 className="w-3/4 py-5 text-center m-auto text-2xl font-bold text-white">
+        Ayudamos a manter tu salud al día sin complicaciones
+      </h2> */}
+    </>
   );
 };
 

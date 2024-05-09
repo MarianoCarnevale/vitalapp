@@ -1,64 +1,29 @@
-// Importar el módulo path.
-import path from 'path';
+import { newConsultationsModel } from '../../models/consultations/index.js';
+import { FileService } from './FileService.js';
 
-// Importar el módulo sharp.
-import sharp from 'sharp';
-
-import { saveFileError } from '../errorService.js';
-
-import { createPathIfNotExistsUtil } from '../../utils/createPathUtil.js';
-
-import { UPLOADS_DIR } from '../../../env.js';
-import { postConsultations } from '../../models/consultations/index.js';
-
-export const newConsultationService = async (data, image) => {
+export const
+  newConsultationService = async (data, img) => {
   try {
-    // Creamos una id para el tweet.
+    // Creamos una id para la consulta.
     data.consultation_id = crypto.randomUUID();
 
-    if (image) {
-      // Creamos un nombre para la imagen si existe.
-      let imgName = image && `${crypto.randomUUID()}.jpg`;
-
-      data.file = imgName;
-    }
-    console.log(data);
-    // Insertamos el tweet en la base de datos.
-    await postConsultations(data);
-
-    // Si hay tweet e imagen, creamos el directorio si no existe
-    if (image) {
-      // Ruta donde se guardará el archivo.
-      const uploadsDir = path.join(
-        process.cwd(),
-        UPLOADS_DIR,
-        'consultations',
-        data.user_id.toString(),
-        ''
+    let file
+    if (img) {
+      //Creamos el archivo en la carpeta upload
+       file = FileService(
+        data.user_id,
+        data.consultation_id,
+        img,
+        100
       );
-
-      await createPathIfNotExistsUtil(uploadsDir);
-
-      // Crear un objeto Sharp con la imagen recibida.
-      const imgSharp = sharp(image.data);
-
-      // Redimensionar la imagen.
-      imgSharp.resize(500);
-
-      // Ruta de la imagen.
-      const imgPath = path.join(uploadsDir, imgName);
-
-      // Guardar la imagen.
-      try {
-        await imgSharp.toFile(imgPath);
-      } catch (error) {
-        saveFileError();
-      }
+    } else { 
+       file = null
     }
 
-    // return consultations;
+    await newConsultationsModel(data, file)
+
   } catch (error) {
-    console.log('Error al insertar el la consulta', error);
+    console.log('Error al insertar en la consulta', error);
     throw error;
   }
 };

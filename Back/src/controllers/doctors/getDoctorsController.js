@@ -5,13 +5,11 @@ export const getDoctorsController = async (req, res, next) => {
     // Obtener doctores.
     const doctors = await getDoctorsModel();
 
-    // filtrar doctores activos
-    const activeDoctors = doctors.filter((doctor) => doctor.is_active);
-
+    // responder con los doctores
     res.status(200).send({
       status: 'Ok',
       message: 'All Doctors obtained',
-      data: { activeDoctors },
+      data: { doctors },
     });
   } catch (error) {
     next(error);

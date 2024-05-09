@@ -11,6 +11,7 @@ import {
   updateUserController,
   updateUserAvatarController,
   getOwnUserController,
+  getPatientsController,
 } from '../controllers/users/index.js';
 
 // Importamos los middlewares.
@@ -29,6 +30,9 @@ userRouter.get(
   userExistsController,
   getOwnUserController
 );
+
+// Obtener todos los pacientes
+userRouter.get('/users/patients', authUserController, getPatientsController);
 
 // Crear un usuario pendiente de activar.
 userRouter.post('/users/register', newUserController);

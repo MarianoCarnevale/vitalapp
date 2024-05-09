@@ -66,175 +66,224 @@ const Register = () => {
   });
 
   return (
-    <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white ">
+    <section className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
       <ToastContainer />
-      <h1 className="text-3xl my-4 text-primary font-semibold ">Register</h1>
-      <form onSubmit={onSubmit} className="flex flex-col space-y-4 ">
+      <h1 className="text-3xl my-4 text-primary font-semibold mb-10">
+        Register
+      </h1>
+      <form onSubmit={onSubmit} className="flex flex-col gap-7">
         {/* username */}
-        <label htmlFor="username" className="font-bold text-secondary">
-          User Name
-        </label>
-        <input
-          id="username"
-          type="text"
-          className="border-2 border-primary p-2 rounded"
-          {...register("username")}
-        />
-        {errors.username && (
-          <p className="text-red-500 font-bold">{errors.username.message}</p>
-        )}
+        <li className="w-full list-none">
+          <label
+            htmlFor="username"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
+            User Name
+          </label>
+          <input
+            id="username"
+            type="text"
+            className="border-2 border-primary p-2 w-full rounded"
+            {...register("username")}
+          />
+          {errors.username && (
+            <p className="text-red-500 font-bold">{errors.username.message}</p>
+          )}
+        </li>
         {/* email */}
-        <label htmlFor="email" className="font-bold text-secondary">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          className="border-2 border-primary p-2 rounded"
-          {...register("email")}
-        />
-        {errors.email && (
-          <p className="text-red-500 font-bold">{errors.email.message}</p>
-        )}
+        <li className="w-full list-none">
+          <label
+            htmlFor="email"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            className="border-2 border-primary p-2 rounded w-full"
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="text-red-500 font-bold">{errors.email.message}</p>
+          )}
+        </li>
         {/* pass1 */}
-        <label htmlFor="password" className="font-bold text-secondary">
-          Password
-        </label>
-        <input
-          id="password"
-          type="password"
-          className="border-2 border-primary p-2 rounded"
-          {...register("password")}
-        />
-        {errors.password && (
-          <p className="text-red-500 font-bold">{errors.password.message}</p>
-        )}
+        <li className="w-full list-none">
+          <label
+            htmlFor="password"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            className="border-2 border-primary p-2 rounded w-full"
+            {...register("password")}
+          />
+          {errors.password && (
+            <p className="text-red-500 font-bold">{errors.password.message}</p>
+          )}
+        </li>
         {/* pass2 */}
-        <label htmlFor="password2" className="font-bold text-secondary">
-          Confirmar Password
-        </label>
-        <input
-          id="password2"
-          type="password"
-          className="border-2 border-primary p-2 rounded"
-          {...register("confirmarpassword", {
-            validate: (value) =>
-              value === watch("password") || "Las contraseñas no coinciden",
-          })}
-        />
-        {errors.confirmarpassword && (
-          <p className="text-red-500 font-bold">
-            {errors.confirmarpassword.message}
-          </p>
-        )}{" "}
+        <li className="list-none w-full">
+          <label
+            htmlFor="password2"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
+            Confirmar Password
+          </label>
+          <input
+            id="password2"
+            type="password"
+            className="border-2 w-full border-primary p-2 rounded"
+            {...register("confirmarpassword", {
+              validate: (value) =>
+                value === watch("password") || "Las contraseñas no coinciden",
+            })}
+          />
+          {errors.confirmarpassword && (
+            <p className="text-red-500 font-bold">
+              {errors.confirmarpassword.message}
+            </p>
+          )}{" "}
+        </li>
         {/* role */}
-        <label htmlFor="role" className="font-bold text-secondary">
-          Role
-        </label>
-        <select
-          id="role"
-          className="border-2 border-primary p-2 rounded"
-          {...register("role", { required: true })}
-          onChange={(e) => setRole(e.target.value)}
-        >
-          <option value="">Selecciona un rol</option>
-          <option value="patient">Paciente</option>
-          <option value="doctor">Doctor</option>
-        </select>
-        {errors.role && (
-          <p className="text-red-500 font-bold">{errors.role.message}</p>
-        )}
+        <li className="list-none w-full">
+          <label
+            htmlFor="role"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
+            Role
+          </label>
+          <select
+            id="role"
+            className="border-2 w-full border-primary p-2 rounded"
+            {...register("role", { required: true })}
+            onChange={(e) => setRole(e.target.value)}
+          >
+            <option value="">Selecciona un rol</option>
+            <option value="patient">Paciente</option>
+            <option value="doctor">Doctor</option>
+          </select>
+          {errors.role && (
+            <p className="text-red-500 font-bold">{errors.role.message}</p>
+          )}
+        </li>
         {role === "doctor" && (
           <>
-            <label
-              htmlFor="doctor_registration_number"
-              className="font-bold text-secondary"
-            >
-              Número de Registro de colegiado
-            </label>
-            <input
-              id="doctor_registration_number"
-              type="text"
-              className="border-2 border-primary p-2 rounded"
-              {...register("doctor_registration_number")}
-            />
-            {errors.doctor_registration_number && (
-              <p className="text-red-500 font-bold">
-                {errors.doctor_registration_number.message}
-              </p>
-            )}
+            <li className="list-none w-full">
+              <label
+                htmlFor="doctor_registration_number"
+                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+              >
+                Número de Registro de colegiado
+              </label>
+              <input
+                id="doctor_registration_number"
+                type="text"
+                className="w-full border-2 border-primary p-2 rounded"
+                {...register("doctor_registration_number")}
+              />
+              {errors.doctor_registration_number && (
+                <p className="text-red-500 font-bold">
+                  {errors.doctor_registration_number.message}
+                </p>
+              )}
+            </li>
             {/* Discipline */}
-            <label
-              htmlFor="discipline_name"
-              className="font-bold text-secondary"
-            >
-              Especialidad
-            </label>
-            <select
-              id="discipline_name"
-              className="border-2 border-primary p-2 rounded"
-              {...register("discipline_name")}
-            >
-              {discipline.map((disc, index) => (
-                <option key={index} value={disc.discipline_name}>
-                  {disc.discipline_name}
-                </option>
-              ))}
-            </select>
-            {errors.discipline_name && (
-              <p className="text-red-500 font-bold">
-                {errors.discipline_name.message}
-              </p>
-            )}
-            <label htmlFor="experience" className="font-bold text-secondary">
-              Experiencia desde
-            </label>
-            <input
-              id="experience"
-              type="text"
-              className="border-2 border-primary p-2 rounded"
-              {...register("experience")}
-            />
-            {errors.experience && (
-              <p className="text-red-500 font-bold">
-                {errors.experience.message}
-              </p>
-            )}
+            <li className="list-none w-full">
+              <label
+                htmlFor="discipline_name"
+                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+              >
+                Especialidad
+              </label>
+              <select
+                id="discipline_name"
+                className="border-2 w-full border-primary p-2 rounded"
+                {...register("discipline_name")}
+              >
+                {discipline.map((disc, index) => (
+                  <option key={index} value={disc.discipline_name}>
+                    {disc.discipline_name}
+                  </option>
+                ))}
+              </select>
+              {errors.discipline_name && (
+                <p className="text-red-500 font-bold">
+                  {errors.discipline_name.message}
+                </p>
+              )}
+            </li>
+            {/* experience */}
+            <li className="list-none w-full">
+              <label
+                htmlFor="experience"
+                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+              >
+                Experiencia desde
+              </label>
+              <input
+                id="experience"
+                type="text"
+                className="border-2 w-full border-primary p-2 rounded"
+                {...register("experience")}
+              />
+              {errors.experience && (
+                <p className="text-red-500 font-bold">
+                  {errors.experience.message}
+                </p>
+              )}
+            </li>
           </>
         )}
         {/* first_name */}
-        <label htmlFor="first_name" className="font-bold text-secondary">
-          First Name
-        </label>
-        <input
-          id="first_name"
-          type="text"
-          className="border-2 border-primary p-2 rounded"
-          {...register("first_name")}
-        />
-        {errors.first_name && (
-          <p className="text-red-500 font-bold">{errors.first_name.message}</p>
-        )}
+        <li className="list-none w-full">
+          <label
+            htmlFor="first_name"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
+            First Name
+          </label>
+          <input
+            id="first_name"
+            type="text"
+            className="border-2 w-full border-primary p-2 rounded"
+            {...register("first_name")}
+          />
+          {errors.first_name && (
+            <p className="text-red-500 font-bold">
+              {errors.first_name.message}
+            </p>
+          )}
+        </li>
         {/* first_surname */}
-        <label htmlFor="first_surname" className="font-bold text-secondary">
-          First Surname
-        </label>
-        <input
-          id="first_surname"
-          type="text"
-          className="border-2 border-primary p-2 rounded"
-          {...register("first_surname")}
-        />
-        {errors.first_surname && (
-          <p className="text-red-500 font-bold">
-            {errors.first_surname.message}
-          </p>
-        )}
+        <li className="list-none w-full">
+          <label
+            htmlFor="first_surname"
+            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+          >
+            First Surname
+          </label>
+          <input
+            id="first_surname"
+            type="text"
+            className="border-2 w-full border-primary p-2 rounded"
+            {...register("first_surname")}
+          />
+          {errors.first_surname && (
+            <p className="text-red-500 font-bold">
+              {errors.first_surname.message}
+            </p>
+          )}
+        </li>
         <button className="border p-2 bg-primary rounded-md text-white font-semibold">
           Enviar
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 
