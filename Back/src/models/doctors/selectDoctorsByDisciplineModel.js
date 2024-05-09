@@ -10,6 +10,7 @@ export const selectDoctorsByDiscipline = async (discipline_id) => {
       `
       SELECT 
       u.user_id,
+      doc.doctor_id,
       u.email,
       u.username,
       u.first_name,
@@ -35,7 +36,7 @@ export const selectDoctorsByDiscipline = async (discipline_id) => {
   WHERE 
       u.role = 'doctor' AND dd.discipline_id = ? AND u.is_active = 1
   GROUP BY 
-      u.user_id, u.first_name, d.discipline_name;
+      u.user_id, doc.doctor_id, u.first_name, d.discipline_name;
       `,
       [discipline_id]
     );

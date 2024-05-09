@@ -1,4 +1,5 @@
 import { newConsultationsModel } from '../../models/consultations/index.js';
+import { FileService } from './FileService.js';
 
 export const
   newConsultationService = async (data, img) => {
@@ -6,13 +7,18 @@ export const
     // Creamos una id para la consulta.
     data.consultation_id = crypto.randomUUID();
 
-    //Creamos el archivo en la carpeta upload
-    const file = FileService(
-    user_id,
-    consultation_id,
-    img,
-    100
-  );
+    let file
+    if (img) {
+      //Creamos el archivo en la carpeta upload
+       file = FileService(
+        data.user_id,
+        data.consultation_id,
+        img,
+        100
+      );
+    } else { 
+       file = null
+    }
 
     await newConsultationsModel(data, file)
 
