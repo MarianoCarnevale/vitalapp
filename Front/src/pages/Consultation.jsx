@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { VITE_BASE_URL } from "../config/env.js";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { newFrontConsultationsSchema } from "../schemas/newFrontConsultationSchema.js";
 
 const Consultation = () => {
   //Almacenamos los cambios en el useState
@@ -12,13 +14,30 @@ const Consultation = () => {
   const [disciplines, setDiscipline] = useState([]);
 
   //Valor a enviar de disciplinas
-  const [disciplinesValue, setDisciplineValue] = useState("");
+  const [especialidad, setespecialidadValue] = useState("");
 
   //lista de doctores
   const [doctors, setDoctors] = useState([]);
 
   //valor a enviar de doctores
-  const [doctor_Value, setDoctorValue] = useState("");
+  const [doctor, setDoctorValue] = useState("");
+
+  //valor de severidad
+  const [gravedad, setgravedadValue] = useState("");
+
+  //
+  const [gravedads] = useState([
+    {
+      id: 1,
+      name: 'high'
+    }, {
+      id: 2,
+      name: 'medium'
+    }, {
+      id: 3,
+      name: 'low'
+    }
+  ]);
 
   //desabilitar o habilitar select doctors y submit
   const [disable, setDisabel] = useState([true]);
@@ -27,8 +46,12 @@ const Consultation = () => {
   const [available, setAvailable] = useState("");
 
   //registramos todos los inputs usando register
-  const { register, handleSubmit } = useForm({
+  const { register, 
+    handleSubmit, 
+    formState: { errors },
+    reset } = useForm({
     mode: "onTouched",
+    resolver: joiResolver(newFrontConsultationsSchema)
   });
 
   //Despues de renderizar la pantalla
@@ -52,7 +75,7 @@ const Consultation = () => {
   const handelSeletDiscipline = (event) => {
     //pedir la lista de doctores
     const fetchDoctors = async () => {
-      setDisciplineValue(discipline_value);
+      setespecialidadValue(discipline_value);
       try {
         const response = await axios.get(
           `${VITE_BASE_URL}/doctors/${discipline_value}`
@@ -85,51 +108,39 @@ const Consultation = () => {
       fetchDoctors();
     } else {
       //Sino deshabilitar el select de doctores
-      setDisciplineValue("");
+      setespecialidadValue("");
       setDiscipline([]);
       setDisabel(true);
     }
   };
 
-  //Asignar valor a doctor
-  const handelSeletDoctor = (event) => {
-    const doctor_value = event.target.value;
-
-    setDoctorValue(doctor_value);
-  };
-
   //Pasamos OnSubmit como parametro a HandleSubmit
 
-  const OnSubmit = async (data) => {
+  const OnSubmit = handleSubmit(async (data) => {
     //obtener valor de doctor
-    const doctor_value_sub = data.doctor_Value;
+    const doctor_sub = data.doctor;
 
     //Si no se selecciono doctor
-    if (!doctor_value_sub) {
+    if (!doctor_sub) {
       //Seleccionar uno random de la lista de doctores
       const random = Math.floor(Math.random() * doctors.length);
 
       //Asignarlo a los valores a enviar
-      data.doctor_Value = doctors[random].doctor_id;
+      data.doctor = doctors[random].doctor_id;
     }
 
     //Todos los inputs del formulario
-    console.log(data);
-
     const dataToSend = {
-      doctor_id: data.doctor_Value,
-      title: data.titel,
-      description: data.description,
-      discipline_id: data.disciplinesValue,
-      severity: data.severity,
+      doctor_id: data.doctor,
+      title: data.titulo,
+      description: data.descripcion,
+      discipline_id: data.especialidad,
+      severity: data.gravedad,
     };
     try {
+      console.log(dataToSend);
+
       const token = localStorage.getItem("token");
-
-      //Crear instancia del cuerpo form para mandar el archivo
-      const formData = new FormData();
-
-      formData.append("file", data.file[0]);
 
       const resp = await axios.post(
         `${VITE_BASE_URL}/consultations`,
@@ -137,22 +148,51 @@ const Consultation = () => {
         {
           headers: {
             Authorization: `${token}`,
-            "Content-Type": "multipart/form-data",
           },
         }
       );
+
+      //Crear instancia del cuerpo form para mandar el archivo
+      const form = new FormData();
+
+      if (data.file.length > 0) { 
+
+        console.log(data.file[0]);
+
+        form.append('Files', data.file[0]);
+        
+        const consultation_id = resp.data.data
+        try {
+          
+          await axios.post(`${VITE_BASE_URL}/consultations/${consultation_id}/file`,
+            {"Files" : data.file[0]},
+            {
+              headers: {
+                Authorization: `${token}`,
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+        } catch (error) {
+          toast.error('La imagen debe ser un png o un jpg');
+          return
+        }
+      }
+      reset();
       toast.success("Consulta enviada correctamente");
+
     } catch (error) {
       toast.error("Error al enviar la consulta");
+      reset();
     }
-  };
+  });
 
   return (
     <section className="w-5/6 max-w-md m-auto flex flex-col gap-7 bg-white rounded-md mt-10">
       <ToastContainer />
       <h1 className="text-3xl font-bold text-primary ">Crea tu consulta</h1>
 
-      <form onSubmit={handleSubmit(OnSubmit)} className="flex flex-col gap-7">
+      <form onSubmit={OnSubmit} className="flex flex-col gap-7">
         <li className="list-none w-full">
           <label
             htmlFor="discipline"
@@ -161,10 +201,10 @@ const Consultation = () => {
             Especialidad
           </label>
           <select
-            id="discipline"
+            id="Especialidad"
             className="border-2 border-primary p-2 w-full rounded"
-            value={disciplinesValue}
-            {...register("disciplinesValue")}
+            value={especialidad}
+            {...register("especialidad")}
             onChange={handelSeletDiscipline}
           >
             <option key="0" value=""></option>
@@ -177,9 +217,9 @@ const Consultation = () => {
               </option>
             ))}
           </select>
-          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
-            Error Message
-          </p> */}
+          <p className="text-red-500 text-sm sm:text-base pl-5">
+            {errors.discipline_value?.message}
+          </p>
         </li>
 
         <li className="list-none w-full">
@@ -192,10 +232,10 @@ const Consultation = () => {
           <select
             id="doctor"
             className="border-2 border-primary p-2 w-full rounded"
-            value={doctor_Value}
-            {...register("doctor_Value")}
+            value={doctor}
+            {...register("doctor")}
             disabled={disable}
-            onChange={handelSeletDoctor}
+            onChange={(event) => { setDoctorValue(event.target.value)}}
           >
             <option key="1" value="">
               None selected
@@ -206,10 +246,6 @@ const Consultation = () => {
               </option>
             ))}
           </select>
-
-          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
-            Error Message
-          </p> */}
         </li>
         <li className="list-none w-full">
           <label
@@ -223,11 +259,11 @@ const Consultation = () => {
             className="border-2 border-primary p-2 w-full rounded"
             type="text"
             placeholder=""
-            {...register("titel")}
+            {...register("titulo")}
           />
-          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
-            Error Message
-          </p> */}
+          <p className="text-red-500 text-sm sm:text-base pl-5">
+            {errors.titulo?.message}
+          </p>
         </li>
         <li className="list-none w-full">
           <label
@@ -241,29 +277,41 @@ const Consultation = () => {
             className="border-2 border-primary p-2 w-full rounded"
             type="text"
             placeholder=""
-            {...register("description")}
+            {...register("descripcion")}
           />
-          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
-            Error Message
-          </p> */}
+          <p className="text-red-500 text-sm sm:text-base pl-5">
+            {errors.descripcion?.message}
+          </p>
         </li>
         <li className="list-none w-full">
           <label
-            htmlFor="gravedad"
-            className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+            htmlFor="doctor"
+            className="z-10 font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
           >
             Gravedad
           </label>
-          <input
+          <select
             id="gravedad"
             className="border-2 border-primary p-2 w-full rounded"
-            type="text"
-            placeholder=""
-            {...register("severity")}
-          />
-          {/* <p className="text-red-500 text-sm sm:text-base pl-5">
-            Error Message
-          </p> */}
+            value={gravedad}
+            {...register("gravedad")}
+            disabled={disable}
+            onChange={(event) => { setgravedadValue(event.target.value)}}
+          >
+            <option key="1" value="">
+              None selected
+            </option>
+            {gravedads.map((gravedad) => (
+              <option key={gravedad.name} value={gravedad.name}>
+                {gravedad.name}
+              </option>
+            ))}
+          </select>
+          
+
+          <p className="text-red-500 text-sm sm:text-base pl-5">
+            {errors.gravedad?.message}
+          </p>
         </li>
         <li className="list-none w-full">
           <label

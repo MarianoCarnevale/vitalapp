@@ -16,7 +16,7 @@ export const newConsultationsSchema = joi.object({
     .min(4)
     .required()
     .messages(joiErrorMessagesConsultations),
-  file: joi.string().min(4).messages(joiErrorMessagesConsultations),
+  // file: joi.string().min(4).messages(joiErrorMessagesConsultations),
   discipline_id: joi.number().required(),
   severity: joi
     .string()
