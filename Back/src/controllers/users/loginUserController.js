@@ -28,14 +28,14 @@ export const loginUserController = async (req, res, next) => {
     let validPass;
 
     // Si el usuario existe, comprobar si la contraseña es correcta.
-    // if (user) {
-    //   validPass = await bcrypt.compare(password, user.password);
-    // }
+    if (user) {
+      validPass = await bcrypt.compare(password, user.password);
+    }
 
-    // // Si el usuario no existe o la contraseña no es correcta, lanzar un error.
-    // if (!user || !validPass) {
-    //   throw generateError('Email y/o contraseña incorrectas', 401);
-    // }
+    // Si el usuario no existe o la contraseña no es correcta, lanzar un error.
+    if (!user || !validPass) {
+      throw generateError('Email y/o contraseña incorrectas', 401);
+    }
 
     // Si el usuario no está activo, lanzar un error.
     if (!user.is_active) {

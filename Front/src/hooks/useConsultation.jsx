@@ -21,20 +21,6 @@ export const useConsultation = ( handleSubmit, reset ) => {
   //valor de severidad
   const [gravedad, setgravedadValue] = useState("");
 
-  //lista de gravedad de la consulta
-  const [gravedads] = useState([
-    {
-      id: 1,
-      name: 'high'
-    }, {
-      id: 2,
-      name: 'medium'
-    }, {
-      id: 3,
-      name: 'low'
-    }
-  ]);
-
   //desabilitar o habilitar select doctors y submit
   const [disable, setDisabel] = useState([true]);
 
@@ -126,7 +112,6 @@ export const useConsultation = ( handleSubmit, reset ) => {
     doctors,
     gravedad,
     setgravedadValue,
-    gravedads,
     OnSubmit,
     handelSeletDiscipline,
     getDiscipline,

@@ -8,7 +8,7 @@ export const ConsultationForm = () => {
   useEffect(() => { 
     //Obtener todas las disciplinas
     getDiscipline();
-  })
+  },[])
 
   const {
     register, 
@@ -27,7 +27,6 @@ export const ConsultationForm = () => {
     doctors,
     gravedad,
     setgravedadValue,
-    gravedads,
     OnSubmit,
     handelSeletDiscipline,
     getDiscipline,
@@ -145,14 +144,19 @@ export const ConsultationForm = () => {
             disabled={disable}
             onChange={(event) => { setgravedadValue(event.target.value) }}
           >
-            <option key="1" value="">
+            <option key="0" value="">
               None selected
             </option>
-            {gravedads.map((gravedad) => (
-              <option key={gravedad.name} value={gravedad.name}>
-                {gravedad.name}
-              </option>
-            ))}
+            <option key="1" value="high">
+              high
+            </option>
+            <option key="2" value="medium">
+              medium
+            </option>
+            <option key="3" value="low">
+              low
+            </option>
+            
           </select>
           
 
