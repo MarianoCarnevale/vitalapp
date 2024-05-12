@@ -1,5 +1,6 @@
 import axios from "axios";
 import { VITE_BASE_URL } from "../config/env.js";
+import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 
 export const postNewFileApi = async (file, consultation_id) => {
 
@@ -8,7 +9,8 @@ export const postNewFileApi = async (file, consultation_id) => {
   form.append('Files', file);
 
   try { 
-    const token = localStorage.getItem("token");
+    const { token } = UserTokenContext();
+
     const resp = await axios.post(`${VITE_BASE_URL}/consultations/${consultation_id}/file`,
       {"Files" : file},
       {

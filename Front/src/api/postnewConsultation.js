@@ -1,6 +1,7 @@
 import axios from "axios";
 import { VITE_BASE_URL } from "../config/env.js";
 import { toast } from "react-toastify";
+import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 
 export const postNewConsultation = async ( data ) => { 
   const dataToSend = {
@@ -11,7 +12,7 @@ export const postNewConsultation = async ( data ) => {
       severity: data.gravedad,
   };
   try {
-    const token = localStorage.getItem("token");
+    const { token } = UserTokenContext();
 
       const resp = await axios.post(
         `${VITE_BASE_URL}/consultations`,

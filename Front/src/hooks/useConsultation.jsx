@@ -96,6 +96,10 @@ export const useConsultation = ( handleSubmit, reset ) => {
     } 
     reset();
     toast.success("Consulta enviada correctamente");
+    setespecialidadValue("")
+    setDoctorValue("")
+    setgravedadValue("")
+    setDisabel(true)
     
   });
   const getDiscipline = async () => {
