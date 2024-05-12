@@ -5,11 +5,15 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { newFrontConsultationsSchema } from "../../schemas/newFrontConsultationSchema.js";
 
 export const ConsultationForm = () => { 
+
+  //usamos la funcion para obtener los datos de forma asyn
   useEffect(() => { 
+
     //Obtener todas las disciplinas
     getDiscipline();
   },[])
 
+  //Control del form
   const {
     register, 
     handleSubmit, 
@@ -19,6 +23,7 @@ export const ConsultationForm = () => {
       resolver: joiResolver(newFrontConsultationsSchema)
     });
 
+  //usamos todos los datos necesarios del hook
   const { 
     disciplines,
     especialidad,

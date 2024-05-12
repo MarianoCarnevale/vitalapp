@@ -67,8 +67,10 @@ export const useConsultation = ( handleSubmit, reset ) => {
   const OnSubmit = handleSubmit(async (data) => {
     //obtener valor de doctor
     const doctor_sub = data.doctor;
-    const file = data.file[0];
 
+    //obtener el valor de el archivo
+    const file = data.file[0];
+    
     //Si no se selecciono doctor
     if (!doctor_sub) {
       //Seleccionar uno random de la lista de doctores
@@ -78,22 +80,29 @@ export const useConsultation = ( handleSubmit, reset ) => {
       data.doctor = doctors[random].doctor_id;
     }
     
-    if (data.file.length > 0) {
-      
-      const consultation_id = await postNewConsultation(data);
+    //creamos la consulta que retorna el id de la consulta
+    const consultation_id = await postNewConsultation(data);
+    
+    //si no hay id de consulta retornar error y resetear el formulario
+    if (!consultation_id) {
+      toast.error("Error al enviar la consulta");
+      reset()
+      return;
 
-      if (!consultation_id) {
-        toast.error("Error al enviar la consulta");
-        return;
-      }
-      
+    } if (data.file.length > 0) {
+     
+      //crear el archivo usando el id de la consulta
       const resp_file = await postNewFileApi(file, consultation_id)
 
+      //si no hay respuesta es la validacion de back que no deja pasar si no es png o jpg
       if (!resp_file) {
         toast.error('La imagen debe ser un png o un jpg');
+        reset()
         return;
       }
-    } 
+    }
+
+    //Si todo esta buen devolvemos los valores a null y desabilitamos el submit y los labels
     reset();
     toast.success("Consulta enviada correctamente");
     setespecialidadValue("")
@@ -101,13 +110,17 @@ export const useConsultation = ( handleSubmit, reset ) => {
     setgravedadValue("")
     setDisabel(true)
     
+    
   });
+
+  // funcion para obtener las disciplinas de forma asyn
   const getDiscipline = async () => {
       const disciplines_values = await getDisciplinesApi();
       
       setDiscipline(disciplines_values);
       }
 
+  //retornar todos los valores q va a usar el formulario
   return {
     disciplines,
     especialidad,
