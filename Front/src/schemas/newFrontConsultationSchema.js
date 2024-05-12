@@ -1,5 +1,5 @@
 import joi from 'joi';
-import { joiErrorMessages } from '../../../Back/src/schemas/joiErrorMessages.js';
+import { joiErrorMessages } from '../../../Front/src/schemas/joiErrorMessages.js';
 
 export const newFrontConsultationsSchema = joi.object({
   doctor: joi.allow().messages(joiErrorMessages),
