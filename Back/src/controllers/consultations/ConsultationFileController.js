@@ -1,7 +1,6 @@
 import { updateConsultationFileModel } from "../../models/consultations/index.js";
-import { consultationsFileSchema } from "../../../../Front/src/schemas/consultationsFileSchema.js";
+import { consultationsFileSchema } from "../../schemas/consultations/consultationsFileSchema.js";
 import { FileService } from "../../services/consultations/FileService.js";
-import { createPathIfNotExistsUtil } from "../../utils/createPathUtil.js";
 import { generateError } from "../../utils/errors/generateError.js";
 import { validateSchemaUtil } from "../../utils/validateSchemaUtil.js";
 

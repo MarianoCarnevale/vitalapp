@@ -25,7 +25,7 @@ const Consultation = () => {
   //valor de severidad
   const [gravedad, setgravedadValue] = useState("");
 
-  //
+  //lista de gravedad de la consulta
   const [gravedads] = useState([
     {
       id: 1,
@@ -54,25 +54,28 @@ const Consultation = () => {
     resolver: joiResolver(newFrontConsultationsSchema)
   });
 
-  //Despues de renderizar la pantalla
-  useEffect(() => {
-    //Obtener todas las disciplinas
-    const getDisciplines = async () => {
-      try {
-        const resp = await axios.get(`${VITE_BASE_URL}/disciplines`);
-        const disciplines_values = Object.values(resp.data.data.disciplines);
+    //Despues de renderizar la pantalla
+    useEffect(() => {
+      //Obtener todas las disciplinas
+      const getDisciplines = async () => {
+        try {
+          const resp = await axios.get(`${VITE_BASE_URL}/disciplines`);
+          const disciplines_values = Object.values(resp.data.data.disciplines);
+  
+          //Asignamos todas las disciplinas al useState
+          setDiscipline(disciplines_values);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getDisciplines();
+    }, []);
+  
 
-        //Asignamos todas las disciplinas al useState
-        setDiscipline(disciplines_values);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getDisciplines();
-  }, []);
 
   //manejo de select de disciplinas
   const handelSeletDiscipline = (event) => {
+
     //pedir la lista de doctores
     const fetchDoctors = async () => {
       setespecialidadValue(discipline_value);
@@ -92,7 +95,7 @@ const Consultation = () => {
         setDisabel(true);
 
         //mandar mensaje de disponibilidad
-        setAvailable("None doctors available");
+        setAvailable("No hay doctores disponibles");
         console.error(error);
       }
     };
@@ -100,7 +103,7 @@ const Consultation = () => {
     //obtener el valor de el formulario
     const discipline_value = event.target.value;
 
-    if (discipline_value) {
+    if (discipline_value ) {
       //Si se selecciona disciplina habilitar submit
       setDisabel(false);
 
@@ -109,7 +112,6 @@ const Consultation = () => {
     } else {
       //Sino deshabilitar el select de doctores
       setespecialidadValue("");
-      setDiscipline([]);
       setDisabel(true);
     }
   };
@@ -119,6 +121,7 @@ const Consultation = () => {
   const OnSubmit = handleSubmit(async (data) => {
     //obtener valor de doctor
     const doctor_sub = data.doctor;
+    console.log(data);
 
     //Si no se selecciono doctor
     if (!doctor_sub) {
