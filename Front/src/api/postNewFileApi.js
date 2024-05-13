@@ -21,7 +21,8 @@ export const postNewFileApi = async (file, consultation_id) => {
     //retornar la respuesta
     return resp
   } catch (error) {
+
+    // retornar error
     console.log("Error al mandar la el archivo: ",error);
-     
     }
 }

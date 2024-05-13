@@ -22,7 +22,7 @@ export const useConsultation = ( handleSubmit, reset ) => {
   const [gravedad, setgravedadValue] = useState("");
 
   //desabilitar o habilitar select doctors y submit
-  const [disable, setDisabel] = useState([true]);
+  const [disable, setDisable] = useState([true]);
 
 
   //manejo de select de disciplinas
@@ -37,7 +37,7 @@ export const useConsultation = ( handleSubmit, reset ) => {
       setespecialidadValue(discipline_value);    
 
       //Si se selecciona disciplina habilitar submit
-      setDisabel(false);
+      setDisable(false);
       
       //Obtener lista de doctores
       const doctors_array = await getDoctorsByDisciplineApi(discipline_value);
@@ -48,7 +48,7 @@ export const useConsultation = ( handleSubmit, reset ) => {
         //deshabilitar y restaurar los valores de doctors a null
         toast.error('No hay doctores disponibles');
         setDoctors([])
-        setDisabel(true)
+        setDisable(true)
       } else { 
 
         //establecer la lista de doctores en el select
@@ -58,7 +58,7 @@ export const useConsultation = ( handleSubmit, reset ) => {
     } else {
       //Sino deshabilitar el select de doctores
       setespecialidadValue("");
-      setDisabel(true);
+      setDisable(true);
 
     }
   };
@@ -108,7 +108,7 @@ export const useConsultation = ( handleSubmit, reset ) => {
     setespecialidadValue("")
     setDoctorValue("")
     setgravedadValue("")
-    setDisabel(true)
+    setDisable(true)
     
     
   });
