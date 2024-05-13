@@ -62,6 +62,12 @@ consultationsRouter.get(
   consultationsController
 );
 
+consultationsRouter.post(
+  '/consultations/:consultation_id/file',
+  authUserController,
+  ConsultationFileController
+)
+
 // //actualizar consulta
 // consultationsRouter.put(
 //   '/consultations/update/:consultation_id',

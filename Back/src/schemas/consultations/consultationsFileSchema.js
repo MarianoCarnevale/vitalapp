@@ -1,7 +1,13 @@
 import joi from 'joi';
 
-import { imgSchema } from '../imgSchema.js';
-
 export const consultationsFileSchema = joi.object({
-  image: imgSchema.required(),
-});
+  name: joi.allow(),
+  data: joi.allow(),
+  size: joi.allow(),
+  encoding: joi.allow(),
+  tempFilePath: joi.allow(),
+  truncated: joi.allow(),
+  mimetype: joi.valid('image/jpeg','image/png').required().messages({'any.only' : 'La imagend debe ser png o jpg'}),
+  md5: joi.allow(),
+  mv: joi.allow()
+})

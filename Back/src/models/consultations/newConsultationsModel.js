@@ -33,6 +33,8 @@ export const newConsultationsModel = async (data, file) => {
     if (result.affectedRows === 0) {
       throw generateError('No se ha podido insertar la consulta', 500);
     };
+
+    return consultation_id;
   } catch (error) {
     console.log('Error al insertar consulta: ',error);
   }
