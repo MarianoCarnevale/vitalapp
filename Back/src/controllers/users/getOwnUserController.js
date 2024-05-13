@@ -5,6 +5,7 @@ import {
 
 export const getOwnUserController = async (req, res, next) => {
   try {
+    res.header('Access-Control-Allow-Origin', '*');
     // Obtenemos la id del usuario de la request.
     const { id } = req.user;
     // Obtenemos el rol del usuario para tratar información dependiendo si es medico o paciente

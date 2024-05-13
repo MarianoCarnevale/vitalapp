@@ -19,8 +19,8 @@ const Main = () => {
   const { user } = useContext(UserTokenContext);
   return (
     <main
-      className={`bg-cover pt-32 pb-16 ${
-        user ? "bg-white" : "bg-hero-pattern bg-no-repeat"
+      className={`bg-cover pt-32 lg:pt-8 pb-16 lg:ml-60 ${
+        user ? "bg-white" : "bg-hero-pattern bg-no-repeat "
       }`}
     >
       <Routes>

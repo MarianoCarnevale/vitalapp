@@ -11,11 +11,11 @@ const { UPLOADS_DIR } = process.env;
 const app = express();
 
 //middlewares
+app.use(cors());
 app.use(express.json());
 app.use(fileUpload());
 app.use(morgan('dev'));
 app.use(express.static(UPLOADS_DIR));
-app.use(cors());
 
 // Middleware que indica a express dónde están las rutas.
 app.use(router);
