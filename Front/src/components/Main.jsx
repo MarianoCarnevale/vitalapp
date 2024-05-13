@@ -20,7 +20,7 @@ const Main = () => {
   return (
     <main
       className={`bg-cover pt-32 lg:pt-8 pb-16 lg:ml-60 ${
-        user ? "bg-white" : "bg-hero-pattern bg-no-repeat "
+        user ? "bg-white" : "bg-hero-pattern bg-no-repeat lg:ml-0 "
       }`}
     >
       <Routes>
