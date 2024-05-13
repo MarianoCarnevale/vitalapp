@@ -5,11 +5,11 @@ import { VITE_BASE_URL } from "../config/env.js";
 import { NavLink } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
-import axios from "axios";
+
 // Asumiendo que getAvatar es la función que has definido anteriormente
 
 const Header = () => {
-  const [avatarUrl, setAvatarUrl] = useState("/images/default-avatar.jpg");
+  const [avatarUrl, setAvatarUrl] = useState("");
   // const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useContext(UserTokenContext);
   const {
@@ -24,33 +24,14 @@ const Header = () => {
     handleUpload,
   } = useHeader();
 
-  async function getAvatar() {
-    if (!user) {
-      // user es null, no intentes acceder a user_id
-      return;
-    }
-
-    // Reemplaza esta URL con la URL real que necesitas usar
-    const url = `${VITE_BASE_URL}/uploads/users/${user.user_id}/${user.avatar}`;
-
-    try {
-      // Realiza la petición GET y devuelve la respuesta
-      const response = await axios.get(url);
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Error al obtener el avatar:", error);
-    }
-  }
   useEffect(() => {
-    const fetchAvatar = async () => {
-      const url = await getAvatar();
-      if (url) {
-        setAvatarUrl(url);
-      }
-    };
-    fetchAvatar();
+    if (user?.avatar) {
+      const url = `${VITE_BASE_URL}/users/${user.user_id}/${user.avatar}`;
+
+      setAvatarUrl(url);
+    }
   }, [user]);
+
   return user ? (
     <header className="z-20 w-full shadow-sm fixed bg-primary  bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
       <ToastContainer />
