@@ -73,6 +73,7 @@ export const useHeader = () => {
     dropdownOpen,
     dropdownRef,
     isModalOpen,
+    setIsModalOpen,
     selectedFile,
     handleImageClick,
     handleLogout,

@@ -1,31 +1,30 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 import { useConsultation } from "../../hooks/useConsultation.jsx";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { newFrontConsultationsSchema } from "../../schemas/newFrontConsultationSchema.js";
 
-export const ConsultationForm = () => { 
-
+export const ConsultationForm = () => {
   //usamos la funcion para obtener los datos de forma asyn
-  useEffect(() => { 
 
-    //Obtener todas las disciplinas
+  useEffect(() => {
     getDiscipline();
-  },[])
-
+  }, []);
   //Control del form
   const {
-    register, 
-    handleSubmit, 
+    register,
+    handleSubmit,
     formState: { errors },
-    reset } = useForm({
-      mode: "onTouched",
-      resolver: joiResolver(newFrontConsultationsSchema)
-    });
+    reset,
+  } = useForm({
+    mode: "onTouched",
+    resolver: joiResolver(newFrontConsultationsSchema),
+  });
 
   //usamos todos los datos necesarios del hook
-  const { 
+  const {
     disciplines,
+    getDiscipline,
     especialidad,
     doctor,
     setDoctorValue,
@@ -34,14 +33,12 @@ export const ConsultationForm = () => {
     setgravedadValue,
     OnSubmit,
     handelSeletDiscipline,
-    getDiscipline,
-    disable
+    disable,
   } = useConsultation(handleSubmit, reset);
-
 
   return (
     <>
-    <h1 className="text-3xl font-bold text-primary ">Crea tu consulta</h1>
+      <h1 className="text-3xl font-bold text-primary ">Crea tu consulta</h1>
 
       <form onSubmit={OnSubmit} className="flex flex-col gap-7">
         <li className="list-none w-full">
@@ -86,7 +83,9 @@ export const ConsultationForm = () => {
             value={doctor}
             {...register("doctor")}
             disabled={disable}
-            onChange={(event) => { setDoctorValue(event.target.value) }}
+            onChange={(event) => {
+              setDoctorValue(event.target.value);
+            }}
           >
             <option key="1" value="">
               None selected
@@ -147,7 +146,9 @@ export const ConsultationForm = () => {
             value={gravedad}
             {...register("gravedad")}
             disabled={disable}
-            onChange={(event) => { setgravedadValue(event.target.value) }}
+            onChange={(event) => {
+              setgravedadValue(event.target.value);
+            }}
           >
             <option key="0" value="">
               None selected
@@ -161,9 +162,7 @@ export const ConsultationForm = () => {
             <option key="3" value="low">
               low
             </option>
-            
           </select>
-          
 
           <p className="text-red-500 text-sm sm:text-base pl-5">
             {errors.gravedad?.message}
@@ -195,4 +194,4 @@ export const ConsultationForm = () => {
       </form>
     </>
   );
-}
+};

@@ -10,7 +10,7 @@ import axios from "axios";
 
 const Header = () => {
   const [avatarUrl, setAvatarUrl] = useState("/images/default-avatar.jpg");
-
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useContext(UserTokenContext);
   const {
     dropdownOpen,
@@ -109,7 +109,7 @@ const Header = () => {
                   </button>
                   <button
                     onClick={handleLogout}
-                    className=" text-white font-semibold bg-primary p-2 rounded-md list-none shadow-md"
+                    className="text-white font-semibold bg-primary p-2 rounded-md list-none shadow-md"
                     role="menuitem"
                   >
                     Cerrar sesión
