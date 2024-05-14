@@ -13,7 +13,7 @@ export const deleteResponseModel = async (response_id) => {
     // Verificar si el delete afectó a alguna línea.
     if (result.affectedRows === 0) {
       const error = new Error('No se ha podido eliminar la respuesta.');
-      error.code = 'DELETE_TWEET_ERROR';
+      error.code = 'DELETE_RESPONSE_ERROR';
       throw error;
     }
 

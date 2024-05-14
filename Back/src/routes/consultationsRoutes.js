@@ -4,6 +4,7 @@ import {
   newConsultationsController,
   deleteConsultationController,
   ConsultationFileController,
+  oneConsultationControler,
 } from '../controllers/consultations/index.js';
 import { authUserController } from '../middlewares/authUserController.js';
 import { userValidationController } from '../middlewares/userValidationController.js';
@@ -28,7 +29,7 @@ consultationsRouter.delete(
 
 //Conseguir todas las consultas
 consultationsRouter.get(
-  '/consultations/',
+  '/consultations',
   authUserController,
   consultationsController
 );
@@ -38,21 +39,7 @@ consultationsRouter.get(
   '/consultations/:consultation_id',
   authUserController,
   userValidationController,
-  consultationsController
-);
-
-//Conseguir consulta por usuario(paciente)
-consultationsRouter.get(
-  '/consultations',
-  authUserController,
-  consultationsController
-);
-
-//Conseguir consulta por usuario(medico)
-consultationsRouter.get(
-  '/consultations/doctor/:doctor_id',
-  authUserController,
-  consultationsController
+  oneConsultationControler
 );
 
 //filtro de busqueda
