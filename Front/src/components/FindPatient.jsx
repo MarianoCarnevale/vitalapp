@@ -33,8 +33,8 @@ export const FindPatient = () => {
 
   // console.log(doctors);
   return (
-    <section className="w-5/6 py-10 m-auto flex flex-col gap-4 items-center max-w-md">
-      <div className="flex gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
+    <section className="w-5/6 py-10 m-auto flex flex-col gap-6 items-center max-w-md">
+      <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
           className="w-full"

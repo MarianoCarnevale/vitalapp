@@ -11,6 +11,7 @@ import { useContext } from "react";
 import Consultation from "../pages/Consultation.jsx";
 import Search from "../pages/Search.jsx";
 import Profile from "../pages/Profile.jsx";
+import ProfilePatient from "../pages/ProfilePatient.jsx";
 import Error404 from "../pages/Error404.jsx";
 import RecoverPassword from "../pages/RecoverPassword.jsx";
 import UpdatePassword from "../pages/UpdatePassword.jsx";
@@ -63,6 +64,7 @@ const Main = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/update" element={<Update />} />
+          <Route path="/users/:id" element={<ProfilePatient />} />
         </Route>
       </Routes>
     </main>

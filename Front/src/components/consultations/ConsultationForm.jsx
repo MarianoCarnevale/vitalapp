@@ -170,14 +170,14 @@ export const ConsultationForm = () => {
             {errors.gravedad?.message}
           </p>
         </li>
-        <li className="list-none w-full">
+        <li className="list-none">
           <label
             htmlFor="file"
-            className="input bg-primary rounded-lg flex active:bg-white"
+            className="bg-primary hover:bg-cyan-700 cursor-pointer rounded-lg flex active:bg-white"
           >
-            <div className="flex flex-col items-center gap-2 w-full text-white active:text-black">
-              <p className=" text-center w-full text-lg">Upload File</p>
-              <p className="text-xs ">png or jpg</p>
+            <div className="gap-2 w-full py-2 text-white active:text-black">
+              <p className=" text-center  text-lg">Upload File</p>
+              <p className="text-xs text-center ">png or jpg</p>
             </div>
             <input
               className="hidden"
@@ -188,10 +188,10 @@ export const ConsultationForm = () => {
           </label>
         </li>
         <button
-          className="bg-primary p-2 w-full rounded-md text-white active:bg-white active:text-black border-2 border-primary disabled:bg-gray-500"
+          className="bg-primary p-2 w-full rounded-md text-white active:bg-white active:text-black border-2  disabled:bg-secondary"
           disabled={disable}
         >
-          Submit
+          Enviar
         </button>
       </form>
     </>
