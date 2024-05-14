@@ -20,16 +20,16 @@ const Main = () => {
   const { user } = useContext(UserTokenContext);
   return (
     <main
-      className={`bg-cover pt-32 lg:pt-0 pb-16 lg:ml-60 ${
-        user ? "bg-white" : "bg-hero-pattern bg-no-repeat lg:ml-6 "
+      className={`bg-cover  pb-16  ${
+        user ? "bg-white lg:ml-60" : "bg-hero-pattern bg-no-repeat pt-32  "
       }`}
     >
-      <div className=" max-lg:hidden">
-        <h1 className=" pt-8 m-auto w-5/6 max-w-md text-primary font-bold text-3xl">
+      <div className={`max-lg:hidden text-left ${!user && "hidden"}`}>
+        <h1 className=" pt-8 m-auto w-5/6 max-w-md text-primary font-bold text-3xl jus ">
           Hoy
         </h1>
         <DateNow />
-        <hr className="mt-6 mx-auto  border-primary w-5/6 lg:order-3" />
+        <hr className="mt-6 mx-auto mb-20  border-primary w-5/6 lg:order-3" />
       </div>
       <Routes>
         <Route path="/" element={<Home />} />

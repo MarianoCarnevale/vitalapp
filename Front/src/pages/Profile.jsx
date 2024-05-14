@@ -25,7 +25,7 @@ const Profile = () => {
 
   return (
     user && (
-      <section className="w-full m-auto flex flex-col  items-center  pt-10 h-dvh  ">
+      <section className="w-full m-auto flex flex-col  items-center  h-dvh  ">
         <h1 className="text-3xl font-bold text-primary  ">Tu perfil</h1>
 
         <div className="my-6 rounded-full overflow-hidden h-40 w-40 z-10">
