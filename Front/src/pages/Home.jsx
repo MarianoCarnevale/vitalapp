@@ -10,10 +10,12 @@ const Home = () => {
   console.log(user);
   return user ? (
     <>
-      <h1 className="w-5/6 max-w-md m-auto text-primary font-bold text-3xl mt-10 lg:mt-0">
-        Hoy
-      </h1>
-      <DateNow />
+      <div className="lg:hidden">
+        <h1 className="w-5/6 max-w-md m-auto text-primary font-bold text-3xl mt-10 lg:mt-0">
+          Hoy
+        </h1>
+        <DateNow />
+      </div>
       {user.role === "doctor" ? <FindPatient /> : <FindDoctor />}
     </>
   ) : (
