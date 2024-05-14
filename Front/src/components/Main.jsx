@@ -14,15 +14,23 @@ import Profile from "../pages/Profile.jsx";
 import Error404 from "../pages/Error404.jsx";
 import RecoverPassword from "../pages/RecoverPassword.jsx";
 import UpdatePassword from "../pages/UpdatePassword.jsx";
+import { DateNow } from "./DateNow.jsx";
 
 const Main = () => {
   const { user } = useContext(UserTokenContext);
   return (
     <main
-      className={`bg-cover pt-32 lg:pt-8 pb-16 lg:ml-60 ${
+      className={`bg-cover pt-32 lg:pt-0 pb-16 lg:ml-60 ${
         user ? "bg-white" : "bg-hero-pattern bg-no-repeat lg:ml-6 "
       }`}
     >
+      <div className=" max-lg:hidden">
+        <h1 className=" pt-8 m-auto w-5/6 max-w-md text-primary font-bold text-3xl">
+          Hoy
+        </h1>
+        <DateNow />
+        <hr className="mt-6 mx-auto  border-primary w-5/6 lg:order-3" />
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
 
