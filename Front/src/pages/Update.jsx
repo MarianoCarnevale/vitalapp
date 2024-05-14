@@ -15,8 +15,8 @@ export const Update = () => {
   // Traemos token y user del contexto
   const { token, user, updateUser, setUpdateUser } =
     useContext(UserTokenContext);
-  // Definimos el estado inicial para el rol y la disciplina
-  // const [role, setRole] = useState("Selecciona un rol");
+
+  // Definimos el estado inicial para la disciplina
   const [discipline, setDiscipline] = useState([]);
 
   // Inicializamos useForm y definimos la configuración
@@ -52,7 +52,7 @@ export const Update = () => {
   // Definimos la función que se ejecutará cuando el formulario se envíe
   const onSubmit = handleSubmit(async (data) => {
     delete data.confirmarpassword;
-    delete data.role;
+    console.log(data);
 
     try {
       const response = await axios.put(`${VITE_BASE_URL}/users/update`, data, {
@@ -62,10 +62,9 @@ export const Update = () => {
       });
 
       if (response.data.status === "ok") {
-        toast.success("Usuario actualizado correctamente");
+        // toast.success("Usuario actualizado correctamente");
         reset();
         setUpdateUser(!updateUser);
-        return;
       }
     } catch (error) {
       toast.error(error.response.data.message);
@@ -74,8 +73,8 @@ export const Update = () => {
 
   return (
     user && (
-      <section className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
-        <ToastContainer />
+      <section className="w-5/6 m-auto mb-10 shadow-lg rounded-xl p-4 max-w-lg bg-white">
+        <ToastContainer autoClose={1500} />
         <h1 className="text-3xl my-4 text-primary font-semibold mb-10">
           Actualiza tu perfil
         </h1>
@@ -86,12 +85,13 @@ export const Update = () => {
               htmlFor="username"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              User Name
+              Username
             </label>
             <input
               id="username"
               type="text"
               className="border-2 border-primary p-2 w-full rounded"
+              defaultValue={user.username}
               {...register("username")}
             />
             {errors.username && (
@@ -112,6 +112,7 @@ export const Update = () => {
               id="email"
               type="email"
               className="border-2 border-primary p-2 rounded w-full"
+              defaultValue={user.email}
               {...register("email")}
             />
             {errors.email && (
@@ -161,28 +162,6 @@ export const Update = () => {
               </p>
             )}{" "}
           </li>
-          {/* role
-          <li className="list-none w-full">
-            <label
-              htmlFor="role"
-              className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
-            >
-              Role
-            </label>
-            <select
-              id="role"
-              className="border-2 w-full border-primary p-2 rounded"
-              {...register("role", { required: true })}
-              onChange={(e) => setRole(e.target.value)}
-            >
-              <option value="">Selecciona un rol</option>
-              <option value="patient">Paciente</option>
-              <option value="doctor">Doctor</option>
-            </select>
-            {errors.role && (
-              <p className="text-red-500 font-bold">{errors.role.message}</p>
-            )}
-          </li> */}
           {user.role === "doctor" && (
             <>
               <li className="list-none w-full">
@@ -196,6 +175,7 @@ export const Update = () => {
                   id="doctor_registration_number"
                   type="text"
                   className="w-full border-2 border-primary p-2 rounded"
+                  defaultValue={user.doctor_registration_number}
                   {...register("doctor_registration_number")}
                 />
                 {errors.doctor_registration_number && (
@@ -215,6 +195,7 @@ export const Update = () => {
                 <select
                   id="discipline_name"
                   className="border-2 w-full border-primary p-2 rounded"
+                  defaultValue={user.discipline_name}
                   {...register("discipline_name")}
                 >
                   {discipline.map((disc, index) => (
@@ -241,6 +222,9 @@ export const Update = () => {
                   id="experience"
                   type="text"
                   className="border-2 w-full border-primary p-2 rounded"
+                  defaultValue={
+                    new Date(user.experience).toISOString().split("T")[0]
+                  }
                   {...register("experience")}
                 />
                 {errors.experience && (
@@ -257,12 +241,13 @@ export const Update = () => {
               htmlFor="first_name"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              First Name
+              Primer Nombre
             </label>
             <input
               id="first_name"
               type="text"
               className="border-2 w-full border-primary p-2 rounded"
+              defaultValue={user.first_name}
               {...register("first_name")}
             />
             {errors.first_name && (
@@ -277,12 +262,13 @@ export const Update = () => {
               htmlFor="first_surname"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              First Surname
+              Primer Apellido
             </label>
             <input
               id="first_surname"
               type="text"
               className="border-2 w-full border-primary p-2 rounded"
+              defaultValue={user.first_surname}
               {...register("first_surname")}
             />
             {errors.first_surname && (
@@ -297,12 +283,13 @@ export const Update = () => {
               htmlFor="last_name"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Last Name
+              Segundo Nombre
             </label>
             <input
               id="last_name"
               type="text"
               className="border-2 w-full border-primary p-2 rounded"
+              defaultValue={user.last_name}
               {...register("last_name")}
             />
             {errors.last_name && (
@@ -317,12 +304,13 @@ export const Update = () => {
               htmlFor="last_surname"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Last Surname
+              Segundo Apellido
             </label>
             <input
               id="last_surname"
               type="text"
               className="border-2 w-full border-primary p-2 rounded"
+              defaultValue={user.last_surname}
               {...register("last_surname")}
             />
             {errors.last_surname && (
@@ -337,12 +325,13 @@ export const Update = () => {
               htmlFor="bio"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Bio
+              Sobre mí
             </label>
             <input
               id="bio"
               type="text"
               className="border-2 w-full border-primary p-2 rounded"
+              defaultValue={user.bio}
               {...register("bio")}
             />
             {errors.bio && (
@@ -355,12 +344,13 @@ export const Update = () => {
               htmlFor="address"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Address
+              Dirección
             </label>
             <input
               id="address"
               type="text"
               className="border-2 w-full border-primary p-2 rounded"
+              defaultValue={user.address}
               {...register("address")}
             />
             {errors.address && (
@@ -373,12 +363,13 @@ export const Update = () => {
               htmlFor="phone_number"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Phone_number
+              Número de teléfono
             </label>
             <input
               id="phone_number"
               type="text"
               className="border-2 w-full border-primary p-2 rounded"
+              defaultValue={user.phone_number}
               {...register("phone_number")}
             />
             {errors.phone_number && (
@@ -393,12 +384,15 @@ export const Update = () => {
               htmlFor="birth_date"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Birth_date
+              Fecha de nacimiento
             </label>
             <input
               id="birth_date"
               type="text"
               className="border-2 w-full border-primary p-2 rounded"
+              defaultValue={
+                new Date(user.birth_date).toISOString().split("T")[0]
+              }
               {...register("birth_date")}
             />
             {errors.birth_date && (

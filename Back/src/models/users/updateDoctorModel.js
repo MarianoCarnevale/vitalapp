@@ -21,19 +21,28 @@ export const updateDoctorModel = async (
 ) => {
   const pool = await getPool();
 
-  // Hasheamos el nuevo password
-  const passwordHashed = await bcrypt.hash(password, 10);
-
   // Crear la query.
   let query = `UPDATE users U 
   INNER JOIN doctors D ON U.user_id = D.user_id
   INNER JOIN doctors_disciplines DS ON D.doctor_id = DS.doctor_id
   INNER JOIN disciplines DI ON DS.discipline_id = DI.discipline_id
   SET 
-  U.email = ?, U.username = ?, U.password = ?, U.first_name = ?`;
+  U.email = ?, U.username = ?`;
 
-  // Crear el array de valores obligados menos el primer apellido
-  let values = [email, username, passwordHashed, first_name];
+  // Crear el array de valores email y username
+  let values = [email, username];
+
+  //Si hay contraseña hasheamos y la cambiamos
+  if (password) {
+    // Hasheamos el nuevo password
+    const passwordHashed = await bcrypt.hash(password, 10);
+    query += `, U.password = ?`;
+    values.push(passwordHashed);
+  }
+
+  // Añadimos valor obligatorio first_name
+  query += `, U.first_name = ?`;
+  values.push(first_name);
 
   // Si hay segundo nombre, lo añadimos
   if (last_name) {

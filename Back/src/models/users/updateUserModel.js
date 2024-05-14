@@ -33,14 +33,16 @@ export const updateUserModel = async (
     values.push(passwordHashed);
   }
 
-  // Añadimos valor obligatorio primer apellido
-  query += `, first_surname = ?`;
+  // Añadimos valor obligatorio primer nombre
+  query += `, first_name = ?`;
   values.push(first_name);
 
   // Si hay segundo nombre, lo añadimos
   if (last_name) {
     query += `, last_name = ?`;
     values.push(last_name);
+  } else {
+    query += `, last_name = NULL`;
   }
 
   // Añadimos valor obligatorio primer apellido
@@ -51,30 +53,40 @@ export const updateUserModel = async (
   if (last_surname) {
     query += `, last_surname = ?`;
     values.push(last_surname);
+  } else {
+    query += `, last_surname = NULL`;
   }
 
   // SI hay bio, añadirla a la query.
   if (bio) {
     query += `, bio = ?`;
     values.push(bio);
+  } else {
+    query += `, bio = NULL`;
   }
 
   // Si hay adress, añadirlas a la query.
   if (address) {
     query += `, address = ?`;
     values.push(address);
+  } else {
+    query += `, address = NULL`;
   }
 
   // Si hay phone_number, añadirlas a la query.
   if (phone_number) {
     query += `, phone_number = ?`;
     values.push(phone_number);
+  } else {
+    query += `, phone_number = NULL`;
   }
 
   // Si hay birth_date, añadirlas a la query.
   if (birth_date) {
     query += `, birth_date = ?`;
     values.push(birth_date);
+  } else {
+    query += `, birth_date = NULL`;
   }
 
   // Añadir el where.
