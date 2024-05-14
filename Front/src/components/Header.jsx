@@ -70,7 +70,7 @@ const Header = () => {
             {dropdownOpen && (
               <div
                 ref={dropdownRef}
-                className="absolute right-0 mt-5 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                className="absolute right-0 lg:right-[-2.5rem] lg:top-20 mt-5 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
               >
                 <div
                   className=" flex flex-col gap-2 p-5"
@@ -87,7 +87,7 @@ const Header = () => {
                   </button>
                   <button
                     onClick={handleLogout}
-                    className="text-white font-semibold bg-primary p-2 rounded-md list-none shadow-md"
+                    className="text-white font-semibold bg-primary p-2 rounded-md list-none shadow-md lg:hidden"
                     role="menuitem"
                   >
                     Cerrar sesión
@@ -97,12 +97,12 @@ const Header = () => {
             )}
           </li>
           <hr className="max-lg:hidden border w-full lg:order-3" />
-          <li className="list-none max-lg:hidden order-3 flex gap-2">
+          <li className="list-none max-lg:hidden order-3 flex gap-3">
             <img src="/images/icon-consultations-white.svg" alt="" />
 
             <NavLink
               to="/consultations"
-              className="text-white font-semibold text-lg list-none"
+              className="text-white font-semibold text-lg list-none focus:underline-offset"
             >
               Consultas
             </NavLink>
@@ -111,19 +111,28 @@ const Header = () => {
             <img src="/images/icon-search-white.svg" alt="" />
             <NavLink
               to="/search"
-              className="text-white font-semibold text-lg list-none"
+              className="text-white font-semibold text-lg list-none focus:underline-offset"
             >
               Buscar
             </NavLink>
           </li>
-          <li className="list-none max-lg:hidden order-5 flex gap-2">
+          <li className="list-none max-lg:hidden order-5 flex gap-4">
             <img src="/images/icon-profile-white.svg" alt="" />
             <NavLink
               to="/profile"
-              className="text-white font-semibold text-lg list-none"
+              className="text-white font-semibold text-lg list-none focus:underline-offset"
             >
               Perfil
             </NavLink>
+          </li>
+          <li className="lg:mt-[35rem] max-lg:hidden lg:order-5">
+            <button
+              onClick={handleLogout}
+              className="text-primary hover:text-white hover:bg-cyan-700 font-semibold bg-white p-2 rounded-md list-none shadow-md  "
+              role="menuitem"
+            >
+              Cerrar sesión
+            </button>
           </li>
         </ul>
       </nav>
