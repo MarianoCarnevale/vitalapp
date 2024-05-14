@@ -43,7 +43,7 @@ consultationsRouter.get(
 
 //Conseguir consulta por usuario(paciente)
 consultationsRouter.get(
-  '/consultations/user/:user_id',
+  '/consultations',
   authUserController,
   consultationsController
 );

@@ -10,5 +10,3 @@ export const deleteConsultationModel = async (consultation_id) => {
     console.log('Error al borrar la consulta: ', error);
   }
 }
-
-// hola 

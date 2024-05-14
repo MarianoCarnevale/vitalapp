@@ -1,8 +1,8 @@
-import { selectConsultationsModel } from '../../models/consultations/index.js';
+import { selectConsultationsModel, consultationsByUserIdModel } from '../../models/consultations/index.js';
 import { generateError } from '../../utils/errors/generateError.js';
 import { filter } from '../../utils/Filter.js';
 
-const Seacrh = (data) => { 
+const Search = (data) => { 
   
   let array_filter;
 
@@ -51,7 +51,7 @@ const Seacrh = (data) => {
 export const consultationsController = async (req, res, next) => {
   try {
     //Si se necesita una consulta especifica
-    const { doctor_id, consultation_id } = req.params;
+    const { consultation_id } = req.params;
 
     const { user_id } = req.user.id;
     //Obtenemos todos los datos de la busqueda por filtro
@@ -59,29 +59,31 @@ export const consultationsController = async (req, res, next) => {
 
     let array_filter;
     
-    //Busqueda segun usuario
+    //Busqueda según usuario
     if (user_id) {
-      array_filter = `WHERE C.user_id = '${user_id}'`;
+      array_filter = `WHERE C.user_id = '${user_id}' OR doctor.doctor_user_id = '${user_id}'`;
     }
-    if (doctor_id) {
-      array_filter = `WHERE doctor.doctor_id = '${doctor_id}'`;
-    }
+    // seleccionar una consulta concreta
     if (consultation_id) {
+      const [consultations] = await selectConsultationsModel(array_filter);
       array_filter = `WHERE C.consultation_id = '${consultation_id}'`;
+      return [consultations];
     }
+    
+    const [consultations] = await consultationsByUserIdModel(array_filter);
+
 
     //Busqueda por filtro
 
     if (data) {
 
       //Funcion que devuelve un where con todos los filtros
-      array_filter = Seacrh(data);
+      array_filter = Search(data);
 
     } 
 
     //recibir datos de la tabla
-    const [consultations] = await selectConsultationsModel(array_filter);
-
+    
     if (consultations.length === 0) {
       throw generateError('Consulta no encontrada', 404);
     }
