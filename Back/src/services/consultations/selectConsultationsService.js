@@ -4,7 +4,7 @@ export const
   selectConsultationsService = async (array_filter, data) => {
     try {
 
-      let array_search_filter;
+      let array_search_filter = '';
       console.log(data);
       if (data) { 
         if (Object.keys(data).length > 0) {
@@ -28,8 +28,9 @@ export const
             //Orden de filtro por GROUP BY orden DES/ASC
             array_search_filter.push(`ORDER BY C.created_at ${order}`);
             array_filter = array_filter.join(' ');
-          }
+          } 
         }
+        console.log(array_search_filter);
         array_filter = `${array_filter} ${array_search_filter}`
       }
     

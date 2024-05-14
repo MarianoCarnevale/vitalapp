@@ -37,7 +37,7 @@ export const ConsultationForm = () => {
   } = useConsultation(handleSubmit, reset);
 
   return (
-    <>
+    <div className="absolute mr-80 bg-white min-[w-3/5] w-2/4 z-20">
       <h1 className="text-3xl font-bold text-primary ">Crea tu consulta</h1>
 
       <form onSubmit={OnSubmit} className="flex flex-col gap-7">
@@ -192,6 +192,8 @@ export const ConsultationForm = () => {
           Submit
         </button>
       </form>
-    </>
+    </div>
+
+    
   );
 };
