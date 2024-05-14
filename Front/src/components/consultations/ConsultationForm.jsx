@@ -38,7 +38,7 @@ export const ConsultationForm = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-primary mb-10 ">
+      <h1 className="text-3xl font-bold text-primary mb-10 max-lg:pt-10 ">
         Crea tu consulta
       </h1>
 

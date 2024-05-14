@@ -21,7 +21,9 @@ const Main = () => {
   return (
     <main
       className={`bg-cover  pb-16  ${
-        user ? "bg-white lg:ml-60" : "bg-hero-pattern bg-no-repeat pt-32  "
+        user
+          ? "bg-white lg:ml-60 max-lg:pt-32"
+          : "bg-hero-pattern bg-no-repeat pt-32  "
       }`}
     >
       <div className={`max-lg:hidden text-left ${!user && "hidden"}`}>
@@ -58,7 +60,7 @@ const Main = () => {
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/consultations" element={<Consultation />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/" element={<Profile />} />
         </Route>
       </Routes>
     </main>
