@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import { NavLink } from "react-router-dom";
 
 export const FindPatient = () => {
   const { token } = useContext(UserTokenContext);
@@ -56,9 +57,9 @@ export const FindPatient = () => {
                 className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
                 key={patient.user_id}
               >
-                <p>
+                <NavLink to={`/users/${patient.user_id}`}>
                   {patient.first_name} {patient.first_surname}
-                </p>
+                </NavLink>
               </li>
             );
           })}
