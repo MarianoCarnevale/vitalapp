@@ -12,7 +12,7 @@ export const updateDoctorModel = async (
   first_surname,
   last_surname,
   bio,
-  adress,
+  address,
   phone_number,
   birth_date,
   doctor_registration_number,
@@ -64,11 +64,11 @@ export const updateDoctorModel = async (
   }
 
   // Si hay adress, añadirlas a la query.
-  if (adress) {
-    query += `, U.adress = ?`;
-    values.push(adress);
+  if (address) {
+    query += `, U.address = ?`;
+    values.push(address);
   } else {
-    query += `, U.adress = NULL`;
+    query += `, U.address = NULL`;
   }
 
   // Si hay phone_number, añadirlas a la query.
@@ -94,7 +94,7 @@ export const updateDoctorModel = async (
   // Averiguamos la id de la disciplina elegida
 
   const [discipline] = await pool.query(
-    `SELECT discipline_id FROM disciplines WHERE name = ?`,
+    `SELECT discipline_id FROM disciplines WHERE discipline_name = ?`,
     [discipline_name]
   );
 

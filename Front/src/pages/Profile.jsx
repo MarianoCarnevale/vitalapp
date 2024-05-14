@@ -34,7 +34,7 @@ const Profile = () => {
         <div className="flex flex-col max-w-md items-center gap-3 absolute mt-48 py-16 bg-white w-5/6 rounded-lg shadow-2xl z-0">
           <NavLink
             className="m-auto rounded-full shadow-lg absolute ml-64 mt-[-3rem]"
-            to={"users/" + user.user_id}
+            to={"/update"}
           >
             <img
               src={imageSrc}

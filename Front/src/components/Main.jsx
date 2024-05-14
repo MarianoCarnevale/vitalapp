@@ -15,6 +15,7 @@ import Error404 from "../pages/Error404.jsx";
 import RecoverPassword from "../pages/RecoverPassword.jsx";
 import UpdatePassword from "../pages/UpdatePassword.jsx";
 import { DateNow } from "./DateNow.jsx";
+import { Update } from "../pages/Update.jsx";
 
 const Main = () => {
   const { user } = useContext(UserTokenContext);
@@ -60,7 +61,8 @@ const Main = () => {
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/consultations" element={<Consultation />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/profile/" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/update" element={<Update />} />
         </Route>
       </Routes>
     </main>

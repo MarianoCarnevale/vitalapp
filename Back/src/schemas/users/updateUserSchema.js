@@ -14,7 +14,6 @@ export const updateUserSchema = joi.object({
     .pattern(
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@¡!$%^&*()_+|~=`{}:";'<>¿?,.])[a-zA-Z0-9@¡!$%^&*()_+|~=`{}:";'<>¿?,.]{8,}$/
     )
-    .required()
     .messages(joiErrorMessages),
   first_name: joi.string().min(3).max(30).required().messages(joiErrorMessages),
   last_name: joi.string().min(3).max(30).messages(joiErrorMessages),
@@ -26,7 +25,7 @@ export const updateUserSchema = joi.object({
     .messages(joiErrorMessages),
   last_surname: joi.string().min(3).max(30).messages(joiErrorMessages),
   bio: joi.string().min(0).max(255).messages(joiErrorMessages),
-  adress: joi.string().min(0).max(100).messages(joiErrorMessages),
+  address: joi.string().min(0).max(100).messages(joiErrorMessages),
   phone_number: joi.string().min(0).max(15).messages(joiErrorMessages),
   birth_date: joi.date().format('YYYY-MM-DD'),
 });
