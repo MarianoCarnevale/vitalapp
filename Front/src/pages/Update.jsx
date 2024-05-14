@@ -39,7 +39,7 @@ export const Update = () => {
       try {
         const response = await axios.get(`${VITE_BASE_URL}/disciplines`);
         const disciplinesArray = Object.values(response.data.data.disciplines);
-        //
+        console.log(disciplinesArray);
         setDiscipline(disciplinesArray);
       } catch (error) {
         console.error(error);
@@ -195,9 +195,10 @@ export const Update = () => {
                 <select
                   id="discipline_name"
                   className="border-2 w-full border-primary p-2 rounded"
-                  defaultValue={user.discipline_name}
+                  defaultValue=""
                   {...register("discipline_name")}
                 >
+                  <option value="">Selecciona una disciplina</option>
                   {discipline.map((disc, index) => (
                     <option key={index} value={disc.discipline_name}>
                       {disc.discipline_name}
