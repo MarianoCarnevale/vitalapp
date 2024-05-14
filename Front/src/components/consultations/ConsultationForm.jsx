@@ -38,7 +38,9 @@ export const ConsultationForm = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-primary ">Crea tu consulta</h1>
+      <h1 className="text-3xl font-bold text-primary mb-10 ">
+        Crea tu consulta
+      </h1>
 
       <form onSubmit={OnSubmit} className="flex flex-col gap-7">
         <li className="list-none w-full">

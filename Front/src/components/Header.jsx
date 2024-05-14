@@ -6,11 +6,9 @@ import { NavLink } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 
-// Asumiendo que getAvatar es la función que has definido anteriormente
-
 const Header = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { user } = useContext(UserTokenContext);
   const {
     dropdownOpen,
