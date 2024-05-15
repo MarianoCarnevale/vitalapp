@@ -33,7 +33,7 @@ const Header = () => {
     <header className="z-20 w-full shadow-sm fixed bg-primary  bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
       <ToastContainer />
       <nav>
-        <ul className="flex p-4 items-end gap-4 max-w-screen-xl m-auto h-32 lg:flex-col lg:items-start  ">
+        <ul className="flex p-4 items-end gap-4 max-w-screen-xl m-auto h-32 lg:h-screen lg:flex-col lg:items-start  ">
           <li className="flex-grow list-none lg:hidden ">
             <NavLink to="/">
               <img
@@ -125,7 +125,7 @@ const Header = () => {
               Perfil
             </NavLink>
           </li>
-          <li className="lg:mt-[35rem] max-lg:hidden lg:order-5">
+          <li className="lg:mt-auto max-h-screen max-lg:hidden lg:order-5">
             <button
               onClick={handleLogout}
               className="text-primary hover:text-white hover:bg-cyan-700 font-semibold bg-white p-2 rounded-md list-none shadow-md  "

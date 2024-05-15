@@ -23,10 +23,8 @@ const Main = () => {
   const { user } = useContext(UserTokenContext);
   return (
     <main
-      className={`bg-cover  pb-16  ${
-        user
-          ? "bg-white lg:ml-60 max-lg:pt-32"
-          : "bg-hero-pattern bg-no-repeat pt-32  "
+      className={`bg-cover   h  ${
+        user ? "bg-white lg:ml-60 max-lg:pt-32" : "bg-no-repeat pt-16  "
       }`}
     >
       <div className={`max-lg:hidden text-left ${!user && "hidden"}`}>
