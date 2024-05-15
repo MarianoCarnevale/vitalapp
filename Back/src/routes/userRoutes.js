@@ -64,3 +64,10 @@ userRouter.put(
   userExistsController,
   updateUserController
 );
+
+userRouter.get(
+  '/users/:id',
+  authUserController,
+  userExistsController,
+  getPatientsController
+);

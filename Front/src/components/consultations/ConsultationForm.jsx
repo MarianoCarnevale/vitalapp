@@ -37,8 +37,11 @@ export const ConsultationForm = () => {
   } = useConsultation(handleSubmit, reset);
 
   return (
-    <div className="absolute mr-80 bg-white min-[w-3/5] w-2/4 z-20">
-      <h1 className="text-3xl font-bold text-primary ">Crea tu consulta</h1>
+
+    <>
+      <h1 className="text-3xl font-bold text-primary mb-10 max-lg:pt-10 ">
+        Crea tu consulta
+      </h1>
 
       <form onSubmit={OnSubmit} className="flex flex-col gap-7">
         <li className="list-none w-full">
@@ -168,14 +171,14 @@ export const ConsultationForm = () => {
             {errors.gravedad?.message}
           </p>
         </li>
-        <li className="list-none w-full">
+        <li className="list-none">
           <label
             htmlFor="file"
-            className="input bg-primary rounded-lg flex active:bg-white"
+            className="bg-primary hover:bg-cyan-700 cursor-pointer rounded-lg flex active:bg-white"
           >
-            <div className="flex flex-col items-center gap-2 w-full text-white active:text-black">
-              <p className=" text-center w-full text-lg">Upload File</p>
-              <p className="text-xs ">png or jpg</p>
+            <div className="gap-2 w-full py-2 text-white active:text-black">
+              <p className=" text-center  text-lg">Upload File</p>
+              <p className="text-xs text-center ">png or jpg</p>
             </div>
             <input
               className="hidden"
@@ -186,10 +189,10 @@ export const ConsultationForm = () => {
           </label>
         </li>
         <button
-          className="bg-primary p-2 w-full rounded-md text-white active:bg-white active:text-black border-2 border-primary disabled:bg-gray-500"
+          className="bg-primary p-2 w-full rounded-md text-white active:bg-white active:text-black border-2  disabled:bg-secondary"
           disabled={disable}
         >
-          Submit
+          Enviar
         </button>
       </form>
     </div>
