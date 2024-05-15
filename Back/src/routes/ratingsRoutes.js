@@ -4,6 +4,9 @@ import { authUserController, ratingsExistsController } from '../middlewares/inde
 
 export const ratingsRoutes = express.Router();
 
+// crear una valoración a una respuesta
+ratingsRoutes.post('/ratings/:response_id', authUserController, newRatingController);
+
 // conseguir todas las valoraciones
 ratingsRoutes.get('/ratings', authUserController, ratingsController);
 
@@ -16,5 +19,3 @@ ratingsRoutes.get('/ratings/:response_id', authUserController, ratingsController
 // // modificar la valoración propia del usuario
 // ratingsRoutes.put('/ratings/:rating_id', authUserController, ratingsExistsController, updateRatingController);
 
-// crear una valoración a una respuesta
-ratingsRoutes.post('/ratings/:response_id', authUserController, newRatingController);

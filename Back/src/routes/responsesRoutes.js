@@ -7,6 +7,7 @@ import {
 } from '../controllers/responses/index.js';
 import {
   authUserController,
+  isOwnerController,
   responseExistsController,
 } from '../middlewares/index.js';
 
@@ -22,12 +23,12 @@ responsesRouter.post(
 );
 
 // Ver todas las respuestas de una consulta
-responsesRouter.get('/responses/:consultation_id', authUserController, getAllResponsesController);
+responsesRouter.get('/responses/:consultation_id', authUserController, isOwnerController, getAllResponsesController);
 
 // Modificar una respuesta
 responsesRouter.put(
   '/responses/:response_id', 
-  authUserController,
+  authUserController, isOwnerController,
   responseExistsController,
   updateResponseController
 );
@@ -35,7 +36,7 @@ responsesRouter.put(
 // Borrar una respuesta
 responsesRouter.delete(
   '/consultations/:consultation_id/responses/:response_id',
-  authUserController,
+  authUserController, isOwnerController,
   responseExistsController,
   deleteResponseController
 );
