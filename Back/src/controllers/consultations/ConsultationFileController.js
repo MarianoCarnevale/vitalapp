@@ -8,10 +8,11 @@ export const ConsultationFileController = async (req, res, next) => {
   try {
     
     //Validar la imagen con joy
-    const consultation_id = req.params.consultation_id
+    const { consultation_id } = req.params;
     //obtenemos la imagen
-    const img = req.files.Files
-    const user_id = req.user.id
+    const img = req.files.Files;
+    // obtenemos el usuario del token
+    const user_id = req.user.id;
 
     //Validamos el cuerpo de la imagen
     await validateSchemaUtil(consultationsFileSchema, img || {})

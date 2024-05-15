@@ -8,7 +8,7 @@ export const getDoctorsController = async (req, res, next) => {
     // responder con los doctores
     res.status(200).send({
       status: 'Ok',
-      message: 'All Doctors obtained',
+      message: 'Todos los doctores obtenidos correctamente',
       data: { doctors },
     });
   } catch (error) {

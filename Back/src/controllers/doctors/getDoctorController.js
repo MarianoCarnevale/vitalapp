@@ -10,7 +10,7 @@ export const getDoctorController = async (req, res, next) => {
     // Responder.
     res.status(200).send({
       status: 'Ok',
-      message: 'Doctor obtained',
+      message: 'Doctor obtenido correctamente',
       data: { doctor },
     });
   } catch (error) {

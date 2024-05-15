@@ -3,8 +3,9 @@ import { filter } from "../../utils/Filter.js"
 
 export const ratingsController = async (req, res , next) => {
   try {
-    const { response_id } = req.params
-    const user_id = req.user.id
+    const user_id = req.user.id;
+
+    const { response_id } = req.params;
 
     //crear array de filtro para el where
     let array_filter = ['WHERE']
@@ -38,7 +39,7 @@ export const ratingsController = async (req, res , next) => {
     const ratings = await selectRatingsModel(array_filter);
     res.status(200).send({
       status: 'Ok',
-      message: 'Rating encontrado',
+      message: 'Valoración encontrada',
       data: ratings
     })
 

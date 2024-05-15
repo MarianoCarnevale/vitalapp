@@ -4,7 +4,6 @@ import { generateError } from '../../utils/errors/generateError.js';
 export const consultationsController = async (req, res, next) => {
   try {
     const user_id = req.user.id;
-    console.log(user_id);
     //Obtenemos todos los datos de la busqueda por filtro
     const data = req.body;
 
