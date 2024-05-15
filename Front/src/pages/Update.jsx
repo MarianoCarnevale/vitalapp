@@ -62,9 +62,9 @@ export const Update = () => {
       });
 
       if (response.data.status === "ok") {
-        // toast.success("Usuario actualizado correctamente");
         reset();
         setUpdateUser(!updateUser);
+        // toast.success("Usuario actualizado correctamente");
       }
     } catch (error) {
       toast.error(error.response.data.message);

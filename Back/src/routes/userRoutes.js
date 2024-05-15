@@ -12,6 +12,7 @@ import {
   updateUserAvatarController,
   getOwnUserController,
   getPatientsController,
+  getPatientByUserId,
 } from '../controllers/users/index.js';
 
 // Importamos los middlewares.
@@ -69,5 +70,5 @@ userRouter.get(
   '/users/:id',
   authUserController,
   userExistsController,
-  getPatientsController
+  getPatientByUserId
 );

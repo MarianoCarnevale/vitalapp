@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const FindDoctor = () => {
   const [doctors, setDoctors] = useState([]);
@@ -35,7 +35,7 @@ export const FindDoctor = () => {
               : "bg-white"
           } flex-grow border border-primary text-primary py-2 px-6 rounded-full`}
           onClick={() => {
-            setFilterCaracter(!filterCaracter);
+            setFilterCaracter(true);
             setFilterDisciplines(false);
           }}
         >
@@ -48,7 +48,7 @@ export const FindDoctor = () => {
               : "bg-white"
           } flex-grow border border-primary text-primary py-2 px-6 rounded-full`}
           onClick={() => {
-            setFilterDisciplines(!filterDisciplines);
+            setFilterDisciplines(true);
             setFilterCaracter(false);
           }}
         >
@@ -69,7 +69,7 @@ export const FindDoctor = () => {
         />
       </div>
 
-      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-72 max-h-72 overflow-auto hide-scrollbar shadow-lg">
+      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-fit max-h-72 overflow-auto hide-scrollbar shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter
@@ -88,7 +88,7 @@ export const FindDoctor = () => {
           )
           .map((doctor) => {
             return (
-              <NavLink to={`/doctor/${doctor.doctor_id}`} key={doctor.user_id}>
+              <Link to={`/doctor/${doctor.doctor_id}`} key={doctor.user_id}>
                 <li
                   className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
                   key={doctor.user_id}
@@ -100,7 +100,7 @@ export const FindDoctor = () => {
                     {doctor.discipline_name}
                   </p>
                 </li>
-              </NavLink>
+              </Link>
             );
           })}
       </ul>

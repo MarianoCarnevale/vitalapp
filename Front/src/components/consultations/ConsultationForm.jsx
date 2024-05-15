@@ -37,7 +37,6 @@ export const ConsultationForm = () => {
   } = useConsultation(handleSubmit, reset);
 
   return (
-
     <>
       <h1 className="text-3xl font-bold text-primary mb-10 max-lg:pt-10 ">
         Crea tu consulta
@@ -195,8 +194,6 @@ export const ConsultationForm = () => {
           Enviar
         </button>
       </form>
-    </div>
-
-    
+    </>
   );
 };

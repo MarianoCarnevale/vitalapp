@@ -60,7 +60,7 @@ const ProfileDoctor = () => {
         {user && doctor && (
           <>
             <h2 className=" font-semibold text-center text-primary text-xl">
-              {doctor.first_name}, {doctor.first_surname}
+              {doctor.first_name} {doctor.first_surname}
               <hr />
             </h2>
             <h3 className="text-lg text-secondary font-semibold">

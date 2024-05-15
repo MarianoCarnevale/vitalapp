@@ -18,7 +18,8 @@ const Profile = () => {
             Authorization: `${token}`,
           },
         });
-        const patientData = response.data.data.patients[0];
+        const patientData = response.data.data.patient;
+        console.log(patientData);
         setPatient(patientData);
       } catch (error) {
         console.log(error.message);
@@ -51,7 +52,7 @@ const Profile = () => {
           {patient && (
             <>
               <h2 className=" font-semibold text-right text-primary text-xl">
-                {patient.first_name}, {patient.first_surname}
+                {patient.first_name} {patient.first_surname}
               </h2>
               <h3 className=" font-semibold text-right text-primary text-md">
                 Email
@@ -86,7 +87,9 @@ const Profile = () => {
                   <h3 className=" font-semibold text-right text-primary text-md">
                     Fecha de nacimiento
                   </h3>
-                  <p className="text-secondary">{patient.birth_date}</p>
+                  <p className="text-secondary">
+                    {new Date(patient.birth_date).toISOString().split("T")[0]}
+                  </p>
                 </>
               )}
             </>
