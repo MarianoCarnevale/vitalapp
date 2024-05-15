@@ -15,7 +15,7 @@ export const newConsultationsController = async(req, res, next) =>{
     
     //comprobamos que no falte ningun paramtetro
     if(Object.keys(data).length < 5){
-      throw generateError(`Fatlan parametros necesitas pasar: consultation_id, user_id, doctor_id, title, description, file, discipline_id, severity, `, 400)
+      throw generateError(`Faltan parametros necesitas pasar: consultation_id, user_id, doctor_id, title, description, file, discipline_id, severity, `, 400)
     }
 
     //hacemos la consulta a la base de datos

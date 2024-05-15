@@ -1,5 +1,5 @@
 import { selectResponseByIdModel, updateResponseModel } from '../../models/responses/index.js';
-import { notAuthorizedError } from '../errorService.js';
+import { generateError } from '../../utils/errors/generateError.js';
 
 export const updateResponseService = async (user_id, response_id, content) => {
   try {
@@ -8,7 +8,7 @@ export const updateResponseService = async (user_id, response_id, content) => {
     
     // Comprobar si el user_id es el mismo que el de la respuesta.
     if (oldResponse[0].user_id !== user_id) {
-      notAuthorizedError();
+      throw generateError('Usuario no autorizado para modificar la respuesta', 401)
     };
 
     // Actualizar la respuesta en la base de datos.

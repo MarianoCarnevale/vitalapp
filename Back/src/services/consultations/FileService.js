@@ -44,7 +44,7 @@ export const FileService = async (user_id, consultation_id, img, size) => {
       await imgSharp.toFile(imgPath)
     } catch (error) {
       //Error al guardar la imagen
-      throw generateError('Error al guardar imagen en servidor',500)
+      throw generateError('Error al guardar imagen en servidor', 500)
     }
   
     return img_id;

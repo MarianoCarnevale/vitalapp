@@ -8,7 +8,7 @@ export const newRatingController = async (req, res, next) => {
     const user_id = req.user
     
     if (!response_id || !user_id || !rating_value) { 
-      throw generateError('Los parametros response_id, user_id y rating_value son requeridos',400)
+      throw generateError('Los parametros response_id, user_id y rating_value son requeridos', 400)
     }
   
     const data = req.body

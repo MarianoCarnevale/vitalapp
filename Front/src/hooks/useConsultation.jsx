@@ -106,7 +106,7 @@ export const useConsultation = (handleSubmit, reset) => {
   // funcion para obtener las disciplinas de forma asyn
   const getDiscipline = async () => {
     const disciplines_values = await getAllDisciplinesWithDoctorsApi();
-    console.log(disciplines_values);
+    
     setDiscipline(disciplines_values);
   };
   //retornar todos los valores q va a usar el formulario

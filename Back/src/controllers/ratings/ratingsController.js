@@ -4,7 +4,7 @@ import { filter } from "../../utils/Filter.js"
 export const ratingsController = async (req, res , next) => {
   try {
     const { response_id } = req.params
-    const user_id = req.user
+    const user_id = req.user.id
 
     //crear array de filtro para el where
     let array_filter = ['WHERE']
