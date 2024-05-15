@@ -2,8 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
-// import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
-// import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 
 export const ConsultationList = () => { 
 
