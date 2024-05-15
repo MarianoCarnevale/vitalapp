@@ -10,7 +10,7 @@ export const getDoctorsByDisciplineController = async (req, res, next) => {
     // Responder con los doctores
     res.status(200).send({
       status: 'Ok',
-      message: 'Doctors obtained',
+      message: 'Doctores por disciplina obtenidos correctamente',
       data: { doctors },
     });
   } catch (error) {

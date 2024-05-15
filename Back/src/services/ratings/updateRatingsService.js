@@ -1,7 +1,5 @@
 import { selectRatingsModel } from "../../models/ratings/selectRatingsModel.js"
 import { updateRatingsModel } from "../../models/ratings/updateRatingsModel.js";
-import { filter } from "../../utils/Filter.js";
-import { notAuthorizedError } from "../errorService.js";
 
 export const upadteRatingService = async (newRating_id, rating_value) => { 
   try {

@@ -4,6 +4,7 @@ import {
   newConsultationsController,
   deleteConsultationController,
   ConsultationFileController,
+  oneConsultationControler,
 } from '../controllers/consultations/index.js';
 import { authUserController } from '../middlewares/authUserController.js';
 import { userValidationController } from '../middlewares/userValidationController.js';
@@ -28,7 +29,7 @@ consultationsRouter.delete(
 
 //Conseguir todas las consultas
 consultationsRouter.get(
-  '/consultations/',
+  '/consultations',
   authUserController,
   consultationsController
 );
@@ -38,40 +39,20 @@ consultationsRouter.get(
   '/consultations/:consultation_id',
   authUserController,
   userValidationController,
-  consultationsController
+  oneConsultationControler
 );
 
-//Conseguir consulta por usuario(paciente)
-consultationsRouter.get(
-  '/consultations/user/:user_id',
-  authUserController,
-  consultationsController
-);
-
-//Conseguir consulta por usuario(medico)
-consultationsRouter.get(
-  '/consultations/doctor/:doctor_id',
-  authUserController,
-  consultationsController
-);
-
-//filtro de busqueda
-consultationsRouter.get(
-  '/consultations/search/consultation',
-  authUserController,
-  consultationsController
-);
-
+// añadir archivo a la consulta
 consultationsRouter.post(
   '/consultations/:consultation_id/file',
   authUserController,
   ConsultationFileController
 )
 
-// //actualizar consulta
-// consultationsRouter.put(
-//   '/consultations/update/:consultation_id',
-//   authUserController,
-//   userValidationController,
-//   ConsultationFileController
-// );
+//actualizar consulta
+consultationsRouter.put(
+  '/consultations/update/:consultation_id',
+  authUserController,
+  userValidationController,
+  ConsultationFileController
+);

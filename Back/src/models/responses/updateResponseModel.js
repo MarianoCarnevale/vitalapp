@@ -1,4 +1,5 @@
 import { getPool } from '../../db/getPool.js';
+import { generateError } from '../../utils/errors/generateError.js';
 
 export const updateResponseModel = async (response_id, content) => {
   try {
@@ -20,9 +21,7 @@ export const updateResponseModel = async (response_id, content) => {
 
     // Verificar si el update afectó a alguna línea.
     if (result.affectedRows === 0) {
-      const error = new Error('No se ha podido actualizar la respuesta.');
-      error.code = 'UPDATE_RESPONSE_ERROR';
-      throw error;
+      throw generateError('No se ha podido actualizar la respuesta.', 500)
     }
 
     // Buscar la respuesta actualizada.

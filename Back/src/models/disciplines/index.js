@@ -1,2 +1,3 @@
 import { getAllDisciplinesModel } from './getAllDisciplinesModel.js';
-export { getAllDisciplinesModel };
+import { getAllDisciplinesWithDoctorsModel } from './getAllDisciplinesWithDoctorsModel.js';
+export { getAllDisciplinesModel, getAllDisciplinesWithDoctorsModel };

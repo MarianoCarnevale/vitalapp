@@ -1,21 +1,22 @@
 import { useContext, useState, useRef, useCallback } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import UseOutsideClick from "./useOutsideClick.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { VITE_BASE_URL } from "../config/env.js";
+import { useNavigate } from "react-router-dom";
 
 export const useHeader = () => {
-  const { token, setToken } = useContext(UserTokenContext);
+  const { token, setToken, setUser } = useContext(UserTokenContext);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   UseOutsideClick(dropdownRef, () => setDropdownOpen(false));
 
@@ -27,7 +28,8 @@ export const useHeader = () => {
   const handleLogout = () => {
     setToken(null);
     localStorage.removeItem("token");
-    window.location.reload();
+    setUser(null);
+    navigate("/login");
   };
 
   const handleAvatar = (event) => {
@@ -59,7 +61,7 @@ export const useHeader = () => {
         toast.success("Imagen subida correctamente");
         setTimeout(() => {
           setIsModalOpen(false);
-          navigate(window.location.pathname);
+          window.location.reload();
         }, 1000);
       } else {
         toast.error("Error al subir la imagen");
@@ -67,12 +69,13 @@ export const useHeader = () => {
     } catch (error) {
       toast.error(error.response.data.message);
     }
-  }, [selectedFile, token, navigate]);
+  }, [selectedFile, token]);
 
   return {
     dropdownOpen,
     dropdownRef,
     isModalOpen,
+    setIsModalOpen,
     selectedFile,
     handleImageClick,
     handleLogout,

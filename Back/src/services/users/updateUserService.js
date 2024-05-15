@@ -19,7 +19,7 @@ export const updateUserService = async (userId, body) => {
       first_surname,
       last_surname,
       bio,
-      adress,
+      address,
       phone_number,
       birth_date,
     } = body;
@@ -54,7 +54,7 @@ export const updateUserService = async (userId, body) => {
       first_surname,
       last_surname,
       bio,
-      adress,
+      address,
       phone_number,
       birth_date
     );

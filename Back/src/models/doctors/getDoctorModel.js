@@ -17,34 +17,38 @@ export const getDoctorModel = async (doctor_id) => {
       u.first_surname,
       u.last_surname,
       u.is_active,
+      u.avatar,
+      u.bio,
+      doc.doctor_registration_number,
+      dd.experience,
       d.discipline_name,
       AVG(r.rating_value) AS avg_rating
-  FROM 
+    FROM 
       users u
-  JOIN 
+    JOIN 
       doctors doc ON u.user_id = doc.user_id
-  JOIN 
+    JOIN 
       doctors_disciplines dd ON doc.doctor_id = dd.doctor_id
-  JOIN 
+    JOIN 
       disciplines d ON dd.discipline_id = d.discipline_id
-  LEFT JOIN 
+    LEFT JOIN 
       consultations c ON doc.doctor_id = c.doctor_id
-  LEFT JOIN 
+    LEFT JOIN 
       responses res ON c.consultation_id = res.consultation_id
-  LEFT JOIN 
+    LEFT JOIN 
       ratings r ON res.response_id = r.response_id
-  WHERE 
+    WHERE 
       u.role = 'doctor' 
       AND doc.doctor_id = ?
       AND u.is_active = 1 
-  GROUP BY 
-      u.user_id, u.first_name, d.discipline_name;`,
+    GROUP BY 
+      u.user_id, u.first_name, d.discipline_name, dd.experience;`,
       [doctor_id]
     );
 
     // Si no se encuentra el usuario, lanzar un error.
     if (doctor.length === 0 || doctor[0] === undefined) {
-      throw generateError(`Doctor not found`, 404);
+      throw generateError(`Doctor no encontrado`, 404);
     }
 
     return doctor[0];
