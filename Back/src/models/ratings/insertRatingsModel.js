@@ -11,7 +11,7 @@ export const insertRatingModel = async (data) => {
         `,[rating_id, response_id, user_id, rating_value])
   
      if (result.affectedRows === 0) {
-      throw generateError('No se ha podido actualizar la valoracion', 500);
+      throw generateError('No se ha podido insertar actualizar la valoracion', 500);
     }
   } catch (error) {
     console.log('Error al crear una valoracion nueva: ',error);

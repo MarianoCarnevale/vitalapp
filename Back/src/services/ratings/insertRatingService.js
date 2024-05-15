@@ -1,5 +1,6 @@
 import { insertRatingModel } from '../../models/ratings/insertRatingsModel.js';
 import { selectRatingsModel } from '../../models/ratings/selectRatingsModel.js';
+import { generateError } from '../../utils/errors/generateError.js';
 
 export const insertRatingService = async ( data ) => {
   try {

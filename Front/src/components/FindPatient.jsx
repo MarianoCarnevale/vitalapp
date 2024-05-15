@@ -2,7 +2,6 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
-import { Link } from "react-router-dom";
 
 export const FindPatient = () => {
   const { token } = useContext(UserTokenContext);
@@ -33,8 +32,8 @@ export const FindPatient = () => {
 
   // console.log(doctors);
   return (
-    <section className="w-5/6 py-10 m-auto flex flex-col gap-6 items-center max-w-md">
-      <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
+    <section className="w-5/6 py-10 m-auto flex flex-col gap-4 items-center max-w-md">
+      <div className="flex gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
           className="w-full"
@@ -53,14 +52,14 @@ export const FindPatient = () => {
           )
           .map((patient) => {
             return (
-              <Link to={`/users/${patient.user_id}`} key={patient.user_id}>
-                <li
-                  className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
-                  key={patient.user_id}
-                >
+              <li
+                className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                key={patient.user_id}
+              >
+                <p>
                   {patient.first_name} {patient.first_surname}
-                </li>
-              </Link>
+                </p>
+              </li>
             );
           })}
       </ul>

@@ -44,11 +44,6 @@ export default {
         ".hide-scrollbar::-webkit-scrollbar": {
           display: "none", // Safari and Chrome
         },
-        ".underline-offset": {
-          "text-decoration": "underline",
-          "text-decoration-thickness": "2px",
-          "text-underline-offset": "5px",
-        },
       };
       addUtilities(newUtilities);
     },

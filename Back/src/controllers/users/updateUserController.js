@@ -12,9 +12,6 @@ export const updateUserController = async (req, res, next) => {
     //Obtenemos el rol del usuario
     const userRol = req.user.role;
 
-    // Creamos la variable a alcance global newUserName
-    let newUsername;
-
     // Lógica para actualizar información según si es doctor o paciente
 
     if (userRol === 'patient') {
@@ -25,7 +22,13 @@ export const updateUserController = async (req, res, next) => {
       const user = await updateUserService(userId, req.body);
 
       // Enviamos solo el username actualizado
-      newUsername = user.username;
+      const newUsername = user.username;
+
+      res.send({
+        status: 'ok',
+        message: 'Usuario actualizado',
+        data: { newUsername },
+      });
     }
 
     if (userRol === 'doctor') {
@@ -36,14 +39,14 @@ export const updateUserController = async (req, res, next) => {
       const user = await updateDoctorService(userId, req.body);
 
       // Enviamos solo el username actualizado
-      newUsername = user.username;
-    }
+      const newUsername = user.username;
 
-    res.send({
-      status: 'ok',
-      message: 'Usuario actualizado',
-      data: { newUsername },
-    });
+      res.send({
+        status: 'ok',
+        message: 'Usuario actualizado',
+        data: { newUsername },
+      });
+    }
   } catch (error) {
     next(error);
   }

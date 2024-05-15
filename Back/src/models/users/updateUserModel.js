@@ -13,29 +13,20 @@ export const updateUserModel = async (
   first_surname,
   last_surname,
   bio,
-  address,
+  adress,
   phone_number,
   birth_date
 ) => {
   const pool = await getPool();
 
+  // Hasheamos el nuevo password
+  const passwordHashed = await bcrypt.hash(password, 10);
+
   // Crear la query.
-  let query = `UPDATE users SET email = ?, username = ?`;
+  let query = `UPDATE users SET email = ?, username = ?, password = ?, first_name = ?`;
 
   // Crear el array de valores obligados menos el primer apellido
-  let values = [email, username];
-
-  // Si hay password, hasheamos y la añadimos
-  if (password) {
-    query += `, password = ?`;
-    // Hasheamos el nuevo password
-    const passwordHashed = await bcrypt.hash(password, 10);
-    values.push(passwordHashed);
-  }
-
-  // Añadimos valor obligatorio primer nombre
-  query += `, first_name = ?`;
-  values.push(first_name);
+  let values = [email, username, passwordHashed, first_name];
 
   // Si hay segundo nombre, lo añadimos
   if (last_name) {
@@ -66,11 +57,11 @@ export const updateUserModel = async (
   }
 
   // Si hay adress, añadirlas a la query.
-  if (address) {
-    query += `, address = ?`;
-    values.push(address);
+  if (adress) {
+    query += `, adress = ?`;
+    values.push(adress);
   } else {
-    query += `, address = NULL`;
+    query += `, adress = NULL`;
   }
 
   // Si hay phone_number, añadirlas a la query.

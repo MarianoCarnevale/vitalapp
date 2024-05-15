@@ -5,7 +5,7 @@ import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 const Footer = () => {
   const { user } = useContext(UserTokenContext);
   return user ? (
-    <footer className="bg-white pt-4 h-24 shadow-sup w-full fixed bottom-0 lg:hidden z-10">
+    <footer className="bg-white pt-4 h-24 shadow-sup w-full fixed bottom-0 lg:hidden">
       <nav className="w-4/5 m-auto pt-2 flex justify-between">
         <NavLink
           to="/"
@@ -36,7 +36,7 @@ const Footer = () => {
       </nav>
     </footer>
   ) : (
-    <div className="bg-primary h-36">Footer</div>
+    <div>Footer</div>
   );
 };
 

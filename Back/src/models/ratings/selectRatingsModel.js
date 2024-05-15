@@ -8,6 +8,6 @@ export const selectRatingsModel = async (filter) => {
   
     return ratings;
   } catch (error) {
-    console.log('Error al seleccionarla valoración: ',error);
+    console.log('Error al selecinar el rating: ',error);
   }
 }

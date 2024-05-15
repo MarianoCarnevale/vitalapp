@@ -12,8 +12,6 @@ export const UserTokenProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   // Estado para almacenar los datos del usuario
   const [user, setUser] = useState(null);
-  // Estado para manejar la actualización de usuario
-  const [updateUser, setUpdateUser] = useState(false);
 
   // Función para obtener los datos del usuario a partir del token
   const getUser = async (token) => {
@@ -36,20 +34,13 @@ export const UserTokenProvider = ({ children }) => {
     }
   };
 
-  // Cuando el token cambia o hay una actualización de usuario, se obtienen los datos del usuario
+  // Cuando el token cambia, obtiene los datos del usuario
   useEffect(() => {
     getUser(token);
-  }, [token, updateUser]);
+  }, [token]);
 
   // Valores que se proporcionarán a los consumidores del contexto
-  const UserTokenValues = {
-    user,
-    setUser,
-    token,
-    setToken,
-    updateUser,
-    setUpdateUser,
-  };
+  const UserTokenValues = { user, token, setToken };
 
   // Proporciona el contexto a los componentes hijos
   return (

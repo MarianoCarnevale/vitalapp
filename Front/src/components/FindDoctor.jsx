@@ -1,11 +1,8 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
-import { Link } from "react-router-dom";
-import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 
 export const FindDoctor = () => {
-  const { user } = useContext(UserTokenContext);
   const [doctors, setDoctors] = useState([]);
   const [name, setName] = useState("");
   const [filterCaracter, setFilterCaracter] = useState(true);
@@ -37,7 +34,7 @@ export const FindDoctor = () => {
               : "bg-white"
           } flex-grow border border-primary text-primary py-2 px-6 rounded-full`}
           onClick={() => {
-            setFilterCaracter(true);
+            setFilterCaracter(!filterCaracter);
             setFilterDisciplines(false);
           }}
         >
@@ -50,7 +47,7 @@ export const FindDoctor = () => {
               : "bg-white"
           } flex-grow border border-primary text-primary py-2 px-6 rounded-full`}
           onClick={() => {
-            setFilterDisciplines(true);
+            setFilterDisciplines(!filterDisciplines);
             setFilterCaracter(false);
           }}
         >
@@ -71,7 +68,7 @@ export const FindDoctor = () => {
         />
       </div>
 
-      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-fit max-h-72 overflow-auto hide-scrollbar shadow-lg">
+      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-72 max-h-72 overflow-auto hide-scrollbar shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter
@@ -90,22 +87,17 @@ export const FindDoctor = () => {
           )
           .map((doctor) => {
             return (
-              <Link
-                to={user ? `/doctor/${doctor.doctor_id}` : "/login"}
+              <li
+                className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
                 key={doctor.user_id}
               >
-                <li
-                  className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
-                  key={doctor.user_id}
-                >
-                  <p>
-                    {doctor.first_name} {doctor.first_surname}
-                  </p>
-                  <p className="border-primary text-white text-sm rounded-2xl bg-primary p-2">
-                    {doctor.discipline_name}
-                  </p>
-                </li>
-              </Link>
+                <p>
+                  {doctor.first_name} {doctor.first_surname}
+                </p>
+                <p className="border-primary text-white text-sm rounded-2xl bg-primary p-2">
+                  {doctor.discipline_name}
+                </p>
+              </li>
             );
           })}
       </ul>
