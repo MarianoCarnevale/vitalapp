@@ -10,7 +10,7 @@ export const deleteRatingModel = async (rating_id) => {
     
     //Verificar que elimino el rating
     if (result.affectedRows === 0) {
-      throw generateError('Valoración no pudo ser borrada', 500);
+      throw generateError('rating could not be deleted', 500);
     }
   
     return;
