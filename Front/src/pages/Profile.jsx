@@ -18,11 +18,15 @@ const Profile = () => {
     ? "/images/icon-edit-hover.svg"
     : "/images/icon-edit.svg";
 
-  const experienceStartDate = new Date(user.experience);
-  const currentDate = new Date();
-  const yearsOfExperience =
-    currentDate.getFullYear() - experienceStartDate.getFullYear();
+  let yearsOfExperience;
 
+  if (user) {
+    const experienceStartDate = new Date(user.experience);
+    const currentDate = new Date();
+    yearsOfExperience =
+      currentDate.getFullYear() - experienceStartDate.getFullYear();
+    console.log(yearsOfExperience);
+  }
   return (
     user && (
       <section className="w-5/6 py-10 mb-[40rem] m-auto flex flex-col gap-4 items-center lg:py-0">
