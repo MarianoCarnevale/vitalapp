@@ -1,24 +1,23 @@
 import { selectRatingsModel } from "../models/ratings/selectRatingsModel.js"
-import { generateError } from "../utils/errors/generateError.js";
+import { notFoundError } from "../services/errorService.js";
 
 export const ratingsExistsController = async (req, res, next) => {
   try {
     //obtener id de la valoracion
-    const { rating_id } = req.params;
-    const user_id = req.user_id;
+    const rating_id = req.params.rating_id
     
     //hacemos el filtro where
-    let filter = `WHERE rating_id = "${rating_id}" and user_id = "${user_id}"`
+    let where = `WHERE rating_id = "${rating_id}"`
 
     //buscar si existe
-    const rating = await selectRatingsModel(filter);
+    const rating = await selectRatingsModel(where);
   
     //si no existe pasar error
     if (!rating) { 
-      throw generateError('No existe valoración', 404)
+      throw notFoundError(rating_id)
     }
 
-    // esta todo ok pasar al siguiente middleware
+    //todo ok pasar al siguiente middleware
     next();
 
   } catch (error) {

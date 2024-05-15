@@ -14,7 +14,7 @@ export const selectAllPatientsModel = async () => {
     );
 
     if (patients[0] === undefined) {
-      throw generateError('Pacientes no encontrados', 404);
+      throw generateError('No patients found', 404);
     }
 
     return patients;

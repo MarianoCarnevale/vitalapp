@@ -12,7 +12,7 @@ export const updateDoctorModel = async (
   first_surname,
   last_surname,
   bio,
-  address,
+  adress,
   phone_number,
   birth_date,
   doctor_registration_number,
@@ -21,28 +21,19 @@ export const updateDoctorModel = async (
 ) => {
   const pool = await getPool();
 
+  // Hasheamos el nuevo password
+  const passwordHashed = await bcrypt.hash(password, 10);
+
   // Crear la query.
   let query = `UPDATE users U 
   INNER JOIN doctors D ON U.user_id = D.user_id
   INNER JOIN doctors_disciplines DS ON D.doctor_id = DS.doctor_id
   INNER JOIN disciplines DI ON DS.discipline_id = DI.discipline_id
   SET 
-  U.email = ?, U.username = ?`;
+  U.email = ?, U.username = ?, U.password = ?, U.first_name = ?`;
 
-  // Crear el array de valores email y username
-  let values = [email, username];
-
-  //Si hay contraseña hasheamos y la cambiamos
-  if (password) {
-    // Hasheamos el nuevo password
-    const passwordHashed = await bcrypt.hash(password, 10);
-    query += `, U.password = ?`;
-    values.push(passwordHashed);
-  }
-
-  // Añadimos valor obligatorio first_name
-  query += `, U.first_name = ?`;
-  values.push(first_name);
+  // Crear el array de valores obligados menos el primer apellido
+  let values = [email, username, passwordHashed, first_name];
 
   // Si hay segundo nombre, lo añadimos
   if (last_name) {
@@ -73,11 +64,11 @@ export const updateDoctorModel = async (
   }
 
   // Si hay adress, añadirlas a la query.
-  if (address) {
-    query += `, U.address = ?`;
-    values.push(address);
+  if (adress) {
+    query += `, U.adress = ?`;
+    values.push(adress);
   } else {
-    query += `, U.address = NULL`;
+    query += `, U.adress = NULL`;
   }
 
   // Si hay phone_number, añadirlas a la query.
@@ -103,7 +94,7 @@ export const updateDoctorModel = async (
   // Averiguamos la id de la disciplina elegida
 
   const [discipline] = await pool.query(
-    `SELECT discipline_id FROM disciplines WHERE discipline_name = ?`,
+    `SELECT discipline_id FROM disciplines WHERE name = ?`,
     [discipline_name]
   );
 

@@ -1,5 +1,4 @@
 import { getPool } from '../../db/getPool.js';
-import { generateError } from '../../utils/errors/generateError.js';
 
 export const updateUserAvatarModel = async (userId, avatarName) => {
   const pool = await getPool();
@@ -10,7 +9,10 @@ export const updateUserAvatarModel = async (userId, avatarName) => {
   );
 
   if (result.affectedRows === 0) {
-    throw generateError('No se ha podido actualizar el avatar', 500)
+    const error = new Error('No se ha podido actualizar el avatar');
+    error.httpStatus = 500;
+    error.code = 'UPDATE_USER_AVATAR_ERROR';
+    throw error;
   }
 
   return result;
