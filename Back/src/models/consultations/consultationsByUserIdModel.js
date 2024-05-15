@@ -1,7 +1,7 @@
 import { getPool } from '../../db/getPool.js';
 import { generateError } from '../../utils/errors/generateError.js';
 
-export const consultationsByUserIdModel = async (filter) => {
+export const consultationsByUserIdModel = async (select_info, filter) => {
   try {
     //Esperamos conexion de la base de datos
     const pool = await getPool();
@@ -10,11 +10,10 @@ export const consultationsByUserIdModel = async (filter) => {
       filter = '';
     }
 
-    const [consultations] = await pool.query(`
+    const query = `
     SELECT 
     C.consultation_id, C.is_pending, C.description, doctor.doctor_user_id,
-    doctor.doctor_id AS doctor_id, doctor.doctor_first_name AS doctor_Name,doctor.doctor_last_name AS doctor_last_name,
-    U.user_id, U.first_name, U.last_name,
+    ${select_info}
     C.title, C.severity, C.created_at,
     DS.discipline_name AS discipline
   FROM consultations C
@@ -25,7 +24,10 @@ export const consultationsByUserIdModel = async (filter) => {
   ) AS doctor ON C.doctor_id = doctor.doctor_id
 JOIN users U ON C.user_id = U.user_id
 JOIN disciplines DS ON DS.discipline_id = C.discipline_id
-          ${filter}`);
+          ${filter}`
+    
+    console.log(query);
+    const [consultations] = await pool.query(query);
 
     return [consultations];
   } catch (error) {
