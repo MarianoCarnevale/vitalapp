@@ -1,4 +1,5 @@
 import { getPool } from '../../db/getPool.js';
+import { generateError } from '../../utils/errors/generateError.js';
 
 export const insertResponseModel = async (response_id, consultation_id, user_id, content) => {
   try {
@@ -16,9 +17,7 @@ export const insertResponseModel = async (response_id, consultation_id, user_id,
 
     // Verificar si el insert afectó a alguna línea.
     if (result.affectedRows === 0) {
-      const error = new Error('No se ha podido insertar la respuesta.');
-      error.code = 'INSERT_RESPONSE_ERROR';
-      throw error;
+      throw generateError('No se ha podido insertar la respuesta.', 500)
     }
 
     // Buscar la respuesta insertada.

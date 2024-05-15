@@ -4,8 +4,8 @@ import { generateError } from "../../utils/errors/generateError.js"
 export const newRatingController = async (req, res, next) => {
   try {
     
-    const { response_id, rating_value } = req.body
-    const user_id = req.user
+    const { response_id } = req.params;
+    const user_id = req.user.id;
     
     if (!response_id || !user_id || !rating_value) { 
       throw generateError('Los parametros response_id, user_id y rating_value son requeridos', 400)

@@ -42,23 +42,17 @@ consultationsRouter.get(
   oneConsultationControler
 );
 
-//filtro de busqueda
-consultationsRouter.get(
-  '/consultations/search/consultation',
-  authUserController,
-  consultationsController
-);
-
+// añadir archivo a la consulta
 consultationsRouter.post(
   '/consultations/:consultation_id/file',
   authUserController,
   ConsultationFileController
 )
 
-// //actualizar consulta
-// consultationsRouter.put(
-//   '/consultations/update/:consultation_id',
-//   authUserController,
-//   userValidationController,
-//   ConsultationFileController
-// );
+//actualizar consulta
+consultationsRouter.put(
+  '/consultations/update/:consultation_id',
+  authUserController,
+  userValidationController,
+  ConsultationFileController
+);

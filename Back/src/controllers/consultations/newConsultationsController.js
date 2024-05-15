@@ -1,17 +1,13 @@
-import { newConsultationsSchema } from "../../schemas/consultations/consultationsFilterSchema.js";
-import { imgSchema } from "../../schemas/imgSchema.js";
 import { newConsultationService } from "../../services/consultations/newConsultationService.js";
 import { generateError } from "../../utils/errors/generateError.js"
-import { validateSchemaUtil } from "../../utils/validateSchemaUtil.js";
 
 export const newConsultationsController = async(req, res, next) =>{
   try {  
     //Sacamos los datos del usuario
     const user_id = req.user.id;
     const data = req.body;
-    data.user_id = user_id;
 
-    console.log(req.body);
+    data.user_id = user_id;
     
     //comprobamos que no falte ningun paramtetro
     if(Object.keys(data).length < 5){
@@ -22,7 +18,7 @@ export const newConsultationsController = async(req, res, next) =>{
     const consultation_id = await newConsultationService(data);
     
     res.status(200).send({
-      status: 'Consultations created',
+      status: 'Consulta creada',
       data: consultation_id
     })
   } catch (error) {

@@ -125,7 +125,7 @@ const Header = () => {
               Perfil
             </NavLink>
           </li>
-          <li className="lg:mt-[35rem] max-lg:hidden lg:order-5">
+          <li className="lg:mt-auto max-lg:hidden lg:order-5">
             <button
               onClick={handleLogout}
               className="text-primary hover:text-white hover:bg-cyan-700 font-semibold bg-white p-2 rounded-md list-none shadow-md  "
