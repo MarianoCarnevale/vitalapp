@@ -58,7 +58,7 @@ const Header = () => {
               {user.role === "patient" ? "Paciente" : "Médico"}
             </p>
             <p className="text-white font-semibold text-right">
-              {user.first_name}, {user.first_surname}
+              {user.first_name} {user.first_surname}
             </p>
           </li>
 

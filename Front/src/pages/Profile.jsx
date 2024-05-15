@@ -86,7 +86,9 @@ const Profile = () => {
               <h3 className=" font-semibold text-right text-primary text-md">
                 Fecha de nacimiento
               </h3>
-              <p className="text-secondary">{user.birth_date}</p>
+              <p className="text-secondary">
+                {new Date(user.birth_date).toISOString().split("T")[0]}
+              </p>
             </>
           )}
 
