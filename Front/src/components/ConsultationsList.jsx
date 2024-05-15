@@ -33,13 +33,7 @@ export const ConsultationList = () => {
          <div className="flex flex-col gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
 
         <ul className="w-full flex flex-col justify-center gap-5 bg-white p-5  border-white rounded-3xl min-h-72 max-h-96 overflow-auto hide-scrollbar shadow-lg">
-          {consultations.filter(consultation => consultation.is_pending === 0)
-            // .filter((consultation) => consultation.first_name.toLowerCase().includes(name))
-            // .sort((a, b) =>
-            //   a.first_name.localeCompare(b.first_name, undefined, {
-            //     sensitivity: "base",
-            //   })
-            // )
+          {consultations.filter(consultation => consultation.is_pending === 1)
             .map((consultation) => {
               return (
                 <li
@@ -77,12 +71,6 @@ export const ConsultationList = () => {
           </ul>
           <ul className="w-full flex flex-col justify-center gap-5 bg-white p-5  border-white rounded-3xl min-h-72 max-h-96 overflow-auto hide-scrollbar shadow-lg">
             {consultations.filter(consultation => consultation.is_pending === 0)
-          // .filter((consultation) => consultation.first_name.toLowerCase().includes(name))
-          // .sort((a, b) =>
-          //   a.first_name.localeCompare(b.first_name, undefined, {
-          //     sensitivity: "base",
-          //   })
-          // )
           .map((consultation) => {
             return (
               <li
