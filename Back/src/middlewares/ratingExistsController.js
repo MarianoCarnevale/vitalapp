@@ -1,5 +1,5 @@
 import { selectRatingsModel } from "../models/ratings/selectRatingsModel.js"
-import { notFoundError } from "../services/errorService.js";
+import { generateError } from "../utils/errors/generateError.js";
 
 export const ratingsExistsController = async (req, res, next) => {
   try {
@@ -14,7 +14,7 @@ export const ratingsExistsController = async (req, res, next) => {
   
     //si no existe pasar error
     if (!rating) { 
-      throw notFoundError(rating_id)
+      throw generateError('No existe valoración', 404)
     }
 
     //todo ok pasar al siguiente middleware

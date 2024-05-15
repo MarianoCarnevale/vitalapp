@@ -20,7 +20,7 @@ export const userValidationController = async (req, res, next) => {
     const result = await selectConsultationsModel(array_filter)
     
     if (!result) { 
-      throw generateError('Usuario no registrado en esta consulta')
+      throw generateError('Usuario no registrado en esta consulta', 401)
     }
     next();
   } catch (error) {

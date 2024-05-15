@@ -44,7 +44,7 @@ export const getDoctorModel = async (doctor_id) => {
 
     // Si no se encuentra el usuario, lanzar un error.
     if (doctor.length === 0 || doctor[0] === undefined) {
-      throw generateError(`Doctor not found`, 404);
+      throw generateError(`Doctor no encontrado`, 404);
     }
 
     return doctor[0];

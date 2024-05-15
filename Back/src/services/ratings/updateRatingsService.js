@@ -1,6 +1,6 @@
 import { selectRatingsModel } from "../../models/ratings/selectRatingsModel.js"
 import { updateRatingsModel } from "../../models/ratings/updateRatingsModel.js";
-import { notAuthorizedError } from "../errorService.js";
+import { generateError } from "../../utils/errors/generateError.js";
 
 export const upadteRatingService = async (newRating_id, rating_value) => { 
   try {
@@ -13,7 +13,7 @@ export const upadteRatingService = async (newRating_id, rating_value) => {
     const { rating_id } = oldRating[0]
     
       if (newRating_id !== rating_id) {
-        notAuthorizedError();
+        throw generateError('Valoración no autorizada de modificar por este usuario', 401)
       }
     
     //Actualizar

@@ -1,5 +1,5 @@
 import { deleteResponseModel, selectAllResponsesByConsultationModel } from '../../models/responses/index.js';
-import { notAuthorizedError } from '../errorService.js';
+import { generateError } from '../../utils/errors/generateError.js';
 
 export const deleteResponseService = async (user_id, consultation_id, response_id ) => {
   try {
@@ -8,7 +8,7 @@ export const deleteResponseService = async (user_id, consultation_id, response_i
     const response = await selectAllResponsesByConsultationModel(consultation_id);
     // Comprobar si el user_id es el mismo que el de la respuesta.
     if (response[0].user_id !== user_id) {
-      notAuthorizedError();
+      throw generateError('Usuario no autorizado para borrar la respuesta', 401)
     }
 
     // Eliminar la respuesta de la base de datos.
