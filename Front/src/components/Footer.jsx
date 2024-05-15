@@ -36,7 +36,7 @@ const Footer = () => {
       </nav>
     </footer>
   ) : (
-    <div>Footer</div>
+    <div className="bg-primary h-36">Footer</div>
   );
 };
 
