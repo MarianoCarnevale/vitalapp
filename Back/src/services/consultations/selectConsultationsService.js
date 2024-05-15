@@ -4,7 +4,7 @@ export const
   selectConsultationsService = async (array_filter, data) => {
     try {
 
-      let array_search_filter = '';
+      // let array_search_filter = '';
       let select_info = '';
 
       if (data.role === "patient") {
@@ -40,7 +40,6 @@ export const
       //   array_filter = `${array_filter}`
       // }
     
-      console.log(select_info);
       const resp = consultationsByUserIdModel(select_info ,array_filter);
     return resp
 

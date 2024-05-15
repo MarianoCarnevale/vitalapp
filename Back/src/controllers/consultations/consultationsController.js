@@ -15,7 +15,6 @@ export const consultationsController = async (req, res, next) => {
     //Array de filtro
     let array_filter;
     
-    
     //Busqueda según usuario
     if (user_id) {
       array_filter = `WHERE (C.user_id = '${user_id}' OR doctor.doctor_user_id = '${user_id}')`;
