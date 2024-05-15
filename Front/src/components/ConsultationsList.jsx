@@ -26,22 +26,26 @@ export const ConsultationList = () => {
     }
   };
 
+  //Maneja el sistema de busqueda por palabras
   const handelSearch = (event) => { 
     const word = event.target.value
 
+    //convierte todo a lowercase y lo compara 
     const result = consultations.filter(consultation => 
       Object.values(consultation).some(value => value.toString().toLowerCase().includes(word.toLowerCase()))
     )
 
-    console.log(results);
+    //actualiza la segunda lista q estan respondidas
     setresults(result)
   }
+
+  //Ir al form
   const handelForm = () => { 
     setIsNew(true)
-    console.log(isNew);
   }
 
   useEffect(() => { 
+    //Obtener listado de consultas del back
     const feachConsultations = async () => {
       
       const resp = await axios.get(`${VITE_BASE_URL}/consultations`, {
@@ -51,10 +55,11 @@ export const ConsultationList = () => {
      })
       const consultation = Object.values(resp.data.data.consultations)
   
+      //se separan por un filter en la opcion pendin
+      //establecer el listado de consultas
       setConsultations(consultation)
 
-      console.log(consultations);
-
+      //establecer el segundo listado de consultas 
       setresults(consultation)
     }
     
