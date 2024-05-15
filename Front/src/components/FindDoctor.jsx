@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { Link } from "react-router-dom";
+import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 
 export const FindDoctor = () => {
+  const { user } = useContext(UserTokenContext);
   const [doctors, setDoctors] = useState([]);
   const [name, setName] = useState("");
   const [filterCaracter, setFilterCaracter] = useState(true);
@@ -88,7 +90,10 @@ export const FindDoctor = () => {
           )
           .map((doctor) => {
             return (
-              <Link to={`/doctor/${doctor.doctor_id}`} key={doctor.user_id}>
+              <Link
+                to={user ? `/doctor/${doctor.doctor_id}` : "/login"}
+                key={doctor.user_id}
+              >
                 <li
                   className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
                   key={doctor.user_id}

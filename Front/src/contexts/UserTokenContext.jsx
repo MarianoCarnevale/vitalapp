@@ -42,7 +42,14 @@ export const UserTokenProvider = ({ children }) => {
   }, [token, updateUser]);
 
   // Valores que se proporcionarán a los consumidores del contexto
-  const UserTokenValues = { user, token, setToken, updateUser, setUpdateUser };
+  const UserTokenValues = {
+    user,
+    setUser,
+    token,
+    setToken,
+    updateUser,
+    setUpdateUser,
+  };
 
   // Proporciona el contexto a los componentes hijos
   return (

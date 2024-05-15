@@ -6,16 +6,17 @@ import UseOutsideClick from "./useOutsideClick.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { VITE_BASE_URL } from "../config/env.js";
+import { useNavigate } from "react-router-dom";
 
 export const useHeader = () => {
-  const { token, setToken } = useContext(UserTokenContext);
+  const { token, setToken, setUser } = useContext(UserTokenContext);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  // const navigate = useNavigate();
+  let navigate = useNavigate();
 
   UseOutsideClick(dropdownRef, () => setDropdownOpen(false));
 
@@ -27,7 +28,8 @@ export const useHeader = () => {
   const handleLogout = () => {
     setToken(null);
     localStorage.removeItem("token");
-    window.location.reload();
+    setUser(null);
+    navigate("/login");
   };
 
   const handleAvatar = (event) => {
