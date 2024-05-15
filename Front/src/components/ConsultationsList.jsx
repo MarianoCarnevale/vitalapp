@@ -77,7 +77,7 @@ export const ConsultationList = () => {
                     </p>
                   </li>
                 );
-              }) || <p>No hay consultas</p>
+              }) || <p className="text-primary font-semibold text-lg">No hay consultas</p>
           }
           </ul>
           
