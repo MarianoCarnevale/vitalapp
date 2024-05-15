@@ -8,6 +8,7 @@ export const ConsultationList = () => {
 
   const [consultations, setConsultations] = useState([]);
   const [results, setresults] = useState([]);
+ 
   // const [token] = useContext(UserTokenContext);
 
   const token = localStorage.getItem("token")
@@ -77,7 +78,7 @@ export const ConsultationList = () => {
                     </p>
                   </li>
                 );
-              }) || <p className="text-primary font-semibold text-lg">No hay consultas</p>
+              }) || <p>No hay consultas</p>
           }
           </ul>
           
