@@ -3,26 +3,26 @@ import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
 
-export const ConsultationList = () => { 
-
+export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
   const [results, setresults] = useState([]);
   const [isNew , setIsNew] = useState(false)
   // const [token] = useContext(UserTokenContext);
 
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
   //poner clases distintas a cada gravedad
   const getStatusClass = (status) => {
     switch (status) {
-      case 'low':
-        return 'bg-green-500';
-      case 'medium':
-        return 'bg-yellow-500';
-      case 'high':
-        return 'bg-red-500';
+      case "low":
+        return "bg-green-500";
+      case "medium":
+        return "bg-yellow-500";
+      case "high":
+        return "bg-red-500";
     }
   };
+
 
   //Maneja el sistema de busqueda por palabras
   const handelSearch = (event) => { 
@@ -42,10 +42,9 @@ export const ConsultationList = () => {
     setIsNew(true)
   }
 
-  useEffect(() => { 
     //Obtener listado de consultas del back
+  useEffect(() => {
     const feachConsultations = async () => {
-      
       const resp = await axios.get(`${VITE_BASE_URL}/consultations`, {
         headers: {
           Authorization: `${token}`,
@@ -134,8 +133,6 @@ export const ConsultationList = () => {
         </div>
       </section>
       }
-      
     </>
   );
-    
-}
+};

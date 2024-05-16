@@ -34,6 +34,9 @@ const ProfileDoctor = () => {
     if (doctor?.avatar) {
       const url = `${VITE_BASE_URL}/users/${doctor.user_id}/${doctor.avatar}`;
       setAvatarUrl(url);
+    } else {
+      // Establecer la URL de la imagen predeterminada si doctor.avatar no existe
+      setAvatarUrl("/images/Avatar.svg");
     }
   }, [doctor]);
 

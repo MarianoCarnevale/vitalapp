@@ -6,6 +6,9 @@ export const newResponseController = async (req, res, next) => {
   try {
     // Obtengo la id del usuario.
     const user_id = req.user.id;
+
+    const role = req.user.role;
+
     // Obtengo la consulta.
     const { consultation_id } = req.params;
     // Obtengo el contenido.
@@ -18,7 +21,8 @@ export const newResponseController = async (req, res, next) => {
     const response = await insertResponseService(
       consultation_id,
       user_id,
-      content
+      content,
+      role
     );
 
     // Responder al cliente.

@@ -1,9 +1,7 @@
-import { consultationsByUserIdModel } from "../../models/consultations/consultationsByUserIdModel.js";
+import { consultationsByUserIdModel } from '../../models/consultations/consultationsByUserIdModel.js';
 
-export const
-  selectConsultationsService = async (array_filter, data) => {
-    try {
-
+export const selectConsultationsService = async (array_filter, data) => {
+  try {
       // let array_search_filter = '';
       let select_info = '';
 
@@ -49,5 +47,4 @@ export const
     console.log('Error al insertar en la consulta', error);
     throw error;
   }
-  
 };

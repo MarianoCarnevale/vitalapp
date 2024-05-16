@@ -3,10 +3,14 @@ import { NavLink } from "react-router-dom";
 import { UserTokenContext } from "../contexts/UserTokenContext";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
+
+import Fab from "@mui/material/Fab";
+
+import EditIcon from "@mui/icons-material/Edit";
+
 const Profile = () => {
   const { user } = useContext(UserTokenContext);
   const [avatarUrl, setAvatarUrl] = useState("");
-  const [hover, setHover] = useState(false);
 
   useEffect(() => {
     if (user?.avatar) {
@@ -14,9 +18,6 @@ const Profile = () => {
       setAvatarUrl(url);
     }
   }, [user]);
-  const imageSrc = hover
-    ? "/images/icon-edit-hover.svg"
-    : "/images/icon-edit.svg";
 
   let yearsOfExperience;
 
@@ -27,25 +28,27 @@ const Profile = () => {
       currentDate.getFullYear() - experienceStartDate.getFullYear();
     console.log(yearsOfExperience);
   }
+
   return (
     user && (
       <section className="w-5/6 py-10 mb-[40rem] m-auto flex flex-col gap-4 items-center lg:py-0">
         <h1 className="text-3xl font-bold text-primary  ">Tu perfil</h1>
 
         <div className="my-6 rounded-full overflow-hidden h-40 w-40 z-10">
-          <img className="h-40 w-40" src={avatarUrl} alt="Avatar" />
+          <img
+            className="h-40 w-40"
+            src={avatarUrl || "/images/Avatar.svg"}
+            alt="Avatar"
+          />
         </div>
         <div className="flex flex-col max-w-md items-center gap-3 absolute mt-48 py-16 bg-white w-5/6 rounded-lg shadow-2xl z-0">
           <NavLink
             className="m-auto rounded-full shadow-lg absolute ml-64 mt-[-3rem]"
             to={"/update"}
           >
-            <img
-              src={imageSrc}
-              alt="edit"
-              onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}
-            />
+            <Fab color="primary" size="small" aria-label="edit">
+              <EditIcon />
+            </Fab>
           </NavLink>
           <p className="text-lg font-semibold text-secondary">
             {user.role === "patient" ? "Paciente" : "Médico"}

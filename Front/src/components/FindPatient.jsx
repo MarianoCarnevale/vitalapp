@@ -33,7 +33,10 @@ export const FindPatient = () => {
 
   // console.log(doctors);
   return (
-    <section className="w-5/6 py-10 m-auto flex flex-col gap-6 items-center max-w-md">
+    <section className=" lg:w-full m-auto flex flex-col gap-6 items-center max-lg:max-w-md">
+      <p className="mr-auto text-primary text-2xl font-semibold">
+        Busca a tus pacientes
+      </p>
       <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
@@ -43,7 +46,7 @@ export const FindPatient = () => {
           onChange={(e) => setName(e.target.value.toLowerCase())}
         />
       </div>
-      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-72 max-h-72 overflow-auto hide-scrollbar shadow-lg">
+      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl max-h-64 overflow-auto hide-scrollbar shadow-lg">
         {patients
           .filter((patient) => patient.first_name.toLowerCase().includes(name))
           .sort((a, b) =>

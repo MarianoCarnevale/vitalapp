@@ -18,17 +18,18 @@ import RecoverPassword from "../pages/RecoverPassword.jsx";
 import UpdatePassword from "../pages/UpdatePassword.jsx";
 import { DateNow } from "./DateNow.jsx";
 import { Update } from "../pages/Update.jsx";
+import YourConsultation from "../pages/YourConsultation.jsx";
 
 const Main = () => {
   const { user } = useContext(UserTokenContext);
   return (
     <main
-      className={`bg-cover   h  ${
+      className={`${
         user ? "bg-white lg:ml-60 max-lg:pt-32" : "bg-no-repeat pt-16  "
       }`}
     >
       <div className={`max-lg:hidden text-left ${!user && "hidden"}`}>
-        <h1 className=" pt-8 m-auto w-5/6 max-w-md text-primary font-bold text-3xl jus ">
+        <h1 className=" pt-8 m-auto w-5/6 text-primary font-bold text-3xl jus ">
           Hoy
         </h1>
         <DateNow />
@@ -60,6 +61,10 @@ const Main = () => {
         <Route element={<PrivateRoute />}>
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/consultations" element={<Consultation />} />
+          <Route
+            path="/consultations/:consultation_id"
+            element={<YourConsultation />}
+          />
           <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/update" element={<Update />} />
