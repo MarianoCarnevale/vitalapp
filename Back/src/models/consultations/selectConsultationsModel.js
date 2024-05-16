@@ -10,6 +10,8 @@ export const selectConsultationsModel = async (consultation_id) => {
       `
       SELECT 
       C.consultation_id, 
+      C.is_pending,
+      doctor_avatar, 
       doctor.doctor_id AS doctor_id, 
       doctor.doctor_first_name AS doctor_Name,
       doctor.doctor_last_name AS doctor_last_name,
@@ -17,7 +19,7 @@ export const selectConsultationsModel = async (consultation_id) => {
       U.first_name, 
       U.last_name, 
       discipline_name, 
-      avg_rating.avg_rating_value AS avg_rating, -- Cambiado para obtener la calificación promedio
+      avg_rating.avg_rating_value AS avg_rating, 
       C.title, 
       C.description, 
       C.file, 
@@ -29,7 +31,8 @@ export const selectConsultationsModel = async (consultation_id) => {
       SELECT 
           D.doctor_id as doctor_id, 
           U.first_name AS doctor_first_name, 
-          U.last_name AS doctor_last_name 
+          U.last_name AS doctor_last_name ,
+          U.avatar AS doctor_avatar
       FROM 
           doctors D 
       INNER JOIN 
@@ -57,7 +60,7 @@ export const selectConsultationsModel = async (consultation_id) => {
   JOIN 
       users U ON C.user_id = U.user_id
   WHERE 
-      C.consultation_id = ?;
+      C.consultation_id = ?
             `,
       [consultation_id]
     );
