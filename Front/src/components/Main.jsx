@@ -19,6 +19,7 @@ import UpdatePassword from "../pages/UpdatePassword.jsx";
 import { DateNow } from "./DateNow.jsx";
 import { Update } from "../pages/Update.jsx";
 import YourConsultation from "../pages/YourConsultation.jsx";
+import ReactivateAccount from "../pages/ReactivateAccount.jsx";
 
 const Main = () => {
   const { user } = useContext(UserTokenContext);
@@ -43,6 +44,7 @@ const Main = () => {
 
         {/* //* Rutas públicas */}
         <Route element={<PublicRoute />}>
+          <Route path="/reactivate" element={<ReactivateAccount />} />
           <Route path="/recover" element={<RecoverPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

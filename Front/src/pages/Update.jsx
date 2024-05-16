@@ -13,8 +13,10 @@ import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 // Definimos el componente Update
 export const Update = () => {
   // Traemos token y user del contexto
-  const { token, user, updateUser, setUpdateUser } =
+  const { token, setToken, user, updateUser, setUpdateUser, setUser } =
     useContext(UserTokenContext);
+
+  const fakeData = "asd";
 
   // Definimos el estado inicial para la disciplina
   const [discipline, setDiscipline] = useState([]);
@@ -70,6 +72,28 @@ export const Update = () => {
       toast.error(error.response.data.message);
     }
   });
+
+  // Definimos la función que se activará cuando se pulse el botón desactivar cuenta
+  const handleDesactivate = async () => {
+    try {
+      const response = await axios.put(
+        `${VITE_BASE_URL}/users/desactivate`,
+        fakeData,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+
+      if (response.data.status === "ok") {
+        setToken(null);
+        setUser(null);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
 
   return (
     user && (
@@ -406,6 +430,12 @@ export const Update = () => {
             Enviar
           </button>
         </form>
+        <button
+          onClick={handleDesactivate}
+          className="border p-2 bg-red-700 rounded-md text-white font-semibold"
+        >
+          Desactivar Usuario
+        </button>
       </section>
     )
   );

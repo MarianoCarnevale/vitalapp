@@ -9,7 +9,7 @@ import { VITE_BASE_URL } from "../config/env.js";
 import { useNavigate } from "react-router-dom";
 
 export const useHeader = () => {
-  const { token, setToken, setUser } = useContext(UserTokenContext);
+  const { token, setToken, setUser, getUser } = useContext(UserTokenContext);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -29,7 +29,7 @@ export const useHeader = () => {
     setToken(null);
     localStorage.removeItem("token");
     setUser(null);
-    navigate("/login");
+    navigate("/");
   };
 
   const handleAvatar = (event) => {
@@ -61,7 +61,7 @@ export const useHeader = () => {
         toast.success("Imagen subida correctamente");
         setTimeout(() => {
           setIsModalOpen(false);
-          window.location.reload();
+          getUser(token);
         }, 1000);
       } else {
         toast.error("Error al subir la imagen");
