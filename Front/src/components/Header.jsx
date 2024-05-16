@@ -5,11 +5,16 @@ import { VITE_BASE_URL } from "../config/env.js";
 import { NavLink } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import { DarkModeContext } from "../contexts/DarkModeContext.jsx";
+
+import Switch from "@mui/material/Switch";
 
 const Header = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
+  const { darkMode, setDarkMode } = useContext(DarkModeContext);
 
   const { user } = useContext(UserTokenContext);
+
   const {
     dropdownOpen,
     dropdownRef,
@@ -22,6 +27,10 @@ const Header = () => {
     handleUpload,
   } = useHeader();
 
+  const handleDarkModeChange = (event) => {
+    console.log("handleDarkModeChange called", event.target.checked);
+    setDarkMode(event.target.checked);
+  };
   useEffect(() => {
     if (user?.avatar) {
       const url = `${VITE_BASE_URL}/users/${user.user_id}/${user.avatar}`;
@@ -30,7 +39,7 @@ const Header = () => {
   }, [user]);
 
   return user ? (
-    <header className="z-20 w-full shadow-sm fixed bg-primary  bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
+    <header className="z-20 w-full shadow-sm fixed bg-primary dark:bg-black  bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
       <ToastContainer />
       <nav>
         <ul className="flex p-4 items-end gap-4 max-w-screen-xl m-auto h-32 lg:h-screen lg:flex-col lg:items-start  ">
@@ -42,6 +51,10 @@ const Header = () => {
                 alt="Logo"
               />
             </NavLink>
+          </li>
+          <li>
+            <p>Dark mode</p>
+            <Switch checked={darkMode} onChange={handleDarkModeChange} />
           </li>
           <li className="list-none max-lg:hidden ">
             <NavLink to="/">
@@ -126,7 +139,6 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="lg:mt-auto max-h-screen max-lg:hidden lg:order-5">
-            
             <button
               onClick={handleLogout}
               className="text-primary hover:text-white hover:bg-cyan-700 font-semibold bg-white p-2 rounded-md list-none shadow-md  "

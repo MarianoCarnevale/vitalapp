@@ -3,10 +3,14 @@ import { NavLink } from "react-router-dom";
 import { UserTokenContext } from "../contexts/UserTokenContext";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
+
+import Fab from "@mui/material/Fab";
+
+import EditIcon from "@mui/icons-material/Edit";
+
 const Profile = () => {
   const { user } = useContext(UserTokenContext);
   const [avatarUrl, setAvatarUrl] = useState("");
-  const [hover, setHover] = useState(false);
 
   useEffect(() => {
     if (user?.avatar) {
@@ -14,9 +18,6 @@ const Profile = () => {
       setAvatarUrl(url);
     }
   }, [user]);
-  const imageSrc = hover
-    ? "/images/icon-edit-hover.svg"
-    : "/images/icon-edit.svg";
 
   let yearsOfExperience;
 
@@ -45,12 +46,9 @@ const Profile = () => {
             className="m-auto rounded-full shadow-lg absolute ml-64 mt-[-3rem]"
             to={"/update"}
           >
-            <img
-              src={imageSrc}
-              alt="edit"
-              onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}
-            />
+            <Fab color="primary" size="small" aria-label="edit">
+              <EditIcon />
+            </Fab>
           </NavLink>
           <p className="text-lg font-semibold text-secondary">
             {user.role === "patient" ? "Paciente" : "Médico"}
