@@ -28,7 +28,12 @@ export const FindDoctor = () => {
 
   console.log(doctors);
   return (
-    <section className="w-5/6 py-4 m-auto flex flex-col gap-5 items-center max-w-md">
+    <section className=" m-auto flex flex-col gap-5 items-center max-lg:max-w-md">
+      {user && (
+        <p className="mr-auto text-primary text-2xl font-semibold">
+          Busca a tus médicos
+        </p>
+      )}
       <div className="flex w-full gap-4">
         <button
           className={`${

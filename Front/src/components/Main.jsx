@@ -23,12 +23,12 @@ const Main = () => {
   const { user } = useContext(UserTokenContext);
   return (
     <main
-      className={`bg-cover   h  ${
+      className={`${
         user ? "bg-white lg:ml-60 max-lg:pt-32" : "bg-no-repeat pt-16  "
       }`}
     >
       <div className={`max-lg:hidden text-left ${!user && "hidden"}`}>
-        <h1 className=" pt-8 m-auto w-5/6 max-w-md text-primary font-bold text-3xl jus ">
+        <h1 className=" pt-8 m-auto w-5/6 text-primary font-bold text-3xl jus ">
           Hoy
         </h1>
         <DateNow />

@@ -5,9 +5,9 @@ import { ConsultationList } from "../components/ConsultationsList.jsx";
 
 const Consultation = () => {
   return (
-    <section className="w-5/6 max-w-md m-auto flex flex-col bg-white rounded-md ">
+    <section className="w-5/6 max-w-md m-auto py-10 flex flex-col bg-white rounded-md ">
       <ToastContainer />
-      
+
       <ConsultationList />
     </section>
   );
