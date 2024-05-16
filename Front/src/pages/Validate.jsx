@@ -61,7 +61,7 @@ const ValidationPage = () => {
     const step = onboardingSteps[currentStep];
     // Renderiza el componente
     return (
-      <>
+      <section className="bg-hero-pattern bg-cover h-screen flex">
         <ToastContainer />
         <div
           key={currentStep}
@@ -102,7 +102,7 @@ const ValidationPage = () => {
             </button>
           </div>
         </div>
-      </>
+      </section>
     );
   } else {
     return <Navigate to="/login" />;
