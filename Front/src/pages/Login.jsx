@@ -97,6 +97,12 @@ const Login = () => {
           >
             ¿Has olvidado tu contraseña?
           </Link>
+          <Link
+            to="/reactivate"
+            className="text-primary text-md font-semibold hover:text-secondary"
+          >
+            Reactiva tu cuenta
+          </Link>
           <button
             type="submit"
             className="border p-2 bg-primary rounded-md text-white font-semibold"

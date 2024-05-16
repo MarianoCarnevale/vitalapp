@@ -49,6 +49,7 @@ export const UserTokenProvider = ({ children }) => {
     setToken,
     updateUser,
     setUpdateUser,
+    getUser,
   };
 
   // Proporciona el contexto a los componentes hijos

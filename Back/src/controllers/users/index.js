@@ -8,6 +8,8 @@ import { updateUserAvatarController } from './updateUserAvatarController.js';
 import { getOwnUserController } from './getOwnUserController.js';
 import { getPatientsController } from './getPatientsController.js';
 import { getPatientByUserId } from './getPatientByUserId.js';
+import { desactivateOwnUserController } from './desactivateOwnUserController.js';
+import { reactivateUserController } from './reactivateUserController.js';
 
 export {
   loginUserController,
@@ -20,4 +22,6 @@ export {
   getOwnUserController,
   getPatientsController,
   getPatientByUserId,
+  desactivateOwnUserController,
+  reactivateUserController,
 };
