@@ -103,10 +103,16 @@ export const FindDoctor = () => {
                   className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
                   key={doctor.user_id}
                 >
-                  <p>
+                  <p
+                    className={`${
+                      filterDisciplines
+                        ? doctor.discipline_name + " order-2"
+                        : "order-1"
+                    }`}
+                  >
                     {doctor.first_name} {doctor.first_surname}
                   </p>
-                  <p className="border-primary text-white text-sm rounded-2xl bg-primary p-2">
+                  <p className="border-primary text-white text-sm rounded-2xl bg-primary p-2 order-1">
                     {doctor.discipline_name}
                   </p>
                 </li>

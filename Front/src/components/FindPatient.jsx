@@ -34,7 +34,7 @@ export const FindPatient = () => {
   // console.log(doctors);
   return (
     <section className=" lg:w-full m-auto flex flex-col gap-6 items-center max-lg:max-w-md">
-      <p className="mr-auto text-primary text-2xl font-semibold">
+      <p className="mr-auto text-3xl  text-primary font-semibold">
         Busca a tus pacientes
       </p>
       <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">

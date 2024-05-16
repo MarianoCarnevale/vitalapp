@@ -6,7 +6,7 @@ import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
   const [results, setresults] = useState([]);
-  const [isNew , setIsNew] = useState(false)
+  const [isNew, setIsNew] = useState(false);
   // const [token] = useContext(UserTokenContext);
 
   const token = localStorage.getItem("token");
@@ -23,116 +23,129 @@ export const ConsultationList = () => {
     }
   };
 
-
   //Maneja el sistema de busqueda por palabras
-  const handelSearch = (event) => { 
-    const word = event.target.value
+  const handelSearch = (event) => {
+    const word = event.target.value;
 
-    //convierte todo a lowercase y lo compara 
-    const result = consultations.filter(consultation => 
-      Object.values(consultation).some(value => value.toString().toLowerCase().includes(word.toLowerCase()))
-    )
+    //convierte todo a lowercase y lo compara
+    const result = consultations.filter((consultation) =>
+      Object.values(consultation).some((value) =>
+        value.toString().toLowerCase().includes(word.toLowerCase())
+      )
+    );
 
     //actualiza la segunda lista q estan respondidas
-    setresults(result)
-  }
+    setresults(result);
+  };
 
   //Ir al form
-  const handelForm = () => { 
-    setIsNew(true)
-  }
+  const handelForm = () => {
+    setIsNew(true);
+  };
 
-    //Obtener listado de consultas del back
+  //Obtener listado de consultas del back
   useEffect(() => {
     const feachConsultations = async () => {
       const resp = await axios.get(`${VITE_BASE_URL}/consultations`, {
         headers: {
           Authorization: `${token}`,
-        }
-     })
-      const consultation = Object.values(resp.data.data.consultations)
-  
+        },
+      });
+      const consultation = Object.values(resp.data.data.consultations);
+
       //se separan por un filter en la opcion pendin
       //establecer el listado de consultas
-      setConsultations(consultation)
+      setConsultations(consultation);
 
-      //establecer el segundo listado de consultas 
-      setresults(consultation)
-    }
-    
+      //establecer el segundo listado de consultas
+      setresults(consultation);
+    };
+
     feachConsultations();
-    setIsNew(false)
-  }, [])
-  
+    setIsNew(false);
+  }, []);
+
   return (
     <>
       {isNew && <ConsultationForm />}
 
-      {!isNew && 
-      <section className="z-10">
-         <div className="flex flex-col gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
+      {!isNew && (
+        <section className="max-lg:pt-10 -10  m-auto  gap-6 items-center max-w-lg">
+          <p className=" w-5/6 text-left text-primary font-semibold text-3xl ">
+            Tus ultimas consultas
+          </p>
+          <div className=" gap-2 items-left bg-white w-full  border-primary rounded-3xl">
+            <ul className="w-full flex flex-col gap-5 bg-white p-5 my-5  border-white rounded-3xl max-h-[17rem] overflow-auto hide-scrollbar shadow-lg">
+              {(consultations.filter(
+                (consultation) => consultation.is_pending === 1
+              ).length > 0 &&
+                consultations
+                  .filter((consultation) => consultation.is_pending === 1)
+                  .map((consultation) => {
+                    return (
+                      <li
+                        className="flex justify-between items-center  gap-3 shadow-xl p-4 text-primary font-medium text-md rounded-3xl"
+                        key={consultation.consultation_id}
+                      >
+                        <p>
+                          {consultation.first_name} {consultation.last_name}
+                        </p>
+                        <p
+                          className={`grow-2 py-1 px-4  rounded-xl text-white ${getStatusClass(
+                            consultation.severity
+                          )}`}
+                        >
+                          {consultation.severity}
+                        </p>
+                        <p className="grow-1">
+                          {consultation.created_at.slice(0, 10)}
+                        </p>
+                      </li>
+                    );
+                  })) || <p>No hay consultas</p>}
+            </ul>
 
-          <ul className="w-full flex flex-col gap-5 bg-white p-5 text-center border-white rounded-3xl min-h-72 max-h-96 overflow-auto hide-scrollbar shadow-lg">
-          { consultations.filter(consultation => consultation.is_pending === 1).length > 0 &&
-            consultations.filter(consultation => consultation.is_pending === 1)
-              .map((consultation) => {
-                return (
-                  <li
-                    className="flex justify-between items-center gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
-                    key={consultation.consultation_id}
-                  >
-                    <p>
-                      {consultation.first_name} {consultation.last_name}
-                    </p>
-                    <p className={`p-1 w-20 rounded-xl text-white ${getStatusClass(consultation.severity)}`}>
-                      {consultation.severity}
-                    </p>
-                    <p>
-                      {consultation.created_at.slice(0,10)}
-                    </p>
-                  </li>
-                );
-              }) || <p>No hay consultas</p>
-          }
-          </ul>
-          
-            <li className="flex flex-col text-center justify-center w-full bg-primary m-2 gap-5 shadow-xl p-6 font-bold rounded-3xl">
-              <p className="text-white">Crea aqui tu consulta</p>
-            <button className="items-center w-full bg-white m-2 gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
-            onClick={handelForm}>
-                Crear cíta
-              </button>
-          </li>
-          { consultations.filter(consultation => consultation.is_pending === 0).length > 0 && <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl min-h-72 max-h-96 overflow-auto hide-scrollbar shadow-lg">
-          <ul className="flex felx-row justify-start gap-5 bg-white p-5  border-white rounded-3xl shadow-lg w-full mb-4">
-          <img src="/images/search-icon.svg" alt="input icon" />
-            <input
-          className="w-full"
-          type="text"
-          placeholder="Busca un paciente..."
-          onChange={handelSearch}
-        />
-          </ul>
-            {results.filter(result => result.is_pending === 0)
-          .map((result) => {
-            return (
-              <li
-                className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
-                key={result.consultation_id}
+            <div className="my-5 list-none text-center m-auto w-full bg-primary gap-5 shadow-xl p-6 font-bold rounded-3xl">
+              <button
+                className="items-center w-full bg-white m-2 gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
+                onClick={handelForm}
               >
-                <p>
-                  {result.first_name} {result.doctor_last_name}  
-                </p>
-                <p>
-                  {result.created_at.slice(0,10)}
-                </p>
-              </li>
-            );
-          })}
-      </ul>}
-        </div>
-      </section>
-      }
+                Crear tu consulta
+              </button>
+            </div>
+            {consultations.filter(
+              (consultation) => consultation.is_pending === 0
+            ).length > 0 && (
+              <ul className="w-5/6 flex flex-col gap-5 bg-white p-5  border-white rounded-3xl min-h-72 max-h-96 overflow-auto hide-scrollbar shadow-lg">
+                <li className="flex justify-start gap-5 bg-white p-5  border-white rounded-3xl shadow-lg w-full mb-4">
+                  <img src="/images/search-icon.svg" alt="input icon" />
+                  <input
+                    className="w-full"
+                    type="text"
+                    placeholder="Busca un paciente..."
+                    onChange={handelSearch}
+                  />
+                </li>
+                {results
+                  .filter((result) => result.is_pending === 0)
+                  .map((result) => {
+                    return (
+                      <li
+                        className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                        key={result.consultation_id}
+                      >
+                        <p>
+                          {result.first_name} {result.doctor_last_name}
+                        </p>
+                        <p>{result.created_at.slice(0, 10)}</p>
+                      </li>
+                    );
+                  })}
+              </ul>
+            )}
+          </div>
+        </section>
+      )}
     </>
   );
 };
