@@ -18,6 +18,7 @@ import RecoverPassword from "../pages/RecoverPassword.jsx";
 import UpdatePassword from "../pages/UpdatePassword.jsx";
 import { DateNow } from "./DateNow.jsx";
 import { Update } from "../pages/Update.jsx";
+import YourConsultation from "../pages/YourConsultation.jsx";
 
 const Main = () => {
   const { user } = useContext(UserTokenContext);
@@ -60,6 +61,10 @@ const Main = () => {
         <Route element={<PrivateRoute />}>
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/consultations" element={<Consultation />} />
+          <Route
+            path="/consultations/:consultation_id"
+            element={<YourConsultation />}
+          />
           <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/update" element={<Update />} />
