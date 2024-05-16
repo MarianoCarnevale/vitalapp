@@ -33,6 +33,9 @@ const Profile = () => {
     if (patient?.avatar) {
       const url = `${VITE_BASE_URL}/users/${patient.user_id}/${patient.avatar}`;
       setAvatarUrl(url);
+    } else {
+      // Establecer la URL de la imagen predeterminada si doctor.avatar no existe
+      setAvatarUrl("/images/Avatar.svg");
     }
   }, [patient]);
 
@@ -40,7 +43,7 @@ const Profile = () => {
     user &&
     user.role === "doctor" && (
       <section className="w-5/6 py-10 m-auto flex flex-col gap-4 items-center max-w-md">
-        <h1 className="text-3xl font-bold text-primary  ">
+        <h1 className="text-3xl font-bold text-primary">
           Perfil del paciente
           {/* {patient && `Perfil del paciente ${patient.first_surname}`} */}
         </h1>

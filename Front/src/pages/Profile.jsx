@@ -27,13 +27,18 @@ const Profile = () => {
       currentDate.getFullYear() - experienceStartDate.getFullYear();
     console.log(yearsOfExperience);
   }
+
   return (
     user && (
       <section className="w-5/6 py-10 mb-[40rem] m-auto flex flex-col gap-4 items-center lg:py-0">
         <h1 className="text-3xl font-bold text-primary  ">Tu perfil</h1>
 
         <div className="my-6 rounded-full overflow-hidden h-40 w-40 z-10">
-          <img className="h-40 w-40" src={avatarUrl} alt="Avatar" />
+          <img
+            className="h-40 w-40"
+            src={avatarUrl || "/images/Avatar.svg"}
+            alt="Avatar"
+          />
         </div>
         <div className="flex flex-col max-w-md items-center gap-3 absolute mt-48 py-16 bg-white w-5/6 rounded-lg shadow-2xl z-0">
           <NavLink
