@@ -40,7 +40,9 @@ export const
       //   array_filter = `${array_filter}`
       // }
     
-      const resp = consultationsByUserIdModel(select_info ,array_filter);
+      const resp = consultationsByUserIdModel(select_info, array_filter);
+      
+      console.log(resp);
     return resp
 
   } catch (error) {
