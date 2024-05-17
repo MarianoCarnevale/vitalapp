@@ -6,10 +6,10 @@ import { validateTokenUtil } from '../utils/validateTokenUtil.js';
 
 export const authUserController = async (req, res, next) => {
   // req.headers['Access-Control-Allow-Origin'] = '*';
+
   try {
     // Guardamos el token en authorization.
     const { authorization } = req.headers;
-
     // Si no se envía el token, lanzamos un error.
     if (!authorization) {
       throw generateError('No se ha verificado la información del token', 401);
