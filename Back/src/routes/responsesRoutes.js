@@ -23,7 +23,7 @@ responsesRouter.post(
 );
 
 // Ver todas las respuestas de una consulta
-responsesRouter.get('/responses/:consultation_id', authUserController, isOwnerController, getAllResponsesController);
+responsesRouter.get('/responses/:consultation_id', authUserController, getAllResponsesController);
 
 // Modificar una respuesta
 responsesRouter.put(

@@ -6,6 +6,7 @@ import { VITE_BASE_URL } from "../config/env";
 import axios from "axios";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import Rating from "@mui/material/Rating";
+import { ConsultationsResponses } from "../components/ConsultationsResponses.jsx";
 
 const YourConsultation = () => {
   const [consultation, setConsultation] = useState({});
@@ -116,6 +117,7 @@ const YourConsultation = () => {
         <button>Responder</button>
       </form>
       {/*  aqui iria el componente de respuestas */}
+      <ConsultationsResponses consultation_id={consultation_id} doctor={consultation.doctor_Name} />
     </section>
   );
 };
