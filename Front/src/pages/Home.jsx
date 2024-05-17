@@ -7,11 +7,13 @@ import { DateNow } from "../components/DateNow.jsx";
 import { NavLink } from "react-router-dom";
 
 import { ConsultationList } from "../components/ConsultationsList.jsx";
+import { ToastContainer } from "react-toastify";
 
 const Home = () => {
   const { user } = useContext(UserTokenContext);
   return user ? (
     <section className="mb-40">
+      <ToastContainer />
       <div className="lg:hidden">
         <h1 className="w-5/6 max-w-md m-auto text-primary font-bold text-3xl mt-10 lg:mt-0">
           Hoy

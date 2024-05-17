@@ -13,7 +13,7 @@ import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 // Definimos el componente Update
 export const Update = () => {
   // Traemos token y user del contexto
-  const { token, setToken, user, updateUser, setUpdateUser, setUser } =
+  const { token, setToken, user, setUser, getUser } =
     useContext(UserTokenContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const fakeData = "asd";
@@ -27,7 +27,6 @@ export const Update = () => {
     handleSubmit,
     formState: { errors },
     watch,
-    reset,
   } = useForm({
     mode: "onTouched",
     resolver: joiResolver(
@@ -50,6 +49,9 @@ export const Update = () => {
     fetchDiscipline();
   }, []);
 
+  // Función para cerrar todos los toast
+  const dismissAll = () => toast.dismiss();
+
   // Definimos la función que se ejecutará cuando el formulario se envíe
   const onSubmit = handleSubmit(async (data) => {
     delete data.confirmarpassword;
@@ -62,15 +64,19 @@ export const Update = () => {
       });
 
       if (response.data.status === "ok") {
-        reset();
-        setUpdateUser(!updateUser);
+        // reset();
+        // setUpdateUser(!updateUser);
+        getUser(token);
         window.scrollTo({
           top: 0,
           left: 0,
           behavior: "smooth",
         });
-        // toast.success("Usuario actualizado correctamente");
+        toast("Perfil actualizado", { closeOnClick: true, autoClose: 1000 });
       }
+      setTimeout(() => {
+        dismissAll();
+      }, 1500);
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -109,8 +115,7 @@ export const Update = () => {
           Actualiza tu perfil
         </h1>
         <section className="w-5/6 h-full m-auto mb-32 max-lg:mt-5  shadow-lg rounded-xl p-4 max-w-lg bg-white">
-          <ToastContainer autoClose={1500} />
-
+          <ToastContainer />
           <form onSubmit={onSubmit} className="flex flex-col gap-7">
             {/* username */}
             <li className="w-full list-none">

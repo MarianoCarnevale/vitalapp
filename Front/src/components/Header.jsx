@@ -40,7 +40,7 @@ const Header = () => {
 
   return user ? (
     <header className="z-20 w-full shadow-sm fixed bg-primary dark:bg-black  bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
-      <ToastContainer />
+      <ToastContainer autoClose={1300} />
       <nav>
         <ul className="flex p-4 items-end gap-4 max-w-screen-xl m-auto h-32 lg:h-screen lg:flex-col lg:items-start  ">
           <li className="flex-grow list-none lg:hidden ">
