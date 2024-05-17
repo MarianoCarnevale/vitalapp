@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { VITE_BASE_URL } from "../config/env";
 import axios from "axios";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import Rating from "@mui/material/Rating";
 
 const YourConsultation = () => {
   const [consultation, setConsultation] = useState({});
@@ -76,7 +77,13 @@ const YourConsultation = () => {
         <p className="w-5/6  max-lg:max-w-md text-sm text-center font-bold text-secondary">
           Medico de {consultation.discipline_name}
         </p>
-        <p>{consultation.avg_rating}</p>
+
+        <Rating
+          name="rating"
+          value={`${consultation.avg_rating}`}
+          precision={0.5}
+          readOnly
+        />
 
         <p className="text-primary font-bold ">Descripcion</p>
 

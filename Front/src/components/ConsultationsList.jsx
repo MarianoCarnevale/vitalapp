@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
+import { NavLink } from "react-router-dom";
 
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
@@ -83,24 +84,30 @@ export const ConsultationList = () => {
                   .filter((consultation) => consultation.is_pending === 1)
                   .map((consultation) => {
                     return (
-                      <li
-                        className="flex justify-between items-center  gap-3 shadow-xl p-4 text-primary font-medium text-md rounded-3xl"
+                      <NavLink
                         key={consultation.consultation_id}
+                        to={`/consultations/${consultation.consultation_id}`}
+                        className="text-white font-semibold text-lg list-none focus:underline-offset"
                       >
-                        <p>
-                          {consultation.first_name} {consultation.last_name}
-                        </p>
-                        <p
-                          className={`grow-2 py-1 px-4  rounded-xl text-white ${getStatusClass(
-                            consultation.severity
-                          )}`}
+                        <li
+                          className="flex justify-between items-center  gap-3 shadow-xl p-4 text-primary font-medium text-md rounded-3xl"
+                          key={consultation.consultation_id}
                         >
-                          {consultation.severity}
-                        </p>
-                        <p className="grow-1">
-                          {consultation.created_at.slice(0, 10)}
-                        </p>
-                      </li>
+                          <p>
+                            {consultation.first_name} {consultation.last_name}
+                          </p>
+                          <p
+                            className={`grow-2 py-1 px-4  rounded-xl text-white ${getStatusClass(
+                              consultation.severity
+                            )}`}
+                          >
+                            {consultation.severity}
+                          </p>
+                          <p className="grow-1">
+                            {consultation.created_at.slice(0, 10)}
+                          </p>
+                        </li>
+                      </NavLink>
                     );
                   })) || <p>No hay consultas</p>}
             </ul>
@@ -130,15 +137,20 @@ export const ConsultationList = () => {
                   .filter((result) => result.is_pending === 0)
                   .map((result) => {
                     return (
-                      <li
-                        className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                      <NavLink
                         key={result.consultation_id}
+                        to={`/consultations/${result.consultation_id}`}
                       >
-                        <p>
-                          {result.first_name} {result.doctor_last_name}
-                        </p>
-                        <p>{result.created_at.slice(0, 10)}</p>
-                      </li>
+                        <li
+                          className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                          key={result.consultation_id}
+                        >
+                          <p>
+                            {result.first_name} {result.doctor_last_name}
+                          </p>
+                          <p>{result.created_at.slice(0, 10)}</p>
+                        </li>
+                      </NavLink>
                     );
                   })}
               </ul>

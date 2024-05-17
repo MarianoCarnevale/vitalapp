@@ -10,7 +10,7 @@ export const useConsultation = (handleSubmit, reset) => {
   //lista de disciplinas
   const [disciplines, setDiscipline] = useState([]);
 
-  const [isNew , setIsNew] = useState(true)
+  const [isNew, setIsNew] = useState(true);
 
   //Valor a enviar de disciplinas
   const [especialidad, setespecialidadValue] = useState("");
@@ -104,16 +104,16 @@ export const useConsultation = (handleSubmit, reset) => {
     setDoctorValue("");
     setgravedadValue("");
     setDisable(true);
-    setIsNew(false)
+    setIsNew(false);
   });
 
-  const handelCancel = () => { 
-    setIsNew(false)
-  }
+  const handelCancel = () => {
+    setIsNew(false);
+  };
   // funcion para obtener las disciplinas de forma asyn
   const getDiscipline = async () => {
     const disciplines_values = await getAllDisciplinesWithDoctorsApi();
-    
+
     setDiscipline(disciplines_values);
   };
   //retornar todos los valores q va a usar el formulario
