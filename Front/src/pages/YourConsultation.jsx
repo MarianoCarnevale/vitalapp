@@ -6,6 +6,7 @@ import { VITE_BASE_URL } from "../config/env";
 import axios from "axios";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import Rating from "@mui/material/Rating";
+import { Link } from "react-router-dom";
 
 const YourConsultation = () => {
   const [consultation, setConsultation] = useState({});
@@ -13,7 +14,7 @@ const YourConsultation = () => {
   const token = localStorage.getItem("token");
 
   const { consultation_id } = useParams();
-  const { user } = useContext(UserTokenContext);
+  // const { user } = useContext(UserTokenContext);
 
   useEffect(() => {
     const getConsultation = async () => {
@@ -27,6 +28,7 @@ const YourConsultation = () => {
       );
       const [consultation] = Object.values(resp.data.data.consultations);
       setConsultation(consultation);
+      console.log(consultation);
     };
     getConsultation();
   }, []);
@@ -43,13 +45,13 @@ const YourConsultation = () => {
   };
 
   return (
-    <section className="z-10 items-center lg:w-full m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
+    <section className="max-lg:w-full max-lg:max-w-md max-lg:mb-96 max-lg:mt-10 w-5/6 max-w:lg items-center lg:w-full m-auto flex flex-col ">
       <ToastContainer autoClose={1500} />
-      <p className=" text-primary text-2xl font-semibold mb-5">Tu consulta</p>
+      <p className=" text-primary text-3xl font-semibold mb-5">Tu consulta</p>
 
-      <div className="flex justify-center w-full gap-4">
+      <div>
         <p
-          className={`border border-primary text-primary py-2 px-6 rounded-full ${
+          className={`text-primary py-2 px-6 rounded-full ${
             consultation.is_pending
               ? "bg-primary font-bold text-white"
               : "bg-secondary text-white border-0 font-bold"
@@ -59,10 +61,8 @@ const YourConsultation = () => {
         </p>
       </div>
 
-      <div className="min-w-36 px-24 items-center flex flex-col justify-center gap-5 bg-white  border-white rounded-3xl min-h-72 overflow-auto hide-scrollbar shadow-lg">
-        <p className="text-xl flex justify-between items-center  gap-5 p-4 text-primary font-bold rounded-3xl">
-          {consultation.title}
-        </p>
+      <div className="w-5/6 max-w-lg py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
+        <p className="text-xl text-primary font-bold">{consultation.title}</p>
         <img
           className="h-40 w-40 rounded-full"
           src="/images/Avatar.svg"
@@ -71,9 +71,12 @@ const YourConsultation = () => {
         <p className="text-primary font-bold text-center text-l">
           Consulta para el medico
         </p>
-        <p className="w-5/6  max-lg:max-w-md text-l text-center font-bold text-secondary">
+        <Link
+          className="w-5/6 text-2xl max-lg:max-w-md text-l text-center font-bold text-primary hover:underline"
+          to={`/doctor/${consultation.doctor_id}`}
+        >
           {consultation.doctor_Name} {consultation.doctor_last_name}
-        </p>
+        </Link>
         <p className="w-5/6  max-lg:max-w-md text-sm text-center font-bold text-secondary">
           Medico de {consultation.discipline_name}
         </p>
@@ -95,7 +98,12 @@ const YourConsultation = () => {
         {consultation.file === null ? (
           "no se ha adjuntado archivo"
         ) : (
-          <a href={consultation.file}>{consultation.file}</a>
+          <a
+            className="max-w-60"
+            href={`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/files/${consultation.user_id}/${consultation.file}`}
+          >
+            `${consultation.file}`
+          </a>
         )}
 
         <p className=" text-primary font-bold ">Gravedad</p>

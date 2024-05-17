@@ -44,7 +44,7 @@ export const FindPatient = () => {
           onChange={(e) => setName(e.target.value.toLowerCase())}
         />
       </div>
-      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl max-h-64 overflow-auto hide-scrollbar shadow-lg">
+      <ul className="w-full flex flex-col gap-5 bg-white p-5 border-white rounded-3xl max-h-64 overflow-auto hide-scrollbar shadow-lg">
         {patients
           .filter((patient) => patient.first_name.toLowerCase().includes(name))
           .sort((a, b) =>
@@ -56,7 +56,7 @@ export const FindPatient = () => {
             return (
               <Link to={`/users/${patient.user_id}`} key={patient.user_id}>
                 <li
-                  className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                  className="flex justify-between items-center hover:shadow-md  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
                   key={patient.user_id}
                 >
                   {patient.first_name} {patient.first_surname}

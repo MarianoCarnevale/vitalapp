@@ -48,8 +48,8 @@ const ProfileDoctor = () => {
       currentDate.getFullYear() - experienceStartDate.getFullYear();
   }
   return (
-    <section className="w-5/6 py-10 m-auto flex flex-col gap-4 items-center max-w-md">
-      <h1 className="text-3xl font-bold text-primary  ">
+    <section className="w-5/6 lg:py-0 py-10 m-auto flex flex-col gap-4 items-center max-w-md">
+      <h1 className="text-3xl font-semibold text-primary  ">
         Perfil del doctor
         {/* {patient && `Perfil del paciente ${patient.first_surname}`} */}
       </h1>
