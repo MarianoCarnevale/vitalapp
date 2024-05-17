@@ -11,7 +11,7 @@ export const newConsultationsController = async (req, res, next) => {
 
     data.user_id = user_id;
 
-    await validateSchemaUtil(newConsultationsSchema, { data });
+    await validateSchemaUtil(newConsultationsSchema, data);
 
     //comprobamos que no falte ningun paramtetro
     if (Object.keys(data).length < 5) {
