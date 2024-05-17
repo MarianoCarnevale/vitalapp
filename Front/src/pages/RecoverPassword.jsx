@@ -26,7 +26,9 @@ const RecoverPassword = () => {
       );
 
       if (response.data.status === "ok") {
-        toast.success("Password recovery mail is sent at your mail");
+        toast.success(
+          "Se ha enviado un email al correo proporcionado de recuperación de contraseña"
+        );
         reset();
         return;
       }
@@ -37,7 +39,7 @@ const RecoverPassword = () => {
   return (
     <>
       <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
-        <ToastContainer />
+        <ToastContainer autoClose={1500} />
         <h1 className="text-3xl my-4 text-primary font-semibold mb-10">
           Recover Password
         </h1>

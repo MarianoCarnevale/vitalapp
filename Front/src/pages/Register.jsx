@@ -54,7 +54,7 @@ const Register = () => {
         data
       );
 
-      if (response.data.status === "ok") {
+      if (response.data.status === "ok" || response.data.status === 201) {
         toast.success("Usuario registrado correctamente");
         reset();
         return;
@@ -67,7 +67,7 @@ const Register = () => {
   return (
     <section className="bg-hero-pattern bg-cover h-fit py-20 flex">
       <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
-        <ToastContainer />
+        <ToastContainer autoClose={1500} />
         <h1 className="text-3xl my-4 text-primary font-semibold mb-10">
           Register
         </h1>

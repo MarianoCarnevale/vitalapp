@@ -65,8 +65,6 @@ export const useHeader = () => {
         setTimeout(() => {
           setIsModalOpen(false);
           getUser(token);
-        }, 1000);
-        setTimeout(() => {
           dismissAll();
         }, 1500);
       } else {

@@ -49,9 +49,6 @@ export const Update = () => {
     fetchDiscipline();
   }, []);
 
-  // Función para cerrar todos los toast
-  const dismissAll = () => toast.dismiss();
-
   // Definimos la función que se ejecutará cuando el formulario se envíe
   const onSubmit = handleSubmit(async (data) => {
     delete data.confirmarpassword;
@@ -72,11 +69,8 @@ export const Update = () => {
           left: 0,
           behavior: "smooth",
         });
-        toast("Perfil actualizado", { closeOnClick: true, autoClose: 1000 });
+        toast.success("Perfil actualizado");
       }
-      setTimeout(() => {
-        dismissAll();
-      }, 1500);
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -115,7 +109,7 @@ export const Update = () => {
           Actualiza tu perfil
         </h1>
         <section className="w-5/6 h-full m-auto mb-32 max-lg:mt-5  shadow-lg rounded-xl p-4 max-w-lg bg-white">
-          <ToastContainer />
+          <ToastContainer autoClose={1500} />
           <form onSubmit={onSubmit} className="flex flex-col gap-7">
             {/* username */}
             <li className="w-full list-none">
