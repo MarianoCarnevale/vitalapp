@@ -43,7 +43,7 @@ const YourConsultation = () => {
 
   return (
     <section className="z-10 items-center lg:w-full m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
-      <ToastContainer />
+      <ToastContainer autoClose={1500} />
       <p className=" text-primary text-2xl font-semibold mb-5">Tu consulta</p>
 
       <div className="flex justify-center w-full gap-4">

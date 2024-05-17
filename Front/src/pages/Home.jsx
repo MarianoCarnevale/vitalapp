@@ -7,18 +7,18 @@ import { DateNow } from "../components/DateNow.jsx";
 import { NavLink } from "react-router-dom";
 
 import { ConsultationList } from "../components/ConsultationsList.jsx";
+import { ToastContainer } from "react-toastify";
 
 const Home = () => {
   const { user } = useContext(UserTokenContext);
   return user ? (
     <section className="mb-40">
+      <ToastContainer autoClose={1500} />
       <div className="lg:hidden">
         <h1 className="w-5/6 max-w-md m-auto text-primary font-bold text-3xl mt-10 lg:mt-0">
           Hoy
         </h1>
-
         <DateNow />
-
         <hr className="bg-primary w-5/6 m-auto my-5" />
       </div>
       <div className="w-5/6 m-auto lg:grid lg:grid-rows-1 lg:grid-cols-2 lg:grid-flow-col lg:gap-10 max-lg:flex max-lg:flex-col max-lg:gap-5 ">

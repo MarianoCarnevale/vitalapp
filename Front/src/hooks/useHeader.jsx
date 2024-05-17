@@ -20,6 +20,9 @@ export const useHeader = () => {
 
   UseOutsideClick(dropdownRef, () => setDropdownOpen(false));
 
+  // Función para cerrar todos los toast
+  const dismissAll = () => toast.dismiss();
+
   const handleImageClick = (event) => {
     event.stopPropagation();
     setDropdownOpen(!dropdownOpen);
@@ -62,7 +65,8 @@ export const useHeader = () => {
         setTimeout(() => {
           setIsModalOpen(false);
           getUser(token);
-        }, 1000);
+          dismissAll();
+        }, 1500);
       } else {
         toast.error("Error al subir la imagen");
       }
