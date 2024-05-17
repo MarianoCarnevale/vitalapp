@@ -35,7 +35,6 @@ const Register = () => {
       try {
         const response = await axios.get(`${VITE_BASE_URL}/disciplines`);
         const disciplinesArray = Object.values(response.data.data.disciplines);
-        //
         setDiscipline(disciplinesArray);
       } catch (error) {
         console.error(error);

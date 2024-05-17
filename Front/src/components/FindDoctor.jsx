@@ -16,7 +16,6 @@ export const FindDoctor = () => {
     const getDoctors = async () => {
       try {
         const response = await axios.get(`${VITE_BASE_URL}/doctors`);
-        console.log(response.data.data.doctors);
         setDoctors(response.data.data.doctors);
       } catch (error) {
         console.log(error.message);
@@ -26,7 +25,6 @@ export const FindDoctor = () => {
     getDoctors();
   }, []);
 
-  console.log(doctors);
   return (
     <section className=" m-auto flex flex-col gap-5 items-center max-lg:max-w-md">
       {user && (

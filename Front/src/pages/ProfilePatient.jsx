@@ -19,7 +19,6 @@ const Profile = () => {
           },
         });
         const patientData = response.data.data.patient;
-        console.log(patientData);
         setPatient(patientData);
       } catch (error) {
         console.log(error.message);

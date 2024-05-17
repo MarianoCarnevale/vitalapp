@@ -33,7 +33,6 @@ export const updateAvatarUserService = async (id, img, width) => {
 
     // Nombre de la imagen como uuid.
     const imgName = `${crypto.randomUUID()}.jpg`;
-    console.log(imgName);
 
     // Actualizamos el avatar del usuario.
     await updateUserAvatarModel(id, imgName);

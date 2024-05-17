@@ -107,8 +107,6 @@ export const updateDoctorModel = async (
     [discipline_name]
   );
 
-  console.log(discipline);
-
   const disciplineId = discipline[0].discipline_id;
 
   // Añadimos valor obligatorio discipline_id.

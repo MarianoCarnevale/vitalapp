@@ -20,7 +20,6 @@ const ProfileDoctor = () => {
         });
 
         const doctorData = response.data.data.doctor; // Cambia 'response.data.doctor' a 'response.data.data.doctor'
-        console.log(doctorData);
         setDoctor(doctorData);
       } catch (error) {
         console.log(error.message);
@@ -47,7 +46,6 @@ const ProfileDoctor = () => {
     const currentDate = new Date();
     yearsOfExperience =
       currentDate.getFullYear() - experienceStartDate.getFullYear();
-    console.log(yearsOfExperience);
   }
   return (
     <section className="w-5/6 py-10 m-auto flex flex-col gap-4 items-center max-w-md">

@@ -26,7 +26,6 @@ const Profile = () => {
     const currentDate = new Date();
     yearsOfExperience =
       currentDate.getFullYear() - experienceStartDate.getFullYear();
-    console.log(yearsOfExperience);
   }
 
   return (

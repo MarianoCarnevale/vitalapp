@@ -26,8 +26,6 @@ export const getPatientByUserId = async (req, res, next) => {
       delete patient.validation_code;
       delete patient.recovery_code;
 
-      console.log(patient);
-
       // Devolvemos el paciente.
       res.status(200).send({
         status: 'ok',

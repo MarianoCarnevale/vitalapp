@@ -9,7 +9,6 @@ export const authUserController = async (req, res, next) => {
   try {
     // Guardamos el token en authorization.
     const { authorization } = req.headers;
-    console.log(authorization);
 
     // Si no se envía el token, lanzamos un error.
     if (!authorization) {

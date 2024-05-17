@@ -10,7 +10,6 @@ import { ConsultationList } from "../components/ConsultationsList.jsx";
 
 const Home = () => {
   const { user } = useContext(UserTokenContext);
-  console.log(user);
   return user ? (
     <section className="mb-40">
       <div className="lg:hidden">

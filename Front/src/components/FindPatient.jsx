@@ -20,8 +20,6 @@ export const FindPatient = () => {
             Authorization: `${token}`,
           },
         });
-        console.log(response);
-        console.log(response.data.data.patients);
         setPatients(response.data.data.patients);
       } catch (error) {
         console.log(error.message);

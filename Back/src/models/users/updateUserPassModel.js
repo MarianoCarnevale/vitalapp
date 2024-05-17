@@ -13,7 +13,6 @@ export const updateUserPassModel = async (password, recovery_code) => {
       `UPDATE users SET password = ? WHERE recovery_code = ?`,
       [password, recovery_code]
     );
-    console.log(result);
   } catch (error) {
     throw generateError('Ha ocurrido un error al cambiar la contraseña', 404);
   }

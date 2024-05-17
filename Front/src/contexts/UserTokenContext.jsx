@@ -18,17 +18,14 @@ export const UserTokenProvider = ({ children }) => {
   // Función para obtener los datos del usuario a partir del token
   const getUser = async (token) => {
     try {
-      console.log(token);
       // Realiza una solicitud GET a la API para obtener los datos del usuario
       const response = await axios.get(`${VITE_BASE_URL}/users`, {
         headers: {
           Authorization: `${token}`,
         },
       });
-      console.log(response);
       // Establece los datos del usuario en el estado
       setUser(response.data.data.user);
-      console.log(user);
     } catch (error) {
       console.error(error);
       // Si hay un error, elimina el token del almacenamiento local

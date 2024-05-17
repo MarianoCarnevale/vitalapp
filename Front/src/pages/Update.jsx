@@ -41,7 +41,6 @@ export const Update = () => {
       try {
         const response = await axios.get(`${VITE_BASE_URL}/disciplines`);
         const disciplinesArray = Object.values(response.data.data.disciplines);
-        console.log(disciplinesArray);
         setDiscipline(disciplinesArray);
       } catch (error) {
         console.error(error);
@@ -54,7 +53,6 @@ export const Update = () => {
   // Definimos la función que se ejecutará cuando el formulario se envíe
   const onSubmit = handleSubmit(async (data) => {
     delete data.confirmarpassword;
-    console.log(data);
 
     try {
       const response = await axios.put(`${VITE_BASE_URL}/users/update`, data, {
@@ -66,6 +64,11 @@ export const Update = () => {
       if (response.data.status === "ok") {
         reset();
         setUpdateUser(!updateUser);
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
         // toast.success("Usuario actualizado correctamente");
       }
     } catch (error) {
