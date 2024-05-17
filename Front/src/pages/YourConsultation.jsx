@@ -1,5 +1,5 @@
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { VITE_BASE_URL } from "../config/env";
@@ -7,14 +7,15 @@ import axios from "axios";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const YourConsultation = () => {
+  const { token } = useContext(UserTokenContext);
   const [consultation, setConsultation] = useState({});
 
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   const { consultation_id } = useParams();
-  // const { user } = useContext(UserTokenContext);
 
   useEffect(() => {
     const getConsultation = async () => {
@@ -32,6 +33,25 @@ const YourConsultation = () => {
     };
     getConsultation();
   }, []);
+
+  // Realiza la solicitud para borrar el archivo
+  const deleteFile = async () => {
+    try {
+      await axios.delete(
+        `${VITE_BASE_URL}/consultation/${consultation.consultation_id}/file`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      toast.success("Archivo borrado con exito");
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || "No se pudo borrar el archivo";
+      toast.error(errorMessage);
+    }
+  };
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -98,12 +118,20 @@ const YourConsultation = () => {
         {consultation.file === null ? (
           "no se ha adjuntado archivo"
         ) : (
-          <a
-            className="max-w-60"
-            href={`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/files/${consultation.user_id}/${consultation.file}`}
-          >
-            `${consultation.file}`
-          </a>
+          <div className="flex items-center  gap-10 text-sm text-secondary font-semibold border-primary border px-1 py-1 rounded-3xl">
+            <a
+              className=" px-4 py-2 rounded-3xl hover:shadow-lg max-w-60"
+              href={`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/files/${consultation.user_id}/${consultation.file}`}
+            >
+              `${consultation.file}`
+            </a>
+            <button
+              className="hover:shadow-lg hover:bg-primary hover:bg-opacity-10 bg-white rounded-full w-10 h-10"
+              onClick={() => deleteFile(consultation.consultation_id)}
+            >
+              <DeleteOutlineIcon color="primary" />
+            </button>
+          </div>
         )}
 
         <p className=" text-primary font-bold ">Gravedad</p>

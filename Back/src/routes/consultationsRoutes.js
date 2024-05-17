@@ -5,6 +5,7 @@ import {
   deleteConsultationController,
   ConsultationFileController,
   oneConsultationControler,
+  deleteConsultationFileController,
 } from '../controllers/consultations/index.js';
 import { authUserController } from '../middlewares/authUserController.js';
 import { userValidationController } from '../middlewares/userValidationController.js';
@@ -47,7 +48,7 @@ consultationsRouter.post(
   '/consultations/:consultation_id/file',
   authUserController,
   ConsultationFileController
-)
+);
 
 //actualizar consulta
 consultationsRouter.put(
@@ -55,4 +56,12 @@ consultationsRouter.put(
   authUserController,
   userValidationController,
   ConsultationFileController
+);
+
+//borrar archivo de consulta
+
+consultationsRouter.delete(
+  '/consultation/:consultation_id/file',
+  authUserController,
+  deleteConsultationFileController
 );
