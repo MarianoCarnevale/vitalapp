@@ -5,10 +5,13 @@ import { NavLink } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import { DarkModeContext } from "../contexts/DarkModeContext.jsx";
+import { useNavigate } from "react-router-dom";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 
 import Switch from "@mui/material/Switch";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [avatarUrl, setAvatarUrl] = useState("");
   const { darkMode, setDarkMode } = useContext(DarkModeContext);
 
@@ -34,11 +37,19 @@ const Header = () => {
     if (user?.avatar) {
       const url = `${VITE_BASE_URL}/users/${user.user_id}/${user.avatar}`;
       setAvatarUrl(url);
+    } else {
+      setAvatarUrl("/images/Avatar.svg");
     }
   }, [user]);
 
   return user ? (
     <header className="z-20 w-full shadow-sm fixed bg-primary dark:bg-black  bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
+      <button
+        className="rounded-full w-10 h-10 bg-primary absolute mt-36 ml-[23rem]"
+        onClick={() => navigate(-1)}
+      >
+        <ChevronLeftRoundedIcon color="white" />
+      </button>
       <nav>
         <ul className="flex p-4 items-end gap-4 max-w-screen-xl m-auto h-32 lg:h-screen lg:flex-col lg:items-start  ">
           <li className="flex-grow list-none lg:hidden ">
@@ -74,10 +85,10 @@ const Header = () => {
           </li>
 
           <li
-            className="list-none size-14 bg-white rounded-full order-2 lg:order-1 overflow-hidden inline-table cursor-pointer"
+            className="list-none size-14 bg-white border border-5 rounded-full order-2 lg:order-1 overflow-hidden inline-table cursor-pointer"
             onClick={handleImageClick}
           >
-            <img src={avatarUrl} alt="User avatar" />
+            <img src={avatarUrl} alt="User avatar" className="w-full" />
             {dropdownOpen && (
               <div
                 ref={dropdownRef}

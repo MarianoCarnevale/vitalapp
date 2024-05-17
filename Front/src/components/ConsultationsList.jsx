@@ -71,7 +71,7 @@ export const ConsultationList = () => {
       {isNew && <ConsultationForm />}
 
       {!isNew && (
-        <section className="max-lg:pt-10 -10  m-auto  gap-6 items-center max-w-lg">
+        <section className="max-lg:pt-10 m-auto  gap-6 items-center max-w-lg">
           <p className=" w-5/6 text-left text-primary font-semibold text-3xl ">
             Tus ultimas consultas
           </p>
@@ -87,17 +87,17 @@ export const ConsultationList = () => {
                       <NavLink
                         key={consultation.consultation_id}
                         to={`/consultations/${consultation.consultation_id}`}
-                        className="text-white font-semibold text-lg list-none focus:underline-offset"
+                        className="text-white font-semibold list-none"
                       >
                         <li
-                          className="flex justify-between items-center  gap-3 shadow-xl p-4 text-primary font-medium text-md rounded-3xl"
+                          className="flex justify-between items-center  gap-2 hover:shadow-md shadow-xl p-4 text-primary font-bold rounded-3xl"
                           key={consultation.consultation_id}
                         >
                           <p>
                             {consultation.first_name} {consultation.last_name}
                           </p>
                           <p
-                            className={`grow-2 py-1 px-4  rounded-xl text-white ${getStatusClass(
+                            className={`grow-2 py-1 px-2  rounded-xl text-white ${getStatusClass(
                               consultation.severity
                             )}`}
                           >

@@ -34,7 +34,7 @@ export const FindDoctor = () => {
   return (
     <section className=" m-auto flex flex-col gap-5 items-center max-lg:max-w-md">
       {user && (
-        <p className="mr-auto text-primary text-2xl font-semibold">
+        <p className="mr-auto text-primary text-3xl font-semibold">
           Busca a tus médicos
         </p>
       )}
@@ -101,7 +101,7 @@ export const FindDoctor = () => {
             return user ? (
               <Link to={`/doctor/${doctor.doctor_id}`} key={doctor.user_id}>
                 <li
-                  className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                  className="flex justify-between items-center  gap-5 hover:shadow-md  shadow-xl p-4 text-primary font-bold rounded-3xl"
                   key={doctor.user_id}
                 >
                   <p
@@ -144,14 +144,14 @@ export const FindDoctor = () => {
         <>
           <div
             onClick={() => setIsModalOpen(false)}
-            className="ml-60 bg-primary w-screen h-screen fixed inset-0 flex"
+            className="bg-black bg-opacity-75 w-screen h-screen fixed inset-0 flex "
           >
-            <div className="z-20 m-auto bg-white rounded-lg p-6 w-full max-w-lg">
+            <div className="w-5/6 z-20 m-auto bg-white rounded-lg p-6 max-w-lg ">
               <h3 className="py-3 text-lg leading-6 font-medium text-primary text-center mb-5">
                 Para acceder a la información de los médicos, porfavor
                 registrate o logueate en nuestra aplicación
               </h3>
-              <ul className="flex justify-around">
+              <ul className="flex gap-5 justify-center">
                 <li className="bg-primary px-4 py-1 rounded-md">
                   <Link to="/register" className="text-white font-bold">
                     Registro
