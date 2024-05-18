@@ -5,31 +5,31 @@ import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 const Footer = () => {
   const { user } = useContext(UserTokenContext);
   return user ? (
-    <footer className="bg-white pt-4 h-24 shadow-sup w-full fixed bottom-0 lg:hidden z-10">
-      <nav className="w-4/5 m-auto pt-2 flex justify-between">
+    <footer className="bg-white dark:bg-slate-700 pt-4 h-24 shadow-sup w-full fixed bottom-0 lg:hidden z-10">
+      <nav className="w-4/5 m-auto pt-2 flex justify-between ">
         <NavLink
           to="/"
-          className="rounded-2xl py-2 focus:bg-secondary-light flex-grow"
+          className="rounded-2xl py-2 focus:bg-secondary-light dark:focus:bg-slate-400 flex-grow"
         >
           <img className="m-auto" src="/images/icon-home.svg" alt="Home" />
         </NavLink>
         <NavLink
           to="/consultations"
-          className="rounded-2xl py-2 focus:bg-secondary-light flex-grow"
+          className="rounded-2xl py-2 dark:focus:bg-slate-400 flex-grow"
         >
           <img className="m-auto" src="/images/icon-consults.svg" alt="Logo" />
         </NavLink>
 
         <NavLink
           to="/search"
-          className="rounded-2xl py-2 focus:bg-secondary-light flex-grow"
+          className="rounded-2xl py-2 dark:focus:bg-slate-400 flex-grow"
         >
           <img className="m-auto" src="/images/icon-search.svg" alt="Logo" />
         </NavLink>
 
         <NavLink
           to="/profile"
-          className="rounded-2xl py-2 focus:bg-secondary-light flex-grow"
+          className="rounded-2xl py-2 dark:focus:bg-slate-400 flex-grow"
         >
           <img className="m-auto" src="/images/icon-profile.svg" alt="Logo" />
         </NavLink>

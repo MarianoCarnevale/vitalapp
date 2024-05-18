@@ -43,7 +43,7 @@ const Header = () => {
   }, [user]);
 
   return user ? (
-    <header className="z-20 w-full shadow-sm fixed bg-primary dark:bg-black  bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
+    <header className="dark:bg-slate-700  z-20 w-full shadow-sm fixed bg-primary bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
       <button
         className="rounded-full w-10 h-10 bg-primary absolute mt-36 ml-[23rem]"
         onClick={() => navigate(-1)}
@@ -51,8 +51,8 @@ const Header = () => {
         <ChevronLeftRoundedIcon color="white" />
       </button>
       <nav>
-        <ul className="flex p-4 items-end gap-4 max-w-screen-xl m-auto h-32 lg:h-screen lg:flex-col lg:items-start  ">
-          <li className="flex-grow list-none lg:hidden ">
+        <ul className="flex p-4 items-end gap-4  max-w-screen-xl m-auto h-32 lg:h-screen lg:flex-col lg:items-start  ">
+          <li className="list-none lg:hidden ">
             <NavLink to="/">
               <img
                 className="rounded-xl shadow-lg size-14"
@@ -61,9 +61,13 @@ const Header = () => {
               />
             </NavLink>
           </li>
-          <li>
-            <p>Dark mode</p>
-            <Switch checked={darkMode} onChange={handleDarkModeChange} />
+          <li className="flex flex-col">
+            <p className="text-white text-sm font-bold">Dark mode</p>
+            <Switch
+              className="ml-[-0.5rem] mt-[-0.5rem]"
+              checked={darkMode}
+              onChange={handleDarkModeChange}
+            />
           </li>
           <li className="list-none max-lg:hidden ">
             <NavLink to="/">
@@ -75,7 +79,7 @@ const Header = () => {
             </NavLink>
           </li>
 
-          <li className="list-none font-light text-right text-lg lg:text-left order-1 lg:order-2 lg:flex-col gap-2">
+          <li className="max-lg:flex-grow list-none font-light text-right text-lg lg:text-left order-1 lg:order-2 lg:flex-col gap-2">
             <p className="text-white ">
               {user.role === "patient" ? "Paciente" : "Médico"}
             </p>
@@ -92,7 +96,7 @@ const Header = () => {
             {dropdownOpen && (
               <div
                 ref={dropdownRef}
-                className="absolute right-0 lg:right-[-2.5rem] lg:top-20 mt-5 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                className="absolute right-0 lg:right-[-2.5rem] lg:top-20 mt-5 w-48 rounded-md shadow-lg bg-white  dark:bg-slate-700 ring-1 ring-black ring-opacity-5"
               >
                 <div
                   className=" flex flex-col gap-2 p-5"
@@ -102,7 +106,7 @@ const Header = () => {
                 >
                   <button
                     onClick={handleAvatar}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100"
                     role="menuitem"
                   >
                     Cambiar imagen
@@ -175,26 +179,24 @@ const Header = () => {
               &#8203;
             </span>
 
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3
-                      className="py-3 text-lg leading-6 font-medium text-primary"
-                      id="modal-title"
-                    >
-                      Cambiar avatar
-                    </h3>
-                    <div>
-                      <input type="file" onChange={handleFileChange} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <div className=" px-4 inline-block align-bottom dark:bg-slate-400  bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <h3
+                className="py-3 text-lg leading-6 font-medium text-primary dark:text-white"
+                id="modal-title"
+              >
+                Cambiar avatar
+              </h3>
+
+              <input
+                className="text-white"
+                type="file"
+                onChange={handleFileChange}
+              />
+
+              <div className="bg-gray-50 dark:bg-slate-400 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={handleUpload}
                 >
                   Subir

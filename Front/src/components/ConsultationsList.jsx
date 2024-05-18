@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
@@ -75,8 +75,8 @@ export const ConsultationList = () => {
           <p className=" w-5/6 text-left text-primary font-semibold text-3xl ">
             Tus ultimas consultas
           </p>
-          <div className=" gap-2 items-left bg-white w-full  border-primary rounded-3xl">
-            <ul className="w-full flex flex-col gap-5 bg-white p-5 my-5  border-white rounded-3xl max-h-[17rem] overflow-auto hide-scrollbar shadow-lg">
+          <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
+            <ul className="w-full flex flex-col gap-5 dark:bg-slate-700  bg-white p-5 my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
               {(consultations.filter(
                 (consultation) => consultation.is_pending === 1
               ).length > 0 &&
@@ -84,7 +84,7 @@ export const ConsultationList = () => {
                   .filter((consultation) => consultation.is_pending === 1)
                   .map((consultation) => {
                     return (
-                      <NavLink
+                      <Link
                         key={consultation.consultation_id}
                         to={`/consultations/${consultation.consultation_id}`}
                         className="text-white font-semibold list-none"
@@ -107,7 +107,7 @@ export const ConsultationList = () => {
                             {consultation.created_at.slice(0, 10)}
                           </p>
                         </li>
-                      </NavLink>
+                      </Link>
                     );
                   })) || <p>No hay consultas</p>}
             </ul>
