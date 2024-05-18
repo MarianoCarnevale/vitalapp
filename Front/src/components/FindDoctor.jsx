@@ -10,6 +10,7 @@ export const FindDoctor = () => {
   const [name, setName] = useState("");
   const [filterCaracter, setFilterCaracter] = useState(true);
   const [filterDisciplines, setFilterDisciplines] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // const [orderedRating, setOrderedRating] = useState (false);
 
   useEffect(() => {
@@ -25,10 +26,15 @@ export const FindDoctor = () => {
     getDoctors();
   }, []);
 
+  // Función para abrir el modal
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <section className=" m-auto flex flex-col gap-5 items-center max-lg:max-w-md">
       {user && (
-        <p className="mr-auto text-primary text-2xl font-semibold">
+        <p className="mr-auto text-primary text-3xl font-semibold">
           Busca a tus médicos
         </p>
       )}
@@ -92,13 +98,10 @@ export const FindDoctor = () => {
             })
           )
           .map((doctor) => {
-            return (
-              <Link
-                to={user ? `/doctor/${doctor.doctor_id}` : "/login"}
-                key={doctor.user_id}
-              >
+            return user ? (
+              <Link to={`/doctor/${doctor.doctor_id}`} key={doctor.user_id}>
                 <li
-                  className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                  className="flex justify-between items-center  gap-5 hover:shadow-md  shadow-xl p-4 text-primary font-bold rounded-3xl"
                   key={doctor.user_id}
                 >
                   <p
@@ -115,9 +118,55 @@ export const FindDoctor = () => {
                   </p>
                 </li>
               </Link>
+            ) : (
+              <li
+                onClick={handleOpenModal}
+                className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                key={doctor.user_id}
+              >
+                <p
+                  className={`${
+                    filterDisciplines
+                      ? doctor.discipline_name + " order-2"
+                      : "order-1"
+                  }`}
+                >
+                  {doctor.first_name} {doctor.first_surname}
+                </p>
+                <p className="border-primary text-white text-sm rounded-2xl bg-primary p-2 order-1">
+                  {doctor.discipline_name}
+                </p>
+              </li>
             );
           })}
       </ul>
+      {isModalOpen && (
+        <>
+          <div
+            onClick={() => setIsModalOpen(false)}
+            className="bg-black bg-opacity-75 w-screen h-screen fixed inset-0 flex "
+          >
+            <div className="w-5/6 z-20 m-auto bg-white rounded-lg p-6 max-w-lg ">
+              <h3 className="py-3 text-lg leading-6 font-medium text-primary text-center mb-5">
+                Para acceder a la información de los médicos, porfavor
+                registrate o logueate en nuestra aplicación
+              </h3>
+              <ul className="flex gap-5 justify-center">
+                <li className="bg-primary px-4 py-1 rounded-md">
+                  <Link to="/register" className="text-white font-bold">
+                    Registro
+                  </Link>
+                </li>
+                <li className="bg-primary px-4 py-1 rounded-md">
+                  <Link to="/login" className="text-white font-bold">
+                    Login
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </>
+      )}
     </section>
   );
 };

@@ -10,12 +10,12 @@ const Search = () => {
     user &&
     (user.role === "doctor" ? (
       <section>
-        <div className="my-10 max-lg:w-5/6 max-w-md m-auto">
+        <div className="my-10 w-5/6 max-w-lg m-auto">
           <FindPatient />
         </div>
       </section>
     ) : (
-      <div className="my-10 max-lg:w-5/6 max-w-md m-auto">
+      <div className="my-10 w-5/6 max-w-lg m-auto">
         <FindDoctor />
       </div>
     ))
