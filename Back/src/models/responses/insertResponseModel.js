@@ -8,6 +8,7 @@ export const insertResponseModel = async (
   content,
   role
 ) => {
+
   try {
     // Crear el pool de conexiones.
     const pool = await getPool();
