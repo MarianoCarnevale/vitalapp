@@ -108,14 +108,14 @@ export const Update = () => {
         <h1 className="w-5/6 max-w-lg m-auto text-3xl my-4 text-primary font-semibold mb-10 ">
           Actualiza tu perfil
         </h1>
-        <section className="w-5/6 h-full m-auto mb-32 max-lg:mt-5  shadow-lg rounded-xl p-4 max-w-lg bg-white">
+        <section className="w-5/6 h-full m-auto mb-32 max-lg:mt-5  shadow-lg rounded-xl p-4 max-w-lg dark:bg-slate-700 bg-white">
           <ToastContainer autoClose={1500} />
           <form onSubmit={onSubmit} className="flex flex-col gap-7">
             {/* username */}
             <li className="w-full list-none">
               <label
                 htmlFor="username"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary absolute dark:bg-slate-700 bg-white mt-[-20px] ml-3 px-2 py-1"
               >
                 Username
               </label>

@@ -41,7 +41,7 @@ const Profile = () => {
             alt="Avatar"
           />
         </div>
-        <div className="flex flex-col max-w-lg items-center gap-3 absolute mt-48 py-16 bg-white w-5/6 rounded-lg shadow-2xl z-0">
+        <div className="flex flex-col max-w-lg items-center gap-3 absolute mt-48 py-16 bg-white dark:bg-slate-700 w-5/6 rounded-lg shadow-2xl z-0">
           <NavLink
             className="m-auto rounded-full shadow-lg absolute ml-64 mt-[-3rem]"
             to={"/update"}

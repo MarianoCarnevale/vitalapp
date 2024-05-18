@@ -26,7 +26,9 @@ const Main = () => {
   return (
     <main
       className={`${
-        user ? "bg-white lg:ml-60 max-lg:pt-32" : "bg-no-repeat pt-16  "
+        user
+          ? "bg-white dark:bg-gray-900 lg:ml-60 max-lg:pt-32"
+          : "bg-no-repeat pt-16  "
       }`}
     >
       <div className={`max-lg:hidden text-left ${!user && "hidden"}`}>

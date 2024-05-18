@@ -42,8 +42,8 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterCaracter
-              ? "bg-primary text-white border-2 border-white"
-              : "bg-white"
+              ? "bg-primary text-white border-2 border-white "
+              : "bg-white dark:bg-slate-700 "
           } flex-grow border border-primary text-primary py-2 px-6 rounded-full`}
           onClick={() => {
             setFilterCaracter(true);
@@ -55,9 +55,9 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterDisciplines
-              ? "bg-primary text-white border-2 border-white"
-              : "bg-white"
-          } flex-grow border border-primary text-primary py-2 px-6 rounded-full`}
+              ? "bg-primary  text-white border-2  border-white"
+              : "bg-white dark:bg-slate-700 "
+          } flex-grow border border-primary dark:text-white text-primary py-2 px-6 rounded-full`}
           onClick={() => {
             setFilterDisciplines(true);
             setFilterCaracter(false);
@@ -66,10 +66,10 @@ export const FindDoctor = () => {
           Especialidades
         </button>
       </div>
-      <div className="border flex gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
+      <div className="border flex gap-2 items-center p-4 bg-white dark:bg-slate-700 w-full  border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="w-full "
+          className="w-full dark:bg-slate-700  "
           type="text"
           placeholder={
             filterDisciplines
@@ -80,7 +80,7 @@ export const FindDoctor = () => {
         />
       </div>
 
-      <ul className="w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-fit max-h-72 overflow-auto hide-scrollbar shadow-lg">
+      <ul className="dark:bg-slate-700  w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-fit max-h-72 overflow-auto hide-scrollbar shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter
