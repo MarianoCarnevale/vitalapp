@@ -136,7 +136,7 @@ export const ConsultationList = () => {
                 {results.filter((result) => result.is_pending === 0) && results
                   .map((result) => {
                     return (
-                      <NavLink
+                      <Link
                         key={result.consultation_id}
                         to={`/consultations/${result.consultation_id}`}
                       >
@@ -149,7 +149,7 @@ export const ConsultationList = () => {
                           </p>
                           <p>{result.created_at.slice(0, 10)}</p>
                         </li>
-                      </NavLink>
+                      </Link>
                     );
                   })}
               </ul>

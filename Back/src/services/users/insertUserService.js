@@ -94,10 +94,27 @@ export const insertUserService = async (
 
     // Creamos el cuerpo del email de verificación.
     const emailText = `
-    ¡Bienvenid@ ${username} a VitalApp!
-    Gracias por registrarte en nuestra aplicación. Para activar tu cuenta, haz click en el siguiente enlace:
-    <a href="${process.env.VALIDATION_URL}/${validation_code}">Activa tu cuenta</a>    `;
-
+    <table width="100%" style="font-family: Arial, sans-serif; text-align:center;">
+      <tr>
+        <td>
+          <h2 style="color: #0398ae; margin: 0;">
+            ¡Bienvenid@ ${username} a VitalApp!
+          </h2>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Gracias por registrarte en nuestra aplicación. Para activar tu cuenta, haz click en el siguiente enlace:
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-top: 20px;">
+          <a href="${process.env.VALIDATION_URL}/${validation_code}" style="background-color: #0398ae; color: #fff; padding: 10px 20px; text-decoration: none;">Activa tu cuenta
+          </a>
+        </td>
+      </tr>
+    </table>
+  `;
     // Enviamos el email de verificación.
     await sendEmailUtil(email, emailSubject, emailText);
   } catch (error) {
