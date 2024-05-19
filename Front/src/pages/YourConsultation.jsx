@@ -82,25 +82,23 @@ const YourConsultation = () => {
         </p>
       </div>
 
-      <div className="dark:bg-slate-700 my-5 w-5/6 max-w-lg py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
-        <p className="dark:text-white text-2xl text-primary font-bold">
-          {consultation.title}
-        </p>
+      <div className="w-5/6 max-w-lg py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
+        <p className="text-xl text-primary font-bold">{consultation.title}</p>
         <img
           className="h-40 w-40 rounded-full"
           src="/images/Avatar.svg"
           alt="avatar"
         />
-        <p className="dark:text-slate-400 text-primary font-bold text-center text-l">
+        <p className="text-primary font-bold text-center text-l">
           Consulta para el medico
         </p>
         <Link
-          className="dark:text-white w-5/6 text-2xl max-lg:max-w-md text-l text-center font-bold text-primary hover:underline"
+          className="w-5/6 text-2xl max-lg:max-w-md text-l text-center font-bold text-primary hover:underline"
           to={`/doctor/${consultation.doctor_id}`}
         >
           {consultation.doctor_Name} {consultation.doctor_last_name}
         </Link>
-        <p className="dark:text-slate-400 w-5/6  max-lg:max-w-md text-sm text-center font-bold text-secondary">
+        <p className="w-5/6  max-lg:max-w-md text-sm text-center font-bold text-secondary">
           Medico de {consultation.discipline_name}
         </p>
 
@@ -111,15 +109,15 @@ const YourConsultation = () => {
           readOnly
         />
 
-        <p className="dark:text-white text-primary font-bold ">Descripcion</p>
+        <p className="text-primary font-bold ">Descripcion</p>
 
-        <p className="dark:text-slate-400 w-5/6 text-center max-lg:max-w-md text-m text-secondary">
+        <p className="w-5/6 text-center max-lg:max-w-md text-m text-secondary">
           {consultation.description}
         </p>
 
-        <p className="dark:text-white text-primary font-bold ">Archivo</p>
+        <p className=" text-primary font-bold ">Archivo</p>
         {consultation.file === null ? (
-          <p className="dark:text-slate-400">No se ha adjuntado archivo</p>
+          "no se ha adjuntado archivo"
         ) : (
           <div className="flex items-center  gap-10 text-sm text-secondary font-semibold border-primary border px-1 py-1 rounded-3xl">
             <a
@@ -137,7 +135,7 @@ const YourConsultation = () => {
           </div>
         )}
 
-        <p className="dark:text-white text-primary font-bold ">Gravedad</p>
+        <p className=" text-primary font-bold ">Gravedad</p>
         <p
           className={`p-1 w-20 font-bold rounded-xl text-center text-white ${getStatusClass(
             consultation.severity
@@ -145,8 +143,8 @@ const YourConsultation = () => {
         >
           {consultation.severity}
         </p>
-        <p className="dark:text-white text-primary font-bold ">Fecha</p>
-        <p className="dark:text-slate-400 w-5/6  max-lg:max-w-md text-sm text-center text-secondary">
+        <p className=" text-primary font-bold ">Fecha</p>
+        <p className="w-5/6  max-lg:max-w-md text-sm text-center text-secondary">
           {consultation.created_at}
         </p>
       </div>

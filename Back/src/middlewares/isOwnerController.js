@@ -7,15 +7,15 @@ export const isOwnerController = async (req, res, next) => {
     const user_id = req.user.id;
 
     // Comprobar si el usuario coincide con el user_id de la respuesta.
-    const isOwner = await isOwnerModel(user_id, response_id);
+    // const isOwner = await isOwnerModel(user_id, response_id);
 
-    // Si no se encuentra la respuesta, lanzar un error.
-    if (!isOwner) {
-      throw generateError(
-        'Usuario no autorizado para recibir la respuesta',
-        401
-      );
-    }
+    // // Si no se encuentra la respuesta, lanzar un error.
+    // if (!isOwner) {
+    //   throw generateError(
+    //     'Usuario no autorizado para recibir la respuesta',
+    //     401
+    //   );
+    // }
 
     // Pasar el control al siguiente middleware.
     next();

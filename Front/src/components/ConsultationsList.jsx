@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
@@ -133,8 +133,7 @@ export const ConsultationList = () => {
                     onChange={handelSearch}
                   />
                 </li>
-                {results
-                  .filter((result) => result.is_pending === 0)
+                {results.filter((result) => result.is_pending === 0) && results
                   .map((result) => {
                     return (
                       <NavLink
