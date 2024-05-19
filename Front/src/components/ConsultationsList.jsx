@@ -6,6 +6,7 @@ import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
 import { PendingConsultations } from "./PendingConsultations.jsx";
 import { TramitingConsultations } from "./TramitingConsultations.jsx";
 import { FormContext } from "../contexts/FormContext.jsx";
+import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 
 
 export const ConsultationList = () => {
@@ -13,9 +14,8 @@ export const ConsultationList = () => {
   const [results, setresults] = useState([]);
   const { isModal, setIsModal } = useContext(FormContext);
 
-  // const [token] = useContext(UserTokenContext);
+  const { token, user } = useContext(UserTokenContext); 
 
-  const token = localStorage.getItem("token");
 
   //Maneja el sistema de busqueda por palabras
   const handleSearch = (event) => {
@@ -53,6 +53,7 @@ export const ConsultationList = () => {
     feachConsultations();
   }, []);
 
+  console.log(user);
   return (
     <>
       {isModal && <ConsultationForm />}
@@ -63,8 +64,9 @@ export const ConsultationList = () => {
             <img src="/images/search-icon.svg" alt="input icon" />
             <input className="w-full" type="text" placeholder="Busca una consulta..." onChange={handleSearch}/>
           </li>
-          <PendingConsultations consultations={consultations} results={results}/>
-          <div className="my-5 list-none text-center m-auto w-full bg-primary gap-5 shadow-xl p-6 font-bold rounded-3xl">
+        <PendingConsultations consultations={consultations} results={results} />
+        
+        {user.role === "patient" && <div className="my-5 list-none text-center m-auto w-full bg-primary gap-5 shadow-xl p-6 font-bold rounded-3xl">
 
               <button
                 className="items-center w-full bg-white m-2 gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
@@ -73,7 +75,7 @@ export const ConsultationList = () => {
                 Crear tu consulta
               </button>
             </div>
-
+        }
           <TramitingConsultations consultations={consultations} results={results}/>
           </section>
 
