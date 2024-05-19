@@ -67,7 +67,7 @@ export const ConsultationsResponses = (consultation) => {
                 htmlFor="NewResponse"
                 className="text-primary text-2xl font-semibold mb-5"
                 >
-                {user.role === "doctor" ? "Escribe tu Diagnostico" : "Escribe tu Respuesta"}
+                {user.role === "doctor" ? "Escribe tu Diagnóstico" : "Escribe tu Respuesta"}
               </label>
               <input
           id="NewResponse"
