@@ -11,13 +11,14 @@ export const selectConsultationsModel = async (consultation_id) => {
       SELECT 
       C.consultation_id, 
       C.is_pending,
+      C.is_active,
       doctor_avatar, 
       doctor.doctor_id AS doctor_id, 
       doctor.doctor_first_name AS doctor_Name,
-      doctor.doctor_last_name AS doctor_last_name,
+      doctor.doctor_surname,
       U.user_id, 
       U.first_name, 
-      U.last_name, 
+      U.first_surname, 
       discipline_name, 
       avg_rating.avg_rating_value AS avg_rating, 
       C.title, 
@@ -31,7 +32,7 @@ export const selectConsultationsModel = async (consultation_id) => {
       SELECT 
           D.doctor_id as doctor_id, 
           U.first_name AS doctor_first_name, 
-          U.last_name AS doctor_last_name ,
+          U.first_surname AS doctor_surname ,
           U.avatar AS doctor_avatar
       FROM 
           doctors D 

@@ -12,7 +12,7 @@ export const consultationsByUserIdModel = async (select_info, filter) => {
 
     const query = `
     SELECT 
-    C.consultation_id, C.is_pending, C.description, doctor.doctor_user_id,
+    C.consultation_id, C.is_pending, C.description, doctor.doctor_user_id, C.is_active,
     ${select_info}
     C.title, C.severity, C.created_at,
     DS.discipline_name AS discipline
@@ -24,7 +24,8 @@ export const consultationsByUserIdModel = async (select_info, filter) => {
   ) AS doctor ON C.doctor_id = doctor.doctor_id
 JOIN users U ON C.user_id = U.user_id
 JOIN disciplines DS ON DS.discipline_id = C.discipline_id
-          ${filter}`;
+          ${filter}
+          ORDER BY severity`;
 
     const [consultations] = await pool.query(query);
 

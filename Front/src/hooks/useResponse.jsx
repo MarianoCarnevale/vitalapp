@@ -24,7 +24,7 @@ export const useResponses = (consultation) => {
       })
   
       if (resp.data.status === "ok") {
-        toast.success("Respuesat creada");
+        toast.success("Respuesta creada");
       } else { 
         toast.error("Error al crear respuesta");
       }

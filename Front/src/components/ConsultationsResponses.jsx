@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { ToastContainer } from "react-toastify";
 import { Rating } from "@mui/material";
 import { useResponses } from "../hooks/useResponse.jsx";
+import { dateFormat } from "../api/dateFormat.js";
 
 export const ConsultationsResponses = (consultation) => {
   const {
@@ -20,17 +21,16 @@ export const ConsultationsResponses = (consultation) => {
   return (
     <section className="items-center lg:w-1/2 m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
       <ToastContainer autoClose={1500} />
-      <p className=" text-primary text-2xl font-semibold mb-5">Tus Respuestas</p>
-      {
-       (responses.length > 0 || user.first_name === consultation.doctor)
-      &&
+      <p className=" text-primary text-2xl font-semibold mb-5">Historial de Respuestas</p>
+      
+  
         <form onSubmit={OnSubmit} className="flex flex-col w-full gap-7">
 
         <label
                 htmlFor="NewResponse"
                 className="text-primary text-2xl font-semibold mb-5"
                 >
-                {user.role === "doctor" ? "Escribe tu Diagnóstico" : "Escribe tu Respuesta"}
+                Escribe tu respuesta
               </label>
               <input
           id="NewResponse"
@@ -43,7 +43,7 @@ export const ConsultationsResponses = (consultation) => {
               >
               Enviar
             </button>
-      </form>}
+      </form>
               {responses.length > 0 && 
       <ul className="w-full flex flex-col gap-5 bg-white p-5 my-5  border-white rounded-3xl max-h-[17rem] overflow-auto hide-scrollbar shadow-lg" >
           {responses.map(response => {
@@ -54,7 +54,7 @@ export const ConsultationsResponses = (consultation) => {
                 <div className={`flex flex-col shadow-xl p-6 w-full font-medium text-md rounded-3xl`} >
                   <div className={`flex ${response.first_name === consultation.doctor ? "justify-start" : "justify-end"}`}>
                     <p className={`text-primary font-semibold mb-5 $`} >
-                      {response.role === "doctor" ? "Doctor" : "Patient"}: {response.first_name}
+                      {response.role === "doctor" ? "Doctor" : "Paciente"}: {response.first_name}
                       {response.role === "doctor" && <Rating
                     name="rating"
                     value={`${consultation.avg_rating}`}
@@ -66,13 +66,13 @@ export const ConsultationsResponses = (consultation) => {
                   </div>
                   <hr className="border border-primary w-full"/>
                   <p>{response.content}</p>
-                  <p>date: {response.created_at.slice(1, 10)}</p>
+                  <p>{dateFormat(response.created_at)}</p>
                 </div>
             </li>
           )
         })}
         </ul>
-        || <p className=" text-primary text-2xl font-semibold mb-5">No hay respuestas disponbles</p>}
+        || <p className=" text-primary text-2xl font-semibold mb-5">No hay respuestas disponibles</p>}
     </section>
   )
 
