@@ -12,7 +12,7 @@ export const consultationsByUserIdModel = async (select_info, filter) => {
 
     const query = `
     SELECT 
-    C.consultation_id, C.is_pending, C.description, doctor.doctor_user_id,
+    C.consultation_id, C.is_pending, C.description, doctor.doctor_user_id, C.is_active,
     ${select_info}
     C.title, C.severity, C.created_at,
     DS.discipline_name AS discipline

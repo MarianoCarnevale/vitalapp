@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { ToastContainer } from "react-toastify";
 import { Rating } from "@mui/material";
 import { useResponses } from "../hooks/useResponse.jsx";
+import { dateFormat } from "../api/dateFormat.js";
 
 export const ConsultationsResponses = (consultation) => {
   const {
@@ -21,9 +22,8 @@ export const ConsultationsResponses = (consultation) => {
     <section className="items-center lg:w-1/2 m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
       <ToastContainer autoClose={1500} />
       <p className=" text-primary text-2xl font-semibold mb-5">Historial de Respuestas</p>
-      {
-       (responses.length > 0 || user.first_name === consultation.doctor)
-      &&
+      
+  
         <form onSubmit={OnSubmit} className="flex flex-col w-full gap-7">
 
         <label
@@ -43,7 +43,7 @@ export const ConsultationsResponses = (consultation) => {
               >
               Enviar
             </button>
-      </form>}
+      </form>
               {responses.length > 0 && 
       <ul className="w-full flex flex-col gap-5 bg-white p-5 my-5  border-white rounded-3xl max-h-[17rem] overflow-auto hide-scrollbar shadow-lg" >
           {responses.map(response => {
@@ -66,13 +66,13 @@ export const ConsultationsResponses = (consultation) => {
                   </div>
                   <hr className="border border-primary w-full"/>
                   <p>{response.content}</p>
-                  <p>date: {response.created_at.slice(1, 10)}</p>
+                  <p>{dateFormat(response.created_at)}</p>
                 </div>
             </li>
           )
         })}
         </ul>
-        || <p className=" text-primary text-2xl font-semibold mb-5">No hay respuestas disponbles</p>}
+        || <p className=" text-primary text-2xl font-semibold mb-5">No hay respuestas disponibles</p>}
     </section>
   )
 

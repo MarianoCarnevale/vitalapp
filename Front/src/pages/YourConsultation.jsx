@@ -70,7 +70,7 @@ const YourConsultation = () => {
             <img
               className="h-40 w-40 rounded-full"
               src={!consultation.doctor_avatar || consultation.doctor_avatar === null
-                ? '../../public/images/Avatar.svg'
+                ? '/images/Avatar.svg'
                 : `${VITE_BASE_URL}/users/${consultation.doctor_user_id}/${consultation.doctor_avatar}`}
               alt={consultation.doctor_avatar}
             />
@@ -79,7 +79,7 @@ const YourConsultation = () => {
             <img
               className="h-40 w-40 rounded-full"
               src={!consultation.patient_avatar || consultation.patient_avatar === null
-                ? '../../public/images/Avatar.svg'
+                ? '/images/Avatar.svg'
                 : `${VITE_BASE_URL}/users/${consultation.user_id}/${consultation.patient_avatar}`}
               alt={consultation.doctor_avatar}
             />
