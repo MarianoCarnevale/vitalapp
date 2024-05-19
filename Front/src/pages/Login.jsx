@@ -105,7 +105,7 @@ const Login = () => {
           </Link>
           <button
             type="submit"
-            className="border p-2 bg-primary rounded-md text-white font-semibold"
+            className="border hover:bg-slate-600 p-2 bg-primary rounded-md text-white font-semibold duration-500"
           >
             Enviar
           </button>

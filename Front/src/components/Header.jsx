@@ -45,7 +45,7 @@ const Header = () => {
   return user ? (
     <header className="dark:bg-slate-700  z-20 w-full shadow-sm fixed bg-primary bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
       <button
-        className="rounded-full w-10 h-10 bg-primary absolute mt-36 ml-[23rem]"
+        className="rounded-full w-10 h-10 bg-primary absolute mt-36 max-lg:ml-[85%] lg:ml-[20rem] "
         onClick={() => navigate(-1)}
       >
         <ChevronLeftRoundedIcon color="white" />
@@ -216,24 +216,24 @@ const Header = () => {
     </header>
   ) : (
     <header className="w-full shadow-sm fixed bg-white">
-      <nav>
-        <ul className="flex p-4 items-center gap-4 max-w-screen-xl m-auto ">
-          <li className="flex-grow">
-            <NavLink to="/">
-              <img src="/images/logo-vitalapp.svg" alt="Logo" />
-            </NavLink>
-          </li>
-          <li className="bg-primary px-4 py-1 rounded-md">
-            <NavLink to="/register" className="text-white font-bold">
-              Registro
-            </NavLink>
-          </li>
-          <li className="bg-primary px-4 py-1 rounded-md">
-            <NavLink to="/login" className="text-white font-bold">
-              Login
-            </NavLink>
-          </li>
-        </ul>
+      <nav className="flex p-4 items-center gap-4 max-w-screen-xl m-auto">
+        <NavLink className="flex-grow" to="/">
+          <img src="/images/logo-vitalapp.svg" alt="Logo" />
+        </NavLink>
+
+        <NavLink
+          to="/register"
+          className="text-white font-bold bg-primary hover:bg-slate-600 px-4 py-1 rounded-md duration-500"
+        >
+          Registro
+        </NavLink>
+
+        <NavLink
+          to="/login"
+          className="text-white font-bold bg-primary hover:bg-slate-600 px-4 py-1 rounded-md duration-500"
+        >
+          Login
+        </NavLink>
       </nav>
     </header>
   );

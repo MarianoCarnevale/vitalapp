@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
@@ -76,7 +76,7 @@ export const ConsultationList = () => {
             Tus ultimas consultas
           </p>
           <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
-            <ul className="w-full flex flex-col gap-5 dark:bg-slate-700  bg-white p-5 my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
+            <ul className="w-full flex flex-col gap-5 dark:bg-slate-700  bg-white p-5 my-5  border-white rounded-3xl h-96 max-h overflow-auto hide-scrollbar shadow-lg">
               {(consultations.filter(
                 (consultation) => consultation.is_pending === 1
               ).length > 0 &&
@@ -133,8 +133,8 @@ export const ConsultationList = () => {
                     onChange={handelSearch}
                   />
                 </li>
-                {results.filter((result) => result.is_pending === 0) && results
-                  .map((result) => {
+                {results.filter((result) => result.is_pending === 0) &&
+                  results.map((result) => {
                     return (
                       <Link
                         key={result.consultation_id}

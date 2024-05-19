@@ -27,7 +27,7 @@ const Main = () => {
     <main
       className={`${
         user
-          ? "bg-white dark:bg-gray-900 lg:ml-60 max-lg:pt-32"
+          ? "bg-white dark:bg-slate-900 lg:ml-60 max-lg:pt-32"
           : "bg-no-repeat pt-16  "
       }`}
     >
