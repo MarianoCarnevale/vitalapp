@@ -108,21 +108,21 @@ export const Update = () => {
         <h1 className="w-5/6 max-w-lg m-auto text-3xl my-4 text-primary font-semibold mb-10 ">
           Actualiza tu perfil
         </h1>
-        <section className="w-5/6 h-full m-auto mb-32 max-lg:mt-5  shadow-lg rounded-xl p-4 max-w-lg dark:bg-slate-700 bg-white">
+        <section className="w-5/6 h-full m-auto mb-32 max-lg:mt-5  shadow-lg rounded-xl p-4 py-6 max-w-lg dark:text-white dark:bg-slate-700 bg-white">
           <ToastContainer autoClose={1500} />
-          <form onSubmit={onSubmit} className="flex flex-col gap-7">
+          <form onSubmit={onSubmit} className="flex flex-col gap-7 ">
             {/* username */}
             <li className="w-full list-none">
               <label
                 htmlFor="username"
-                className="font-semibold text-primary absolute dark:bg-slate-700 bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary absolute  dark:bg-slate-700 bg-white mt-[-20px] ml-3 px-2 py-1"
               >
                 Username
               </label>
               <input
                 id="username"
                 type="text"
-                className="border-2 border-primary p-2 w-full rounded"
+                className="border-2 border-primary p-2 w-full rounded dark:bg-slate-700"
                 defaultValue={user.username}
                 {...register("username")}
               />
@@ -136,14 +136,14 @@ export const Update = () => {
             <li className="w-full list-none">
               <label
                 htmlFor="email"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Email
               </label>
               <input
                 id="email"
                 type="email"
-                className="border-2 border-primary p-2 rounded w-full"
+                className="border-2 border-primary p-2 rounded w-full dark:bg-slate-700"
                 defaultValue={user.email}
                 {...register("email")}
               />
@@ -155,14 +155,14 @@ export const Update = () => {
             <li className="w-full list-none">
               <label
                 htmlFor="password"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Password
               </label>
               <input
                 id="password"
                 type="password"
-                className="border-2 border-primary p-2 rounded w-full"
+                className="border-2 border-primary p-2 rounded w-full dark:bg-slate-700"
                 {...register("password")}
               />
               {errors.password && (
@@ -175,14 +175,14 @@ export const Update = () => {
             <li className="list-none w-full">
               <label
                 htmlFor="password2"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Confirmar Password
               </label>
               <input
                 id="password2"
                 type="password"
-                className="border-2 w-full border-primary p-2 rounded"
+                className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                 {...register("confirmarpassword", {
                   validate: (value) =>
                     value === watch("password") ||
@@ -200,14 +200,14 @@ export const Update = () => {
                 <li className="list-none w-full">
                   <label
                     htmlFor="doctor_registration_number"
-                    className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                    className="font-semibold  text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
                   >
                     Número de Registro de colegiado
                   </label>
                   <input
                     id="doctor_registration_number"
                     type="text"
-                    className="w-full border-2 border-primary p-2 rounded"
+                    className="w-full border-2 border-primary  p-2 rounded dark:bg-slate-700"
                     defaultValue={user.doctor_registration_number}
                     {...register("doctor_registration_number")}
                   />
@@ -221,13 +221,13 @@ export const Update = () => {
                 <li className="list-none w-full">
                   <label
                     htmlFor="discipline_name"
-                    className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                    className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
                   >
                     Especialidad
                   </label>
                   <select
                     id="discipline_name"
-                    className="border-2 w-full border-primary p-2 rounded"
+                    className="border-2 w-full border-primary dark:text-white p-2 rounded dark:bg-slate-700"
                     defaultValue=""
                     {...register("discipline_name")}
                   >
@@ -248,14 +248,14 @@ export const Update = () => {
                 <li className="list-none w-full">
                   <label
                     htmlFor="experience"
-                    className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                    className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
                   >
                     Experiencia desde
                   </label>
                   <input
                     id="experience"
                     type="text"
-                    className="border-2 w-full border-primary p-2 rounded"
+                    className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                     defaultValue={
                       new Date(user.experience).toISOString().split("T")[0]
                     }
@@ -273,14 +273,14 @@ export const Update = () => {
             <li className="list-none w-full">
               <label
                 htmlFor="first_name"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Primer Nombre
               </label>
               <input
                 id="first_name"
                 type="text"
-                className="border-2 w-full border-primary p-2 rounded"
+                className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                 defaultValue={user.first_name}
                 {...register("first_name")}
               />
@@ -294,14 +294,14 @@ export const Update = () => {
             <li className="list-none w-full">
               <label
                 htmlFor="first_surname"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Primer Apellido
               </label>
               <input
                 id="first_surname"
                 type="text"
-                className="border-2 w-full border-primary p-2 rounded"
+                className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                 defaultValue={user.first_surname}
                 {...register("first_surname")}
               />
@@ -315,14 +315,14 @@ export const Update = () => {
             <li className="list-none w-full">
               <label
                 htmlFor="last_name"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Segundo Nombre
               </label>
               <input
                 id="last_name"
                 type="text"
-                className="border-2 w-full border-primary p-2 rounded"
+                className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                 defaultValue={user.last_name}
                 {...register("last_name")}
               />
@@ -336,14 +336,14 @@ export const Update = () => {
             <li className="list-none w-full">
               <label
                 htmlFor="last_surname"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Segundo Apellido
               </label>
               <input
                 id="last_surname"
                 type="text"
-                className="border-2 w-full border-primary p-2 rounded"
+                className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                 defaultValue={user.last_surname}
                 {...register("last_surname")}
               />
@@ -357,14 +357,14 @@ export const Update = () => {
             <li className="list-none w-full">
               <label
                 htmlFor="bio"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Sobre mí
               </label>
               <input
                 id="bio"
                 type="text"
-                className="border-2 w-full border-primary p-2 rounded"
+                className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                 defaultValue={user.bio}
                 {...register("bio")}
               />
@@ -376,14 +376,14 @@ export const Update = () => {
             <li className="list-none w-full">
               <label
                 htmlFor="address"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Dirección
               </label>
               <input
                 id="address"
                 type="text"
-                className="border-2 w-full border-primary p-2 rounded"
+                className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                 defaultValue={user.address}
                 {...register("address")}
               />
@@ -397,14 +397,14 @@ export const Update = () => {
             <li className="list-none w-full">
               <label
                 htmlFor="phone_number"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Número de teléfono
               </label>
               <input
                 id="phone_number"
                 type="text"
-                className="border-2 w-full border-primary p-2 rounded"
+                className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                 defaultValue={user.phone_number}
                 {...register("phone_number")}
               />
@@ -418,14 +418,14 @@ export const Update = () => {
             <li className="list-none w-full">
               <label
                 htmlFor="birth_date"
-                className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
+                className="font-semibold text-primary dark:text-white absolute bg-white mt-[-20px] ml-3 px-2 py-1 dark:bg-slate-700"
               >
                 Fecha de nacimiento
               </label>
               <input
                 id="birth_date"
                 type="text"
-                className="border-2 w-full border-primary p-2 rounded"
+                className="border-2 w-full border-primary p-2 rounded dark:bg-slate-700"
                 defaultValue={
                   new Date(user.birth_date).toISOString().split("T")[0]
                 }
@@ -438,13 +438,16 @@ export const Update = () => {
               )}
             </li>
 
-            <button className="border p-2 bg-primary rounded-md text-white font-semibold">
+            <button
+              className="p-2 bg-primary rounded-md text-white font-semibold dark:shadow-gray-800 dark:shadow-md
+              dark:bg-slate-800"
+            >
               Enviar
             </button>
           </form>
           <button
             onClick={handleOpenModal}
-            className=" w-full mt-5 border p-2 bg-red-700 rounded-md text-white font-semibold"
+            className=" w-full mt-5 p-2 bg-red-700 dark:bg-red-900 dark:shadow-gray-800 dark:shadow-md rounded-md text-white font-semibold"
           >
             Desactivar Usuario
           </button>

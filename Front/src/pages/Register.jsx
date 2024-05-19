@@ -283,7 +283,7 @@ const Register = () => {
               </p>
             )}
           </li>
-          <button className="border p-2 bg-primary rounded-md text-white font-semibold">
+          <button className="border p-2 bg-primary rounded-md hover:bg-slate-600 text-white font-semibold duration-500">
             Enviar
           </button>
         </form>

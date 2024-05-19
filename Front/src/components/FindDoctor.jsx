@@ -42,9 +42,9 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterCaracter
-              ? "bg-primary text-white border-2 border-white "
-              : "bg-white dark:bg-slate-700 "
-          } flex-grow border border-primary text-primary py-2 px-6 rounded-full`}
+              ? "bg-primary text-white  shadow-md hover:shadow-sm "
+              : "bg-white dark:bg-slate-700 shadow-xl"
+          } flex-grow text-primary py-2 px-6  font-semibold rounded-full`}
           onClick={() => {
             setFilterCaracter(true);
             setFilterDisciplines(false);
@@ -55,9 +55,9 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterDisciplines
-              ? "bg-primary  text-white border-2  border-white"
-              : "bg-white dark:bg-slate-700 "
-          } flex-grow border border-primary dark:text-white text-primary py-2 px-6 rounded-full`}
+              ? "bg-primary text-white  shadow-md hover:shadow-sm"
+              : "bg-white dark:bg-slate-700 shadow-xl "
+          } flex-grow dark:text-white text-primary font-semibold py-2 px-6 rounded-full duration-500`}
           onClick={() => {
             setFilterDisciplines(true);
             setFilterCaracter(false);
@@ -66,10 +66,10 @@ export const FindDoctor = () => {
           Especialidades
         </button>
       </div>
-      <div className="border flex gap-2 items-center p-4 bg-white dark:bg-slate-700 w-full  border-primary rounded-3xl">
+      <div className="border flex gap-2 items-center p-4 bg-white dark:bg-slate-700 w-full   border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="w-full dark:bg-slate-700  "
+          className="w-full dark:bg-slate-700   "
           type="text"
           placeholder={
             filterDisciplines
@@ -101,7 +101,7 @@ export const FindDoctor = () => {
             return user ? (
               <Link to={`/doctor/${doctor.doctor_id}`} key={doctor.user_id}>
                 <li
-                  className="flex justify-between items-center  gap-5 hover:shadow-md  shadow-xl p-4 text-primary font-bold rounded-3xl"
+                  className="flex justify-between items-center   gap-5 hover:shadow-md  shadow-xl p-4 text-primary font-bold rounded-3xl"
                   key={doctor.user_id}
                 >
                   <p

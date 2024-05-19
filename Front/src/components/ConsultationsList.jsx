@@ -2,8 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
+
 import { PendingConsultations } from "./PendingConsultations.jsx";
 import { TramitingConsultations } from "./TramitingConsultations.jsx";
+
 
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
@@ -61,12 +63,14 @@ export const ConsultationList = () => {
 
       {!isNew && 
         <section className="max-lg:pt-10 m-auto  gap-6 items-center max-w-lg">
+
           <li className="flex justify-start gap-5 bg-white p-5  border-white rounded-3xl shadow-lg w-full mb-4">
             <img src="/images/search-icon.svg" alt="input icon" />
             <input className="w-full" type="text" placeholder="Busca una consulta..." onChange={handleSearch}/>
           </li>
           <PendingConsultations consultations={consultations} results={results}/>
           <div className="my-5 list-none text-center m-auto w-full bg-primary gap-5 shadow-xl p-6 font-bold rounded-3xl">
+
               <button
                 className="items-center w-full bg-white m-2 gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
                 onClick={handelForm}
@@ -74,9 +78,11 @@ export const ConsultationList = () => {
                 Crear tu consulta
               </button>
             </div>
+
           <TramitingConsultations consultations={consultations} results={results}/>
           </section>
        }
+
     </>
   );
 };
