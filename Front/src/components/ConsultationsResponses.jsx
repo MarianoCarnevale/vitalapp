@@ -1,59 +1,22 @@
-import { useContext, useEffect, useState } from "react"
-import { VITE_BASE_URL } from "../config/env.js";
-import { toast, ToastContainer } from "react-toastify";
-import axios from "axios";
+import { useEffect } from "react"
+import { ToastContainer } from "react-toastify";
 import { Rating } from "@mui/material";
-import { useForm } from "react-hook-form";
-import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import { useResponses } from "../hooks/useResponse.jsx";
 
 export const ConsultationsResponses = (consultation) => {
-  const [responses, setResponses] = useState([]);
-    const { user, token } = useContext(UserTokenContext);
-
-
-  const { register, handleSubmit, reset } = useForm()
-
-  const OnSubmit = handleSubmit( async (data) => { 
-
-
-    const resp = await axios.post(`${VITE_BASE_URL}/responses/${consultation.consultation_id}`, {
-      content: `${data.content}`,
-    }, {
-      headers: {
-       Authorization: `${token}`, 
-      }
-    })
-
-    if (resp.data.status === "ok") {
-      toast.success("Respuesat creada");
-    } else { 
-      toast.error("Error al crear respuesta");
-    }
-
-    fetchResponses();
-    reset();
-  })
-  const fetchResponses = async () => { 
-    
-    try {
-      ///responses/:consultation_id
-    const resp = await axios.get(`${VITE_BASE_URL}/responses/${consultation.consultation_id}`,{
-        headers: {
-          Authorization: `${token}`,
-        },
-    });
-
-    const responses_array = resp.data.data.responses
-    console.log(responses);
-      setResponses(responses_array)
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
+  const {
+    responses,
+    user,
+    register,
+    OnSubmit,
+    fetchResponses, } = useResponses(consultation)
+  
   useEffect(() => { 
+
     fetchResponses();
-  },[])
+
+  }, [])
+  
   return (
     <section className="items-center lg:w-1/2 m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
       <ToastContainer autoClose={1500} />
