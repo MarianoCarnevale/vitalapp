@@ -1,16 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { postNewConsultation } from "../api/postnewConsultation.js";
 import { getDoctorsByDisciplineApi } from "../api/getDoctorsByDisciplineApi.js";
 import { postNewFileApi } from "../api/postNewFileApi.js";
 // import { getDisciplinesApi } from "../api/getDisciplinesApi.js";
 import { getAllDisciplinesWithDoctorsApi } from "../api/getAllDisciplinesWithDoctorsApi.js";
+import { FormContext } from "../contexts/FormContext.jsx";
 
 export const useConsultation = (handleSubmit, reset) => {
   //lista de disciplinas
   const [disciplines, setDiscipline] = useState([]);
-
-  const [isNew, setIsNew] = useState(true);
 
   //Valor a enviar de disciplinas
   const [especialidad, setespecialidadValue] = useState("");
@@ -26,6 +25,8 @@ export const useConsultation = (handleSubmit, reset) => {
 
   //desabilitar o habilitar select doctors y submit
   const [disable, setDisable] = useState([true]);
+
+  const { isModal, setIsModal } = useContext(FormContext);
 
   //manejo de select de disciplinas
   const handelSeletDiscipline = async (event) => {
@@ -104,12 +105,10 @@ export const useConsultation = (handleSubmit, reset) => {
     setDoctorValue("");
     setgravedadValue("");
     setDisable(true);
-    setIsNew(false);
+    setIsModal(false)
   });
 
-  const handelCancel = () => {
-    setIsNew(false);
-  };
+ 
   // funcion para obtener las disciplinas de forma asyn
   const getDiscipline = async () => {
     const disciplines_values = await getAllDisciplinesWithDoctorsApi();
@@ -118,7 +117,6 @@ export const useConsultation = (handleSubmit, reset) => {
   };
   //retornar todos los valores q va a usar el formulario
   return {
-    isNew,
     disciplines,
     especialidad,
     doctor,
@@ -128,9 +126,10 @@ export const useConsultation = (handleSubmit, reset) => {
     gravedad,
     setgravedadValue,
     OnSubmit,
-    handelCancel,
     handelSeletDiscipline,
     getDiscipline,
     disable,
+    isModal,
+    setIsModal
   };
 };

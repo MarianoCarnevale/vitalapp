@@ -1,16 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
 
 import { PendingConsultations } from "./PendingConsultations.jsx";
 import { TramitingConsultations } from "./TramitingConsultations.jsx";
+import { FormContext } from "../contexts/FormContext.jsx";
 
 
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
   const [results, setresults] = useState([]);
-  const [isNew, setIsNew] = useState(false);
+  const { isModal, setIsModal } = useContext(FormContext);
+
   // const [token] = useContext(UserTokenContext);
 
   const token = localStorage.getItem("token");
@@ -28,11 +30,6 @@ export const ConsultationList = () => {
 
     //actualiza la segunda lista q estan respondidas
     setresults(result);
-  };
-
-  //Ir al form
-  const handelForm = () => {
-    setIsNew(true);
   };
 
   //Obtener listado de consultas del back
@@ -54,14 +51,12 @@ export const ConsultationList = () => {
     };
 
     feachConsultations();
-    setIsNew(false);
   }, []);
 
   return (
     <>
-      {isNew && <ConsultationForm />}
+      {isModal && <ConsultationForm />}
 
-      {!isNew && 
         <section className="max-lg:pt-10 m-auto  gap-6 items-center max-w-lg">
 
           <li className="flex justify-start gap-5 bg-white p-5  border-white rounded-3xl shadow-lg w-full mb-4">
@@ -73,7 +68,7 @@ export const ConsultationList = () => {
 
               <button
                 className="items-center w-full bg-white m-2 gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
-                onClick={handelForm}
+                onClick={() => {setIsModal(true)}}
               >
                 Crear tu consulta
               </button>
@@ -81,7 +76,6 @@ export const ConsultationList = () => {
 
           <TramitingConsultations consultations={consultations} results={results}/>
           </section>
-       }
 
     </>
   );

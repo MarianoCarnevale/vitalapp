@@ -138,7 +138,7 @@ const YourConsultation = () => {
           {user.role === "patient" && (
             <Rating
               name="rating"
-              value={`${consultation.avg_rating}`}
+              value={+consultation.avg_rating}
               precision={0.5}
               readOnly
             />
