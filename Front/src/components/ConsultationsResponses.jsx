@@ -20,7 +20,7 @@ export const ConsultationsResponses = (consultation) => {
   return (
     <section className="items-center lg:w-1/2 m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
       <ToastContainer autoClose={1500} />
-      <p className=" text-primary text-2xl font-semibold mb-5">Tus Respuestas</p>
+      <p className=" text-primary text-2xl font-semibold mb-5">Historial de Respuestas</p>
       {
        (responses.length > 0 || user.first_name === consultation.doctor)
       &&
@@ -30,7 +30,7 @@ export const ConsultationsResponses = (consultation) => {
                 htmlFor="NewResponse"
                 className="text-primary text-2xl font-semibold mb-5"
                 >
-                {user.role === "doctor" ? "Escribe tu Diagnóstico" : "Escribe tu Respuesta"}
+                Escribe tu respuesta
               </label>
               <input
           id="NewResponse"
@@ -54,7 +54,7 @@ export const ConsultationsResponses = (consultation) => {
                 <div className={`flex flex-col shadow-xl p-6 w-full font-medium text-md rounded-3xl`} >
                   <div className={`flex ${response.first_name === consultation.doctor ? "justify-start" : "justify-end"}`}>
                     <p className={`text-primary font-semibold mb-5 $`} >
-                      {response.role === "doctor" ? "Doctor" : "Patient"}: {response.first_name}
+                      {response.role === "doctor" ? "Doctor" : "Paciente"}: {response.first_name}
                       {response.role === "doctor" && <Rating
                     name="rating"
                     value={`${consultation.avg_rating}`}

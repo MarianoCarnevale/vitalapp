@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
@@ -25,7 +25,7 @@ export const ConsultationList = () => {
   };
 
   //Maneja el sistema de busqueda por palabras
-  const handelSearch = (event) => {
+  const handleSearch = (event) => {
     const word = event.target.value;
 
     //convierte todo a lowercase y lo compara
@@ -73,7 +73,7 @@ export const ConsultationList = () => {
       {!isNew && (
         <section className="max-lg:pt-10 m-auto  gap-6 items-center max-w-lg">
           <p className=" w-5/6 text-left text-primary font-semibold text-3xl ">
-            Tus ultimas consultas
+            Tus Consultas Pendientes
           </p>
           <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
             <ul className="w-full flex flex-col gap-5 dark:bg-slate-700  bg-white p-5 my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
@@ -129,8 +129,8 @@ export const ConsultationList = () => {
                   <input
                     className="w-full"
                     type="text"
-                    placeholder="Busca un paciente..."
-                    onChange={handelSearch}
+                    placeholder="Busca una consulta finalizada..."
+                    onChange={handleSearch}
                   />
                 </li>
                 {results.filter((result) => result.is_pending === 0) && results
