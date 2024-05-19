@@ -49,14 +49,6 @@ const YourConsultation = () => {
     <>
       <ToastContainer autoClose={1500} />
 
-      <div className="absolute right-0 lg:right-[-2.5rem] lg:top-20 mt-5 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-        <div className=" flex flex-col gap-2 p-5">
-          <h1 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-            Rating here
-          </h1>
-        </div>
-      </div>
-
       <section className="z-10 items-center lg:w-full m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
         <p className=" text-primary text-2xl font-semibold mb-5">Tu consulta</p>
         <div className="flex justify-center w-full gap-4">
