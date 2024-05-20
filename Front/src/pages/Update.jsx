@@ -453,14 +453,14 @@ export const Update = () => {
           </button>
           {isModalOpen && (
             <>
-              <div className="ml-60 bg-gray-500 h-dvh fixed inset-0 flex">
-                <div className="z-20 m-auto bg-white rounded-lg p-6 w-full max-w-lg">
+              <div className="ml-60 bg-black bg-opacity-75 h-dvh fixed inset-0 flex">
+                <div className="z-20 m-auto  bg-white opacity-100 rounded-lg p-6 w-full max-w-lg">
                   <h3 className="py-3 text-lg leading-6 font-medium text-primary">
                     ¿Estás seguro de que quieres desactivar al usuario?
                   </h3>
                   <div className="flex justify-end mt-6">
                     <button
-                      className="px-4 py-2 bg-secondary hover:bg-primary text-white rounded-md mr-2"
+                      className="px-4 py-2 bg-secondary hover:bg-red-900 text-white rounded-md mr-2"
                       onClick={handleDesactivate}
                     >
                       Sí

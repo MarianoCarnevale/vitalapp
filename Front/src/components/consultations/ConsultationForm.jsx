@@ -1,4 +1,4 @@
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import { useConsultation } from "../../hooks/useConsultation.jsx";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -35,35 +35,33 @@ export const ConsultationForm = () => {
     handelSeletDiscipline,
     disable,
     isModal,
-    setIsModal
+    setIsModal,
   } = useConsultation(handleSubmit, reset);
 
   return (
     <>
-
       {isModal && (
-
-
-        <div className=" fixed inset-0 transition-opacity z-20">
-
-          <div className="absolute inset-0 bg-gray-500 opacity-75 "></div>
-          <div className="w-5/6 m-auto">
-
-            <form onSubmit={OnSubmit} className="flex flex-col gap-7
-            overflow-hidden transform transition-all bg-white dark:bg-slate-400 p-8 mt-8 rounded-lg">
+        <div className=" fixed inset-0 transition-opacity z-20 h-full">
+          <div className="absolute inset-0 bg-black opacity-75 "></div>
+          <div className="w-5/6 max-w-lg m-auto">
+            <form
+              onSubmit={OnSubmit}
+              className="flex flex-col gap-7
+            overflow-hidden transform transition-all bg-white dark:bg-slate-700 p-8 mt-32 rounded-lg"
+            >
               <h1 className="text-3xl font-bold text-primary mb-10 max-lg:pt-10 ">
                 Crea tu consulta
               </h1>
               <li className="list-none w-full">
                 <label
                   htmlFor="discipline"
-                  className="font-semibold text-primary dark:text-white absolute bg-white dark:bg-slate-400 mt-[-20px] ml-3 px-2 py-1"
+                  className="font-semibold text-primary dark:text-white absolute bg-white dark:bg-slate-700 mt-[-20px] ml-3 px-2 py-1"
                 >
                   Especialidad
                 </label>
                 <select
                   id="Especialidad"
-                  className="border-2 border-primary p-2 w-full rounded dark:bg-slate-400 dark:border-white"
+                  className="border-2 border-primary dark:text-white p-2 w-full rounded dark:bg-slate-700 dark:border-white"
                   value={especialidad}
                   {...register("especialidad")}
                   onChange={handelSeletDiscipline}
@@ -71,6 +69,7 @@ export const ConsultationForm = () => {
                   <option key="0" value=""></option>
                   {disciplines.map((discipline) => (
                     <option
+                      className="dark:text-white"
                       key={discipline.discipline_id}
                       value={discipline.discipline_id}
                     >
@@ -85,13 +84,13 @@ export const ConsultationForm = () => {
               <li className="list-none w-full">
                 <label
                   htmlFor="doctor"
-                  className="z-10 font-semibold text-primary dark:text-white absolute bg-white dark:bg-slate-400 mt-[-20px] ml-3 px-2 py-1"
+                  className="z-10 font-semibold text-primary dark:text-white absolute bg-white dark:bg-slate-700 mt-[-20px] ml-3 px-2 py-1"
                 >
                   Doctor
                 </label>
                 <select
                   id="doctor"
-                  className="border-2 border-primary p-2 w-full rounded dark:bg-slate-400 dark:border-white"
+                  className="border-2 border-primary p-2 w-full dark:text-white rounded dark:bg-slate-700 dark:border-white"
                   value={doctor}
                   {...register("doctor")}
                   disabled={disable}
@@ -103,7 +102,11 @@ export const ConsultationForm = () => {
                     None selected
                   </option>
                   {doctors.map((doctor) => (
-                    <option key={doctor.doctor_id} value={doctor.doctor_id}>
+                    <option
+                      className="dark:text-white"
+                      key={doctor.doctor_id}
+                      value={doctor.doctor_id}
+                    >
                       {doctor.first_name}
                     </option>
                   ))}
@@ -112,15 +115,15 @@ export const ConsultationForm = () => {
               <li className="list-none w-full">
                 <label
                   htmlFor="titulo"
-                  className="font-semibold text-primary absolute dark:text-white bg-white dark:bg-slate-400 mt-[-20px] ml-3 px-2 py-1"
+                  className="font-semibold text-primary absolute dark:text-white bg-white dark:bg-slate-700 mt-[-20px] ml-3 px-2 py-1"
                 >
                   Título
                 </label>
                 <input
                   id="titulo"
-                  className="border-2 border-primary p-2 w-full rounded dark:bg-slate-400 dark:border-white"
+                  className="border-2 border-primary font-semibold p-2 w-full rounded text-white dark:bg-slate-700 dark:border-white"
                   type="text"
-                  placeholder=""
+                  placeholder="Título"
                   {...register("titulo")}
                 />
                 <p className="text-red-500 text-sm sm:text-base pl-5">
@@ -130,15 +133,15 @@ export const ConsultationForm = () => {
               <li className="list-none w-full">
                 <label
                   htmlFor="descripcion"
-                  className="font-semibold text-primary absolute bg-white dark:bg-slate-400 mt-[-20px] ml-3 px-2 py-1 dark:text-white"
+                  className="font-semibold text-primary absolute bg-white dark:bg-slate-700 mt-[-20px] ml-3 px-2 py-1 dark:text-white"
                 >
                   Descripción
                 </label>
                 <input
                   id="descripcion"
-                  className="border-2 border-primary p-2 w-full rounded dark:bg-slate-400 dark:border-white"
+                  className="border-2 dark:text-white font-semibold border-primary p-2 w-full rounded dark:bg-slate-700 dark:border-white"
                   type="text"
-                  placeholder=""
+                  placeholder="Descripción"
                   {...register("descripcion")}
                 />
                 <p className="text-red-500 text-sm sm:text-base pl-5">
@@ -148,13 +151,13 @@ export const ConsultationForm = () => {
               <li className="list-none w-full">
                 <label
                   htmlFor="doctor"
-                  className="z-10 font-semibold text-primary absolute bg-white dark:bg-slate-400 mt-[-20px] ml-3 px-2 py-1 dark:text-white"
+                  className="z-10 font-semibold text-primary absolute bg-white dark:bg-slate-700 mt-[-20px] ml-3 px-2 py-1 dark:text-white"
                 >
                   Gravedad
                 </label>
                 <select
                   id="gravedad"
-                  className="border-2 border-primary p-2 w-full rounded dark:bg-slate-400 dark:border-white"
+                  className="border-2 border-primary p-2 w-full rounded dark:text-white dark:bg-slate-700 dark:border-white"
                   value={gravedad}
                   {...register("gravedad")}
                   disabled={disable}
@@ -182,10 +185,12 @@ export const ConsultationForm = () => {
               <li className="list-none">
                 <label
                   htmlFor="file"
-                  className="bg-primary hover:bg-cyan-700 cursor-pointer rounded-lg flex active:bg-white dark:border-white dark:border dark:bg-slate-400"
+                  className="bg-primary hover:bg-cyan-700 cursor-pointer rounded-lg flex active:bg-white  dark:bg-slate-400"
                 >
-                  <div className="gap-2 w-full py-2 text-white active:text-black">
-                    <p className=" text-center  text-lg dark:border-white">Upload File</p>
+                  <div className="gap-2 w-full py-2 text-white rounded-md active:text-black  dark:bg-slate-900 active:text-black dark:shadow-gray-800 dark:shadow-md hover:dark:shadow-gray-800 dark:hover:shadow-sm font-semibold disabled:bg-secondary">
+                    <p className=" text-center  text-lg dark:border-white">
+                      Upload File
+                    </p>
                     <p className="text-xs text-center  ">png or jpg</p>
                   </div>
                   <input
@@ -197,14 +202,16 @@ export const ConsultationForm = () => {
                 </label>
               </li>
               <button
-                className="bg-primary p-2 w-full rounded-md text-white active:bg-white dark:bg-slate-400 active:text-black border-2  disabled:bg-secondary"
+                className="bg-primary p-2 w-full rounded-md text-white active:bg-white dark:bg-slate-900 active:text-black dark:shadow-gray-800 dark:shadow-md hover:dark:shadow-gray-800 dark:hover:shadow-sm font-semibold  disabled:bg-secondary"
                 disabled={disable}
               >
                 Enviar
               </button>
               <button
-                className="bg-primary p-2 w-full rounded-md text-white active:bg-white dark:bg-slate-400 active:text-black border-2  disabled:bg-secondary"
-                onClick={() => {setIsModal(false)}}
+                className="bg-primary p-2 w-full rounded-md text-white active:bg-white dark:bg-slate-900 active:text-black dark:shadow-gray-800 dark:shadow-md hover:dark:shadow-gray-800 dark:hover:shadow-sm font-semibold disabled:bg-secondary"
+                onClick={() => {
+                  setIsModal(false);
+                }}
               >
                 Cancelar
               </button>
