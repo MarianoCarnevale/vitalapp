@@ -1,11 +1,14 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { useResponses } from "../hooks/useResponse.jsx";
 import { dateFormat } from "../api/dateFormat.js";
 import StarIcon from "@mui/icons-material/Star";
 import { RatingContext } from "../contexts/RatingContext.jsx";
 import { RatingModal } from "./RatingModal.jsx";
+
 export const ConsultationsResponses = (consultation) => {
+  const [modalData, setModalData] = useState(null);
+
   const { isModal, setIsModal } = useContext(RatingContext);
   const { responses, register, OnSubmit, fetchResponses } =
     useResponses(consultation);
@@ -14,10 +17,15 @@ export const ConsultationsResponses = (consultation) => {
     fetchResponses();
   }, []);
 
+  const handleClick = (response_id) => {
+    setIsModal(!isModal);
+    setModalData({ response_id });
+    setIsModal(true);
+  };
+  console.log(responses);
   return (
     <>
-      {" "}
-      {isModal && <RatingModal />}
+      {isModal && <RatingModal modalData={modalData} setIsModal={setIsModal} />}
       <section className="items-center lg:w-1/2 m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
         <ToastContainer autoClose={1500} />
         <p className=" text-primary text-2xl font-semibold mb-5">
@@ -66,7 +74,7 @@ export const ConsultationsResponses = (consultation) => {
                           <>
                             <button
                               onClick={() => {
-                                setIsModal(!isModal);
+                                handleClick(response.response_id);
                               }}
                             >
                               <StarIcon style={{ color: "#FFA000" }} />

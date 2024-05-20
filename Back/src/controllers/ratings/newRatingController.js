@@ -14,7 +14,7 @@ export const newRatingController = async (req, res, next) => {
     // pasamos el rating value por data al body
     const data = req.body;
 
-    await validateSchemaUtil(ratingSchema, { data });
+    await validateSchemaUtil(ratingSchema, data);
     // añadimo en data todos los parametros necesarios
     data.user_id = user_id;
     data.response_id = response_id;
