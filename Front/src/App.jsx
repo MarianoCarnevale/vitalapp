@@ -7,20 +7,23 @@ import { UserTokenProvider } from "./contexts/UserTokenContext.jsx";
 import { DarkModeProvider } from "./contexts/DarkModeContext.jsx";
 import theme from "./theme";
 import { FormContextProvider } from "./contexts/FormContext.jsx";
+import { RatingContextProvider } from "./contexts/RatingContext.jsx";
 
 function App() {
   return (
-    <FormContextProvider>
-      <UserTokenProvider>
-        <ThemeProvider theme={theme}>
-          <DarkModeProvider>
-            <Header />
-            <Main />
-            <Footer />
-          </DarkModeProvider>
-        </ThemeProvider>
-      </UserTokenProvider>
-    </FormContextProvider>
+    <RatingContextProvider>
+      <FormContextProvider>
+        <UserTokenProvider>
+          <ThemeProvider theme={theme}>
+            <DarkModeProvider>
+              <Header />
+              <Main />
+              <Footer />
+            </DarkModeProvider>
+          </ThemeProvider>
+        </UserTokenProvider>
+      </FormContextProvider>
+    </RatingContextProvider>
   );
 }
 
