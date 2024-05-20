@@ -78,10 +78,16 @@ const YourConsultation = () => {
             className={`border border-primary text-primary py-2 px-6 rounded-full ${
               consultation.is_pending
                 ? "bg-primary font-bold text-white"
-                : (consultation.is_active ? "bg-green-500 text-white border-0 font-bold":"bg-secondary text-white border-0 font-bold")
+                : consultation.is_active
+                ? "bg-green-500 text-white border-0 font-bold"
+                : "bg-secondary text-white border-0 font-bold"
             }`}
           >
-            {consultation.is_pending ? "Pendiente" : (consultation.is_active ? "En trámite" :"Finalizada")}
+            {consultation.is_pending
+              ? "Pendiente"
+              : consultation.is_active
+              ? "En trámite"
+              : "Finalizada"}
           </p>
         </div>
         <div className="min-w-36 px-24 items-center flex flex-col justify-center gap-5 bg-white  border-white rounded-3xl min-h-72 overflow-auto hide-scrollbar shadow-lg">
@@ -143,6 +149,7 @@ const YourConsultation = () => {
               readOnly
             />
           )}
+
           <p className="text-primary font-bold ">Descripción</p>
           <p className="w-5/6 text-center max-lg:max-w-md text-m text-secondary">
             {consultation.description}
@@ -168,21 +175,23 @@ const YourConsultation = () => {
             </div>
           )}
 
-          {consultation.is_active 
-          
-          ? <>
-          <p className="dark:text-white text-primary font-bold ">Gravedad</p>
+          {consultation.is_active ? (
+            <>
+              <p className="dark:text-white text-primary font-bold ">
+                Gravedad
+              </p>
 
-          <p
-            className={`p-1 w-20 font-bold rounded-xl text-center text-white ${getStatusClass(
-              consultation.severity
-            )}`}
-          >
-            {consultation.severity}
-          </p>
-          </>
-          : ''
-          }
+              <p
+                className={`p-1 w-20 font-bold rounded-xl text-center text-white ${getStatusClass(
+                  consultation.severity
+                )}`}
+              >
+                {consultation.severity}
+              </p>
+            </>
+          ) : (
+            ""
+          )}
           <p className=" text-primary font-bold ">Fecha</p>
           <p className="w-5/6  max-lg:max-w-md text-sm text-center text-secondary">
             {date}
