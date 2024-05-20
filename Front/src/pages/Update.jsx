@@ -453,7 +453,7 @@ export const Update = () => {
           </button>
           {isModalOpen && (
             <>
-              <div className="ml-60 bg-black bg-opacity-75 h-dvh fixed inset-0 flex">
+              <div className="max-lg:px-4 lg:ml-60 bg-black bg-opacity-75 h-dvh fixed inset-0 flex">
                 <div className="z-20 m-auto  bg-white opacity-100 rounded-lg p-6 w-full max-w-lg">
                   <h3 className="py-3 text-lg leading-6 font-medium text-primary">
                     ¿Estás seguro de que quieres desactivar al usuario?
