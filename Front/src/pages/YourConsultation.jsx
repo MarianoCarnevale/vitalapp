@@ -72,7 +72,7 @@ const YourConsultation = () => {
       <ToastContainer autoClose={1500} />
 
       <section className="z-10 items-center lg:w-full m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
-        <p className=" text-primary text-2xl font-semibold mb-5">Tu consulta</p>
+        <p className=" text-primary text-3xl font-semibold mb-5">Tu consulta</p>
         <div className="flex justify-center w-full gap-4">
           <p
             className={`border border-primary text-primary py-2 px-6 rounded-full ${
@@ -90,8 +90,8 @@ const YourConsultation = () => {
               : "Finalizada"}
           </p>
         </div>
-        <div className="min-w-36 px-24 items-center flex flex-col justify-center gap-5 bg-white  border-white rounded-3xl min-h-72 overflow-auto hide-scrollbar shadow-lg">
-          <p className="text-xl flex justify-between items-center  gap-5 p-4 text-primary font-bold rounded-3xl">
+        <div className="dark:bg-slate-700 my-5 w-5/6 max-w-lg py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
+          <p className="dark:text-white text-2xl text-primary font-bold">
             {consultation.title}
           </p>
           {user.role === "patient" && (
@@ -118,14 +118,14 @@ const YourConsultation = () => {
               alt={consultation.doctor_avatar}
             />
           )}
-          <p className="text-primary font-bold text-center text-l">
+          <p className="dark:text-slate-400 text-primary font-bold text-center text-l">
             {user.role === "patient"
               ? " Consulta para el medico"
               : "Consulta de"}
           </p>
 
           <Link
-            className="w-5/6 max-lg:max-w-md text-l text-center font-bold text-secondary"
+            className="dark:text-white w-5/6 text-2xl max-lg:max-w-md text-l text-center font-bold text-primary hover:underline"
             to={
               user.role === "patient"
                 ? `/doctor/${consultation.doctor_id}`
@@ -137,7 +137,7 @@ const YourConsultation = () => {
               : `${consultation.first_name} ${consultation.first_surname}`}
           </Link>
           {user.role === "patient" && (
-            <p className="w-5/6  max-lg:max-w-md text-sm text-center font-bold text-secondary">
+            <p className="dark:text-slate-400 w-5/6  max-lg:max-w-md text-sm text-center font-bold text-secondary">
               Medico de {consultation.discipline_name}
             </p>
           )}
@@ -150,18 +150,18 @@ const YourConsultation = () => {
             />
           )}
 
-          <p className="text-primary font-bold ">Descripción</p>
-          <p className="w-5/6 text-center max-lg:max-w-md text-m text-secondary">
+          <p className="dark:text-white text-primary font-bold">Descripción</p>
+          <p className="dark:text-slate-300 w-5/6 text-center max-lg:max-w-md text-m text-secondary">
             {consultation.description}
           </p>
 
-          <p className="dark:text-white text-primary font-bold ">Archivo</p>
+          <p className="dark:text-white text-primary font-bold">Archivo</p>
           {consultation.file === null ? (
             <p className="dark:text-slate-400">No se ha adjuntado archivo</p>
           ) : (
-            <div className="flex items-center  gap-10 text-sm text-secondary font-semibold border-primary border px-1 py-1 rounded-3xl">
+            <div className="flex items-center  gap-10 text-sm text-secondary font-semibold border-primary border px-3 py-1 rounded-3xl">
               <a
-                className=" px-4 py-2 rounded-3xl hover:shadow-lg max-w-60"
+                className=" px-4 py-2 rounded-3xl hover:shadow-lg max-w-60 dark:text-slate-300"
                 href={`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/files/${consultation.user_id}/${consultation.file}`}
               >
                 `${consultation.file}`
@@ -177,9 +177,7 @@ const YourConsultation = () => {
 
           {consultation.is_active ? (
             <>
-              <p className="dark:text-white text-primary font-bold ">
-                Gravedad
-              </p>
+              <p className="dark:text-white text-primary font-bold">Gravedad</p>
 
               <p
                 className={`p-1 w-20 font-bold rounded-xl text-center text-white ${getStatusClass(
@@ -192,8 +190,8 @@ const YourConsultation = () => {
           ) : (
             ""
           )}
-          <p className=" text-primary font-bold ">Fecha</p>
-          <p className="w-5/6  max-lg:max-w-md text-sm text-center text-secondary">
+          <p className=" text-primary font-bold dark:text-white">Fecha</p>
+          <p className="w-5/6  max-lg:max-w-md text-sm text-center text-secondary dark:text-slate-300">
             {date}
           </p>
         </div>
