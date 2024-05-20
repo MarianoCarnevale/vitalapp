@@ -17,6 +17,7 @@ const YourConsultation = () => {
   const token = localStorage.getItem("token");
   const { consultation_id } = useParams();
   const { user } = useContext(UserTokenContext);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   useEffect(() => {
     const getConsultation = async () => {
@@ -164,11 +165,13 @@ const YourConsultation = () => {
                 className=" px-4 py-2 rounded-3xl hover:shadow-lg max-w-60 dark:text-slate-300"
                 href={`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/files/${consultation.user_id}/${consultation.file}`}
               >
-                `${consultation.file}`
+                {isDeleted ? "Archivo borrado con éxito" : consultation.file}
               </a>
               <button
                 className="hover:shadow-lg hover:bg-primary hover:bg-opacity-10 bg-white rounded-full w-10 h-10"
-                onClick={() => deleteFile(consultation.consultation_id)}
+                onClick={() =>
+                  deleteFile(consultation.consultation_id) && setIsDeleted(true)
+                }
               >
                 <DeleteOutlineIcon color="primary" />
               </button>
