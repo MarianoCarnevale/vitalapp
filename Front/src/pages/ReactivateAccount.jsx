@@ -29,7 +29,7 @@ const ReactivateAccount = () => {
       );
 
       if (response.data.status === "ok") {
-        toast.success("Tu cuenta ha sido activada con éxito");
+        toast.success("Te hemos enviado un email para reactivar tu cuenta");
         reset();
         setTimeout(() => {
           navigate("/login");
