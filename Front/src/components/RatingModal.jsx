@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { RatingContext } from "../contexts/RatingContext";
 import { Rating } from "@mui/material";
 import PropTypes from "prop-types";
@@ -16,29 +17,35 @@ export const RatingModal = ({ modalData, setIsModal }) => {
   const [value, setValue] = useState(0);
   const handleRatingChange = (event, newValue) => {
     setValue(newValue);
-    console.log(newValue);
+
     // hay que cambiar hacer un axios de post rating
   };
 
   const handleSubmit = async () => {
-    const data = { rating_value: Number(value) };
-    console.log(data);
-    const resp = await axios.post(
-      `${VITE_BASE_URL}/ratings/${response_id}`,
-      data,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-    console.log(resp);
-    setIsModal(false);
+    try {
+      const data = { rating_value: Number(value) };
+      console.log(data);
+      const response = await axios.post(
+        `${VITE_BASE_URL}/ratings/${response_id}`,
+        data,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      setIsModal(false);
+    } catch (error) {
+      toast.error(error.response.data.message);
+      setTimeout(() => {
+        setIsModal(false);
+      }, 1500);
+    }
   };
-  console.log(response_id);
 
   return (
     <>
+      <ToastContainer autoClose={1500} />
       {isModal && (
         <div className=" fixed inset-0 transition-opacity z-20">
           <div className="absolute  inset-0 bg-gray-500 opacity-75 "></div>
@@ -47,7 +54,7 @@ export const RatingModal = ({ modalData, setIsModal }) => {
             overflow-hidden transform transition-all bg-white dark:bg-slate-400 p-8 m-auto rounded-lg"
           >
             <p>Valora la respuesta:</p>
-            {/* <form onSubmit={handleRatingPost}> */}
+
             <Rating
               name="half-rating"
               defaultValue={0.5}
@@ -56,8 +63,8 @@ export const RatingModal = ({ modalData, setIsModal }) => {
               value={value}
               onChange={handleRatingChange}
             />
+
             <button onClick={handleSubmit}>Valorar</button>
-            {/* </form> */}
           </div>
         </div>
       )}
