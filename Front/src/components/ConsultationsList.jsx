@@ -9,14 +9,12 @@ import { FormContext } from "../contexts/FormContext.jsx";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import { FinishedConsultations } from "./FinishedConsultations.jsx";
 
-
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
   const [results, setresults] = useState([]);
   const { isModal, setIsModal } = useContext(FormContext);
 
-  const { token, user } = useContext(UserTokenContext); 
-
+  const { token, user } = useContext(UserTokenContext);
 
   //Maneja el sistema de busqueda por palabras
   const handleSearch = (event) => {
@@ -25,7 +23,7 @@ export const ConsultationList = () => {
     //convierte todo a lowercase y lo compara
     const result = consultations.filter((consultation) =>
       Object.values(consultation).some((value) =>
-        value.toString().toLowerCase().includes(word.toLowerCase())
+        value?.toString().toLowerCase().includes(word.toLowerCase())
       )
     );
 
@@ -59,29 +57,40 @@ export const ConsultationList = () => {
     <>
       {isModal && <ConsultationForm />}
 
-        <section className="max-lg:pt-10 m-auto  gap-6 items-center max-w-lg">
-
-          <li className="flex justify-start gap-5 bg-white p-5  border-white rounded-3xl shadow-lg w-full mb-4">
-            <img src="/images/search-icon.svg" alt="input icon" />
-            <input className="w-full" type="text" placeholder="Busca una consulta..." onChange={handleSearch}/>
-          </li>
+      <section className="max-lg:pt-10 m-auto  gap-6 items-center max-w-lg">
+        <li className="flex justify-start gap-5 bg-white p-5  border-white rounded-3xl shadow-lg w-full mb-4">
+          <img src="/images/search-icon.svg" alt="input icon" />
+          <input
+            className="w-full"
+            type="text"
+            placeholder="Busca una consulta..."
+            onChange={handleSearch}
+          />
+        </li>
         <PendingConsultations consultations={consultations} results={results} />
-        
-        {user.role === "patient" && <div className="my-5 list-none text-center m-auto w-full bg-primary gap-5 shadow-xl p-6 font-bold rounded-3xl">
 
-              <button
-                className="items-center w-full bg-white m-2 gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
-                onClick={() => {setIsModal(true)}}
-              >
-                Crear tu consulta
-              </button>
-            </div>
-        }
-          <TramitingConsultations consultations={consultations} results={results}/>
+        {user.role === "patient" && (
+          <div className="my-5 list-none text-center m-auto w-full bg-primary gap-5 shadow-xl p-6 font-bold rounded-3xl">
+            <button
+              className="items-center w-full bg-white m-2 gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
+              onClick={() => {
+                setIsModal(true);
+              }}
+            >
+              Crear tu consulta
+            </button>
+          </div>
+        )}
+        <TramitingConsultations
+          consultations={consultations}
+          results={results}
+        />
 
-          <FinishedConsultations consultations={consultations} results={results}/>
-          </section>
-
+        <FinishedConsultations
+          consultations={consultations}
+          results={results}
+        />
+      </section>
     </>
   );
 };
