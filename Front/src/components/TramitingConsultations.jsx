@@ -21,11 +21,11 @@ console.log(children.results.filter((result) => result.is_pending === 0));
             </p>
             <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
                 <ul className="w-full flex flex-col gap-5 dark:bg-slate-700  bg-white p-5 my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
-                {(children.results.filter((result) => result.is_pending === 0).length === 0) && <p>No existen consultas en trámite.</p>}
+                {(children.results.filter((result) => result.is_pending === 0 && result.is_active === 1).length === 0) && <p>No existen consultas en trámite.</p>}
                 {children.consultations.filter(
-                (consultation) => consultation.is_pending === 0
+                (consultation) => consultation.is_pending === 0 && consultation.is_active === 1
                 ).length > 0 && 
-                    children.results.filter((result) => result.is_pending === 0).map((result) => {
+                    children.results.filter((result) => result.is_pending === 0 && result.is_active === 1).map((result) => {
                         return (
                         <Link
                             key={result.consultation_id}

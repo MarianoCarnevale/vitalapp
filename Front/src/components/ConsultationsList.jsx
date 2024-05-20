@@ -7,6 +7,7 @@ import { PendingConsultations } from "./PendingConsultations.jsx";
 import { TramitingConsultations } from "./TramitingConsultations.jsx";
 import { FormContext } from "../contexts/FormContext.jsx";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import { FinishedConsultations } from "./FinishedConsultations.jsx";
 
 
 export const ConsultationList = () => {
@@ -77,6 +78,8 @@ export const ConsultationList = () => {
             </div>
         }
           <TramitingConsultations consultations={consultations} results={results}/>
+
+          <FinishedConsultations consultations={consultations} results={results}/>
           </section>
 
     </>
