@@ -14,6 +14,8 @@ const Header = () => {
   const navigate = useNavigate();
   const [avatarUrl, setAvatarUrl] = useState("");
   const { darkMode, setDarkMode } = useContext(DarkModeContext);
+  const [isScrolledDown, setIsScrolledDown] = useState(false);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
 
   const { user } = useContext(UserTokenContext);
 
@@ -42,16 +44,32 @@ const Header = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrolledDown(lastScrollTop < currentScrollTop);
+      setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
   return user ? (
     <header className="dark:bg-slate-700  z-20 w-full shadow-sm fixed bg-primary bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
       <button
-        className="rounded-full w-10 h-10 bg-primary absolute mt-36 max-lg:ml-[85%] lg:ml-[20rem] "
+        className={`rounded-full w-10 h-10 bg-primary absolute mt-36 max-lg:ml-[85%] lg:ml-[20rem] transition-all duration-300 ${
+          isScrolledDown ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
         onClick={() => navigate(-1)}
       >
         <ChevronLeftRoundedIcon color="white" />
       </button>
       <nav>
-        <ul className="flex p-4 items-end gap-4  max-w-screen-xl m-auto h-32 lg:h-screen lg:flex-col lg:items-start  ">
+        <ul className="flex p-4 items-center gap-4  max-w-screen-xl m-auto h-24 mt-6 lg:h-screen lg:flex-col lg:items-start  ">
           <li className="list-none lg:hidden ">
             <NavLink to="/">
               <img
@@ -79,17 +97,17 @@ const Header = () => {
             </NavLink>
           </li>
 
-          <li className="max-lg:flex-grow list-none font-light text-right text-lg lg:text-left order-1 lg:order-2 lg:flex-col gap-2">
-            <p className="text-white ">
+          <li className="max-lg:flex-grow leading-5 list-none font-light text-right text-lg lg:text-left order-1 lg:order-2 lg:flex-col gap-2">
+            <p className="text-white max-md:text-[1rem]  ">
               {user.role === "patient" ? "Paciente" : "Médico"}
             </p>
-            <p className="text-white font-semibold text-right">
+            <p className="text-white font-semibold max-md:text-[1rem] font- text-right">
               {user.first_name} {user.first_surname}
             </p>
           </li>
 
           <li
-            className="list-none size-14 bg-white border border-5 rounded-full order-2 lg:order-1 overflow-hidden inline-table cursor-pointer"
+            className="list-none size-14 bg-primary border border-5 rounded-full order-2 lg:order-1 overflow-hidden inline-table cursor-pointer"
             onClick={handleImageClick}
           >
             <img src={avatarUrl} alt="User avatar" className="w-full" />
