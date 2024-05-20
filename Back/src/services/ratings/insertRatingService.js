@@ -1,7 +1,7 @@
 import { insertRatingModel } from '../../models/ratings/insertRatingsModel.js';
 import { selectRatingsModel } from '../../models/ratings/selectRatingsModel.js';
 
-export const insertRatingService = async ( data ) => {
+export const insertRatingService = async (data) => {
   try {
     //evitar que se agrege una valoracion a una respuesta ya valorada
 
