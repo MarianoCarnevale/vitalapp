@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { newFrontConsultationsSchema } from "../../schemas/newFrontConsultationSchema.js";
 
-export const ConsultationForm = () => {
+export const ConsultationForm = (children) => {
+  // Sacamos el estado para volver a tirar el useEffect en el componente padre y actualizar la lista
+  const { setIsCreated, isCreated } = children;
+
   //usamos la funcion para obtener los datos de forma asyn
 
   useEffect(() => {
@@ -45,7 +48,7 @@ export const ConsultationForm = () => {
           <div className="absolute inset-0 bg-black opacity-75 "></div>
           <div className="w-5/6 max-w-lg m-auto">
             <form
-              onSubmit={OnSubmit}
+              onSubmit={() => OnSubmit() && setIsCreated(true)}
               className="flex flex-col gap-7
             overflow-hidden transform transition-all bg-white dark:bg-slate-700 p-8 mt-32 rounded-lg"
             >
@@ -121,7 +124,7 @@ export const ConsultationForm = () => {
                 </label>
                 <input
                   id="titulo"
-                  className="border-2 border-primary font-semibold p-2 w-full rounded text-white dark:bg-slate-700 dark:border-white"
+                  className="border-2 dark:text-white font-semibold border-primary p-2 w-full rounded dark:bg-slate-700 dark:border-white"
                   type="text"
                   placeholder="Título"
                   {...register("titulo")}
@@ -187,7 +190,7 @@ export const ConsultationForm = () => {
                   htmlFor="file"
                   className="bg-primary hover:bg-cyan-700 cursor-pointer rounded-lg flex active:bg-white  dark:bg-slate-400"
                 >
-                  <div className="gap-2 w-full py-2 text-white rounded-md active:text-black  dark:bg-slate-900 active:text-black dark:shadow-gray-800 dark:shadow-md hover:dark:shadow-gray-800 dark:hover:shadow-sm font-semibold disabled:bg-secondary">
+                  <div className="gap-2 w-full py-2 text-white rounded-md active:text-black  dark:bg-slate-900 dark:shadow-gray-800 dark:shadow-md hover:dark:shadow-gray-800 dark:hover:shadow-sm font-semibold disabled:bg-secondary">
                     <p className=" text-center  text-lg dark:border-white">
                       Upload File
                     </p>

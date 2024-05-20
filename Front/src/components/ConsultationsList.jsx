@@ -11,8 +11,9 @@ import { FinishedConsultations } from "./FinishedConsultations.jsx";
 
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
-  const [results, setresults] = useState([]);
+  const [results, setResults] = useState([]);
   const { isModal, setIsModal } = useContext(FormContext);
+  const [isCreated, setIsCreated] = useState(false);
 
   const { token, user } = useContext(UserTokenContext);
 
@@ -28,12 +29,12 @@ export const ConsultationList = () => {
     );
 
     //actualiza la segunda lista q estan respondidas
-    setresults(result);
+    setResults(result);
   };
 
   //Obtener listado de consultas del back
   useEffect(() => {
-    const feachConsultations = async () => {
+    const fetchConsultations = async () => {
       const resp = await axios.get(`${VITE_BASE_URL}/consultations`, {
         headers: {
           Authorization: `${token}`,
@@ -46,16 +47,18 @@ export const ConsultationList = () => {
       setConsultations(consultation);
 
       //establecer el segundo listado de consultas
-      setresults(consultation);
+      setResults(consultation);
     };
 
-    feachConsultations();
-  }, []);
-
+    fetchConsultations();
+  }, [isCreated]);
+  console.log(isCreated);
   console.log(user);
   return (
     <>
-      {isModal && <ConsultationForm />}
+      {isModal && (
+        <ConsultationForm isCreated={isCreated} setIsCreated={setIsCreated} />
+      )}
 
       <section className="max-lg:pt-10 m-auto  gap-6 items-center max-w-lg">
         <li className="flex justify-start gap-5 bg-white p-5  border-white rounded-3xl shadow-lg w-full mb-4">
