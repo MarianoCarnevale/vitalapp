@@ -1,38 +1,17 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
-import { ConsultationForm } from "./consultations/ConsultationForm.jsx";
 
 import { PendingConsultations } from "./PendingConsultations.jsx";
-import { TramitingConsultations } from "./TramitingConsultations.jsx";
-import { FormContext } from "../contexts/FormContext.jsx";
+
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
-import { FinishedConsultations } from "./FinishedConsultations.jsx";
 
 export const ConsultationList = () => {
   const [consultations, setConsultations] = useState([]);
   const [results, setResults] = useState([]);
-  const { isModal, setIsModal } = useContext(FormContext);
-  const [isCreated, setIsCreated] = useState(false);
 
-  const { token, user } = useContext(UserTokenContext);
+  const { token } = useContext(UserTokenContext);
 
-  //Maneja el sistema de busqueda por palabras
-  const handleSearch = (event) => {
-    const word = event.target.value;
-
-    //convierte todo a lowercase y lo compara
-    const result = consultations.filter((consultation) =>
-      Object.values(consultation).some((value) =>
-        value?.toString().toLowerCase().includes(word.toLowerCase())
-      )
-    );
-
-    //actualiza la segunda lista q estan respondidas
-    setResults(result);
-  };
-
-  //Obtener listado de consultas del back
   useEffect(() => {
     const fetchConsultations = async () => {
       const resp = await axios.get(`${VITE_BASE_URL}/consultations`, {
@@ -51,48 +30,12 @@ export const ConsultationList = () => {
     };
 
     fetchConsultations();
-  }, [isCreated]);
-  console.log(isCreated);
-  console.log(user);
+  }, []);
+
   return (
     <>
-      {isModal && (
-        <ConsultationForm isCreated={isCreated} setIsCreated={setIsCreated} />
-      )}
-
       <section className="max-lg:pt-10 m-auto  gap-6 items-center max-w-lg">
-        <li className="flex justify-start gap-5 bg-white p-5  border-white rounded-3xl shadow-lg w-full mb-4">
-          <img src="/images/search-icon.svg" alt="input icon" />
-          <input
-            className="w-full"
-            type="text"
-            placeholder="Busca una consulta..."
-            onChange={handleSearch}
-          />
-        </li>
         <PendingConsultations consultations={consultations} results={results} />
-
-        {user.role === "patient" && (
-          <div className="my-5 list-none text-center m-auto w-full bg-primary gap-5 shadow-xl p-6 font-bold rounded-3xl">
-            <button
-              className="items-center w-full bg-white m-2 gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
-              onClick={() => {
-                setIsModal(true);
-              }}
-            >
-              Crear tu consulta
-            </button>
-          </div>
-        )}
-        <TramitingConsultations
-          consultations={consultations}
-          results={results}
-        />
-
-        <FinishedConsultations
-          consultations={consultations}
-          results={results}
-        />
       </section>
     </>
   );

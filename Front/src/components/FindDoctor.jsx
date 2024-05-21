@@ -32,7 +32,7 @@ export const FindDoctor = () => {
   };
 
   return (
-    <section className=" m-auto flex flex-col gap-5 items-center max-lg:max-w-md">
+    <section className="max-w-lg m-auto flex flex-col gap-5 items-center ">
       {user && (
         <p className="mr-auto text-primary text-3xl font-semibold">
           Busca a tus médicos
