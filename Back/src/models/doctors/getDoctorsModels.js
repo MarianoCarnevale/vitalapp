@@ -8,6 +8,7 @@ export const getDoctorsModel = async (doctor_id) => {
     const [doctors] = await pool.query(`
     SELECT 
 u.user_id,
+u.avatar,
 doc.doctor_id,
 u.email,
 u.username,

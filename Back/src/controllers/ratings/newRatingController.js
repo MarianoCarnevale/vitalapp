@@ -1,3 +1,4 @@
+import { selectResponseByIdModel } from '../../models/responses/selectResponseByIdModel.js';
 import { ratingSchema } from '../../schemas/ratings/ratingsSchema.js';
 import { insertRatingService } from '../../services/ratings/insertRatingService.js';
 import { generateError } from '../../utils/errors/generateError.js';
@@ -7,6 +8,14 @@ export const newRatingController = async (req, res, next) => {
   try {
     const { response_id } = req.params;
     const user_id = req.user.id;
+
+    const [response] = await selectResponseByIdModel(response_id);
+    console.log(response);
+    const userResponseId = response.user_id;
+    console.log(userResponseId);
+    if (userResponseId === user_id) {
+      throw generateError('No puedes votar tu propia respuesta', 401);
+    }
 
     if (!response_id || !user_id) {
       throw generateError('Error al valorar la respuesta', 400);
