@@ -41,8 +41,25 @@ export const recoverPassController = async (req, res, next) => {
     const emailSubject = 'Recupera tu contraseña en tu cuenta vitalApp';
 
     // Creamos el cuerpo del email de verificación.
-    const emailText = `
-    <p>Para restablecer tu cuenta pulsa en este <a href="${process.env.RECOVERY_URL}/${recoveryCode}">enlace</a></p>    `;
+    const emailText = `<table width="100%" style="font-family: Arial, sans-serif; text-align:center;">
+    <tr>
+      <td>
+        <h2 style="color: #0398ae; margin: 0;">
+          ¡Bienvenid@ ${user.username} a VitalApp!
+        </h2>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      Recibimos una solicitud para restablecer la contraseña de tu cuenta. Si no realizaste esta solicitud, por favor ignora este correo. De lo contrario, haz click en el siguiente enlace:
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-top: 20px;">
+      <a href="${process.env.RECOVERY_URL}/${recoveryCode}" style="background-color: #0398ae; color: #fff; padding: 10px 20px; text-decoration: none;">Nueva contraseña</a>
+      </td>
+    </tr>
+  </table>`;
 
     // Enviamos el email de verificación.
     await sendEmailUtil(email, emailSubject, emailText);

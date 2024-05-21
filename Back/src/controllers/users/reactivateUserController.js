@@ -49,8 +49,7 @@ export const reactivateUserController = async (req, res, next) => {
       </tr>
       <tr>
         <td style="padding-top: 20px;">
-          <a href="${process.env.VALIDATION_URL}/${user.validation_code}" style="background-color: #0398ae; color: #fff; padding: 10px 20px; text-decoration: none;">Activa tu cuenta
-          </a>
+          <a href="${process.env.VALIDATION_URL}/${user.validation_code}" style="background-color: #0398ae; color: #fff; padding: 10px 20px; text-decoration: none;">Activa tu cuenta</a>
         </td>
       </tr>
     </table>
