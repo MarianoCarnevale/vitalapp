@@ -4,7 +4,7 @@ export const deleteResponseController = async (req, res, next) => {
   try {
     // Obtener el id del usuario.
     const user_id = req.user.id;
-    console.log(user_id);
+
     // Obtener el id de la respuesta.
     const { response_id, consultation_id } = req.params;
 
@@ -19,3 +19,4 @@ export const deleteResponseController = async (req, res, next) => {
     next(error);
   }
 };
+

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { VITE_BASE_URL } from "../config/env.js";
 import axios from "axios";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const useResponses = (consultation) => {
   const [responses, setResponses] = useState([]);
@@ -12,26 +13,30 @@ export const useResponses = (consultation) => {
   const { register, handleSubmit, reset } = useForm();
 
   const OnSubmit = handleSubmit(async (data) => {
-    const resp = await axios.post(
-      `${VITE_BASE_URL}/responses/${consultation.consultation_id}`,
-      {
-        content: `${data.content}`,
-      },
-      {
-        headers: {
-          Authorization: `${token}`,
+    try {
+      const resp = await axios.post(
+        `${VITE_BASE_URL}/responses/${consultation.consultation_id}`,
+        {
+          content: `${data.content}`,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
 
-    if (resp.data.status === "ok") {
-      toast.success("Respuesta creada");
-    } else {
+      if (resp.data.status === "ok") {
+        toast.success("Respuesta creada");
+        reset();
+      } else {
+        toast.error("Error al crear respuesta");
+      }
+    } catch (error) {
       toast.error("Error al crear respuesta");
     }
 
     fetchResponses();
-    reset();
   });
   const fetchResponses = async () => {
     try {
@@ -49,12 +54,12 @@ export const useResponses = (consultation) => {
       setResponses(responses_array);
     } catch (error) {
       console.error(error);
-      setResponses([]);
     }
   };
   return {
     responses,
     user,
+    reset,
     register,
     OnSubmit,
     fetchResponses,
