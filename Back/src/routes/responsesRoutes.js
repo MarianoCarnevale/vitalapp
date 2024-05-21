@@ -23,12 +23,17 @@ responsesRouter.post(
 );
 
 // Ver todas las respuestas de una consulta
-responsesRouter.get('/responses/:consultation_id', authUserController, getAllResponsesController);
+responsesRouter.get(
+  '/responses/:consultation_id',
+  authUserController,
+  getAllResponsesController
+);
 
 // Modificar una respuesta
 responsesRouter.put(
-  '/responses/:response_id', 
-  authUserController, isOwnerController,
+  '/responses/:response_id',
+  authUserController,
+  isOwnerController,
   responseExistsController,
   updateResponseController
 );
@@ -36,7 +41,8 @@ responsesRouter.put(
 // Borrar una respuesta
 responsesRouter.delete(
   '/consultations/:consultation_id/responses/:response_id',
-  authUserController, isOwnerController,
+  authUserController,
+  isOwnerController,
   responseExistsController,
   deleteResponseController
 );
