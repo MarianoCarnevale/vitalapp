@@ -31,20 +31,20 @@ export const FindPatient = () => {
 
   // console.log(doctors);
   return (
-    <section className=" lg:w-full m-auto flex flex-col gap-6 items-center max-lg:max-w-md">
-      <p className="mr-auto text-3xl  text-primary font-semibold">
+    <section className="max-lg:max-w-lg lg:w-full m-auto flex flex-col gap-6 items-center">
+      <p className="mr-auto text-3xl  text-primary font-semibold dark:text-white">
         Busca a tus pacientes
       </p>
-      <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
+      <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary dark:border-none rounded-3xl dark:bg-sky-800">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="w-full"
+          className="dark:bg-sky-800 w-full dark:placeholder:text-white"
           type="text"
           placeholder="Busca un paciente..."
           onChange={(e) => setName(e.target.value.toLowerCase())}
         />
       </div>
-      <ul className="w-full flex flex-col gap-5 bg-white p-5 border-white rounded-3xl max-h-64 overflow-auto hide-scrollbar shadow-lg">
+      <ul className="w-full flex flex-col gap-5 max-h-72 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
         {patients
           .filter((patient) => patient.first_name.toLowerCase().includes(name))
           .sort((a, b) =>
@@ -56,7 +56,7 @@ export const FindPatient = () => {
             return (
               <Link to={`/users/${patient.user_id}`} key={patient.user_id}>
                 <li
-                  className="flex justify-between items-center hover:shadow-md  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                  className="flex justify-between items-center hover:shadow-md  gap-5 shadow-xl p-4 dark:text-white text-primary font-bold rounded-3xl"
                   key={patient.user_id}
                 >
                   {patient.first_name} {patient.first_surname}

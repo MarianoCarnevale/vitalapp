@@ -11,8 +11,9 @@ export const insertRatingService = async (data) => {
       `SELECT * FROM ratings WHERE user_id = ? AND response_id = ?`,
       [data.user_id, data.response_id]
     );
-    if (response) {
-      throw generateError('Error! , ya has valorado esta respuesta', 401);
+    console.log(response[0]);
+    if (response[0].length > 0) {
+      throw generateError('Error! Ya has valorado esta respuesta', 401);
     }
     // Creamos una id para la respuesta.
     const newRating_id = crypto.randomUUID();

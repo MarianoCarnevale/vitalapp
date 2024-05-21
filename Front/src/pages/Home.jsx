@@ -1,5 +1,8 @@
 import { useContext } from "react";
 import { UserTokenContext } from "../contexts/UserTokenContext";
+import axios from "axios";
+import { VITE_BASE_URL } from "../config/env";
+import { useEffect, useState } from "react";
 
 import { FindDoctor } from "../components/FindDoctor.jsx";
 import { FindPatient } from "../components/FindPatient.jsx";
@@ -8,8 +11,33 @@ import { NavLink } from "react-router-dom";
 
 import { ConsultationList } from "../components/ConsultationsList.jsx";
 import { ToastContainer } from "react-toastify";
+import { SearchConsultation } from "../components/SearchConsultation.jsx";
 
 const Home = () => {
+  const [consultations, setConsultations] = useState([]);
+  const [results, setResults] = useState([]);
+  const { token } = useContext(UserTokenContext);
+
+  useEffect(() => {
+    const fetchConsultations = async () => {
+      const resp = await axios.get(`${VITE_BASE_URL}/consultations`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      const consultation = Object.values(resp.data.data.consultations);
+
+      //se separan por un filter en la opcion pendin
+      //establecer el listado de consultas
+      setConsultations(consultation);
+
+      //establecer el segundo listado de consultas
+      setResults(consultation);
+    };
+
+    fetchConsultations();
+  }, []);
+
   const { user } = useContext(UserTokenContext);
   return user ? (
     <section className="mb-40">
@@ -21,16 +49,14 @@ const Home = () => {
         <DateNow />
         <hr className="bg-primary w-5/6 m-auto my-5" />
       </div>
-      <div className="w-5/6 m-auto lg:grid lg:grid-rows-1 lg:grid-cols-2 lg:grid-flow-col lg:gap-10 max-lg:flex max-lg:flex-col max-lg:gap-5 ">
-        <div className="row-span-3 ">
+      <div className="w-5/6 max-lg:max-w-lg m-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div>
           <ConsultationList />
         </div>
-        <div className="row-span-2">
-          {user.role === "doctor" ? <FindPatient /> : <FindDoctor />}
+        <div>
+          <SearchConsultation consultations={consultations} results={results} />
         </div>
-        <div className="">
-          <FindDoctor />
-        </div>
+        <div>{user.role === "doctor" ? <FindPatient /> : <FindDoctor />}</div>
       </div>
     </section>
   ) : (

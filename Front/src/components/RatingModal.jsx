@@ -34,7 +34,10 @@ export const RatingModal = ({ modalData, setIsModal }) => {
           },
         }
       );
-      setIsModal(false);
+      toast.success("Valoración enviada correctamente")
+      setTimeout(() => {
+        setIsModal(false);
+      }, 1500);
     } catch (error) {
       toast.error(error.response.data.message);
       setTimeout(() => {
