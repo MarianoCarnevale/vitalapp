@@ -20,13 +20,13 @@ consultationsRouter.post(
   newConsultationsController
 );
 
-//Borrar consulta
-consultationsRouter.delete(
-  '/consultations/:consultation_id',
-  authUserController,
-  userValidationController,
-  deleteConsultationController
-);
+// //Borrar consulta
+// consultationsRouter.delete(
+//   '/consultations/:consultation_id',
+//   authUserController,
+//   userValidationController,
+//   deleteConsultationController
+// );
 
 //Conseguir todas las consultas
 consultationsRouter.get(
@@ -39,7 +39,6 @@ consultationsRouter.get(
 consultationsRouter.get(
   '/consultations/:consultation_id',
   authUserController,
-  userValidationController,
   oneConsultationControler
 );
 
@@ -50,13 +49,13 @@ consultationsRouter.post(
   ConsultationFileController
 );
 
-//actualizar consulta
-consultationsRouter.put(
-  '/consultations/update/:consultation_id',
-  authUserController,
-  userValidationController,
-  ConsultationFileController
-);
+// //actualizar consulta
+// consultationsRouter.put(
+//   '/consultations/update/:consultation_id',
+//   authUserController,
+//   userValidationController,
+//   ConsultationFileController
+// );
 
 //borrar archivo de consulta
 
