@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { Link } from "react-router-dom";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import { Rating } from "@mui/material";
 
 export const FindDoctor = () => {
   const { user } = useContext(UserTokenContext);
@@ -30,6 +31,8 @@ export const FindDoctor = () => {
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+
+  console.log(doctors);
 
   return (
     <section className="max-w-lg m-auto flex flex-col gap-5 items-center ">
@@ -116,6 +119,12 @@ export const FindDoctor = () => {
                   <p className="border-primary text-white text-sm rounded-2xl bg-primary dark:bg-sky-800 p-2 order-1">
                     {doctor.discipline_name}
                   </p>
+                  <Rating
+                    name="rating"
+                    value={+doctor.avg_rating}
+                    precision={0.5}
+                    readOnly
+                  />
                 </li>
               </Link>
             ) : (
