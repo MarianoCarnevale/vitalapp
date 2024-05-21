@@ -43,9 +43,9 @@ const Home = () => {
     <section className="mb-40">
       <ToastContainer autoClose={1500} />
       <div className="lg:hidden">
-        <h1 className="w-5/6 max-w-md m-auto text-primary font-bold text-3xl mt-10 lg:mt-0">
+        <p className="w-5/6 max-w-md m-auto text-primary dark:text-white font-bold text-3xl mt-10 lg:mt-0">
           Hoy
-        </h1>
+        </p>
         <DateNow />
         <hr className="bg-primary w-5/6 m-auto my-5" />
       </div>

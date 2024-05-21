@@ -48,7 +48,7 @@ export const ConsultationForm = () => {
       <sections className="">
         <div className="w-full max-w-lg my-5 list-none text-center m-auto bg-gradient-to-b from-primary to-slate-600 gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 shadow-xl p-6 font-bold rounded-3xl">
           <button
-            className="items-center w-full bg-white gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
+            className="items-center w-full  bg-white gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
             onClick={() => {
               setIsModalOpen(true);
             }}
@@ -69,7 +69,7 @@ export const ConsultationForm = () => {
                 className="flex flex-col gap-7
       overflow-hidden transform transition-all bg-white dark:bg-slate-700 p-8 mt-32  rounded-lg"
               >
-                <h1 className="text-3xl font-bold text-primary mb-10 max-lg:pt-10 ">
+                <h1 className="text-3xl font-bold dark:text-white text-primary mb-10 max-lg:pt-10 ">
                   Crea tu consulta
                 </h1>
                 <li className="list-none w-full">

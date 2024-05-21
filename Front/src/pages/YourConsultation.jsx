@@ -72,26 +72,28 @@ const YourConsultation = () => {
     <>
       <ToastContainer autoClose={1500} />
 
-      <section className="z-10 items-center lg:w-full m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
-        <p className=" text-primary text-3xl font-semibold mb-5">Tu consulta</p>
-        <div className="flex justify-center w-full gap-4">
-          <p
-            className={`border border-primary text-primary py-2 px-6 rounded-full ${
-              consultation.is_pending
-                ? "bg-primary font-bold text-white"
+      <section className="z-10 w-4/6 items-center lg:w-full m-auto flex flex-col lg:flex-row max-lg:w-full">
+        <div className="w-5/6 max-w-lg m-auto dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 my-5 py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
+          <div className="flex justify-center w-full gap-4">
+            <p className=" text-primary dark:text-white text-3xl font-semibold mb-5">
+              Tu consulta
+            </p>
+            <p
+              className={`border border-primary text-primary py-2 px-6 rounded-full ${
+                consultation.is_pending
+                  ? "bg-primary font-bold text-white"
+                  : consultation.is_active
+                  ? "bg-green-500 text-white border-0 font-bold"
+                  : "bg-secondary text-white border-0 font-bold"
+              }`}
+            >
+              {consultation.is_pending
+                ? "Pendiente"
                 : consultation.is_active
-                ? "bg-green-500 text-white border-0 font-bold"
-                : "bg-secondary text-white border-0 font-bold"
-            }`}
-          >
-            {consultation.is_pending
-              ? "Pendiente"
-              : consultation.is_active
-              ? "En trámite"
-              : "Finalizada"}
-          </p>
-        </div>
-        <div className="dark:bg-slate-700 my-5 w-5/6 max-w-lg py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
+                ? "En trámite"
+                : "Finalizada"}
+            </p>
+          </div>
           <p className="dark:text-white text-2xl text-primary font-bold">
             {consultation.title}
           </p>

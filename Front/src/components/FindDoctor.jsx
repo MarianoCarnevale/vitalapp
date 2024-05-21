@@ -3,8 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { Link } from "react-router-dom";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
-import { Rating } from "@mui/material";
-
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
 export const FindDoctor = () => {
   const { user } = useContext(UserTokenContext);
   const [doctors, setDoctors] = useState([]);
@@ -45,7 +44,7 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterCaracter
-              ? "bg-primary dark:bg-sky-800 text-white  shadow-md hover:shadow-sm "
+              ? "bg-gradient-to-b from-primary to-slate-600 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm "
               : "bg-white dark:bg-slate-700 shadow-xl"
           } flex-grow text-primary dark:text-white py-2 px-6  font-semibold rounded-full`}
           onClick={() => {
@@ -58,9 +57,9 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterDisciplines
-              ? "bg-primary dark:bg-sky-800 text-white  shadow-md hover:shadow-sm"
+              ? "bg-gradient-to-b from-primary to-slate-600 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm"
               : "bg-white dark:bg-slate-700 shadow-xl "
-          } flex-grow dark:text-white text-primary dark:text-white font-semibold py-2 px-6 rounded-full duration-500`}
+          } flex-grow dark:text-white text-primary  font-semibold py-2 px-6 rounded-full duration-500`}
           onClick={() => {
             setFilterDisciplines(true);
             setFilterCaracter(false);
@@ -72,7 +71,7 @@ export const FindDoctor = () => {
       <div className="border flex gap-2 items-center p-4 bg-white dark:bg-sky-800 w-full   border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="w-full dark:bg-sky-800 dark:text-white placeholder:text-white  "
+          className="w-full dark:bg-sky-800 dark:text-white dark:placeholder:text-white  "
           type="text"
           placeholder={
             filterDisciplines
@@ -104,11 +103,11 @@ export const FindDoctor = () => {
             return user ? (
               <Link to={`/doctor/${doctor.doctor_id}`} key={doctor.user_id}>
                 <li
-                  className="flex justify-between items-center   gap-5 hover:shadow-md  shadow-xl p-4 text-primary dark:text-white font-bold rounded-3xl"
+                  className="flex justify-start items-center   gap-5 hover:shadow-md  shadow-xl p-4 text-primary dark:text-white font-bold rounded-3xl"
                   key={doctor.user_id}
                 >
                   <p
-                    className={`${
+                    className={`grow text- ${
                       filterDisciplines
                         ? doctor.discipline_name + " order-2"
                         : "order-1"
@@ -116,25 +115,23 @@ export const FindDoctor = () => {
                   >
                     {doctor.first_name} {doctor.first_surname}
                   </p>
-                  <p className="border-primary text-white text-sm rounded-2xl bg-primary dark:bg-sky-800 p-2 order-1">
+                  <p className="border-primary text-white text-sm rounded-2xl bg-gradient-to-b from-primary to-slate-600 dark:bg-sky-800 p-2 order-1">
                     {doctor.discipline_name}
                   </p>
-                  <Rating
-                    name="rating"
-                    value={+doctor.avg_rating}
-                    precision={0.5}
-                    readOnly
-                  />
-                  <p>
-                    <img
-                      src={
-                        doctor.avatar
-                          ? `${VITE_BASE_URL}/users/${doctor.user_id}/${doctor.avatar}`
-                          : "/images/Avatar.svg"
-                      }
-                      alt={`Foto de perfil de ${doctor.first_name}`}
-                    />
+                  <p className="flex justify-center items-center w-14 h-10 order-3 bg-gradient-to-b from-primary to-slate-600 dark:bg-sky-800 rounded-full text-white">
+                    {+doctor.avg_rating}
+                    <StarRoundedIcon color="white" />
                   </p>
+
+                  <img
+                    className="w-10 h-10 order-4 rounded-full max-lg:hidden"
+                    src={
+                      doctor.avatar
+                        ? `${VITE_BASE_URL}/users/${doctor.user_id}/${doctor.avatar}`
+                        : "/images/Avatar.svg"
+                    }
+                    alt={`Foto de perfil de ${doctor.first_name}`}
+                  />
                 </li>
               </Link>
             ) : (
