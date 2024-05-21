@@ -18,11 +18,11 @@ export const SearchConsultation = ({ consultations }) => {
   });
 
   return (
-    <div className="max-w-lg lg:w-full m-auto">
-      <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary rounded-3xl">
+    <div className="m-auto  w-full lg:mt-14">
+      <div className="flex dark:border-none border gap-2 items-center p-4 bg-white dark:bg-sky-800 w-full  border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="w-full"
+          className="w-full dark:bg-sky-800 dark:text-white dark:placeholder:text-white"
           type="text"
           placeholder="Busca una consulta..."
           value={searchTerm}
@@ -30,7 +30,7 @@ export const SearchConsultation = ({ consultations }) => {
         />
       </div>
 
-      <ul className="w-full flex flex-col gap-5 max-h-72 dark:bg-slate-700 bg-white p-5 my-5 border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
+      <ul className="lg:w-full flex flex-col gap-5 max-h-72 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 my-5 border-white rounded-3xl h-full overflow-auto hide-scrollbar shadow-lg">
         {filteredResults.length === 0 && (
           <p>No existen consultas pendientes.</p>
         )}
@@ -43,7 +43,7 @@ export const SearchConsultation = ({ consultations }) => {
                 className="text-white font-semibold list-none"
               >
                 <li
-                  className="flex justify-between items-center hover:shadow-md shadow-xl p-4 text-primary font-bold rounded-3xl"
+                  className="flex justify-between items-center hover:shadow-md shadow-xl p-4 text-primary dark:text-white font-bold rounded-3xl"
                   key={consultation.consultation_id}
                 >
                   <p className="w-1/3">

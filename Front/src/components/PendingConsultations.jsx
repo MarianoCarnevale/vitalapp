@@ -13,14 +13,14 @@ export const PendingConsultations = (children) => {
         return "bg-red-500";
     }
   };
-  console.log(children.results[0]);
+
   return (
     <>
       <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
-        <p className=" w-5/6 text-left  text-primary font-semibold text-3xl mb-5 ">
+        <p className=" w-5/6 text-left  text-primary dark:text-white font-semibold text-3xl mb-5 ">
           Consultas Pendientes
         </p>
-        <ul className="w-full max-h-[22rem] flex flex-col gap-5 dark:bg-slate-700  bg-white p-5 my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
+        <ul className="w-full max-h-[22rem] flex flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
           {children.results.filter((result) => result.is_pending === 1)
             .length === 0 && <p>No existen consultas pendientes.</p>}
           {children.consultations.filter(
@@ -36,10 +36,10 @@ export const PendingConsultations = (children) => {
                     className="text-white font-semibold list-none"
                   >
                     <li
-                      className="flex justify-between items-center  gap-2 hover:shadow-md shadow-xl p-4 text-primary font-bold rounded-3xl"
+                      className="flex justify-between items-center hover:shadow-md shadow-xl p-4 text-primary dark:text-white font-bold rounded-3xl"
                       key={consultation.consultation_id}
                     >
-                      <p>
+                      <p className="w-1/3">
                         {consultation.first_name} {consultation.last_name}
                       </p>
                       <p

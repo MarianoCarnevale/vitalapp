@@ -5,7 +5,7 @@ export const FinishedConsultations = (children) => {
   return (
     <>
       <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
-        <p className=" w-5/6 text-left text-primary font-semibold text-3xl ">
+        <p className=" w-5/6 text-left dark:text-white text-primary font-semibold text-3xl ">
           Consultas Finalizadas
         </p>
         <ul className="w-full flex flex-col gap-5 dark:bg-slate-700  bg-white p-5 my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">

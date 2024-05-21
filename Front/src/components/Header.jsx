@@ -59,7 +59,7 @@ const Header = () => {
     };
   }, [lastScrollTop]);
   return user ? (
-    <header className="dark:bg-slate-700  z-20 w-full shadow-sm fixed bg-primary bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
+    <header className="dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  z-20 w-full shadow-sm fixed  bg-gradient-to-b from-primary to-slate-700 bg-cover bg-center lg:max-w-60 lg:h-dvh ">
       <button
         className={`rounded-full w-10 h-10 bg-primary absolute mt-36 max-lg:ml-[85%] lg:ml-[20rem] transition-all duration-300 ${
           isScrolledDown ? "opacity-0 pointer-events-none" : "opacity-100"
