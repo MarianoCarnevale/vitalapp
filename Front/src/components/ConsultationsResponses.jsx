@@ -22,7 +22,7 @@ export const ConsultationsResponses = (consultation) => {
     setModalData({ response_id });
     setIsModal(true);
   };
-  console.log(responses);
+
   return (
     <>
       {isModal && <RatingModal modalData={modalData} setIsModal={setIsModal} />}
