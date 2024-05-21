@@ -34,7 +34,7 @@ export const FindDoctor = () => {
   return (
     <section className="max-w-lg m-auto flex flex-col gap-5 items-center ">
       {user && (
-        <p className="mr-auto text-primary text-3xl font-semibold">
+        <p className="mr-auto text-primary dark:text-white text-3xl font-semibold">
           Busca a tus médicos
         </p>
       )}
@@ -42,9 +42,9 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterCaracter
-              ? "bg-primary text-white  shadow-md hover:shadow-sm "
+              ? "bg-primary dark:bg-sky-800 text-white  shadow-md hover:shadow-sm "
               : "bg-white dark:bg-slate-700 shadow-xl"
-          } flex-grow text-primary py-2 px-6  font-semibold rounded-full`}
+          } flex-grow text-primary dark:text-white py-2 px-6  font-semibold rounded-full`}
           onClick={() => {
             setFilterCaracter(true);
             setFilterDisciplines(false);
@@ -55,9 +55,9 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterDisciplines
-              ? "bg-primary text-white  shadow-md hover:shadow-sm"
+              ? "bg-primary dark:bg-sky-800 text-white  shadow-md hover:shadow-sm"
               : "bg-white dark:bg-slate-700 shadow-xl "
-          } flex-grow dark:text-white text-primary font-semibold py-2 px-6 rounded-full duration-500`}
+          } flex-grow dark:text-white text-primary dark:text-white font-semibold py-2 px-6 rounded-full duration-500`}
           onClick={() => {
             setFilterDisciplines(true);
             setFilterCaracter(false);
@@ -66,10 +66,10 @@ export const FindDoctor = () => {
           Especialidades
         </button>
       </div>
-      <div className="border flex gap-2 items-center p-4 bg-white dark:bg-slate-700 w-full   border-primary rounded-3xl">
+      <div className="border flex gap-2 items-center p-4 bg-white dark:bg-sky-800 w-full   border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="w-full dark:bg-slate-700   "
+          className="w-full dark:bg-sky-800 dark:text-white placeholder:text-white  "
           type="text"
           placeholder={
             filterDisciplines
@@ -80,7 +80,7 @@ export const FindDoctor = () => {
         />
       </div>
 
-      <ul className="dark:bg-slate-700  w-full flex flex-col gap-5 bg-white p-5  border-white rounded-3xl h-fit max-h-72 overflow-auto hide-scrollbar shadow-lg">
+      <ul className="lg:w-full flex flex-col gap-5 max-h-72 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 my-5 border-white rounded-3xl h-full overflow-auto hide-scrollbar shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter
@@ -101,7 +101,7 @@ export const FindDoctor = () => {
             return user ? (
               <Link to={`/doctor/${doctor.doctor_id}`} key={doctor.user_id}>
                 <li
-                  className="flex justify-between items-center   gap-5 hover:shadow-md  shadow-xl p-4 text-primary font-bold rounded-3xl"
+                  className="flex justify-between items-center   gap-5 hover:shadow-md  shadow-xl p-4 text-primary dark:text-white font-bold rounded-3xl"
                   key={doctor.user_id}
                 >
                   <p
@@ -113,7 +113,7 @@ export const FindDoctor = () => {
                   >
                     {doctor.first_name} {doctor.first_surname}
                   </p>
-                  <p className="border-primary text-white text-sm rounded-2xl bg-primary p-2 order-1">
+                  <p className="border-primary text-white text-sm rounded-2xl bg-primary dark:bg-sky-800 p-2 order-1">
                     {doctor.discipline_name}
                   </p>
                 </li>
@@ -121,7 +121,7 @@ export const FindDoctor = () => {
             ) : (
               <li
                 onClick={handleOpenModal}
-                className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary font-bold rounded-3xl"
+                className="flex justify-between items-center  gap-5 shadow-xl p-4 text-primary dark:text-white font-bold rounded-3xl"
                 key={doctor.user_id}
               >
                 <p
@@ -133,7 +133,7 @@ export const FindDoctor = () => {
                 >
                   {doctor.first_name} {doctor.first_surname}
                 </p>
-                <p className="border-primary text-white text-sm rounded-2xl bg-primary p-2 order-1">
+                <p className="border-primary text-white text-sm rounded-2xl bg-primary dark:bg-sky-800 p-2 order-1">
                   {doctor.discipline_name}
                 </p>
               </li>
@@ -147,17 +147,17 @@ export const FindDoctor = () => {
             className="bg-black bg-opacity-75 w-screen h-screen fixed inset-0 flex "
           >
             <div className="w-5/6 z-20 m-auto bg-white rounded-lg p-6 max-w-lg ">
-              <h3 className="py-3 text-lg leading-6 font-medium text-primary text-center mb-5">
+              <h3 className="py-3 text-lg leading-6 font-medium text-primary dark:text-white text-center mb-5">
                 Para acceder a la información de los médicos, porfavor
                 registrate o logueate en nuestra aplicación
               </h3>
               <ul className="flex gap-5 justify-center">
-                <li className="bg-primary px-4 py-1 rounded-md">
+                <li className="bg-primary dark:bg-sky-800 px-4 py-1 rounded-md">
                   <Link to="/register" className="text-white font-bold">
                     Registro
                   </Link>
                 </li>
-                <li className="bg-primary px-4 py-1 rounded-md">
+                <li className="bg-primary dark:bg-sky-800 px-4 py-1 rounded-md">
                   <Link to="/login" className="text-white font-bold">
                     Login
                   </Link>

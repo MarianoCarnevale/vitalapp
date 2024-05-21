@@ -46,7 +46,7 @@ export const ConsultationForm = () => {
   return (
     user.role === "patient" && (
       <sections className="">
-        <div className="w-full max-w-lg my-5 list-none text-center m-auto bg-gradient-to-b from-primary to-slate-600 gap-5 shadow-xl p-6 font-bold rounded-3xl">
+        <div className="w-full max-w-lg my-5 list-none text-center m-auto bg-gradient-to-b from-primary to-slate-600 gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 shadow-xl p-6 font-bold rounded-3xl">
           <button
             className="items-center w-full bg-white gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
             onClick={() => {
