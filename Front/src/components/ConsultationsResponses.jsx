@@ -5,23 +5,40 @@ import { dateFormat } from "../api/dateFormat.js";
 import StarIcon from "@mui/icons-material/Star";
 import { RatingContext } from "../contexts/RatingContext.jsx";
 import { RatingModal } from "./RatingModal.jsx";
+import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { DeleteResponseModal } from "./DeleteResponseModal.jsx";
 
 export const ConsultationsResponses = (consultation) => {
+  // sacar el user del token
+  const { user } = useContext(UserTokenContext);
+
   const [modalData, setModalData] = useState(null);
+  const [deleteModalData, setDeleteModalData] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const { isModal, setIsModal } = useContext(RatingContext);
+
   const { responses, register, OnSubmit, fetchResponses } =
     useResponses(consultation);
 
   useEffect(() => {
     fetchResponses();
-  }, []);
+  }, [deleteModal]);
 
   const handleClick = (response_id) => {
     setIsModal(!isModal);
     setModalData({ response_id });
     setIsModal(true);
   };
+
+  const handleDeleteResponse = (response_id) => {
+    setDeleteModalData({ response_id, consultation });
+    setDeleteModal(!deleteModal);
+  };
+  // useEffect(() => {
+  //   fetchResponses();
+  // }, [deleteModal]);
 
   return (
     <>
@@ -49,7 +66,8 @@ export const ConsultationsResponses = (consultation) => {
             Enviar
           </button>
         </form>
-        {(responses.length > 0 && (
+
+        {responses.length > 0 && (
           <ul className="w-full flex flex-col gap-5 bg-white p-5 my-5  border-white rounded-3xl max-h-[17rem] overflow-auto hide-scrollbar shadow-lg">
             {responses.map((response) => {
               return (
@@ -85,13 +103,32 @@ export const ConsultationsResponses = (consultation) => {
                     </div>
                     <hr className="border border-primary w-full" />
                     <p>{response.content}</p>
+
+                    {user.user_id === response.user_id &&
+                    user.role === "patient" ? (
+                      <DeleteIcon
+                        onClick={() => {
+                          handleDeleteResponse(response.response_id);
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    {deleteModal && (
+                      <DeleteResponseModal
+                        deleteModalData={deleteModalData}
+                        setDeleteModal={setDeleteModal}
+                        deleteModal={deleteModal}
+                      />
+                    )}
                     <p>{dateFormat(response.created_at)}</p>
                   </div>
                 </li>
               );
             })}
           </ul>
-        )) || (
+        )}
+        {responses.length === 0 && (
           <p className=" text-primary text-2xl font-semibold mb-5">
             No hay respuestas disponibles
           </p>
