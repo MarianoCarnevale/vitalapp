@@ -49,7 +49,7 @@ const Home = () => {
         <DateNow />
         <hr className="bg-primary w-5/6 m-auto my-5" />
       </div>
-      <div className="w-5/6 m-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="w-5/6 max-lg:max-w-lg m-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div>
           <ConsultationList />
         </div>
