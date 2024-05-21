@@ -20,23 +20,41 @@ const YourConsultation = () => {
   const [isDeleted, setIsDeleted] = useState(false);
 
   useEffect(() => {
-    const getConsultation = async () => {
-      const resp = await axios.get(
-        `${VITE_BASE_URL}/consultations/${consultation_id}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const [consultation] = Object.values(resp.data.data.consultations);
-      setConsultation(consultation);
-      console.log(consultation);
-    };
-
+    
     getConsultation();
-  }, []);
-
+  }, [consultation]);
+  
+  const getConsultation = async () => {
+     const resp = await axios.get(
+       `${VITE_BASE_URL}/consultations/${consultation_id}`,
+       {
+         headers: {
+           Authorization: `${token}`,
+         },
+       }
+     );
+     const [consultation] = Object.values(resp.data.data.consultations);
+     setConsultation(consultation);
+     console.log(consultation);
+   };
+   
+   const handelEndConsultation = async () => { 
+       try {
+         const resp = await axios.post(`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/end`,{
+             headers:{ 
+               Authorization: `${token}`,
+             },
+         })
+ 
+         if (resp.data.status === "Success") {
+           getConsultation()
+           toast.success("Consulta finalizada correctamente")
+         }
+       } catch (error) {
+         toast.error("Error al modificar la consulta")
+       }
+  }
+  
   const getStatusClass = (status) => {
     switch (status) {
       case "low":
@@ -68,6 +86,8 @@ const YourConsultation = () => {
   };
 
   const date = dateFormat(consultation.created_at);
+      console.log(`Consulta finalizada : ${consultation.is_active} consulta pendiente: ${consultation.is_pending}`);
+
   return (
     <>
       <ToastContainer autoClose={1500} />
@@ -197,6 +217,13 @@ const YourConsultation = () => {
           <p className="w-5/6  max-lg:max-w-md text-sm text-center text-secondary dark:text-slate-300">
             {date}
           </p>
+          {(user.first_name === consultation.doctor_Name &&
+            consultation.is_pending === 0&&
+            consultation.is_active === 1) &&
+            <><button
+            className="border bg-primary active:border-primary active:bg-white active:text-primary text-white py-2 px-6 rounded-full"
+            onClick={handelEndConsultation}
+            >Finalizar Consulta</button></>}
         </div>
 
         <ConsultationsResponses
