@@ -69,7 +69,7 @@ const Header = () => {
         <ChevronLeftRoundedIcon color="white" />
       </button>
       <nav>
-        <ul className="flex p-4 items-center gap-4  max-w-screen-xl m-auto h-24 mt-6 lg:h-screen lg:flex-col lg:items-start  ">
+        <ul className="flex p-4 items-center gap-4  max-w-screen-xl m-auto h-24 max-lg:mt-6 lg:h-screen lg:flex-col lg:items-start  ">
           <li className="list-none lg:hidden ">
             <NavLink to="/">
               <img
