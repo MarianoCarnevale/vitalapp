@@ -69,6 +69,14 @@ const ProfileDoctor = () => {
             <h3 className="text-lg text-secondary font-semibold">
               {doctor.discipline_name}
             </h3>
+            {doctor.avg_rating && (
+              <Rating
+                name="rating"
+                value={+doctor.avg_rating}
+                precision={0.5}
+                readOnly
+              />
+            )}
             <h3 className=" font-semibold text-right text-primary text-md">
               Email
             </h3>
@@ -95,19 +103,6 @@ const ProfileDoctor = () => {
                   Biografía
                 </h3>
                 <p className="text-secondary">{doctor.bio}</p>
-              </>
-            )}
-            {doctor.avg_rating && (
-              <>
-                <h3 className=" font-semibold text-right text-primary text-md">
-                  Biografía
-                </h3>
-                <Rating
-                  name="rating"
-                  value={+doctor.avg_rating}
-                  precision={0.5}
-                  readOnly
-                />
               </>
             )}
             {doctor.experience && (
