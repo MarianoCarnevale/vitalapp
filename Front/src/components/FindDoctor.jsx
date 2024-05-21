@@ -125,6 +125,16 @@ export const FindDoctor = () => {
                     precision={0.5}
                     readOnly
                   />
+                  <p>
+                    <img
+                      src={
+                        doctor.avatar
+                          ? `${VITE_BASE_URL}/users/${doctor.user_id}/${doctor.avatar}`
+                          : "/images/Avatar.svg"
+                      }
+                      alt={`Foto de perfil de ${doctor.first_name}`}
+                    />
+                  </p>
                 </li>
               </Link>
             ) : (

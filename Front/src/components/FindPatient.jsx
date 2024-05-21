@@ -59,7 +59,19 @@ export const FindPatient = () => {
                   className="flex justify-between items-center hover:shadow-md  gap-5 shadow-xl p-4 dark:text-white text-primary font-bold rounded-3xl"
                   key={patient.user_id}
                 >
-                  {patient.first_name} {patient.first_surname}
+                  <p>
+                    {patient.first_name} {patient.first_surname}
+                  </p>
+                  <p>
+                    <img
+                      src={
+                        patient.avatar
+                          ? `${VITE_BASE_URL}/users/${patient.user_id}/${patient.avatar}`
+                          : "/images/Avatar.svg"
+                      }
+                      alt={`Foto de perfil de ${patient.first_name}`}
+                    />
+                  </p>
                 </li>
               </Link>
             );
