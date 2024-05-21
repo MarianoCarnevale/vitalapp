@@ -5,17 +5,26 @@ import { dateFormat } from "../api/dateFormat.js";
 import StarIcon from "@mui/icons-material/Star";
 import { RatingContext } from "../contexts/RatingContext.jsx";
 import { RatingModal } from "./RatingModal.jsx";
+import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { DeleteResponseModal } from "./DeleteResponseModal.jsx";
 
 export const ConsultationsResponses = (consultation) => {
+  // sacar el user del token
+  const { user } = useContext(UserTokenContext);
+
   const [modalData, setModalData] = useState(null);
+  const [deleteModalData, setDeleteModalData] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const { isModal, setIsModal } = useContext(RatingContext);
+
   const { responses, register, OnSubmit, fetchResponses } =
     useResponses(consultation);
 
   useEffect(() => {
     fetchResponses();
-  }, []);
+  }, [deleteModal]);
 
   const handleClick = (response_id) => {
     setIsModal(!isModal);
@@ -23,6 +32,10 @@ export const ConsultationsResponses = (consultation) => {
     setIsModal(true);
   };
 
+  const handleDeleteResponse = (response_id) => {
+    setDeleteModalData({ response_id, consultation });
+    setDeleteModal(!deleteModal);
+  };
   return (
     <>
       {isModal && <RatingModal modalData={modalData} setIsModal={setIsModal} />}
@@ -85,6 +98,24 @@ export const ConsultationsResponses = (consultation) => {
                     </div>
                     <hr className="border border-primary w-full" />
                     <p>{response.content}</p>
+
+                    {user.user_id === response.user_id &&
+                    user.role === "patient" ? (
+                      <DeleteIcon
+                        onClick={() => {
+                          handleDeleteResponse(response.response_id);
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    {deleteModal && (
+                      <DeleteResponseModal
+                        deleteModalData={deleteModalData}
+                        setDeleteModal={setDeleteModal}
+                        deleteModal={deleteModal}
+                      />
+                    )}
                     <p>{dateFormat(response.created_at)}</p>
                   </div>
                 </li>

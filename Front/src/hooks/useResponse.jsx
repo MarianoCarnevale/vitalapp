@@ -54,6 +54,7 @@ export const useResponses = (consultation) => {
       setResponses(responses_array);
     } catch (error) {
       console.error(error);
+      setResponses([]);
     }
   };
   return {
