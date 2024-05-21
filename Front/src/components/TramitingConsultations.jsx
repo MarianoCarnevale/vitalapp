@@ -33,7 +33,7 @@ export const TramitingConsultations = ({ results }) => {
                     key={result.consultation_id}
                   >
                     <p className="w-1/3">
-                      {result.first_name} {result.last_name}
+                      {result.first_name} {result.surname}
                     </p>
                     <p
                       className={`py-1 px-2 rounded-xl text-white ${getStatusClass(

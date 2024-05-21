@@ -33,7 +33,7 @@ export const FinishedConsultations = (children) => {
                       key={consultation.consultation_id}
                     >
                       <p>
-                        {consultation.first_name} {consultation.last_name}
+                        {consultation.first_name} {consultation.surname}
                       </p>
                       <p className="grow-1">
                         {consultation.created_at.slice(0, 10)}

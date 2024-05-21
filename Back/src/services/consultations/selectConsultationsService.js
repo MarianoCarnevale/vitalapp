@@ -6,9 +6,9 @@ export const selectConsultationsService = async (array_filter, data) => {
       let select_info = '';
 
       if (data.role === "patient") {
-        select_info = `doctor.doctor_id AS doctor_id, doctor.doctor_first_name AS first_name,doctor.doctor_last_name AS last_name,`
+        select_info = `doctor.doctor_id AS doctor_id, doctor.doctor_first_name AS first_name,doctor.doctor_first_surname AS surname,`
       } else {
-        select_info = `U.user_id, U.first_name, U.last_name,`
+        select_info = `U.user_id, U.first_name, U.first_surname AS surname,`
       }
 
       // if (data) { 

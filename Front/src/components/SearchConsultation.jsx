@@ -47,7 +47,7 @@ export const SearchConsultation = ({ consultations }) => {
                   key={consultation.consultation_id}
                 >
                   <p className="w-1/3">
-                    {consultation.first_name} {consultation.last_name}
+                    {consultation.first_name} {consultation.surname}
                   </p>
                   <p
                     className={`py-1 px-2 rounded-xl text-white ${

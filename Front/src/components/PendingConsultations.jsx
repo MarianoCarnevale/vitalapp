@@ -40,7 +40,7 @@ export const PendingConsultations = (children) => {
                       key={consultation.consultation_id}
                     >
                       <p className="w-1/3">
-                        {consultation.first_name} {consultation.last_name}
+                        {consultation.first_name} {consultation.surname}
                       </p>
                       <p
                         className={`grow-2 py-1 px-2  rounded-xl text-white ${getStatusClass(
