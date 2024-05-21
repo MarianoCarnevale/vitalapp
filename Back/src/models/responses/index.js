@@ -1,14 +1,13 @@
-import { deleteResponseModel } from './deleteResponseModel.js';
-import { insertResponseModel } from './insertResponseModel.js';
-import { selectAllResponsesByConsultationModel } from './selectAllResponsesByConsultationModel.js';
-import { selectOneResponseByUserIdModel } from './selectOneResponseByUserIdModel.js';
-import { selectResponseByIdModel } from './selectResponseByIdModel.js';
-import { updateResponseModel } from './updateResponseModel.js';
+import { deleteResponseModel } from "./deleteResponseModel.js";
+import { insertResponseModel } from "./insertResponseModel.js";
+import { selectAllResponsesByConsultationModel } from "./selectAllResponsesByConsultationModel.js";
+import { selectResponseByIdModel } from "./selectResponseByIdModel.js";
+import { updateResponseModel } from "./updateResponseModel.js";
+
 export {
-  insertResponseModel,
+  insertResponseModel, 
   deleteResponseModel,
   selectAllResponsesByConsultationModel,
   updateResponseModel,
-  selectResponseByIdModel,
-  selectOneResponseByUserIdModel,
+  selectResponseByIdModel
 };
