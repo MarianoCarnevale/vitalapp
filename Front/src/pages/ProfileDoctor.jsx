@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { UserTokenContext } from "../contexts/UserTokenContext";
 import { VITE_BASE_URL } from "../config/env.js";
+import { Rating } from "@mui/material";
 
 const ProfileDoctor = () => {
   const { token, user } = useContext(UserTokenContext);
@@ -47,6 +48,7 @@ const ProfileDoctor = () => {
     yearsOfExperience =
       currentDate.getFullYear() - experienceStartDate.getFullYear();
   }
+
   return (
     <section className="w-5/6 lg:py-0 py-10 m-auto flex flex-col gap-4 items-center max-w-md">
       <h1 className="text-3xl font-semibold text-primary  ">
@@ -93,6 +95,19 @@ const ProfileDoctor = () => {
                   Biografía
                 </h3>
                 <p className="text-secondary">{doctor.bio}</p>
+              </>
+            )}
+            {doctor.avg_rating && (
+              <>
+                <h3 className=" font-semibold text-right text-primary text-md">
+                  Biografía
+                </h3>
+                <Rating
+                  name="rating"
+                  value={+doctor.avg_rating}
+                  precision={0.5}
+                  readOnly
+                />
               </>
             )}
             {doctor.experience && (
