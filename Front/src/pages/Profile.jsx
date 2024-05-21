@@ -7,6 +7,7 @@ import { VITE_BASE_URL } from "../config/env.js";
 import Fab from "@mui/material/Fab";
 
 import EditIcon from "@mui/icons-material/Edit";
+import { Rating } from "@mui/material";
 
 const Profile = () => {
   const { user } = useContext(UserTokenContext);
@@ -27,6 +28,8 @@ const Profile = () => {
     yearsOfExperience =
       currentDate.getFullYear() - experienceStartDate.getFullYear();
   }
+
+  console.log(user);
 
   return (
     user && (
@@ -121,6 +124,14 @@ const Profile = () => {
               <p className="text-secondary dark:text-gray-400 font-semibold">
                 {user.discipline_name}
               </p>
+              {
+                <Rating
+                  name="rating"
+                  value={+user.avg_rating}
+                  precision={0.5}
+                  readOnly
+                />
+              }
               <h3 className=" font-semibold text-right text-primary dark:text-white text-md">
                 Experiencia
               </h3>

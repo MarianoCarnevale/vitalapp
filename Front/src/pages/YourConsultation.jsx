@@ -1,5 +1,5 @@
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { VITE_BASE_URL } from "../config/env";
@@ -10,7 +10,7 @@ import { dateFormat } from "../api/dateFormat.js";
 import { ConsultationsResponses } from "../components/ConsultationsResponses.jsx";
 import { Link } from "react-router-dom";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const YourConsultation = () => {
   const [consultation, setConsultation] = useState({});
@@ -18,25 +18,45 @@ const YourConsultation = () => {
   const { consultation_id } = useParams();
   const { user } = useContext(UserTokenContext);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isFinished, setIsFinished] = useState(false)
 
   useEffect(() => {
-    const getConsultation = async () => {
-      const resp = await axios.get(
-        `${VITE_BASE_URL}/consultations/${consultation_id}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const [consultation] = Object.values(resp.data.data.consultations);
-      setConsultation(consultation);
-      console.log(consultation);
-    };
-
+    
     getConsultation();
-  }, []);
-
+  }, [isFinished]);
+  
+  const getConsultation = async () => {
+     const resp = await axios.get(
+       `${VITE_BASE_URL}/consultations/${consultation_id}`,
+       {
+         headers: {
+           Authorization: `${token}`,
+         },
+       }
+     );
+    const [consultation] = Object.values(resp.data.data.consultations);
+    
+     setConsultation(consultation);
+     console.log(consultation);
+   };
+   
+   const handelEndConsultation = async () => { 
+       try {
+         const resp = await axios.post(`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/end`,{
+             headers:{ 
+               Authorization: `${token}`,
+             },
+         })
+ 
+         if (resp.data.status === "Success") {
+           toast.success("Consulta finalizada correctamente")
+           setIsFinished(true)
+         }
+       } catch (error) {
+         toast.error("Error al modificar la consulta")
+       }
+  }
+  
   const getStatusClass = (status) => {
     switch (status) {
       case "low":
@@ -68,30 +88,34 @@ const YourConsultation = () => {
   };
 
   const date = dateFormat(consultation.created_at);
-  return (
-    <>
-      <ToastContainer autoClose={1500} />
+      console.log(`Consulta finalizada : ${consultation.is_active} consulta pendiente: ${consultation.is_pending}`);
 
-      <section className="z-10 items-center lg:w-full m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
-        <p className=" text-primary text-3xl font-semibold mb-5">Tu consulta</p>
-        <div className="flex justify-center w-full gap-4">
-          <p
-            className={`border border-primary text-primary py-2 px-6 rounded-full ${
-              consultation.is_pending
-                ? "bg-primary font-bold text-white"
+  return (
+
+    <>
+      <ToastContainer value={500}/>
+      <section className="z-10 w-4/6 items-center lg:w-full m-auto flex flex-col lg:flex-row max-lg:w-full">
+        <div className="w-5/6 max-w-lg m-auto dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 my-5 py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
+          <div className="flex justify-center w-full gap-4">
+            <p className=" text-primary dark:text-white text-3xl font-semibold mb-5">
+              Tu consulta
+            </p>
+            <p
+              className={`border border-primary text-primary py-2 px-6 rounded-full ${
+                consultation.is_pending
+                  ? "bg-primary font-bold text-white"
+                  : consultation.is_active
+                  ? "bg-green-500 text-white border-0 font-bold"
+                  : "bg-secondary text-white border-0 font-bold"
+              }`}
+            >
+              {consultation.is_pending
+                ? "Pendiente"
                 : consultation.is_active
-                ? "bg-green-500 text-white border-0 font-bold"
-                : "bg-secondary text-white border-0 font-bold"
-            }`}
-          >
-            {consultation.is_pending
-              ? "Pendiente"
-              : consultation.is_active
-              ? "En trámite"
-              : "Finalizada"}
-          </p>
-        </div>
-        <div className="dark:bg-slate-700 my-5 w-5/6 max-w-lg py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
+                ? "En trámite"
+                : "Finalizada"}
+            </p>
+          </div>
           <p className="dark:text-white text-2xl text-primary font-bold">
             {consultation.title}
           </p>
@@ -197,6 +221,13 @@ const YourConsultation = () => {
           <p className="w-5/6  max-lg:max-w-md text-sm text-center text-secondary dark:text-slate-300">
             {date}
           </p>
+          {(user.first_name === consultation.doctor_Name &&
+            consultation.is_pending === 0&&
+            consultation.is_active === 1) &&
+            <><button
+            className="border bg-primary active:border-primary active:bg-white active:text-primary text-white py-2 px-6 rounded-full"
+            onClick={handelEndConsultation}
+            >Finalizar Consulta</button></>}
         </div>
 
         <ConsultationsResponses

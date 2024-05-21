@@ -32,9 +32,9 @@ const Main = () => {
       }`}
     >
       <div className={`max-lg:hidden text-left ${!user && "hidden"}`}>
-        <h1 className=" pt-8 m-auto w-5/6 text-primary font-bold text-3xl jus ">
+        <p className=" pt-8 m-auto w-5/6 text-primary dark:text-white font-bold text-3xl jus ">
           Hoy
-        </h1>
+        </p>
         <DateNow />
         <hr className="mt-6 mx-auto mb-20  border-primary w-5/6 lg:order-3" />
       </div>
