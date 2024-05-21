@@ -5,7 +5,7 @@ export const consultationsController = async (req, res, next) => {
   try {
     const user_id = req.user.id;
 
-    const role = req.user.role
+    const role = req.user.role;
 
     //Obtenemos todos los datos de la busqueda por filtro
     const data = req.body;

@@ -2,14 +2,15 @@ import express from 'express';
 import {
   consultationsController,
   newConsultationsController,
-  deleteConsultationController,
+  // deleteConsultationController,
   ConsultationFileController,
   oneConsultationControler,
   deleteConsultationFileController,
   endConsultationController,
+  consultationsByDisciplineController,
 } from '../controllers/consultations/index.js';
 import { authUserController } from '../middlewares/authUserController.js';
-import { userValidationController } from '../middlewares/userValidationController.js';
+// import { userValidationController } from '../middlewares/userValidationController.js';
 
 export const consultationsRouter = express.Router();
 
@@ -66,10 +67,16 @@ consultationsRouter.delete(
   deleteConsultationFileController
 );
 
-//borrar archivo de consulta
-
+// cambiar consulta a finalizada
 consultationsRouter.post(
   '/consultation/:consultation_id/end',
   // authUserController,
   endConsultationController
+);
+
+//Conseguir consultas de la especialidad del usuario
+consultationsRouter.get(
+  '/consultations/discipline',
+  authUserController,
+  consultationsByDisciplineController
 );

@@ -92,9 +92,6 @@ const YourConsultation = () => {
 
   return (
     <>
-<<<<<<< Updated upstream
-      <ToastContainer autoClose={1500} />
-
       <section className="z-10 w-4/6 items-center lg:w-full m-auto flex flex-col lg:flex-row max-lg:w-full">
         <div className="w-5/6 max-w-lg m-auto dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 my-5 py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
           <div className="flex justify-center w-full gap-4">
@@ -112,15 +109,6 @@ const YourConsultation = () => {
             >
               {consultation.is_pending
                 ? "Pendiente"
-=======
-      <section className="z-10 items-center lg:w-full m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
-        <p className=" text-primary text-3xl font-semibold mb-5">Tu consulta</p>
-        <div className="flex justify-center w-full gap-4">
-          <p
-            className={`border border-primary text-primary py-2 px-6 rounded-full ${
-              consultation.is_pending
-                ? "bg-primary font-bold text-white"
->>>>>>> Stashed changes
                 : consultation.is_active
                 ? "En trámite"
                 : "Finalizada"}
