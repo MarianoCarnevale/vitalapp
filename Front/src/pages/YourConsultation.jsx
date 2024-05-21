@@ -92,7 +92,6 @@ const YourConsultation = () => {
 
   return (
     <>
-
       <section className="z-10 w-4/6 items-center lg:w-full m-auto flex flex-col lg:flex-row max-lg:w-full">
         <div className="w-5/6 max-w-lg m-auto dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 my-5 py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
           <div className="flex justify-center w-full gap-4">

@@ -5,5 +5,7 @@ import { updateConsultationFileModel } from "./updateConsultationFileModel.js";
 import { consultationsByUserIdModel } from "./consultationsByUserIdModel.js";
 import { selectOneConsultationByUserIdModel } from "./selectOneConsultationByUserIdModel.js";
 import { endConsultationModal } from "./endConsultationModal.js";
+import { consultationsByDisciplineController } from "../../controllers/consultations/consultationsByDisciplineController.js";
 
-export { selectConsultationsModel, newConsultationsModel, deleteConsultationModel, updateConsultationFileModel, consultationsByUserIdModel, selectOneConsultationByUserIdModel, endConsultationModal};
+export { selectConsultationsModel, newConsultationsModel, deleteConsultationModel, updateConsultationFileModel, consultationsByUserIdModel, selectOneConsultationByUserIdModel, endConsultationModal, consultationsByDisciplineController};
+
