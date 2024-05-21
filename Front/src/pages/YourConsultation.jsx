@@ -1,5 +1,5 @@
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { VITE_BASE_URL } from "../config/env";
@@ -18,11 +18,12 @@ const YourConsultation = () => {
   const { consultation_id } = useParams();
   const { user } = useContext(UserTokenContext);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isFinished, setIsFinished] = useState(false)
 
   useEffect(() => {
     
     getConsultation();
-  }, [consultation]);
+  }, [isFinished]);
   
   const getConsultation = async () => {
      const resp = await axios.get(
@@ -33,7 +34,8 @@ const YourConsultation = () => {
          },
        }
      );
-     const [consultation] = Object.values(resp.data.data.consultations);
+    const [consultation] = Object.values(resp.data.data.consultations);
+    
      setConsultation(consultation);
      console.log(consultation);
    };
@@ -47,8 +49,8 @@ const YourConsultation = () => {
          })
  
          if (resp.data.status === "Success") {
-           getConsultation()
            toast.success("Consulta finalizada correctamente")
+           setIsFinished(true)
          }
        } catch (error) {
          toast.error("Error al modificar la consulta")
@@ -90,6 +92,7 @@ const YourConsultation = () => {
 
   return (
     <>
+<<<<<<< Updated upstream
       <ToastContainer autoClose={1500} />
 
       <section className="z-10 w-4/6 items-center lg:w-full m-auto flex flex-col lg:flex-row max-lg:w-full">
@@ -109,6 +112,15 @@ const YourConsultation = () => {
             >
               {consultation.is_pending
                 ? "Pendiente"
+=======
+      <section className="z-10 items-center lg:w-full m-auto flex flex-col gap-6 max-lg:w-full max-lg:max-w-md">
+        <p className=" text-primary text-3xl font-semibold mb-5">Tu consulta</p>
+        <div className="flex justify-center w-full gap-4">
+          <p
+            className={`border border-primary text-primary py-2 px-6 rounded-full ${
+              consultation.is_pending
+                ? "bg-primary font-bold text-white"
+>>>>>>> Stashed changes
                 : consultation.is_active
                 ? "En trámite"
                 : "Finalizada"}
