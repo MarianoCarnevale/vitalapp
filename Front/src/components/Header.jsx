@@ -59,7 +59,7 @@ const Header = () => {
     };
   }, [lastScrollTop]);
   return user ? (
-    <header className="dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  z-20 w-full shadow-sm fixed  bg-gradient-to-b from-primary to-slate-700 bg-cover bg-center lg:max-w-60 lg:h-dvh ">
+    <header className=" dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  z-20 w-full shadow-sm fixed  bg-gradient-to-b from-primary to-slate-700 bg-cover bg-center lg:max-w-60 lg:h-dvh ">
       <button
         className={`rounded-full w-10 h-10 bg-gradient-to-b from-primary to-cyan-700 absolute mt-36 max-lg:ml-[85%] lg:ml-[20rem] transition-all duration-300 ${
           isScrolledDown ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -233,7 +233,7 @@ const Header = () => {
       )}
     </header>
   ) : (
-    <header className="w-full shadow-sm fixed bg-white">
+    <header className="z-20 w-full shadow-sm fixed bg-white">
       <nav className="flex p-4 items-center gap-4 max-w-screen-xl m-auto">
         <NavLink className="flex-grow" to="/">
           <img src="/images/logo-vitalapp.svg" alt="Logo" />

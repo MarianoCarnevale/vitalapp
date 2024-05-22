@@ -15,11 +15,11 @@ export const TramitingConsultations = ({ results }) => {
 
   return (
     <section className="w-full m-auto   gap-6 items-center">
-      <p className=" text-left text-primary dark:text-white font-semibold text-3xl ">
+      <p className="max-lg:mb-10 mb-5 text-left text-primary dark:text-white font-semibold text-3xl ">
         Consultas en Trámite
       </p>
       <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
-        <ul className="w-full flex max-h-[22rem] flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
+        <ul className="w-full flex max-h-[22rem] flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 lg:my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
           {results.map((result) => {
             console.log(result);
             return (

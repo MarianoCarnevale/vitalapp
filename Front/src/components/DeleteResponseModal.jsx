@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { UserTokenContext } from "../contexts/UserTokenContext";
 import { VITE_BASE_URL } from "../config/env";
 import PropTypes from "prop-types";
+import useOutsideClick from "../hooks/useOutsideClick";
 
 export const DeleteResponseModal = ({
   deleteModalData,
@@ -12,6 +13,14 @@ export const DeleteResponseModal = ({
 }) => {
   const { token } = useContext(UserTokenContext);
   const { response_id, consultation } = deleteModalData;
+
+  const ref = useRef();
+
+  const handleOutsideClick = () => {
+    setDeleteModal(false);
+  };
+
+  useOutsideClick(ref, handleOutsideClick);
 
   const handleClickBorrar = async () => {
     try {
@@ -24,10 +33,9 @@ export const DeleteResponseModal = ({
         }
       );
       if (response.data.status === "ok") {
-        toast.success(response.data.message);
-        setTimeout(async () => {
+        setTimeout(() => {
           setDeleteModal(false);
-        }, 1000);
+        }, 1500);
       }
     } catch (error) {
       toast.error(error.response.data.message);
@@ -43,13 +51,27 @@ export const DeleteResponseModal = ({
         <div className=" fixed inset-0 transition-opacity z-20">
           <div className="absolute  inset-0 bg-gray-500 opacity-75 "></div>
           <div
-            className="flex flex-col gap-7
-            overflow-hidden transform transition-all bg-white dark:bg-slate-400 p-8 m-auto rounded-lg"
+            ref={ref}
+            className="w-5/6 flex flex-col lg:w-fit max-lg:m-auto max-lg:mt-[25rem] justify-center items-center gap-3 overflow-hidden transform transition-all bg-white dark:bg-gradient-to-b dar dark:from-slate-900 dark:to-sky-800  mt-72 ml-[40%]  p-8 rounded-lg"
           >
-            <p>Estas seguro que quieres borrar la respuesta?</p>
+            <p className="font-bold text-2xl text-primary dark:text-white">
+              Estas seguro que quieres borrar la respuesta?
+            </p>
 
-            <button onClick={handleClickBorrar}>Borrar</button>
-            <button onClick={handleClickCancelar}>Cancelar</button>
+            <div className="gap-5 flex">
+              <button
+                className="inline bg-gradient-to-b from-primary to-cyan-700 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm  flex-grow  dark:text-white py-2 px-6  font-semibold rounded-full"
+                onClick={handleClickBorrar}
+              >
+                Borrar
+              </button>
+              <button
+                className="inline bg-gradient-to-b from-primary to-cyan-700 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm  flex-grow  dark:text-white py-2 px-6  font-semibold rounded-full"
+                onClick={handleClickCancelar}
+              >
+                Cancelar
+              </button>
+            </div>
           </div>
         </div>
       )}

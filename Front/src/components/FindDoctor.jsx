@@ -34,9 +34,9 @@ export const FindDoctor = () => {
   console.log(doctors);
 
   return (
-    <section className="max-w-lg m-auto flex flex-col gap-5 items-center ">
+    <section className="max-lg:max-w-lg m-auto flex flex-col gap-5 items-center ">
       {user && (
-        <p className="mr-auto text-primary dark:text-white text-3xl font-semibold">
+        <p className="maxl-lg:mb-5 mr-auto text-primary dark:text-white text-3xl font-semibold">
           Busca a tus médicos
         </p>
       )}
@@ -82,7 +82,7 @@ export const FindDoctor = () => {
         />
       </div>
 
-      <ul className="lg:w-full flex flex-col gap-5 max-h-72 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 my-5 border-white rounded-3xl h-full overflow-auto hide-scrollbar shadow-lg">
+      <ul className="max-lg:max-w-lg w-full justify-center flex flex-col gap-5 max-h-72 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5  border-white rounded-3xl h-full overflow-auto hide-scrollbar shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter
