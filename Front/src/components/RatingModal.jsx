@@ -67,8 +67,7 @@ export const RatingModal = ({ modalData, setIsModal }) => {
           <div className="absolute inset-0 bg-black opacity-75 "></div>
           <div
             ref={ref}
-            className="flex flex-col justify-center items-center gap-3
-            overflow-hidden transform transition-all bg-white dark:bg-gradient-to-bº dark:from-slate-900 dark:to-sky-800 w-fit mt-72 ml-[50%]  p-8 rounded-lg"
+            className="flex flex-col max-lg:m-auto max-lg:mt-[25rem] justify-center items-center gap-3 overflow-hidden transform transition-all bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:to-sky-800 w-fit mt-72 ml-[50%]  p-8 rounded-lg"
           >
             <p className="font-bold text-2xl text-primary dark:text-white">
               Valora la respuesta:
@@ -89,4 +88,9 @@ export const RatingModal = ({ modalData, setIsModal }) => {
   );
 };
 
-RatingModal.propTypes = { response: PropTypes.string };
+//proptypes
+
+RatingModal.propTypes = {
+  modalData: PropTypes.object.isRequired,
+  setIsModal: PropTypes.func.isRequired,
+};

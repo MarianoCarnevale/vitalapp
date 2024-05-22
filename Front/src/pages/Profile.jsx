@@ -33,7 +33,7 @@ const Profile = () => {
 
   return (
     user && (
-      <section className="w-5/6 py-10 mb-[40rem] m-auto flex flex-col gap-4 items-center lg:py-0">
+      <section className="w-5/6 lg:max-w-lg py-10 mb-[40rem] m-auto flex flex-col gap-4 items-center lg:py-0">
         <p className="text-3xl text-center font-semibold text-primary dark:text-white">
           Tu perfil
         </p>
@@ -44,7 +44,7 @@ const Profile = () => {
             alt="Avatar"
           />
         </div>
-        <div className="flex flex-col max-w-lg items-center gap-3 absolute mt-48 py-16 bg-white dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  w-5/6 rounded-lg shadow-2xl z-0">
+        <div className="flex flex-col max-w-lg items-center gap-3 absolute mt-48 py-16 bg-white dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  w-5/6 rounded-3xl shadow-2xl z-0">
           <NavLink
             className="m-auto rounded-full shadow-lg absolute ml-64 mt-[-3rem]"
             to={"/update"}

@@ -34,7 +34,7 @@ export const ConsultationList = () => {
 
   return (
     <>
-      <section className="max-lg:pt-10 m-auto  gap-6 items-center max-w-lg">
+      <section className="max-lg:pt-5 m-auto  gap-6 items-center">
         <PendingConsultations consultations={consultations} results={results} />
       </section>
     </>

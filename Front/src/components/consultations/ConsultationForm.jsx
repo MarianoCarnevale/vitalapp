@@ -1,16 +1,23 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useConsultation } from "../../hooks/useConsultation.jsx";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { newFrontConsultationsSchema } from "../../schemas/newFrontConsultationSchema.js";
 import { UserTokenContext } from "../../contexts/UserTokenContext.jsx";
 import PropTypes from "prop-types";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 export const ConsultationForm = () => {
   const { user } = useContext(UserTokenContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Sacamos el estado para volver a tirar el useEffect en el componente padre y actualizar la lista
   // const { setIsCreated, isCreated } = children;
+  const ref = useRef();
+  const handleOutsideClick = () => {
+    setIsModalOpen(false);
+  };
+
+  useOutsideClick(ref, handleOutsideClick);
 
   //usamos la funcion para obtener los datos de forma asyn
 
@@ -59,7 +66,7 @@ export const ConsultationForm = () => {
         {isModalOpen && (
           <div className="lg:ml-60 fixed inset-0 transition-opacity z-20 h-full">
             <div className="absolute inset-0 bg-black opacity-75 "></div>
-            <div className="w-5/6 max-w-lg m-auto">
+            <div ref={ref} className="w-5/6 max-w-lg m-auto">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -205,7 +212,7 @@ export const ConsultationForm = () => {
                 <li className="list-none">
                   <label
                     htmlFor="file"
-                    className="bg-primary hover:bg-cyan-700 cursor-pointer rounded-lg flex active:bg-white  dark:bg-slate-400"
+                    className="bg-gradient-to-b from-primary to-cyan-700 hover:bg-cyan-700 cursor-pointer rounded-lg flex active:bg-white  dark:bg-slate-400"
                   >
                     <div className="gap-2 w-full py-2 text-white rounded-md active:text-black  dark:bg-slate-900 dark:shadow-gray-800 dark:shadow-md hover:dark:shadow-gray-800 dark:hover:shadow-sm font-semibold disabled:bg-secondary">
                       <p className=" text-center  text-lg dark:border-white">
@@ -228,7 +235,7 @@ export const ConsultationForm = () => {
                   Enviar
                 </button>
                 <button
-                  className="bg-primary p-2 w-full rounded-md text-white active:bg-white dark:bg-slate-900 active:text-black dark:shadow-gray-800 dark:shadow-md hover:dark:shadow-gray-800 dark:hover:shadow-sm font-semibold disabled:bg-secondary"
+                  className="bg-gradient-to-b from-primary to-cyan-700 p-2 w-full rounded-md text-white active:bg-white dark:bg-slate-900 active:text-black dark:shadow-gray-800 dark:shadow-md hover:dark:shadow-gray-800 dark:hover:shadow-sm font-semibold disabled:bg-secondary"
                   onClick={() => {
                     setIsModalOpen(false);
                   }}

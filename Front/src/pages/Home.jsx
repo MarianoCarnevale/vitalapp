@@ -93,7 +93,7 @@ const Home = () => {
       </section>
       <section>
         <div className="bg-white">
-          <div className="mx-auto max-w-7xl sm:px-6 sm:pb-32 lg:px-8">
+          <div className="mx-auto max-w-7xl sm:px-6  lg:px-8">
             <div className="relative isolate overflow-hidden bg-slate-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
               <svg
                 viewBox="0 0 1024 1024"
