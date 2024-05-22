@@ -76,7 +76,7 @@ export const RatingModal = ({ modalData, setIsModal }) => {
 
             <Rating
               name="half-rating"
-              defaultValue={0.5}
+              defaultValue={1}
               precision={1}
               size="large"
               value={value}

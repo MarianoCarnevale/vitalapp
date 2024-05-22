@@ -119,10 +119,11 @@ export const FindDoctor = () => {
                     {doctor.discipline_name}
                   </p>
                   <p className="flex justify-center items-center w-14 h-10 order-3 bg-gradient-to-b from-primary to-cyan-700 dark:bg-sky-800 rounded-full text-white">
-                    {+doctor.avg_rating}
+                    {Number.isInteger(Number(doctor.avg_rating))
+                      ? Number(doctor.avg_rating)
+                      : Number(doctor.avg_rating).toFixed(1)}
                     <StarRoundedIcon color="white" />
                   </p>
-
                   <img
                     className="w-10 h-10 order-4 rounded-full max-lg:hidden"
                     src={

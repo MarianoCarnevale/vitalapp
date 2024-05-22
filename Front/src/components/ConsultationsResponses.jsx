@@ -81,7 +81,7 @@ export const ConsultationsResponses = (consultation) => {
                         {response.role === "doctor" ? "Doctor" : "Paciente"}:{" "}
                         {response.first_name}
                       </p>
-                      {response.role === "doctor" && (
+                      {user.role === "patient" && (
                         <>
                           <button
                             onClick={() => {
