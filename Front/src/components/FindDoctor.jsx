@@ -36,7 +36,7 @@ export const FindDoctor = () => {
   return (
     <section className="max-lg:max-w-lg m-auto flex flex-col gap-5 items-center ">
       {user && (
-        <p className="maxl-lg:mb-5 mr-auto text-primary dark:text-white text-3xl font-semibold">
+        <p className="max-lg:mb-5 mr-auto text-primary dark:text-white text-3xl font-semibold">
           Busca a tus médicos
         </p>
       )}
@@ -82,7 +82,7 @@ export const FindDoctor = () => {
         />
       </div>
 
-      <ul className="max-lg:max-w-lg w-full h-fit max-h-[22rem]  flex flex-col gap-5  dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5  border-white rounded-3xl  overflow-auto hide-scrollbar shadow-lg">
+      <ul className="max-lg:max-w-lg w-full h-fit max-h-[19rem]  flex flex-col gap-5  dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5  border-white rounded-3xl  overflow-auto hide-scrollbar shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter
@@ -169,13 +169,16 @@ export const FindDoctor = () => {
                 registrate o logueate en nuestra aplicación
               </h3>
               <ul className="flex gap-5 justify-center">
-                <li className="bg-primary dark:bg-sky-800 px-4 py-1 rounded-md">
-                  <Link to="/register" className="text-white font-bold">
+                <li className="bg-primary dark:bg-sky-800   rounded-md">
+                  <Link
+                    to="/register"
+                    className="p-2 text-white font-bold block"
+                  >
                     Registro
                   </Link>
                 </li>
-                <li className="bg-primary dark:bg-sky-800 px-4 py-1 rounded-md">
-                  <Link to="/login" className="text-white font-bold">
+                <li className="bg-primary dark:bg-sky-800 rounded-md">
+                  <Link to="/login" className="p-2 text-white font-bold block">
                     Login
                   </Link>
                 </li>

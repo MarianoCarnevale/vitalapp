@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { ConsultationForm } from "../components/consultations/ConsultationForm.jsx";
 
 export const TramitingConsultations = ({ results }) => {
   const getStatusClass = (status) => {
@@ -15,11 +16,16 @@ export const TramitingConsultations = ({ results }) => {
 
   return (
     <section className="w-full m-auto   gap-6 items-center">
-      <p className="max-lg:mb-10 mb-5 text-left text-primary dark:text-white font-semibold text-3xl ">
-        Consultas en Trámite
-      </p>
+      <div className="flex max-md:flex-col justify-between items-center ">
+        <p className="max-lg:mb-5 self-start max-lg:flex-grow text-primary dark:text-white font-semibold text-3xl ">
+          Consultas en Trámite
+        </p>
+        <div>
+          <ConsultationForm />
+        </div>
+      </div>
       <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
-        <ul className="w-full flex max-h-[22rem] flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 lg:my-5  border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
+        <ul className="w-full h-full flex max-h-[22rem] flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 lg:my-5  border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
           {results.map((result) => {
             console.log(result);
             return (

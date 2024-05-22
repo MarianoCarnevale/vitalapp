@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import { SearchConsultation } from "../components/SearchConsultation.jsx";
 import { ConsultationsByDiscipline } from "../components/ConsultationsByDiscipline.jsx";
 import { Testimonials } from "../components/Testimonials.jsx";
+import { TramitingConsultations } from "../components/TramitingConsultations.jsx";
 
 const Home = () => {
   const [consultations, setConsultations] = useState([]);
@@ -42,7 +43,7 @@ const Home = () => {
 
   const { user } = useContext(UserTokenContext);
   return user ? (
-    <section className="mb-40">
+    <section className="mb-40 lg:mb-20">
       <ToastContainer autoClose={1500} />
       <div className="lg:hidden">
         <p className="w-5/6 max-w-md m-auto text-primary dark:text-white font-bold text-3xl mt-10 lg:mt-0">
@@ -51,15 +52,28 @@ const Home = () => {
         <DateNow />
         <hr className="bg-primary w-5/6 m-auto my-5" />
       </div>
-      <div className="w-5/6 max-lg:max-w-lg m-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="w-5/6 max-lg:max-w-lg m-auto grid grid-cols-1 lg:grid-cols-2 max-lg:gap-10 lg:gap-6">
         <div>
-          <ConsultationList />
+          <TramitingConsultations
+            consultations={consultations}
+            results={results}
+          />
         </div>
         <div>
           <SearchConsultation consultations={consultations} results={results} />
         </div>
-        <div>{user.role === "doctor" && <ConsultationsByDiscipline/>}</div>
-        <div>{user.role === "doctor" ? <FindPatient /> : <FindDoctor />}</div>
+        {user.role === "patient" && (
+          <>
+            <div>
+              <ConsultationList />
+            </div>
+            <div>
+              <FindDoctor />
+            </div>
+          </>
+        )}
+        <div>{user.role === "doctor" && <ConsultationsByDiscipline />}</div>
+        <div>{user.role === "doctor" && <FindPatient />} </div>
       </div>
     </section>
   ) : (
