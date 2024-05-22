@@ -1,7 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 
 import { useResponses } from "../hooks/useResponse.jsx";
-import { dateFormat } from "../api/dateFormat.js";
 import StarIcon from "@mui/icons-material/Star";
 import { RatingContext } from "../contexts/RatingContext.jsx";
 import { RatingModal } from "./RatingModal.jsx";
@@ -36,6 +35,22 @@ export const ConsultationsResponses = (consultation) => {
     setDeleteModalData({ response_id, consultation });
     setDeleteModal(!deleteModal);
   };
+
+  // Función para convertir a la fecha que saldrá en el front
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+
+    const formattedDate = `${day}/${month}/${year}, ${hours}:${minutes}`;
+
+    return formattedDate;
+  };
+
   return (
     <>
       {isModal && <RatingModal modalData={modalData} setIsModal={setIsModal} />}
@@ -53,7 +68,7 @@ export const ConsultationsResponses = (consultation) => {
             type="text"
             {...register("content")}
           />
-          <button className="dark:bg-sky-900 shadow-lg hover:shadow-sm duration-300 py-4 font-bold text-primary dark:text-white  p-2 w-full rounded-xl dark:text-white  disabled:bg-secondary">
+          <button className="dark:bg-sky-900 shadow-lg hover:shadow-sm duration-300 py-4 font-bold text-primary p-2 w-full rounded-xl dark:text-white  disabled:bg-secondary">
             Enviar
           </button>
         </form>
@@ -132,7 +147,7 @@ export const ConsultationsResponses = (consultation) => {
                             : "text-right"
                         } `}
                       >
-                        {dateFormat(response.created_at)}
+                        {formatDate(response.created_at)}
                       </p>
                     </div>
                   </div>
