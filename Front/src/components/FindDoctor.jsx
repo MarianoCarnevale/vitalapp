@@ -82,7 +82,7 @@ export const FindDoctor = () => {
         />
       </div>
 
-      <ul className="max-lg:max-w-lg w-full justify-center flex flex-col gap-5 max-h-72 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5  border-white rounded-3xl h-full overflow-auto hide-scrollbar shadow-lg">
+      <ul className="max-lg:max-w-lg w-full h-fit max-h-[22rem]  flex flex-col gap-5  dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5  border-white rounded-3xl  overflow-auto hide-scrollbar shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter
