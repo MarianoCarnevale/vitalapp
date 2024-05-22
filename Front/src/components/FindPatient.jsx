@@ -29,10 +29,9 @@ export const FindPatient = () => {
     getPatients(token);
   }, []);
 
-  // console.log(doctors);
   return (
     <section className="max-lg:max-w-lg lg:w-full m-auto flex flex-col gap-6 items-center">
-      <p className="mr-auto text-3xl  text-primary font-semibold dark:text-white">
+      <p className="mr-auto text-3xl lg:mb-0 text-primary font-semibold dark:text-white">
         Busca a tus pacientes
       </p>
       <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary dark:border-none rounded-3xl dark:bg-sky-800">
@@ -44,7 +43,7 @@ export const FindPatient = () => {
           onChange={(e) => setName(e.target.value.toLowerCase())}
         />
       </div>
-      <ul className="w-full flex flex-col gap-5 max-h-72 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
+      <ul className="w-full max-h-[17.5rem] flex flex-col gap-3 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
         {patients
           .filter((patient) => patient.first_name.toLowerCase().includes(name))
           .sort((a, b) =>

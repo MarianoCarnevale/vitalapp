@@ -1,6 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { ConsultationForm } from "../components/consultations/ConsultationForm.jsx";
+import { ConsultationsByDiscipline } from "../components/ConsultationsByDiscipline.jsx";
 import { FinishedConsultations } from "../components/FinishedConsultations.jsx";
 import { TramitingConsultations } from "../components/TramitingConsultations.jsx";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import { PendingConsultations } from "../components/PendingConsultations.jsx";
 import { SearchConsultation } from "../components/SearchConsultation.jsx";
 
 const Consultation = () => {
-  const { token } = useContext(UserTokenContext);
+  const { token, user } = useContext(UserTokenContext);
   const [consultations, setConsultations] = useState([]);
   const [results, setResults] = useState([]);
   // const [isCreated, setIsCreated] = useState(false);
@@ -40,18 +40,44 @@ const Consultation = () => {
   return (
     <>
       <ToastContainer />
-      <section className="w-5/6 max-lg:max-w-lg m-auto grid grid-cols-1 max-lg:mb-20 mt-10 lg:grid-cols-2 gap-4">
-        <PendingConsultations consultations={consultations} results={results} />
-        <SearchConsultation consultations={consultations} results={results} />
-        <TramitingConsultations
-          consultations={consultations}
-          results={results}
-        />
-        <ConsultationForm />
-        <FinishedConsultations
-          consultations={consultations}
-          results={results}
-        />
+      <section className="w-5/6 max-lg:max-w-lg lg:mb-20 m-auto grid grid-cols-1 max-lg:mb-32 mt-10 lg:grid-cols-2 gap-6 max-lg:gap-10 items-start">
+        {user.role === "patient" ? (
+          <>
+            <TramitingConsultations
+              consultations={consultations}
+              results={results}
+            />
+            <PendingConsultations
+              consultations={consultations}
+              results={results}
+            />
+            <FinishedConsultations
+              consultations={consultations}
+              results={results}
+            />
+            <SearchConsultation
+              consultations={consultations}
+              results={results}
+            />
+          </>
+        ) : (
+          // Aquí puedes poner el contenido que quieres mostrar cuando el rol es 'doctor'
+          <>
+            <TramitingConsultations
+              consultations={consultations}
+              results={results}
+            />
+            <PendingConsultations
+              consultations={consultations}
+              results={results}
+            />
+            <FinishedConsultations
+              consultations={consultations}
+              results={results}
+            />
+            <ConsultationsByDiscipline />
+          </>
+        )}
       </section>
     </>
   );

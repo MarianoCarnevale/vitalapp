@@ -6,6 +6,7 @@ import { newFrontConsultationsSchema } from "../../schemas/newFrontConsultationS
 import { UserTokenContext } from "../../contexts/UserTokenContext.jsx";
 import PropTypes from "prop-types";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import LoupeRoundedIcon from "@mui/icons-material/LoupeRounded";
 
 export const ConsultationForm = () => {
   const { user } = useContext(UserTokenContext);
@@ -52,10 +53,11 @@ export const ConsultationForm = () => {
 
   return (
     user.role === "patient" && (
-      <sections className="">
-        <div className="w-full max-w-lg my-5 list-none text-center m-auto bg-gradient-to-b from-primary to-slate-600 gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 shadow-xl p-6 font-bold rounded-3xl">
+      <sections>
+        <div className="w-fit max-lg:mb-5 flex justify-center items-center list-none text-center bg-gradient-to-b from-primary to-slate-600 dark:bg-gradient-to-t dark:from-white dark:to-white shadow-xl font-bold rounded-3xl">
+          <LoupeRoundedIcon color="white" className="ml-2 dark:fill-primary" />
           <button
-            className="items-center w-full  bg-white gap-5 shadow-xl p-6 text-primary font-bold rounded-3xl"
+            className=" text-white dark:text-primary font-semibold p-3 pr-3"
             onClick={() => {
               setIsModalOpen(true);
             }}
