@@ -6,10 +6,6 @@ export const consultationsByUserIdModel = async (select_info, array_filter) => {
     //Esperamos conexion de la base de datos
     const pool = await getPool();
 
-    if (!array_filter) {
-      array_filter = '';
-    }
-
     const query = `
     SELECT 
     C.consultation_id, C.is_pending, C.description, doctor.doctor_user_id, C.is_active,
@@ -24,12 +20,12 @@ export const consultationsByUserIdModel = async (select_info, array_filter) => {
   ) AS doctor ON C.doctor_id = doctor.doctor_id
 JOIN users U ON C.user_id = U.user_id
 JOIN disciplines DS ON DS.discipline_id = C.discipline_id
-          ${array_filter}
+${array_filter}
           ORDER BY severity`;
 
-    const [consultations] = await pool.query(query);
-
-    return [consultations];
+    const consultations = await pool.query(query);
+console.log(consultations);
+    return consultations;
   } catch (error) {
     throw generateError('consulta no encontrada', 404);
   }

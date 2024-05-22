@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import { ConsultationList } from "../components/ConsultationsList.jsx";
 import { ToastContainer } from "react-toastify";
 import { SearchConsultation } from "../components/SearchConsultation.jsx";
+import { ConsultationsByDiscipline } from "../components/ConsultationsByDiscipline.jsx";
 import { Testimonials } from "../components/Testimonials.jsx";
 
 const Home = () => {
@@ -57,6 +58,7 @@ const Home = () => {
         <div>
           <SearchConsultation consultations={consultations} results={results} />
         </div>
+        <div>{user.role === "doctor" && <ConsultationsByDiscipline/>}</div>
         <div>{user.role === "doctor" ? <FindPatient /> : <FindDoctor />}</div>
       </div>
     </section>

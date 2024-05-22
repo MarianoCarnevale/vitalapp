@@ -37,6 +37,12 @@ consultationsRouter.get(
   consultationsController
 );
 
+//Conseguir consultas de la especialidad del usuario
+consultationsRouter.get(
+  '/consultations/discipline',
+  authUserController,
+  consultationsByDisciplineController
+);
 //Conseguir consulta especifica
 consultationsRouter.get(
   '/consultations/:consultation_id',
@@ -72,11 +78,4 @@ consultationsRouter.post(
   '/consultation/:consultation_id/end',
   // authUserController,
   endConsultationController
-);
-
-//Conseguir consultas de la especialidad del usuario
-consultationsRouter.get(
-  '/consultations/discipline',
-  authUserController,
-  consultationsByDisciplineController
 );
