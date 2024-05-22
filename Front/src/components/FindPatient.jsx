@@ -64,6 +64,7 @@ export const FindPatient = () => {
                   </p>
                   <p>
                     <img
+                      className="w-10 h-10 order-4 rounded-full max-lg:hidden"
                       src={
                         patient.avatar
                           ? `${VITE_BASE_URL}/users/${patient.user_id}/${patient.avatar}`

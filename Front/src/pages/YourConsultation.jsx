@@ -96,7 +96,7 @@ const YourConsultation = () => {
 
   return (
     <>
-      <ToastContainer value={500} />
+      <ToastContainer autoClose={1500} value={500} />
       <section className="z-10 h- mb-32 mt-10 h-auto items-start justify-center gap-5 lg:w-full m-auto flex flex-col lg:flex-row max-lg:w-full">
         <div className="w-5/6 max-w-lg max-lg:m-auto">
           <p className=" text-primary dark:text-white text-3xl font-semibold mb-5">
