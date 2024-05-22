@@ -59,6 +59,24 @@ const Profile = () => {
           <h2 className=" font-semibold text-right text-primary dark:text-white text-xl">
             {user.first_name}, {user.first_surname}
           </h2>
+          {user.avg_rating && (
+            <Rating
+              name="rating"
+              value={+user.avg_rating}
+              precision={0.5}
+              readOnly
+            />
+          )}
+          {user.discipline_name && (
+            <>
+              <h3 className=" font-semibold text-right text-primary dark:text-white text-md">
+                Especialidad
+              </h3>
+              <p className="text-secondary dark:text-gray-400 font-semibold">
+                {user.discipline_name}
+              </p>
+            </>
+          )}
           <h3 className=" font-semibold text-right text-primary dark:text-white text-md">
             Email
           </h3>
@@ -106,40 +124,29 @@ const Profile = () => {
             </>
           )}
 
-          {user.role === "doctor" && (
-            <>
-              {user.doctor_registration_number && (
-                <>
-                  <h3 className=" font-semibold text-right text-primary dark:text-white text-md">
-                    Número de colegiado
-                  </h3>
-                  <p className="text-secondary dark:text-gray-400 font-semibold">
-                    {user.doctor_registration_number}
-                  </p>
-                </>
-              )}
-              <h3 className=" font-semibold text-right text-primary dark:text-white text-md">
-                Especialidad
-              </h3>
-              <p className="text-secondary dark:text-gray-400 font-semibold">
-                {user.discipline_name}
-              </p>
-              {
-                <Rating
-                  name="rating"
-                  value={+user.avg_rating}
-                  precision={0.5}
-                  readOnly
-                />
-              }
-              <h3 className=" font-semibold text-right text-primary dark:text-white text-md">
-                Experiencia
-              </h3>
-              <p className="text-secondary dark:text-gray-400 font-semibold">
-                {yearsOfExperience} años
-              </p>
-            </>
-          )}
+          <>
+            {user.doctor_registration_number && (
+              <>
+                <h3 className=" font-semibold text-right text-primary dark:text-white text-md">
+                  Número de colegiado
+                </h3>
+                <p className="text-secondary dark:text-gray-400 font-semibold">
+                  {user.doctor_registration_number}
+                </p>
+              </>
+            )}
+
+            {user.experience && (
+              <>
+                <h3 className=" font-semibold text-right text-primary dark:text-white text-md">
+                  Experiencia
+                </h3>
+                <p className="text-secondary dark:text-gray-400 font-semibold">
+                  {yearsOfExperience} años
+                </p>
+              </>
+            )}
+          </>
         </div>
       </section>
     )
