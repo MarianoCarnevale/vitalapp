@@ -20,6 +20,7 @@ export const selectConsultationsModel = async (consultation_id) => {
   U.user_id, 
   U.first_name, 
   U.first_surname, 
+  U.avatar,
   discipline_name, 
   avg_rating.avg_rating_value AS avg_rating, 
   C.title, 
