@@ -44,7 +44,7 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterCaracter
-              ? "bg-gradient-to-b from-primary to-slate-600 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm "
+              ? "bg-gradient-to-b from-primary to-cyan-700 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm "
               : "bg-white dark:bg-slate-700 shadow-xl"
           } flex-grow text-primary dark:text-white py-2 px-6  font-semibold rounded-full`}
           onClick={() => {
@@ -57,7 +57,7 @@ export const FindDoctor = () => {
         <button
           className={`${
             filterDisciplines
-              ? "bg-gradient-to-b from-primary to-slate-600 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm"
+              ? "bg-gradient-to-b from-primary to-cyan-700 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm"
               : "bg-white dark:bg-slate-700 shadow-xl "
           } flex-grow dark:text-white text-primary  font-semibold py-2 px-6 rounded-full duration-500`}
           onClick={() => {
@@ -115,10 +115,10 @@ export const FindDoctor = () => {
                   >
                     {doctor.first_name} {doctor.first_surname}
                   </p>
-                  <p className="border-primary text-white text-sm rounded-2xl bg-gradient-to-b from-primary to-slate-600 dark:bg-sky-800 p-2 order-1">
+                  <p className="border-primary text-white text-sm rounded-2xl bg-gradient-to-b from-primary to-cyan-700 dark:bg-sky-800 p-2 order-1">
                     {doctor.discipline_name}
                   </p>
-                  <p className="flex justify-center items-center w-14 h-10 order-3 bg-gradient-to-b from-primary to-slate-600 dark:bg-sky-800 rounded-full text-white">
+                  <p className="flex justify-center items-center w-14 h-10 order-3 bg-gradient-to-b from-primary to-cyan-700 dark:bg-sky-800 rounded-full text-white">
                     {+doctor.avg_rating}
                     <StarRoundedIcon color="white" />
                   </p>

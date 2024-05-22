@@ -18,45 +18,47 @@ const YourConsultation = () => {
   const { consultation_id } = useParams();
   const { user } = useContext(UserTokenContext);
   const [isDeleted, setIsDeleted] = useState(false);
-  const [isFinished, setIsFinished] = useState(false)
+  const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
-    
     getConsultation();
   }, [isFinished]);
-  
+
   const getConsultation = async () => {
-     const resp = await axios.get(
-       `${VITE_BASE_URL}/consultations/${consultation_id}`,
-       {
-         headers: {
-           Authorization: `${token}`,
-         },
-       }
-     );
+    const resp = await axios.get(
+      `${VITE_BASE_URL}/consultations/${consultation_id}`,
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    );
     const [consultation] = Object.values(resp.data.data.consultations);
-    
-     setConsultation(consultation);
-     console.log(consultation);
-   };
-   
-   const handelEndConsultation = async () => { 
-       try {
-         const resp = await axios.post(`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/end`,{
-             headers:{ 
-               Authorization: `${token}`,
-             },
-         })
- 
-         if (resp.data.status === "Success") {
-           toast.success("Consulta finalizada correctamente")
-           setIsFinished(true)
-         }
-       } catch (error) {
-         toast.error("Error al modificar la consulta")
-       }
-  }
-  
+
+    setConsultation(consultation);
+    console.log(consultation);
+  };
+
+  const handelEndConsultation = async () => {
+    try {
+      const resp = await axios.post(
+        `${VITE_BASE_URL}/consultation/${consultation.consultation_id}/end`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+
+      if (resp.data.status === "Success") {
+        toast.success("Consulta finalizada correctamente");
+        setIsFinished(true);
+      }
+    } catch (error) {
+      toast.error("Error al modificar la consulta");
+    }
+  };
+
   const getStatusClass = (status) => {
     switch (status) {
       case "low":
@@ -88,146 +90,154 @@ const YourConsultation = () => {
   };
 
   const date = dateFormat(consultation.created_at);
-      console.log(`Consulta finalizada : ${consultation.is_active} consulta pendiente: ${consultation.is_pending}`);
+  console.log(
+    `Consulta finalizada : ${consultation.is_active} consulta pendiente: ${consultation.is_pending}`
+  );
 
   return (
-
     <>
-      <ToastContainer value={500}/>
-      <section className="z-10 w-4/6 items-center lg:w-full m-auto flex flex-col lg:flex-row max-lg:w-full">
-        <div className="w-5/6 max-w-lg m-auto dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 my-5 py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
-          <div className="flex justify-center w-full gap-4">
-            <p className=" text-primary dark:text-white text-3xl font-semibold mb-5">
-              Tu consulta
-            </p>
-            <p
-              className={`border border-primary text-primary py-2 px-6 rounded-full ${
-                consultation.is_pending
-                  ? "bg-primary font-bold text-white"
-                  : consultation.is_active
-                  ? "bg-green-500 text-white border-0 font-bold"
-                  : "bg-secondary text-white border-0 font-bold"
-              }`}
-            >
-              {consultation.is_pending
-                ? "Pendiente"
-                : consultation.is_active
-                ? "En trámite"
-                : "Finalizada"}
-            </p>
-          </div>
-          <p className="dark:text-white text-2xl text-primary font-bold">
-            {consultation.title}
+      <ToastContainer value={500} />
+      <section className="z-10 h- mb-32 mt-10 h-auto items-start justify-center gap-5 lg:w-full m-auto flex flex-col lg:flex-row max-lg:w-full">
+        <div className="w-5/6 max-w-lg max-lg:m-auto">
+          <p className=" text-primary dark:text-white text-3xl font-semibold mb-5">
+            Tu consulta
           </p>
-          {user.role === "patient" && (
-            <img
-              className="h-40 w-40 rounded-full"
-              src={
-                !consultation.doctor_avatar ||
-                consultation.doctor_avatar === null
-                  ? "/images/Avatar.svg"
-                  : `${VITE_BASE_URL}/users/${consultation.doctor_user_id}/${consultation.doctor_avatar}`
-              }
-              alt={consultation.doctor_avatar}
-            />
-          )}
-          {user.role === "doctor" && (
-            <img
-              className="h-40 w-40 rounded-full"
-              src={
-                !consultation.patient_avatar ||
-                consultation.patient_avatar === null
-                  ? "/images/Avatar.svg"
-                  : `${VITE_BASE_URL}/users/${consultation.user_id}/${consultation.patient_avatar}`
-              }
-              alt={consultation.doctor_avatar}
-            />
-          )}
-          <p className="dark:text-slate-400 text-primary font-bold text-center text-l">
-            {user.role === "patient"
-              ? " Consulta para el medico"
-              : "Consulta de"}
-          </p>
-
-          <Link
-            className="dark:text-white w-5/6 text-2xl max-lg:max-w-md text-l text-center font-bold text-primary hover:underline"
-            to={
-              user.role === "patient"
-                ? `/doctor/${consultation.doctor_id}`
-                : `/users/${consultation.user_id}`
-            }
-          >
-            {user.role === "patient"
-              ? `${consultation.doctor_Name} ${consultation.doctor_surname}`
-              : `${consultation.first_name} ${consultation.first_surname}`}
-          </Link>
-          {user.role === "patient" && (
-            <p className="dark:text-slate-400 w-5/6  max-lg:max-w-md text-sm text-center font-bold text-secondary">
-              Medico de {consultation.discipline_name}
-            </p>
-          )}
-          {user.role === "patient" && (
-            <Rating
-              name="rating"
-              value={+consultation.avg_rating}
-              precision={0.5}
-              readOnly
-            />
-          )}
-
-          <p className="dark:text-white text-primary font-bold">Descripción</p>
-          <p className="dark:text-slate-300 w-5/6 text-center max-lg:max-w-md text-m text-secondary">
-            {consultation.description}
-          </p>
-
-          <p className="dark:text-white text-primary font-bold">Archivo</p>
-          {consultation.file === null ? (
-            <p className="dark:text-slate-400">No se ha adjuntado archivo</p>
-          ) : (
-            <div className="flex items-center  gap-10 text-sm text-secondary font-semibold border-primary border px-3 py-1 rounded-3xl">
-              <a
-                className=" px-4 py-2 rounded-3xl hover:shadow-lg max-w-60 dark:text-slate-300"
-                href={`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/files/${consultation.user_id}/${consultation.file}`}
-              >
-                {isDeleted ? "Archivo borrado con éxito" : consultation.file}
-              </a>
-              <button
-                className="hover:shadow-lg hover:bg-primary hover:bg-opacity-10 bg-white rounded-full w-10 h-10"
-                onClick={() =>
-                  deleteFile(consultation.consultation_id) && setIsDeleted(true)
-                }
-              >
-                <DeleteOutlineIcon color="primary" />
-              </button>
-            </div>
-          )}
-
-          {consultation.is_active ? (
-            <>
-              <p className="dark:text-white text-primary font-bold">Gravedad</p>
-
+          <div className="max-lg:m-auto dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 my-5 py-10 items-center flex flex-col  gap-4 bg-white  rounded-3xl shadow-lg">
+            <div className="flex justify-center w-full gap-4">
               <p
-                className={`p-1 w-20 font-bold rounded-xl text-center text-white ${getStatusClass(
-                  consultation.severity
-                )}`}
+                className={`border border-primary text-primary py-2 px-6 rounded-full ${
+                  consultation.is_pending
+                    ? "bg-primary font-bold text-white"
+                    : consultation.is_active
+                    ? "bg-green-500 text-white border-0 font-bold"
+                    : "bg-secondary text-white border-0 font-bold"
+                }`}
               >
-                {consultation.severity}
+                {consultation.is_pending
+                  ? "Pendiente"
+                  : consultation.is_active
+                  ? "En trámite"
+                  : "Finalizada"}
               </p>
-            </>
-          ) : (
-            ""
-          )}
-          <p className=" text-primary font-bold dark:text-white">Fecha</p>
-          <p className="w-5/6  max-lg:max-w-md text-sm text-center text-secondary dark:text-slate-300">
-            {date}
-          </p>
-          {(user.first_name === consultation.doctor_Name &&
-            consultation.is_pending === 0&&
-            consultation.is_active === 1) &&
-            <><button
-            className="border bg-primary active:border-primary active:bg-white active:text-primary text-white py-2 px-6 rounded-full"
-            onClick={handelEndConsultation}
-            >Finalizar Consulta</button></>}
+            </div>
+            <p className="dark:text-white text-2xl text-primary font-bold">
+              {consultation.title}
+            </p>
+            {user.role === "patient" && (
+              <img
+                className="h-40 w-40 rounded-full"
+                src={
+                  !consultation.doctor_avatar ||
+                  consultation.doctor_avatar === null
+                    ? "/images/Avatar.svg"
+                    : `${VITE_BASE_URL}/users/${consultation.doctor_user_id}/${consultation.doctor_avatar}`
+                }
+                alt={consultation.doctor_avatar}
+              />
+            )}
+            {user.role === "doctor" && (
+              <img
+                className="h-40 w-40 rounded-full"
+                src={
+                  !consultation.patient_avatar ||
+                  consultation.patient_avatar === null
+                    ? "/images/Avatar.svg"
+                    : `${VITE_BASE_URL}/users/${consultation.user_id}/${consultation.patient_avatar}`
+                }
+                alt={consultation.doctor_avatar}
+              />
+            )}
+            <p className="dark:text-slate-400 text-primary font-bold text-center text-l">
+              {user.role === "patient"
+                ? " Consulta para el medico"
+                : "Consulta de"}
+            </p>
+            <Link
+              className="dark:text-white w-5/6 text-2xl max-lg:max-w-md text-l text-center font-bold text-primary hover:underline"
+              to={
+                user.role === "patient"
+                  ? `/doctor/${consultation.doctor_id}`
+                  : `/users/${consultation.user_id}`
+              }
+            >
+              {user.role === "patient"
+                ? `${consultation.doctor_Name} ${consultation.doctor_surname}`
+                : `${consultation.first_name} ${consultation.first_surname}`}
+            </Link>
+            {user.role === "patient" && (
+              <p className="dark:text-slate-400 w-5/6  max-lg:max-w-md text-sm text-center font-bold text-secondary">
+                Medico de {consultation.discipline_name}
+              </p>
+            )}
+            {user.role === "patient" && (
+              <Rating
+                name="rating"
+                value={+consultation.avg_rating}
+                precision={0.5}
+                readOnly
+              />
+            )}
+            <p className="dark:text-white text-primary font-bold">
+              Descripción
+            </p>
+            <p className="dark:text-slate-300 w-5/6 text-center max-lg:max-w-md text-m text-secondary">
+              {consultation.description}
+            </p>
+            <p className="dark:text-white text-primary font-bold">Archivo</p>
+            {consultation.file === null ? (
+              <p className="dark:text-slate-400">No se ha adjuntado archivo</p>
+            ) : (
+              <div className="flex items-center  gap-10 text-sm text-secondary font-semibold border-primary border px-3 py-1 rounded-3xl">
+                <a
+                  className=" px-4 py-2 rounded-3xl hover:shadow-lg max-w-60 dark:text-slate-300"
+                  href={`${VITE_BASE_URL}/consultation/${consultation.consultation_id}/files/${consultation.user_id}/${consultation.file}`}
+                >
+                  {isDeleted ? "Archivo borrado con éxito" : consultation.file}
+                </a>
+                <button
+                  className="hover:shadow-lg hover:bg-primary hover:bg-opacity-10 bg-white rounded-full w-10 h-10"
+                  onClick={() =>
+                    deleteFile(consultation.consultation_id) &&
+                    setIsDeleted(true)
+                  }
+                >
+                  <DeleteOutlineIcon color="primary" />
+                </button>
+              </div>
+            )}
+            {consultation.is_active ? (
+              <>
+                <p className="dark:text-white text-primary font-bold">
+                  Gravedad
+                </p>
+                <p
+                  className={`p-1 w-20 font-bold rounded-xl text-center text-white ${getStatusClass(
+                    consultation.severity
+                  )}`}
+                >
+                  {consultation.severity}
+                </p>
+              </>
+            ) : (
+              ""
+            )}
+            <p className=" text-primary font-bold dark:text-white">Fecha</p>
+            <p className="w-5/6  max-lg:max-w-md text-sm text-center text-secondary dark:text-slate-300">
+              {date}
+            </p>
+            {user.first_name === consultation.doctor_Name &&
+              consultation.is_pending === 0 &&
+              consultation.is_active === 1 && (
+                <>
+                  <button
+                    className="border bg-primary active:border-primary active:bg-white active:text-primary text-white py-2 px-6 rounded-full"
+                    onClick={handelEndConsultation}
+                  >
+                    Finalizar Consulta
+                  </button>
+                </>
+              )}
+          </div>
         </div>
 
         <ConsultationsResponses
