@@ -1,5 +1,4 @@
 import { useEffect, useContext, useState } from "react";
-
 import { useResponses } from "../hooks/useResponse.jsx";
 import StarIcon from "@mui/icons-material/Star";
 import { RatingContext } from "../contexts/RatingContext.jsx";
@@ -7,6 +6,7 @@ import { RatingModal } from "./RatingModal.jsx";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { DeleteResponseModal } from "./DeleteResponseModal.jsx";
+import { ToastContainer } from "react-toastify";
 
 export const ConsultationsResponses = (consultation) => {
   // sacar el user del token
@@ -55,6 +55,7 @@ export const ConsultationsResponses = (consultation) => {
     <>
       {isModal && <RatingModal modalData={modalData} setIsModal={setIsModal} />}
       <section className="w-5/6 max-lg:max-w-lg max-lg:m-auto flex flex-col gap-6 mb-20">
+        <ToastContainer autoClose={1500} value={500} />
         {/* <hr className="mt-5 border border-primary dark:border-white w-full" /> */}
         <p className=" text-primary dark:text-white text-left text-3xl font-semibold ">
           Respuestas

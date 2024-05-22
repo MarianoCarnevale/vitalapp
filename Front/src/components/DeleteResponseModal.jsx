@@ -1,10 +1,9 @@
-import { useContext, useRef } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { useContext } from "react";
+import { toast } from "react-toastify";
 import axios from "axios";
 import { UserTokenContext } from "../contexts/UserTokenContext";
 import { VITE_BASE_URL } from "../config/env";
 import PropTypes from "prop-types";
-import useOutsideClick from "../hooks/useOutsideClick";
 
 export const DeleteResponseModal = ({
   deleteModalData,
@@ -13,14 +12,6 @@ export const DeleteResponseModal = ({
 }) => {
   const { token } = useContext(UserTokenContext);
   const { response_id, consultation } = deleteModalData;
-
-  const ref = useRef();
-
-  const handleOutsideClick = () => {
-    setDeleteModal(false);
-  };
-
-  useOutsideClick(ref, handleOutsideClick);
 
   const handleClickBorrar = async () => {
     try {
@@ -33,9 +24,10 @@ export const DeleteResponseModal = ({
         }
       );
       if (response.data.status === "ok") {
-        setTimeout(() => {
-          setDeleteModal(false);
-        }, 1500);
+        setDeleteModal(false);
+        toast.success("Respuesta borrada con éxito");
+        // setTimeout(() => {
+        // }, 1500);
       }
     } catch (error) {
       toast.error(error.response.data.message);
@@ -44,20 +36,20 @@ export const DeleteResponseModal = ({
   const handleClickCancelar = () => {
     setDeleteModal(false);
   };
+
   return (
     <>
-      <ToastContainer autoClose={1500} />
+      {/* <ToastContainer autoClose={1500} /> */}
       {deleteModal && (
         <div className=" fixed inset-0 transition-opacity z-20">
-          <div className="absolute  inset-0 bg-gray-500 opacity-75 "></div>
           <div
-            ref={ref}
-            className="w-5/6 flex flex-col lg:w-fit max-lg:m-auto max-lg:mt-[25rem] justify-center items-center gap-3 overflow-hidden transform transition-all bg-white dark:bg-gradient-to-b dar dark:from-slate-900 dark:to-sky-800  mt-72 ml-[40%]  p-8 rounded-lg"
-          >
+            onClick={() => setDeleteModal(false)}
+            className="absolute  inset-0 bg-gray-500 opacity-75 "
+          ></div>
+          <div className="w-5/6 flex flex-col lg:w-fit max-lg:m-auto max-lg:mt-[25rem] justify-center items-center gap-3 overflow-hidden transform transition-all bg-white dark:bg-gradient-to-b dar dark:from-slate-900 dark:to-sky-800  mt-72 ml-[40%]  p-8 rounded-lg">
             <p className="font-bold text-2xl text-primary dark:text-white">
               Estas seguro que quieres borrar la respuesta?
             </p>
-
             <div className="gap-5 flex">
               <button
                 className="inline bg-gradient-to-b from-primary to-cyan-700 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm  flex-grow  dark:text-white py-2 px-6  font-semibold rounded-full"
