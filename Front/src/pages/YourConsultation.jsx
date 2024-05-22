@@ -36,7 +36,6 @@ const YourConsultation = () => {
     const [consultation] = Object.values(resp.data.data.consultations);
 
     setConsultation(consultation);
-    console.log(consultation);
   };
 
   const handelEndConsultation = async () => {
@@ -139,10 +138,9 @@ const YourConsultation = () => {
               <img
                 className="h-40 w-40 rounded-full"
                 src={
-                  !consultation.patient_avatar ||
-                  consultation.patient_avatar === null
+                  !consultation.avatar || consultation.avatar === null
                     ? "/images/Avatar.svg"
-                    : `${VITE_BASE_URL}/users/${consultation.user_id}/${consultation.patient_avatar}`
+                    : `${VITE_BASE_URL}/users/${consultation.user_id}/${consultation.avatar}`
                 }
                 alt={consultation.doctor_avatar}
               />
