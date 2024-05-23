@@ -1,37 +1,57 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import PersonSearchRoundedIcon from "@mui/icons-material/PersonSearchRounded";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 
 const Footer = () => {
   const { user } = useContext(UserTokenContext);
   return user ? (
     <footer className="bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:to-sky-800 pt-4 h-24 shadow-sup w-full fixed bottom-0 lg:hidden z-10">
-      <nav className="w-4/5 m-auto pt-2 flex justify-between ">
+      <nav className="w-4/5 max-w-md m-auto flex justify-between ">
         <NavLink
           to="/"
-          className="rounded-2xl py-2 focus:bg-secondary-light dark:focus:bg-slate-400 flex-grow"
+          onFocus={(e) => (e.target.style.backgroundColor = "#F3F4F6")}
+          onBlur={(e) => (e.target.style.backgroundColor = "")}
+          className="rounded-2xl  focus:bg-secondary-light  "
         >
-          <img className="m-auto" src="/images/icon-home.svg" alt="Home" />
+          {/* <img className="m-auto" src="/images/icon-home.svg" alt="Home" /> */}
+          <HomeRoundedIcon
+            color="secondary"
+            className=" m-4 hover:fill-primary"
+          />
         </NavLink>
         <NavLink
           to="/consultations"
-          className="rounded-2xl py-2 dark:focus:bg-slate-400 flex-grow"
+          className="rounded-2xl focus:bg-secondary-light "
+          onFocus={(e) => (e.target.style.backgroundColor = "#F3F4F6")}
+          onBlur={(e) => (e.target.style.backgroundColor = "")}
         >
-          <img className="m-auto" src="/images/icon-consults.svg" alt="Logo" />
+          <EventNoteRoundedIcon
+            color="secondary"
+            className=" m-4 hover:fill-primary"
+          />
         </NavLink>
 
-        <NavLink
-          to="/search"
-          className="rounded-2xl py-2 dark:focus:bg-slate-400 flex-grow"
-        >
-          <img className="m-auto" src="/images/icon-search.svg" alt="Logo" />
+        <NavLink to="/search" className="rounded-2xl focus:bg-secondary-light ">
+          <PersonSearchRoundedIcon
+            color="secondary"
+            className="  m-4 hover:fill-primary"
+          />
         </NavLink>
 
         <NavLink
           to="/profile"
-          className="rounded-2xl py-2 dark:focus:bg-slate-400 flex-grow"
+          className="rounded-2xl focus:bg-secondary-light "
+          onFocus={(e) => (e.target.style.backgroundColor = "#F3F4F6")}
+          onBlur={(e) => (e.target.style.backgroundColor = "")}
         >
-          <img className="m-auto" src="/images/icon-profile.svg" alt="Logo" />
+          <AccountCircleRoundedIcon
+            color="secondary"
+            className=" m-4 hover:fill-primary"
+          />
         </NavLink>
       </nav>
     </footer>
