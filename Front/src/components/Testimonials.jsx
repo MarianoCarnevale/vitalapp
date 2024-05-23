@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
+
 
 export const Testimonials = () => {
   const [count, setCount] = useState(0);
@@ -22,14 +24,14 @@ export const Testimonials = () => {
     },
     {
       content:
-        "“VitalApp es un salvavidas para nuestra ajetreada práctica.Agiliza las citas y mejora la comunicación con los pacientes. ¡Muy recomendable!”",
+        "“VitalApp es un salvavidas para nuestra ajetreada práctica. Agiliza las citas y mejora la comunicación con los pacientes. ¡Muy recomendable!”",
       username: "Mariano Carnevale",
       avatar: "/images/marianoLinkedin.webp",
       company: "CEO of HealthLinkMD",
     },
     {
       content:
-        "“VitalApp ha mejorado nuestra eficiencia y satisfacción delpaciente. Es una herramienta imprescindible para cualquier proveedor de atención médica”",
+        "“VitalApp ha mejorado nuestra eficiencia y satisfacción del paciente. Es una herramienta imprescindible para cualquier proveedor de atención médica”",
       username: "Yogesh Samtani",
       avatar: "/images/yagoLinkedIn.webp",
       company: "CEO of MedConsultPro",
@@ -87,6 +89,7 @@ export const Testimonials = () => {
           </figcaption>
         </figure>
       </div>
+
       <div className="flex justify-around m-auto">
         <button
           onClick={handleBack}
@@ -101,6 +104,7 @@ export const Testimonials = () => {
           disabled={count === 4}
         >
           <KeyboardArrowRightRoundedIcon color="white" />
+
         </button>
       </div>
     </section>

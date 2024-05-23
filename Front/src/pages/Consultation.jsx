@@ -40,7 +40,7 @@ const Consultation = () => {
   // console.log(consultations);
   return (
     <>
-      <ToastContainer />
+      <ToastContainer autoClose={1500} />
       <section className="w-5/6 max-lg:max-w-lg lg:mb-20 m-auto grid grid-cols-1 max-lg:mb-32 mt-10 lg:grid-cols-2 gap-6 max-lg:gap-10 items-start">
         {user.role === "patient" ? (
           <>

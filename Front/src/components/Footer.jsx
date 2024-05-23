@@ -40,32 +40,32 @@ const Footer = () => {
       <div className="max-w-6xl m-auto  flex flex-wrap justify-left">
         <div className="p-5 w-1/2 sm:w-4/12 md:w-3/12 text-white">
           <div className="text-xs uppercase text-slate-900 font-bold mb-6">
-            Getting Started
+            Nuestra App
           </div>
 
           <a
             href="#"
             className="my-3 block  hover:text-gray-100 text-sm font-medium duration-700"
           >
-            Installation
+            Instalación
           </a>
           <a
             href="#"
             className="my-3 block  hover:text-gray-100 text-sm font-medium duration-700"
           >
-            Release Notes
+            Notas de la versión
           </a>
           <a
             href="#"
             className="my-3 block  hover:text-gray-100 text-sm font-medium duration-700"
           >
-            Upgrade Guide
+            Guía de uso
           </a>
         </div>
 
         <div className="p-5 w-1/2 sm:w-4/12 md:w-3/12 text-white">
           <div className="text-xs uppercase text-slate-900 font-bold mb-6">
-            Community
+            Comunidad
           </div>
 
           <a
@@ -78,26 +78,26 @@ const Footer = () => {
 
         <div className="p-5 w-1/2 sm:w-4/12 md:w-3/12 text-white">
           <div className="text-xs uppercase text-slate-900 font-bold mb-6">
-            About Us
+            Sobre nosotros
           </div>
 
           <a
             href="#"
             className="my-3 block hover:text-gray-100 text-sm font-medium duration-700"
           >
-            Team
+            Equipo
           </a>
           <a
             href="#"
             className="my-3 block hover:text-gray-100 text-sm font-medium duration-700"
           >
-            Contact
+            Contacto
           </a>
           <a
             href="#"
             className="my-3 block hover:text-gray-100 text-sm font-medium duration-700"
           >
-            Company
+            Compañía
           </a>
         </div>
       </div>
