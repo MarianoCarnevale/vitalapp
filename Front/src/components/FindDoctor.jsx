@@ -127,7 +127,7 @@ export const FindDoctor = () => {
                   <img
                     className="w-10 h-10 order-4 rounded-full max-lg:hidden"
                     src={
-                      doctor.avatar
+                      doctor.avatar !== null
                         ? `${VITE_BASE_URL}/users/${doctor.user_id}/${doctor.avatar}`
                         : "/images/Avatar.svg"
                     }
