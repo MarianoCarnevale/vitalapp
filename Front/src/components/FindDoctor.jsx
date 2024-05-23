@@ -81,7 +81,7 @@ export const FindDoctor = () => {
           onChange={(e) => setName(e.target.value.toLowerCase())}
         />
       </div>
-      <ul className="max-lg:max-w-lg w-full h-fit max-h-[19rem]  flex flex-col gap-5  dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5  border-white rounded-3xl  overflow-auto hide-scrollbar shadow-lg">
+      <ul className="max-lg:max-w-lg w-full h-[19rem]  flex flex-col gap-5  dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5  border-white rounded-3xl  overflow-auto hide-scrollbar shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter
