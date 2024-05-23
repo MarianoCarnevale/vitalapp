@@ -20,14 +20,14 @@ export const Testimonials = () => {
     },
     {
       content:
-        "“VitalApp es un salvavidas para nuestra ajetreada práctica.Agiliza las citas y mejora la comunicación con los pacientes. ¡Muy recomendable!”",
+        "“VitalApp es un salvavidas para nuestra ajetreada práctica. Agiliza las citas y mejora la comunicación con los pacientes. ¡Muy recomendable!”",
       username: "Mariano Carnevale",
       avatar: "/images/marianoLinkedin.webp",
       company: "CEO of HealthLinkMD",
     },
     {
       content:
-        "“VitalApp ha mejorado nuestra eficiencia y satisfacción delpaciente. Es una herramienta imprescindible para cualquier proveedor de atención médica”",
+        "“VitalApp ha mejorado nuestra eficiencia y satisfacción del paciente. Es una herramienta imprescindible para cualquier proveedor de atención médica”",
       username: "Yogesh Samtani",
       avatar: "/images/yagoLinkedIn.webp",
       company: "CEO of MedConsultPro",
