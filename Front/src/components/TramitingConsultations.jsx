@@ -29,7 +29,9 @@ export const TramitingConsultations = ({
         </div>
       </div>
       <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
-        <ul className="w-full flex h-[20.5rem] flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 lg:my-5  border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
+        <ul className="w-full flex h-full max-h-[20.5rem] flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 lg:my-5  border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
+        {results.filter((result) => result.is_pending === 0 && result.is_active === 1)
+            .length === 0 && <p className="dark:text-white">No existen consultas en trámite.</p>}
           {results.map((result) => {
             // console.log(result);
             return (
@@ -66,6 +68,7 @@ export const TramitingConsultations = ({
 };
 
 TramitingConsultations.propTypes = {
-  consultations: PropTypes.array,
-  results: PropTypes.array,
+  results: PropTypes.array.isRequired,
+  isCreated: PropTypes.bool.isRequired,
+  setIsCreated: PropTypes.func.isRequired,
 };

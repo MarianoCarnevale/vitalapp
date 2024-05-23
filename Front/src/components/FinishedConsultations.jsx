@@ -11,7 +11,7 @@ export const FinishedConsultations = (children) => {
         <ul className="w-full  max-h-[22.5rem] flex flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800 bg-white p-5 border-white rounded-3xl h-full overflow-auto hide-scrollbar shadow-lg">
           {children.results.filter(
             (result) => result.is_pending === 0 && result.is_active === 0
-          ).length === 0 && <p>No existen consultas finalizadas.</p>}
+          ).length === 0 && <p className="dark:text-white">No existen consultas finalizadas.</p>}
           {children.consultations.filter(
             (consultation) =>
               consultation.is_pending === 0 && consultation.is_active === 0

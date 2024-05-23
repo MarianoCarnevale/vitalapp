@@ -54,7 +54,7 @@ export const ConsultationsResponses = (consultation) => {
   return (
     <>
       {isModal && <RatingModal modalData={modalData} setIsModal={setIsModal} />}
-      <section className="w-5/6 max-lg:max-w-lg max-lg:m-auto flex flex-col gap-6 mb-20">
+      <section className="w-5/6 max-w-lg max-lg:m-auto flex flex-col gap-6 mb-20">
         <ToastContainer autoClose={1500} value={500} />
         {/* <hr className="mt-5 border border-primary dark:border-white w-full" /> */}
         <p className=" text-primary dark:text-white text-left text-3xl font-semibold ">
