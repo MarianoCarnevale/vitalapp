@@ -5,6 +5,7 @@ import { VITE_BASE_URL } from "../config/env";
 import { FindDoctor } from "../components/FindDoctor.jsx";
 import { FindPatient } from "../components/FindPatient.jsx";
 import { SearchConsultation } from "../components/SearchConsultation.jsx";
+import { RankingDoctor } from "../components/RankingDoctor.jsx";
 
 const Search = () => {
   const { token, user } = useContext(UserTokenContext);
@@ -36,6 +37,9 @@ const Search = () => {
     (user.role === "doctor" ? (
       <section className="mt-10">
         <div className="w-5/6 max-lg:max-w-lg m-auto grid grid-cols-1 lg:grid-cols-2 max-lg:gap-10 lg:gap-5">
+          <section className="max-lg:w-full">
+            <RankingDoctor />
+          </section>
           <section className="max-lg:w-full">
             <FindPatient />
           </section>
