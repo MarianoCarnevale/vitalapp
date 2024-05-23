@@ -90,20 +90,24 @@ const Home = () => {
           <FindDoctor />
         </div>
       </div>
-      <section className="flex flex-col items-center lg:flex-row w-3/4 m-auto lg:items-start ">
-        <div className="pt-20 pb-10 flex flex-col g-2 lg:w-2/4  lg:text-left mx-auto">
-          <h2 className="text-3xl font-bold text-primary">
-          ¡Regístrate en VitalApp!
+      <section className="flex flex-col max-w-[70%] mt-10 items-center lg:flex-row w-3/4 m-auto lg:items-start ">
+        <div className="pt-20 pb-10 flex flex-col g-2 max-lg:text-center lg:w-2/4  lg:text-left mx-auto">
+          <h2 className="text-3xl font-bold mb-10 text-primary">
+            ¡Regístrate en VitalApp!
           </h2>
-          <p className="text-secondary m-auto text-left lg:text-left font-semibold">
-          Tu salud a un clic de distancia. ¡Únete ahora y mejora tu bienestar!
+          <p className="text-secondary max-lg:text-center lg:text-left font-semibold">
+            Tu salud a un clic de distancia. ¡Únete ahora y mejora tu bienestar!
           </p>
-          <p className="text-secondary m-auto text-left lg:text-left font-semibold">Consulta a los mejores médicos sin salir de casa.</p>
-          <p className="text-secondary m-auto text-left lg:text-left font-semibold">Consulta rápida y cómoda, cuando más lo necesitas.</p>
+          <p className="text-secondary max-lg:text-center lg:text-left font-semibold">
+            Consulta a los mejores médicos sin salir de casa.
+          </p>
+          <p className="text-secondary max-lg:text-center lg:text-left font-semibold">
+            Consulta rápida y cómoda, cuando más lo necesitas.
+          </p>
 
           <NavLink
             to="/register"
-            className="ml-auto bg-primary text-white font-semibold p-4 rounded-3xl"
+            className="max-lg:mx-auto self-start mt-10 bg-primary text-white font-semibold p-4 rounded-3xl"
           >
             Regístrate
           </NavLink>
@@ -135,17 +139,37 @@ const Home = () => {
               </svg>
               <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
                 <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                ¡Bienvenido a VitalApp!
+                  ¡Bienvenido a VitalApp!
                 </h2>
                 <h2 className="text-3xl font-bold tracking-tight text-secondary sm:text-2xl">
-                Tu salud, nuestra prioridad.
+                  Tu salud, nuestra prioridad.
                 </h2>
                 <ul className="mt-6 text-lg leading-8 text-gray-300">
-                <p><strong className="text-cyan-400">Consulta médica fácil y rápida:</strong> agenda y realiza consultas desde la comodidad de tu hogar.</p>
-                <p><strong className="text-cyan-400">Seguimiento continuo:</strong> nuestro equipo de médicos te acompaña en cada paso de tu tratamiento</p>
-                <p><strong className="text-cyan-400">Historial médico completo:</strong> guarda y accede a tus consultas y tratamientos de manera segura</p>
-                <br />
-                <p className="font-bold">¡No esperes más! Empieza ya a usar nuestra app y toma el control de tu salud.</p>
+                  <p>
+                    <strong className="text-cyan-400">
+                      Consulta médica fácil y rápida:
+                    </strong>{" "}
+                    agenda y realiza consultas desde la comodidad de tu hogar.
+                  </p>
+                  <p>
+                    <strong className="text-cyan-400">
+                      Seguimiento continuo:
+                    </strong>{" "}
+                    nuestro equipo de médicos te acompaña en cada paso de tu
+                    tratamiento
+                  </p>
+                  <p>
+                    <strong className="text-cyan-400">
+                      Historial médico completo:
+                    </strong>{" "}
+                    guarda y accede a tus consultas y tratamientos de manera
+                    segura
+                  </p>
+                  <br />
+                  <p className="font-bold">
+                    ¡No esperes más! Empieza ya a usar nuestra app y toma el
+                    control de tu salud.
+                  </p>
                 </ul>
                 <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                   <a
@@ -158,7 +182,7 @@ const Home = () => {
               </div>
               <div className="relative mt-16 h-80 lg:mt-8">
                 <img
-                  className="absolute left-[-10rem] top-[-2rem] w-[57rem] max-w-none"
+                  className="absolute lg:left-[-10rem] lg:top-[3rem] lg:w-[57rem] max-lg:w-[43rem] max-lg:m-auto max-lg:mt-[-3rem] max-w-none"
                   src="./images/dark-project-app-screenshot.png"
                   alt="App screenshot"
                   width={1824}
