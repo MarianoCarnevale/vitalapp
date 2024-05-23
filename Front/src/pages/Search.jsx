@@ -35,7 +35,7 @@ const Search = () => {
   return (
     user &&
     (user.role === "doctor" ? (
-      <section className="mt-10">
+      <section className="mt-10 max-lg:mb-40">
         <div className="w-5/6 max-lg:max-w-lg m-auto grid grid-cols-1 lg:grid-cols-2 max-lg:gap-10 lg:gap-5">
           <section className="max-lg:w-full">
             <RankingDoctor />
@@ -47,9 +47,14 @@ const Search = () => {
         </div>
       </section>
     ) : (
-      <section className="w-5/6 max-lg:mt-10 max-lg:max-w-lg m-auto grid grid-cols-1 lg:grid-cols-2 max-lg:gap-10 lg:gap-5">
-        <FindDoctor />
+      <section className="w-5/6 max-lg:mb-40 max-lg:mt-10 max-lg:max-w-lg m-auto grid grid-cols-1 lg:grid-cols-2 max-lg:gap-10 lg:gap-5">
+        <section className="w-full">
+          <FindDoctor />
+        </section>
         <SearchConsultation consultations={consultations} results={results} />
+        <section className="max-lg:w-full">
+          <RankingDoctor />
+        </section>
       </section>
     ))
   );
