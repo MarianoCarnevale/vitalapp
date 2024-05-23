@@ -28,9 +28,7 @@ const Profile = () => {
     yearsOfExperience =
       currentDate.getFullYear() - experienceStartDate.getFullYear();
   }
-
-  console.log(user);
-
+  
   return (
     user && (
       <section className="w-5/6 lg:max-w-lg py-10 mb-[40rem] m-auto flex flex-col gap-4 items-center lg:py-0">

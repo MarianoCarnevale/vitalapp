@@ -25,8 +25,6 @@ export const RankingDoctor = () => {
     getDoctorsRanked(token);
   }, []);
 
-  console.log(doctors);
-
   return (
     <section className="max-lg:max-w-lg lg:w-full m-auto flex flex-col gap-6 items-center">
       <p className="mr-auto text-3xl lg:mb-0 text-primary font-semibold dark:text-white">

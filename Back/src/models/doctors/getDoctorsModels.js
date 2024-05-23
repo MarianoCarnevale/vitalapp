@@ -41,7 +41,6 @@ u.user_id, doc.doctor_id, u.first_name, d.discipline_name;
 
     return doctors;
   } catch (error) {
-    // console.log(error.message);
     throw error;
   }
 };

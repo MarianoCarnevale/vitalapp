@@ -45,7 +45,6 @@ LIMIT
 
     return doctors;
   } catch (error) {
-    // console.log(error.message);
     throw error;
   }
 };

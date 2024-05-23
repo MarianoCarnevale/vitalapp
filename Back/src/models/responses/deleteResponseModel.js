@@ -18,7 +18,6 @@ export const deleteResponseModel = async (response_id) => {
 
     return;
   } catch (error) {
-    console.log('Error al eliminar la respuesta', error);
     throw error;
   }
 };

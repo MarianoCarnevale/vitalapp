@@ -24,7 +24,6 @@ ${array_filter}
           ORDER BY severity`;
 
     const consultations = await pool.query(query);
-console.log(consultations);
     return consultations;
   } catch (error) {
     throw generateError('consulta no encontrada', 404);

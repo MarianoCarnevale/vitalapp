@@ -21,6 +21,6 @@ export const upadteRatingService = async (newRating_id, rating_value) => {
       return newRating;
     
   } catch (error) {
-    console.log('Error al actualizar valoracion ',error);
+    throw error;
   }
 }

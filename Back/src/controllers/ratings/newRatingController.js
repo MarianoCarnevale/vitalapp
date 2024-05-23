@@ -10,9 +10,8 @@ export const newRatingController = async (req, res, next) => {
     const user_id = req.user.id;
 
     const [response] = await selectResponseByIdModel(response_id);
-    console.log(response);
     const userResponseId = response.user_id;
-    console.log(userResponseId);
+  
     if (userResponseId === user_id) {
       throw generateError('No puedes votar tu propia respuesta', 401);
     }

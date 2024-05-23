@@ -18,7 +18,6 @@ export const selectResponseByIdModel = async (response_id) => {
     // Devolver la respuesta.
     return response[0];
   } catch (error) {
-    console.log('Error al obtener la respuesta por id', error);
     throw error;
   }
 };

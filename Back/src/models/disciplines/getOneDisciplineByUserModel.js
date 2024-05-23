@@ -16,7 +16,6 @@ export const getOneDisciplineByUserModel = async (user_id) => {
       WHERE U.user_id = ?
       `, [user_id]
     );
-    console.log(discipline_id[0].discipline_id);
     return discipline_id[0].discipline_id;
   } catch (error) {
     throw error;

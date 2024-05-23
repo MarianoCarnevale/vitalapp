@@ -11,7 +11,7 @@ export const insertRatingService = async (data) => {
       `SELECT * FROM ratings WHERE user_id = ? AND response_id = ?`,
       [data.user_id, data.response_id]
     );
-    console.log(response[0]);
+
     if (response[0].length > 0) {
       throw generateError('Error! Ya has valorado esta respuesta', 401);
     }
@@ -25,7 +25,6 @@ export const insertRatingService = async (data) => {
 
     return rating;
   } catch (error) {
-    console.log('Error al insertar la respuesta', error);
     throw error;
   }
 };

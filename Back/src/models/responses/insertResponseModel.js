@@ -45,7 +45,6 @@ export const insertResponseModel = async (
     // Devolver la respuesta.
     return response[0];
   } catch (error) {
-    console.log('Error al insertar la respuesta', error);
     throw error;
   }
 };

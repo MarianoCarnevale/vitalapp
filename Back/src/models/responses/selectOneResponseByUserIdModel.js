@@ -6,7 +6,6 @@ export const selectOneResponseByUserIdModel = async (
   response_id
 ) => {
   try {
-    console.log(user_id);
     // Crear la conexión a la base de datos.
     const pool = await getPool();
     // Obtener la respuesta.

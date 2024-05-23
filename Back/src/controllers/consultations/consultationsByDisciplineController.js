@@ -10,7 +10,6 @@ export const consultationsByDisciplineController = async (req, res, next) => {
   
     // conseguir la disciplina del usuario
     const discipline_id = await getOneDisciplineByUserModel(user_id);
-    console.log(discipline_id);
     
     let select_info= '';
     let array_filter= '';

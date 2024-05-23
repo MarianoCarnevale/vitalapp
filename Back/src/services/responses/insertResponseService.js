@@ -20,7 +20,6 @@ export const insertResponseService = async (
 
     return response;
   } catch (error) {
-    console.log('Error al insertar la respuesta', error);
     throw error;
   }
 };

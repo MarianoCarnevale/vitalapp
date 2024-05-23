@@ -15,7 +15,6 @@ export const deleteRatingModel = async (rating_id, user_id) => {
     return;
 
   } catch (error) {
-    console.log('Error al borrar la valoración', error);
     throw error;
   }
 }

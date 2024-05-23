@@ -16,7 +16,6 @@ export const updateResponseService = async (user_id, response_id, content) => {
     
     return response;
   } catch (error) {
-    console.log('Error al actualizar la respuesta', error);
     throw error;
   }
 };

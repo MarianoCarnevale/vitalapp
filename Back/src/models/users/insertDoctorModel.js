@@ -32,8 +32,6 @@ export const insertDoctorModel = async (
   // Actualizamos disciplina
   const [discipline] = await pool.query(disciplineQuery, [discipline_name]);
 
-  console.log(discipline[0].discipline_id);
-
   // Aplicamos lógica para la tabla disciplines
 
   let doctorDisciplineQuery = `INSERT INTO doctors_disciplines (doctor_id, discipline_id, experience) values (?, ?, ?)`;

@@ -31,8 +31,6 @@ export const FindDoctor = () => {
     setIsModalOpen(true);
   };
 
-  console.log(doctors);
-
   return (
     <section className="max-lg:max-w-lg m-auto flex flex-col gap-5 items-center ">
       {user && (

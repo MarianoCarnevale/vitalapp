@@ -11,7 +11,6 @@ export function DarkModeProvider({ children }) {
   useEffect(() => {
     if (token && darkMode) {
       document.documentElement.classList.add("dark");
-      console.log("dark mode on");
     } else {
       document.documentElement.classList.remove("dark");
     }

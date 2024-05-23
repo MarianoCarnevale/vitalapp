@@ -36,7 +36,7 @@ export const TramitingConsultations = ({
             <p className="dark:text-white">No existen consultas en trámite.</p>
           )}
           {results.map((result) => {
-            // console.log(result);
+          
             return (
               result.is_active === 1 &&
               result.is_pending === 0 && (

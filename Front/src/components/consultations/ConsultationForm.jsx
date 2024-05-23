@@ -12,7 +12,6 @@ export const ConsultationForm = ({ setIsCreated, isCreated }) => {
   const { user } = useContext(UserTokenContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Sacamos el estado para volver a tirar el useEffect en el componente padre y actualizar la lista
-  // console.log(isCreated);
   const ref = useRef();
   const handleOutsideClick = () => {
     setIsModalOpen(false);

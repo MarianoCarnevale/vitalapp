@@ -19,7 +19,6 @@ export const selectAllPatientsModel = async () => {
 
     return patients;
   } catch (error) {
-    // console.log(error.message);
     throw error;
   }
 };

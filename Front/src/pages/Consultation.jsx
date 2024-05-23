@@ -25,7 +25,6 @@ const Consultation = () => {
         },
       });
       const consultation = Object.values(resp.data.data.consultations);
-      console.log(consultation);
       //se separan por un filter en la opcion pendin
       //establecer el listado de consultas
       setConsultations(consultation);

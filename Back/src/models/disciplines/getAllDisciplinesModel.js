@@ -13,7 +13,6 @@ export const getAllDisciplinesModel = async () => {
     );
     return disciplines;
   } catch (error) {
-    // console.log(error.message);
     throw error;
   }
 };

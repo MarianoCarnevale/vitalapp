@@ -17,7 +17,6 @@ export const deleteResponseService = async (
       response_id
     );
     // Comprobar si el user_id es el mismo que el de la respuesta.
-    console.log(response);
     if (response[0].user_id !== user_id) {
       throw generateError(
         'Usuario no autorizado para borrar la respuesta',
@@ -30,7 +29,6 @@ export const deleteResponseService = async (
 
     return;
   } catch (error) {
-    console.log('Error al eliminar la respuesta', error);
     throw error;
   }
 };

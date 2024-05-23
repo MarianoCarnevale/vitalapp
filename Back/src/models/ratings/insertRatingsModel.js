@@ -14,6 +14,6 @@ export const insertRatingModel = async (data) => {
       throw generateError('No se ha podido actualizar la valoracion', 500);
     }
   } catch (error) {
-    console.log('Error al crear una valoracion nueva: ',error);
+    throw error;
   }
 }

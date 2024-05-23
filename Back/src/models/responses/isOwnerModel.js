@@ -13,7 +13,6 @@ export const isOwnerModel = async (user_id, response_id) => {
     // Devolver la consulta.
     return isOwner[0];
   } catch (error) {
-    console.log('Error al obtener la respuesta por id', error);
     throw error;
   }
 };

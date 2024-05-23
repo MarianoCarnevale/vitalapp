@@ -89,9 +89,6 @@ const YourConsultation = () => {
   };
 
   const date = dateFormat(consultation.created_at);
-  console.log(
-    `Consulta finalizada : ${consultation.is_active} consulta pendiente: ${consultation.is_pending}`
-  );
 
   return (
     <>

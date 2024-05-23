@@ -20,7 +20,6 @@ export const updateAvatarUserService = async (id, img, width) => {
       id.toString(),
       ''
     );
-    console.log('uploadsDir', uploadsDir);
 
     // Creamos el directorio si no existe.
     await createPathIfNotExistsUtil(uploadsDir);
@@ -50,7 +49,6 @@ export const updateAvatarUserService = async (id, img, width) => {
     // Devolver el nombre de la imagen.
     return imgName;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };

@@ -11,7 +11,6 @@ export const ConsultationsByDiscipline = () => {
 
   useEffect(() => {
     getConsultation();
-    console.log(consultation);
   }, []);
 
   const getStatusClass = (status) => {
@@ -31,12 +30,8 @@ export const ConsultationsByDiscipline = () => {
         Authorization: `${token}`,
       },
     });
-    console.log(resp);
     const [consultation] = Object.values(resp.data.data.consultations);
-    console.log(consultation);
     setConsultation(consultation);
-
-    console.log(consultation);
   };
 
   return (

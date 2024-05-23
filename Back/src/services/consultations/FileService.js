@@ -50,7 +50,7 @@ export const FileService = async (user_id, consultation_id, img, size) => {
     return img_id;
 
   } catch (error) {
-    console.log('Error al subir imagen ',error);
+    throw error;
   }
 
 }
