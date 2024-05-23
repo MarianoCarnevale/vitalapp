@@ -7,6 +7,9 @@ import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import { DarkModeContext } from "../contexts/DarkModeContext.jsx";
 import { useNavigate } from "react-router-dom";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import PersonSearchRoundedIcon from "@mui/icons-material/PersonSearchRounded";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 
 import Switch from "@mui/material/Switch";
 
@@ -142,30 +145,33 @@ const Header = () => {
           </li>
           <hr className="max-lg:hidden border w-full lg:order-3" />
           <li className="list-none max-lg:hidden order-3 flex gap-3">
-            <img src="/images/icon-consultations-white.svg" alt="" />
+            {/* <img src="/images/icon-consultations-white.svg" alt="" /> */}
 
             <NavLink
               to="/consultations"
-              className="text-white font-semibold text-lg list-none focus:underline-offset"
+              className="text-white hover:text-cyan-200 font-semibold text-lg list-none focus:underline-offset"
             >
+              <EventNoteRoundedIcon color="white mr-2" />
               Consultas
             </NavLink>
           </li>
           <li className="list-none max-lg:hidden order-4 flex gap-2">
-            <img src="/images/icon-search-white.svg" alt="" />
+            {/* <img src="/images/icon-search-white.svg" alt="" /> */}
             <NavLink
               to="/search"
-              className="text-white font-semibold text-lg list-none focus:underline-offset"
+              className="text-white hover:text-cyan-200 font-semibold text-lg list-none focus:underline-offset"
             >
+              <PersonSearchRoundedIcon color="white mr-2" />
               Buscar
             </NavLink>
           </li>
           <li className="list-none max-lg:hidden order-5 flex gap-4">
-            <img src="/images/icon-profile-white.svg" alt="" />
+            {/* <img src="/images/icon-profile-white.svg" alt="" /> */}
             <NavLink
               to="/profile"
-              className="text-white font-semibold text-lg list-none focus:underline-offset"
+              className="text-white hover:text-cyan-200 font-semibold text-lg list-none focus:underline-offset"
             >
+              <AccountCircleRoundedIcon color="white mr-2" />
               Perfil
             </NavLink>
           </li>
