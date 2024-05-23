@@ -91,19 +91,21 @@ const Home = () => {
         </div>
       </div>
       <section className="flex flex-col items-center lg:flex-row w-3/4 m-auto lg:items-start ">
-        <div className="pt-20 pb-10 text-center  lg:w-2/4  lg:text-left mx-auto">
+        <div className="pt-20 pb-10 flex flex-col g-2 lg:w-2/4  lg:text-left mx-auto">
           <h2 className="text-3xl font-bold text-primary">
-            Ayudamos a manter tu salud al día sin complicaciones
+          ¡Regístrate en VitalApp!
           </h2>
-          <p className="text-secondary m-auto text-center lg:text-left py-10">
-            Si todavia no nos conoces puedes registrarte y comenzar tu consulta
-            con los profesionales.
+          <p className="text-secondary m-auto text-left lg:text-left font-semibold">
+          Tu salud a un clic de distancia. ¡Únete ahora y mejora tu bienestar!
           </p>
+          <p className="text-secondary m-auto text-left lg:text-left font-semibold">Consulta a los mejores médicos sin salir de casa.</p>
+          <p className="text-secondary m-auto text-left lg:text-left font-semibold">Consulta rápida y cómoda, cuando más lo necesitas.</p>
+
           <NavLink
             to="/register"
-            className="ml-auto bg-primary text-white font-semibold p-4 rounded-2xl"
+            className="ml-auto bg-primary text-white font-semibold p-4 rounded-3xl"
           >
-            Registrate
+            Regístrate
           </NavLink>
         </div>
         <img className="min-w-96 w-2/5" src="./images/vitalapp.jpg" alt="" />

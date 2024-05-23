@@ -10,14 +10,14 @@ export const Testimonials = () => {
   const dataTestimonials = [
     {
       content:
-        "“¡A nuestro equipo le encanta usar VitalApp para sus consultasvirtuales fluidas! Ha revolucionado la forma en que nos conectamos con los pacientes.”",
+        "“¡A nuestro equipo le encanta usar VitalApp para sus consultas virtuales fluidas! Ha revolucionado la forma en que nos conectamos con los pacientes.”",
       username: "Martín Castro",
       avatar: "/images/martinLinkedin.jpeg",
       company: "CEO of HealthConnectHub",
     },
     {
       content:
-        "“VitalApp ha transformado la atención al paciente con suinterfaz fácil de usar. ¡Es un punto de inflexión en el campo médico!”",
+        "“VitalApp ha transformado la atención al paciente con su interfaz fácil de usar. ¡Es un punto de inflexión en el campo médico!”",
       username: "Adrián Acuña",
       avatar: "/images/adriAcuñaLinkedin.jpeg",
       company: "CEO of VirtualWellnessCare",
