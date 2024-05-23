@@ -1,6 +1,9 @@
 import { useState } from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
+import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
+
+
 export const Testimonials = () => {
   const [count, setCount] = useState(0);
 
@@ -86,12 +89,22 @@ export const Testimonials = () => {
           </figcaption>
         </figure>
       </div>
-      <div className="flex justify-around mt-6">
-        <button onClick={handleBack} disabled={count === 0}>
-          <ArrowBackIcon />
+
+      <div className="flex justify-around m-auto">
+        <button
+          onClick={handleBack}
+          className="p-3 font-bold rounded-full bg-primary"
+          disabled={count === 0}
+        >
+          <KeyboardArrowLeftRoundedIcon color="white" />
         </button>
-        <button onClick={handleForward} disabled={count === 4}>
-          <ArrowForwardIcon />
+        <button
+          onClick={handleForward}
+          className="p-3 font-bold rounded-full bg-primary"
+          disabled={count === 4}
+        >
+          <KeyboardArrowRightRoundedIcon color="white" />
+
         </button>
       </div>
     </section>
