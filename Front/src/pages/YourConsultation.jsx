@@ -10,7 +10,7 @@ import { dateFormat } from "../api/dateFormat.js";
 import { ConsultationsResponses } from "../components/ConsultationsResponses.jsx";
 import { Link } from "react-router-dom";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { toast, } from "react-toastify";
+import { toast } from "react-toastify";
 
 const YourConsultation = () => {
   const [consultation, setConsultation] = useState({});
@@ -95,7 +95,6 @@ const YourConsultation = () => {
 
   return (
     <>
-      
       <section className="z-10 w-5/6 mb-32 mt-10 h-auto items-start justify-center gap-5 m-auto flex flex-col lg:flex-row max-lg:w-full">
         <div className="w-5/6 max-w-lg max-lg:m-auto">
           <p className=" text-primary dark:text-white text-3xl font-semibold mb-5">
