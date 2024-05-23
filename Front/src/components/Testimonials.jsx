@@ -15,7 +15,7 @@ export const Testimonials = () => {
       content:
         "“VitalApp ha transformado la atención al paciente con suinterfaz fácil de usar. ¡Es un punto de inflexión en el campo médico!”",
       username: "Adrián Acuña",
-      avatar: "/images/adriLinkedin.webp",
+      avatar: "/images/adriAcuñaLinkedin.jpeg",
       company: "CEO of VirtualWellnessCare",
     },
     {
@@ -28,8 +28,8 @@ export const Testimonials = () => {
     {
       content:
         "“VitalApp ha mejorado nuestra eficiencia y satisfacción delpaciente. Es una herramienta imprescindible para cualquier proveedor de atención médica”",
-      username: "Yogesh Shamtani",
-      avatar: "/images/martinLinkedin.jpeg",
+      username: "Yogesh Samtani",
+      avatar: "/images/yagoLinkedIn.webp",
       company: "CEO of MedConsultPro",
     },
     {

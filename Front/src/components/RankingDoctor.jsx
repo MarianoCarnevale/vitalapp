@@ -32,7 +32,7 @@ export const RankingDoctor = () => {
       <p className="mr-auto text-3xl lg:mb-0 text-primary font-semibold dark:text-white">
         Ranking de Doctores
       </p>
-      <ul className="w-full max-h-[17.5rem] flex flex-col gap-3 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
+      <ul className="w-full max-h-[22.5rem] flex flex-col gap-3 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
         {doctors.map((doctor) => {
           return (
             <Link to={`/doctor/${doctor.doctor_id}`} key={doctor.user_id}>

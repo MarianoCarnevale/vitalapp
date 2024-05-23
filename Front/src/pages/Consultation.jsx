@@ -16,7 +16,7 @@ const Consultation = () => {
   const [consultations, setConsultations] = useState([]);
   const [results, setResults] = useState([]);
   const [isCreated, setIsCreated] = useState(false);
-  console.log(isCreated);
+
   useEffect(() => {
     const fetchConsultations = async () => {
       const resp = await axios.get(`${VITE_BASE_URL}/consultations`, {
@@ -44,12 +44,14 @@ const Consultation = () => {
       <section className="w-5/6 max-lg:max-w-lg lg:mb-20 m-auto grid grid-cols-1 max-lg:mb-32 mt-10 lg:grid-cols-2 gap-6 max-lg:gap-10 items-start">
         {user.role === "patient" ? (
           <>
-            <TramitingConsultations
-              isCreated={isCreated}
-              setIsCreated={setIsCreated}
-              consultations={consultations}
-              results={results}
-            />
+            <div className="align-top">
+              <TramitingConsultations
+                isCreated={isCreated}
+                setIsCreated={setIsCreated}
+                consultations={consultations}
+                results={results}
+              />
+            </div>
             <PendingConsultations
               consultations={consultations}
               results={results}
