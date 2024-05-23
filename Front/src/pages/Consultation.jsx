@@ -15,8 +15,8 @@ const Consultation = () => {
   const { token, user } = useContext(UserTokenContext);
   const [consultations, setConsultations] = useState([]);
   const [results, setResults] = useState([]);
-  // const [isCreated, setIsCreated] = useState(false);
-
+  const [isCreated, setIsCreated] = useState(false);
+  console.log(isCreated);
   useEffect(() => {
     const fetchConsultations = async () => {
       const resp = await axios.get(`${VITE_BASE_URL}/consultations`, {
@@ -25,7 +25,7 @@ const Consultation = () => {
         },
       });
       const consultation = Object.values(resp.data.data.consultations);
-
+      console.log(consultation);
       //se separan por un filter en la opcion pendin
       //establecer el listado de consultas
       setConsultations(consultation);
@@ -35,8 +35,9 @@ const Consultation = () => {
     };
 
     fetchConsultations();
-  }, []);
+  }, [isCreated]);
 
+  // console.log(consultations);
   return (
     <>
       <ToastContainer />
@@ -44,6 +45,8 @@ const Consultation = () => {
         {user.role === "patient" ? (
           <>
             <TramitingConsultations
+              isCreated={isCreated}
+              setIsCreated={setIsCreated}
               consultations={consultations}
               results={results}
             />

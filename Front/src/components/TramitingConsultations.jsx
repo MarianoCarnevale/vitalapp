@@ -2,7 +2,11 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ConsultationForm } from "../components/consultations/ConsultationForm.jsx";
 
-export const TramitingConsultations = ({ results }) => {
+export const TramitingConsultations = ({
+  results,
+  isCreated,
+  setIsCreated,
+}) => {
   const getStatusClass = (status) => {
     switch (status) {
       case "low":
@@ -21,15 +25,16 @@ export const TramitingConsultations = ({ results }) => {
           Consultas en Trámite
         </p>
         <div>
-          <ConsultationForm />
+          <ConsultationForm isCreated={isCreated} setIsCreated={setIsCreated} />
         </div>
       </div>
       <div className="  gap-2 items-left  w-full  border-primary rounded-3xl">
         <ul className="w-full h-full flex max-h-[22rem] flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 lg:my-5  border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
           {results.map((result) => {
-            console.log(result);
+            // console.log(result);
             return (
-              (result.is_active === 1 && result.is_pending === 0) && (
+              result.is_active === 1 &&
+              result.is_pending === 0 && (
                 <Link
                   key={result.consultation_id}
                   to={`/consultations/${result.consultation_id}`}

@@ -8,11 +8,11 @@ import PropTypes from "prop-types";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import LoupeRoundedIcon from "@mui/icons-material/LoupeRounded";
 
-export const ConsultationForm = () => {
+export const ConsultationForm = ({ setIsCreated, isCreated }) => {
   const { user } = useContext(UserTokenContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Sacamos el estado para volver a tirar el useEffect en el componente padre y actualizar la lista
-  // const { setIsCreated, isCreated } = children;
+  // console.log(isCreated);
   const ref = useRef();
   const handleOutsideClick = () => {
     setIsModalOpen(false);
@@ -25,6 +25,7 @@ export const ConsultationForm = () => {
   useEffect(() => {
     getDiscipline();
   }, []);
+
   //Control del form
   const {
     register,
@@ -70,9 +71,10 @@ export const ConsultationForm = () => {
             <div className="absolute inset-0 bg-black opacity-75 "></div>
             <div ref={ref} className="w-5/6 max-w-lg m-auto">
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  OnSubmit();
+                  await OnSubmit();
+                  setIsCreated(!isCreated);
                   setIsModalOpen(false);
                 }}
                 className="flex flex-col gap-7
@@ -233,6 +235,9 @@ export const ConsultationForm = () => {
                 <button
                   className="bg-primary p-2 w-full rounded-md text-white active:bg-white dark:bg-slate-900 active:text-black dark:shadow-gray-800 dark:shadow-md hover:dark:shadow-gray-800 dark:hover:shadow-sm font-semibold  disabled:bg-secondary"
                   disabled={disable}
+                  // onClick={() => {
+                  //   setIsCreated(!isCreated);
+                  // }}
                 >
                   Enviar
                 </button>
