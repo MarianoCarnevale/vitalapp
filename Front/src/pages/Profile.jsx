@@ -57,7 +57,7 @@ const Profile = () => {
             {user.role === "patient" ? "Paciente" : "Médico"}
           </p>
           <h2 className=" font-semibold text-right text-primary dark:text-white text-xl">
-            {user.first_name}, {user.first_surname}
+            {user.first_name} {user.first_surname}
           </h2>
           {user.avg_rating && (
             <Rating
