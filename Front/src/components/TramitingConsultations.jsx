@@ -29,7 +29,7 @@ export const TramitingConsultations = ({ results }) => {
           {results.map((result) => {
             console.log(result);
             return (
-              result.is_active === 1 && (
+              (result.is_active === 1 && result.is_pending === 0) && (
                 <Link
                   key={result.consultation_id}
                   to={`/consultations/${result.consultation_id}`}
