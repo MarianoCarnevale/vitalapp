@@ -20,7 +20,7 @@ export const newConsultationsSchema = joi.object({
   discipline_id: joi.number().required(),
   severity: joi
     .string()
-    .valid('high', 'medium', 'low')
+    .valid('ALTA', 'MEDIA', 'BAJA')
     .required()
     .messages(joiErrorMessagesConsultations),
 });

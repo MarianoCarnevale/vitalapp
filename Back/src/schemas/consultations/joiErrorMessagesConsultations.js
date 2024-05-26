@@ -5,7 +5,7 @@ export const joiErrorMessagesConsultations = {
   'number.base': 'El valor de "{#key}" debe ser un número',
   'number.max': 'El archivo no debe exceder los 5 MB',
   'object.base': 'El valor de "{#key}" debe ser un objeto',
-  'any.only': 'Solo se permiten los valores high, medium o low',
+  'any.only': 'Solo se permiten los valores ALTA, MEDIA o BAJA',
   'string.email':
     'Debe proporcionar un correo electrónico válido para "{#key}"',
   'string.pattern.base':

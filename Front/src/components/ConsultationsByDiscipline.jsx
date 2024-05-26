@@ -15,11 +15,11 @@ export const ConsultationsByDiscipline = () => {
 
   const getStatusClass = (status) => {
     switch (status) {
-      case "low":
+      case "BAJA":
         return "bg-green-500";
-      case "medium":
+      case "MEDIA":
         return "bg-yellow-500";
-      case "high":
+      case "ALTA":
         return "bg-red-500";
     }
   };

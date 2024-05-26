@@ -198,14 +198,14 @@ export const ConsultationForm = ({ setIsCreated, isCreated }) => {
                     <option key="0" value="">
                       None selected
                     </option>
-                    <option key="1" value="high">
-                      high
+                    <option key="1" value="ALTA">
+                      ALTA
                     </option>
-                    <option key="2" value="medium">
-                      medium
+                    <option key="2" value="MEDIA">
+                      MEDIA
                     </option>
-                    <option key="3" value="low">
-                      low
+                    <option key="3" value="BAJA">
+                      BAJA
                     </option>
                   </select>
                   <p className="text-red-500 text-sm sm:text-base pl-5">
