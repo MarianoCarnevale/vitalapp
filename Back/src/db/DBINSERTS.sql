@@ -276,7 +276,22 @@ VALUES
 ('b8a448b1-1b81-11ef-81b7-cc4740d2023b', '39', '1981-05-26'),
 ('b8a44929-1b81-11ef-81b7-cc4740d2023b', '40', '1980-05-26');
 
-INSERT INTO users (user_id, email, username, password, role, validation_code, recovery_code, first_name, last_name, first_surname, last_surname, created_at, updated_at, is_active)
+INSERT INTO users (
+  user_id,
+  email,
+  username,
+  password,
+  role,
+  validation_code,
+  recovery_code,
+  first_name,
+  last_name,
+  first_surname,
+  last_surname,
+  created_at,
+  updated_at,
+  is_active
+)
 VALUES
 ('dcd7f176-22f2-4f70-8f82-98d412f9c659', 'john.doe1@example.com', 'johndoe1', 'Aa123123.', 'patient', '', '', 'John', '', 'Smith', '', NOW(), NOW(), TRUE),
 ('5ee4f0ae-5247-4a2c-97db-74c39b4e67a2', 'jane.doe2@example.com', 'janedoe2', 'Aa123123.', 'patient', '', '', 'Jane', '', 'Johnson', '', NOW(), NOW(), TRUE),
@@ -318,7 +333,8 @@ INSERT INTO consultations (
   file,
   discipline_id,
   severity
-  ) VALUES
+)
+VALUES
 ('6f0c31d9-6b89-4dcb-b1b4-2d7b12f9738b', '16b3f8e6-2f9c-46d8-98a0-428d0b9f9816','b8a41118-1b81-11ef-81b7-cc4740d2023b', 'Resfriado común', 'Congestión nasal, estornudos y malestar general.', NULL, 1, 'MEDIA'),
 ('d08a17ee-56ff-4c97-9646-9442b4ee55b5', '2a1f3a4b-07b5-4e25-b2b8-d268b8bb4e1b','b8a41599-1b81-11ef-81b7-cc4740d2023b', 'Diagnóstico de cáncer', 'Detección y evaluación de tumores malignos.', NULL, 2, 'ALTA'),
 ('7f4fe4a2-2f94-4095-84ae-7f69d3a3e44b', '41b697fc-58b8-4d1a-9a4c-48cf647b5bfa','b8a4172d-1b81-11ef-81b7-cc4740d2023b', 'Manejo del dolor postoperatorio', 'Estrategias para aliviar molestias después de una cirugía.', NULL, 3, 'BAJA'),
@@ -406,27 +422,30 @@ INSERT INTO responses (
   consultation_id,
   user_id,
   content
-) VALUES
-  ('fdf44f59-1c29-11ef-8d60-cc4740d2023b', '0b05e8b2-4b39-4e50-8d80-66faa95ef8df', '1d46d5af-1b81-11ef-81b7-cc4740d2023b', 'Monitorea presión arterial, frecuencia cardíaca, temperatura y oxígeno. Usa dispositivos automáticos y registra los datos. Consulta al médico si hay irregularidades.'),
-  ('fdf4cf98-1c29-11ef-8d60-cc4740d2023b', '0c62479a-7e4a-499e-8056-826e3707a29a', '1d466b3f-1b81-11ef-81b7-cc4740d2023b', 'Aplicar calor, reposo y analgésicos. Consulta a un fisioterapeuta para ejercicios de estiramiento y fortalecimiento.'),
-  ('fdf4deae-1c29-11ef-8d60-cc4740d2023b', '0e01e8a6-2dab-40e5-810e-ff2e5cb9bf3a', '1d4668ba-1b81-11ef-81b7-cc4740d2023b', 'Consulta para análisis de sangre y ajustar medicación. Mantén una dieta equilibrada y controla los niveles de azúcar.'),
-  ('fdf4e1da-1c29-11ef-8d60-cc4740d2023b', '0faa525b-0e51-4821-97ad-6e34ec2cb2c3', '1d469fdf-1b81-11ef-81b7-cc4740d2023b', 'Consulta con un dermatólogo para tratamiento de arrugas, flacidez y manchas. Opciones incluyen cremas, láser y procedimientos no quirúrgicos.'),
-  ('fdf4e738-1c29-11ef-8d60-cc4740d2023b', '0b05e8b2-4b39-4e50-8d80-66faa95ef8df', 'ac5bc8fc-34cf-4f35-b6c8-eeecbf8cb830', 'Gracias doctor, su ayuda es invaluable'),
-  ('fdf4eb90-1c29-11ef-8d60-cc4740d2023b', '0c62479a-7e4a-499e-8056-826e3707a29a', 'c462e89d-1e6a-4b32-8e43-2829fc8fc25e', 'Agradezco mucho su opinión, doctor'),
-  ('fdf4edcd-1c29-11ef-8d60-cc4740d2023b', '0e01e8a6-2dab-40e5-810e-ff2e5cb9bf3a', '8b1446d6-ef16-429e-a5ab-62c3fb66b5b4', 'Su ayuda me ha sido de gran valor'),
-  ('fdf4f00d-1c29-11ef-8d60-cc4740d2023b', '0faa525b-0e51-4821-97ad-6e34ec2cb2c3', '74a7f65d-9ba3-47b5-a381-ebc55c0183f8', 'Gracias, doctor, me ayuda mucho'),
-  ('fdf4f738-1c29-11ef-8d60-cc4740d2023b', '13c32c7e-43ae-4be9-b16d-91cb590ff3de', 'a06a00ae-f1c5-4620-8e36-0b94cb9cfb6e', 'Muy agradecido por su ayuda, doctor'),
-  ('fdf4f982-1c29-11ef-8d60-cc4740d2023b', '13d1774f-3d35-451b-98c1-bdbfe42c37bc', '4c99e7ae-0375-4ee4-80e8-c794c65ec8f6', 'Gracias por su atención y ayuda'),
-  ('fdf4fbf7-1c29-11ef-8d60-cc4740d2023b', '229c9b59-8974-4872-b5d6-392d3b8776ae', 'dcd7f176-22f2-4f70-8f82-98d412f9c659', 'Le agradezco mucho su ayuda, doctor'),
-  ('fdf4fe28-1c29-11ef-8d60-cc4740d2023b', '27a6768c-5043-466a-9c64-c9f330decb11', '4f7b227b-0b33-4f70-afcb-39f03dbb1061', 'Su opinión es de gran ayuda, gracias'),
-  ('fdf50028-1c29-11ef-8d60-cc4740d2023b', '2c23f4c8-3d77-42ac-8f8c-4e611c9f3198', '16b3f8e6-2f9c-46d8-98a0-428d0b9f9816', 'Muchas gracias, doctor, por su ayuda'),
-  ('fdf501fc-1c29-11ef-8d60-cc4740d2023b', '2c872b9d-5f7e-4900-93fb-d85f95da08c1', 'd23362dd-b5e8-4e77-8576-1c88ad2a5f96', 'Gracias por la ayuda, doctor');
+)
+VALUES
+('fdf44f59-1c29-11ef-8d60-cc4740d2023b', '0b05e8b2-4b39-4e50-8d80-66faa95ef8df', '1d46d5af-1b81-11ef-81b7-cc4740d2023b', 'Monitorea presión arterial, frecuencia cardíaca, temperatura y oxígeno. Usa dispositivos automáticos y registra los datos. Consulta al médico si hay irregularidades.'),
+('fdf4cf98-1c29-11ef-8d60-cc4740d2023b', '0c62479a-7e4a-499e-8056-826e3707a29a', '1d466b3f-1b81-11ef-81b7-cc4740d2023b', 'Aplicar calor, reposo y analgésicos. Consulta a un fisioterapeuta para ejercicios de estiramiento y fortalecimiento.'),
+('fdf4deae-1c29-11ef-8d60-cc4740d2023b', '0e01e8a6-2dab-40e5-810e-ff2e5cb9bf3a', '1d4668ba-1b81-11ef-81b7-cc4740d2023b', 'Consulta para análisis de sangre y ajustar medicación. Mantén una dieta equilibrada y controla los niveles de azúcar.'),
+('fdf4e1da-1c29-11ef-8d60-cc4740d2023b', '0faa525b-0e51-4821-97ad-6e34ec2cb2c3', '1d469fdf-1b81-11ef-81b7-cc4740d2023b', 'Consulta con un dermatólogo para tratamiento de arrugas, flacidez y manchas. Opciones incluyen cremas, láser y procedimientos no quirúrgicos.'),
+('fdf4e738-1c29-11ef-8d60-cc4740d2023b', '0b05e8b2-4b39-4e50-8d80-66faa95ef8df', 'ac5bc8fc-34cf-4f35-b6c8-eeecbf8cb830', 'Gracias doctor, su ayuda es invaluable'),
+('fdf4eb90-1c29-11ef-8d60-cc4740d2023b', '0c62479a-7e4a-499e-8056-826e3707a29a', 'c462e89d-1e6a-4b32-8e43-2829fc8fc25e', 'Agradezco mucho su opinión, doctor'),
+('fdf4edcd-1c29-11ef-8d60-cc4740d2023b', '0e01e8a6-2dab-40e5-810e-ff2e5cb9bf3a', '8b1446d6-ef16-429e-a5ab-62c3fb66b5b4', 'Su ayuda me ha sido de gran valor'),
+('fdf4f00d-1c29-11ef-8d60-cc4740d2023b', '0faa525b-0e51-4821-97ad-6e34ec2cb2c3', '74a7f65d-9ba3-47b5-a381-ebc55c0183f8', 'Gracias, doctor, me ayuda mucho'),
+('fdf4f738-1c29-11ef-8d60-cc4740d2023b', '13c32c7e-43ae-4be9-b16d-91cb590ff3de', 'a06a00ae-f1c5-4620-8e36-0b94cb9cfb6e', 'Muy agradecido por su ayuda, doctor'),
+('fdf4f982-1c29-11ef-8d60-cc4740d2023b', '13d1774f-3d35-451b-98c1-bdbfe42c37bc', '4c99e7ae-0375-4ee4-80e8-c794c65ec8f6', 'Gracias por su atención y ayuda'),
+('fdf4fbf7-1c29-11ef-8d60-cc4740d2023b', '229c9b59-8974-4872-b5d6-392d3b8776ae', 'dcd7f176-22f2-4f70-8f82-98d412f9c659', 'Le agradezco mucho su ayuda, doctor'),
+('fdf4fe28-1c29-11ef-8d60-cc4740d2023b', '27a6768c-5043-466a-9c64-c9f330decb11', '4f7b227b-0b33-4f70-afcb-39f03dbb1061', 'Su opinión es de gran ayuda, gracias'),
+('fdf50028-1c29-11ef-8d60-cc4740d2023b', '2c23f4c8-3d77-42ac-8f8c-4e611c9f3198', '16b3f8e6-2f9c-46d8-98a0-428d0b9f9816', 'Muchas gracias, doctor, por su ayuda'),
+('fdf501fc-1c29-11ef-8d60-cc4740d2023b', '2c872b9d-5f7e-4900-93fb-d85f95da08c1', 'd23362dd-b5e8-4e77-8576-1c88ad2a5f96', 'Gracias por la ayuda, doctor');
 
-INSERT INTO ratings (rating_id,
-response_id,
-user_id,
-rating_value
-) VALUES
+INSERT INTO ratings (
+  rating_id,
+  response_id,
+  user_id,
+  rating_value
+)
+VALUES
 ('8289aabd-1c2a-11ef-8d60-cc4740d2023b','fdf44f59-1c29-11ef-8d60-cc4740d2023b','ac5bc8fc-34cf-4f35-b6c8-eeecbf8cb830', 4),
 ('8289b841-1c2a-11ef-8d60-cc4740d2023b','fdf4cf98-1c29-11ef-8d60-cc4740d2023b','c462e89d-1e6a-4b32-8e43-2829fc8fc25e', 5),
 ('8289ba58-1c2a-11ef-8d60-cc4740d2023b','fdf4deae-1c29-11ef-8d60-cc4740d2023b','8b1446d6-ef16-429e-a5ab-62c3fb66b5b4', 4),

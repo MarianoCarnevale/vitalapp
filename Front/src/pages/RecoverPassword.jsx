@@ -41,7 +41,7 @@ const RecoverPassword = () => {
       <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
         <ToastContainer autoClose={1500} />
         <h1 className="text-3xl my-4 text-primary font-semibold mb-10">
-          Recover Password
+          Recuperación de Contraseña
         </h1>
         <form onSubmit={onSubmit} className="flex flex-col gap-7">
           <li className="w-full list-none">
@@ -65,7 +65,7 @@ const RecoverPassword = () => {
             type="submit"
             className="border p-2 bg-primary rounded-md text-white font-semibold"
           >
-            Recover Password
+            Recuperación de Contraseña
           </button>
         </form>
       </div>
