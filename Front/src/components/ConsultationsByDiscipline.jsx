@@ -41,9 +41,11 @@ export const ConsultationsByDiscipline = () => {
           <p className=" w-5/6 text-left lg:mb-5 dark:text-white text-primary mb-10 font-semibold text-3xl ">
             Consultas de tu Especialidad
           </p>
-          <ul className="w-full flex flex-col h-[22.5rem] gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5   border-white rounded-3xl h-full overflow-auto hide-scrollbar shadow-lg">
+          <ul className="w-full flex flex-col h-[22.5rem] gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5   border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
             {consultation?.length === 0 && (
-              <p className="dark:text-white">No existen consultas de tu especialidad.</p>
+              <p className="dark:text-white">
+                No existen consultas de tu especialidad.
+              </p>
             )}
             {consultation?.length > 0 &&
               consultation

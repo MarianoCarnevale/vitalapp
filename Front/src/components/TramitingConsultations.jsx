@@ -18,6 +18,8 @@ export const TramitingConsultations = ({
     }
   };
 
+  console.log(results);
+
   return (
     <section className="w-full m-auto   gap-6 items-center">
       <div className="flex max-md:flex-col justify-between items-center ">
@@ -36,7 +38,6 @@ export const TramitingConsultations = ({
             <p className="dark:text-white">No existen consultas en trámite.</p>
           )}
           {results.map((result) => {
-          
             return (
               result.is_active === 1 &&
               result.is_pending === 0 && (
