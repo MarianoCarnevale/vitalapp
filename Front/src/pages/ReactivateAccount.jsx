@@ -42,6 +42,7 @@ const ReactivateAccount = () => {
   });
   return (
     <>
+      <section className="bg-hero-pattern bg-cover h-screen flex">
       <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
         <ToastContainer autoClose={1500} />
         <h1 className="text-3xl my-4 text-primary font-semibold mb-10">
@@ -73,6 +74,7 @@ const ReactivateAccount = () => {
           </button>
         </form>
       </div>
+      </section>
     </>
   );
 };
