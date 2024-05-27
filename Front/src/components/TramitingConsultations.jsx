@@ -36,7 +36,6 @@ export const TramitingConsultations = ({
             <p className="dark:text-white">No existen consultas en trámite.</p>
           )}
           {results.map((result) => {
-          
             return (
               result.is_active === 1 &&
               result.is_pending === 0 && (
@@ -71,7 +70,7 @@ export const TramitingConsultations = ({
 };
 
 TramitingConsultations.propTypes = {
-  results: PropTypes.array.isRequired,
-  isCreated: PropTypes.bool.isRequired,
-  setIsCreated: PropTypes.func.isRequired,
+  results: PropTypes.array,
+  isCreated: PropTypes.bool,
+  setIsCreated: PropTypes.func,
 };
