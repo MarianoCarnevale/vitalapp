@@ -58,6 +58,7 @@ export const useConsultation = (handleSubmit, reset) => {
       setespecialidadValue("");
       setDisable(true);
     }
+    return discipline_value;
   };
 
   const OnSubmit = handleSubmit(async (data) => {
@@ -104,9 +105,10 @@ export const useConsultation = (handleSubmit, reset) => {
     setDoctorValue("");
     setgravedadValue("");
     setDisable(true);
-    setIsModal(false);
+    setIsModal(false)
   });
 
+ 
   // funcion para obtener las disciplinas de forma asyn
   const getDiscipline = async () => {
     const disciplines_values = await getAllDisciplinesWithDoctorsApi();
@@ -119,6 +121,7 @@ export const useConsultation = (handleSubmit, reset) => {
     especialidad,
     doctor,
     setDoctorValue,
+    setDiscipline,
     doctors,
     gravedad,
     setgravedadValue,
@@ -127,6 +130,6 @@ export const useConsultation = (handleSubmit, reset) => {
     getDiscipline,
     disable,
     isModal,
-    setIsModal,
+    setIsModal
   };
 };

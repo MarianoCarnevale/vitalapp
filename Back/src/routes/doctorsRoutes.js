@@ -8,6 +8,7 @@ import {
   getDoctorsByDisciplineController,
   getDoctorsRankedController,
 } from '../controllers/doctors/index.js';
+import { authUserController } from '../middlewares/authUserController.js';
 
 // Creamos un router.
 export const doctorsRouter = express.Router();
