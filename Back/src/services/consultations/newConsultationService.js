@@ -12,7 +12,6 @@ export const
     return resp
 
   } catch (error) {
-    console.log('Error al insertar en la consulta', error);
     throw error;
   }
   

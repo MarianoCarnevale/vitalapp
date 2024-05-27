@@ -20,7 +20,6 @@ export const updateAvatarUserService = async (id, img, width) => {
       id.toString(),
       ''
     );
-    console.log('uploadsDir', uploadsDir);
 
     // Creamos el directorio si no existe.
     await createPathIfNotExistsUtil(uploadsDir);
@@ -33,7 +32,6 @@ export const updateAvatarUserService = async (id, img, width) => {
 
     // Nombre de la imagen como uuid.
     const imgName = `${crypto.randomUUID()}.jpg`;
-    console.log(imgName);
 
     // Actualizamos el avatar del usuario.
     await updateUserAvatarModel(id, imgName);
@@ -51,7 +49,6 @@ export const updateAvatarUserService = async (id, img, width) => {
     // Devolver el nombre de la imagen.
     return imgName;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };

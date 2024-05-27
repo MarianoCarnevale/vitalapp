@@ -12,6 +12,9 @@ import {
   updateUserAvatarController,
   getOwnUserController,
   getPatientsController,
+  getPatientByUserId,
+  desactivateOwnUserController,
+  reactivateUserController,
 } from '../controllers/users/index.js';
 
 // Importamos los middlewares.
@@ -64,3 +67,22 @@ userRouter.put(
   userExistsController,
   updateUserController
 );
+
+// Obtener un paciente por userId
+userRouter.get(
+  '/users/:id',
+  authUserController,
+  userExistsController,
+  getPatientByUserId
+);
+
+// Desactivar un usuario
+userRouter.put(
+  '/users/desactivate',
+  authUserController,
+  userExistsController,
+  desactivateOwnUserController
+);
+
+// Reactivar un usuario
+userRouter.put('/users/reactivate', reactivateUserController);

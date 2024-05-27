@@ -12,6 +12,6 @@ export const updateConsultationFileModel = async ( consultation_id ,imgName ) =>
     return result;
     
   } catch (error) {
-    console.log('Error al actualizar imagen: ',error);
+    throw error;
   }
 }

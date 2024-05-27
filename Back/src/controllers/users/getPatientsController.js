@@ -18,8 +18,6 @@ export const getPatientsController = async (req, res, next) => {
       // Buscamos los pacientes que estan activos en la bbdd.
       const patients = await selectAllPatientsModel();
 
-      console.log(patients);
-
       // Devolvemos los pacientes.
       res.status(200).send({
         status: 'ok',

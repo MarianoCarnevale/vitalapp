@@ -1,14 +1,28 @@
-import { deleteResponseModel, selectAllResponsesByConsultationModel } from '../../models/responses/index.js';
-import { notAuthorizedError } from '../errorService.js';
+import {
+  deleteResponseModel,
+  selectOneResponseByUserIdModel,
+} from '../../models/responses/index.js';
+import { generateError } from '../../utils/errors/generateError.js';
 
-export const deleteResponseService = async (user_id, consultation_id, response_id ) => {
+export const deleteResponseService = async (
+  user_id,
+  consultation_id,
+  response_id
+) => {
   try {
     console.log(response_id);
     // Recuperar la respuesta de la base de datos.
-    const response = await selectAllResponsesByConsultationModel(consultation_id);
+    const response = await selectOneResponseByUserIdModel(
+      user_id,
+      consultation_id,
+      response_id
+    );
     // Comprobar si el user_id es el mismo que el de la respuesta.
     if (response[0].user_id !== user_id) {
-      notAuthorizedError();
+      throw generateError(
+        'Usuario no autorizado para borrar la respuesta',
+        401
+      );
     }
 
     // Eliminar la respuesta de la base de datos.
@@ -16,7 +30,6 @@ export const deleteResponseService = async (user_id, consultation_id, response_i
 
     return;
   } catch (error) {
-    console.log('Error al eliminar la respuesta', error);
     throw error;
   }
 };

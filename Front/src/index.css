@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.input{
-  @apply border-2 mt-5 mx-3 border-primary rounded-md w-11/12 p-2
+.input {
+  @apply border-2 mt-5 mx-3 border-primary rounded-md w-11/12 p-2;
 }

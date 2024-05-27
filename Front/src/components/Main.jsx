@@ -14,15 +14,28 @@ import Profile from "../pages/Profile.jsx";
 import Error404 from "../pages/Error404.jsx";
 import RecoverPassword from "../pages/RecoverPassword.jsx";
 import UpdatePassword from "../pages/UpdatePassword.jsx";
+import { DateNow } from "./DateNow.jsx";
+import { Update } from "../pages/Update.jsx";
+import YourConsultation from "../pages/YourConsultation.jsx";
+import ReactivateAccount from "../pages/ReactivateAccount.jsx";
 
 const Main = () => {
   const { user } = useContext(UserTokenContext);
   return (
     <main
-      className={`bg-cover pt-32 lg:pt-8 pb-16 lg:ml-60 ${
-        user ? "bg-white" : "bg-hero-pattern bg-no-repeat "
+      className={`${
+        user
+          ? "bg-white dark:bg-slate-900 lg:ml-60 max-lg:pt-32"
+          : "bg-no-repeat pt-16  "
       }`}
     >
+      <div className={`max-lg:hidden text-left ${!user && "hidden"}`}>
+        <p className=" pt-8 m-auto w-5/6 text-primary dark:text-white font-bold text-3xl jus ">
+          Hoy
+        </p>
+        <DateNow />
+        <hr className="mt-6 mx-auto mb-20  border-primary w-5/6 lg:order-3" />
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -31,6 +44,7 @@ const Main = () => {
 
         {/* //* Rutas públicas */}
         <Route element={<PublicRoute />}>
+          <Route path="/reactivate" element={<ReactivateAccount />} />
           <Route path="/recover" element={<RecoverPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -49,6 +63,10 @@ const Main = () => {
         <Route element={<PrivateRoute />}>
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/consultations" element={<Consultation />} />
+          <Route
+            path="/consultations/:consultation_id"
+            element={<YourConsultation />}
+          />
           <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
         </Route>

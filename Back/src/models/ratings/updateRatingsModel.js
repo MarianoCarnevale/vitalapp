@@ -12,6 +12,6 @@ export const updateRatingsModel = async (rating_id, rating_value) => {
     
     return;
   } catch (error) {
-    throw console.log('Error al actualizar rating ',error);
+    throw error;
   }
 }

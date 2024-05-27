@@ -1,17 +1,27 @@
 import { useHeader } from "../hooks/useHeader.jsx";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 import { VITE_BASE_URL } from "../config/env.js";
 import { NavLink } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
-import axios from "axios";
-// Asumiendo que getAvatar es la función que has definido anteriormente
+import { DarkModeContext } from "../contexts/DarkModeContext.jsx";
+import { useNavigate } from "react-router-dom";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import PersonSearchRoundedIcon from "@mui/icons-material/PersonSearchRounded";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
+
+import Switch from "@mui/material/Switch";
 
 const Header = () => {
-  const [avatarUrl, setAvatarUrl] = useState("/images/default-avatar.jpg");
+  const navigate = useNavigate();
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const { darkMode, setDarkMode } = useContext(DarkModeContext);
+  const [isScrolledDown, setIsScrolledDown] = useState(false);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
 
   const { user } = useContext(UserTokenContext);
+
   const {
     dropdownOpen,
     dropdownRef,
@@ -24,39 +34,46 @@ const Header = () => {
     handleUpload,
   } = useHeader();
 
-  async function getAvatar() {
-    if (!user) {
-      // user es null, no intentes acceder a user_id
-      return;
-    }
-
-    // Reemplaza esta URL con la URL real que necesitas usar
-    const url = `${VITE_BASE_URL}/uploads/users/${user.user_id}/${user.avatar}`;
-
-    try {
-      // Realiza la petición GET y devuelve la respuesta
-      const response = await axios.get(url);
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Error al obtener el avatar:", error);
-    }
-  }
+  const handleDarkModeChange = (event) => {
+    console.log("handleDarkModeChange called", event.target.checked);
+    setDarkMode(event.target.checked);
+  };
   useEffect(() => {
-    const fetchAvatar = async () => {
-      const url = await getAvatar();
-      if (url) {
-        setAvatarUrl(url);
-      }
-    };
-    fetchAvatar();
+    if (user?.avatar) {
+      const url = `${VITE_BASE_URL}/users/${user.user_id}/${user.avatar}`;
+      setAvatarUrl(url);
+    } else {
+      setAvatarUrl("/images/Avatar.svg");
+    }
   }, [user]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrolledDown(lastScrollTop < currentScrollTop);
+      setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
   return user ? (
-    <header className="z-20 w-full shadow-sm fixed bg-primary  bg-menu-lines bg-cover bg-center lg:max-w-60 lg:h-dvh ">
-      <ToastContainer />
+    <header className=" dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  z-20 w-full shadow-sm fixed  bg-gradient-to-b from-primary to-slate-700 bg-cover bg-center lg:max-w-60 lg:h-dvh ">
+      <button
+        className={`rounded-full w-10 h-10 bg-gradient-to-b from-primary to-cyan-700 absolute mt-36 max-lg:ml-[85%] lg:ml-[20rem] transition-all duration-300 ${
+          isScrolledDown ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+        onClick={() => navigate(-1)}
+      >
+        <ChevronLeftRoundedIcon color="white" />
+      </button>
       <nav>
-        <ul className="flex p-4 items-end gap-4 max-w-screen-xl m-auto h-32 lg:flex-col lg:items-start  ">
-          <li className="flex-grow list-none lg:hidden ">
+        <ul className="flex p-4 items-center gap-4  max-w-screen-xl m-auto h-24 max-lg:mt-6 lg:h-screen lg:flex-col lg:items-start  ">
+          <li className="list-none lg:hidden ">
             <NavLink to="/">
               <img
                 className="rounded-xl shadow-lg size-14"
@@ -64,6 +81,14 @@ const Header = () => {
                 alt="Logo"
               />
             </NavLink>
+          </li>
+          <li className="flex flex-col">
+            <p className="text-white text-sm font-bold">Dark mode</p>
+            <Switch
+              className="ml-[-0.5rem] mt-[-0.5rem]"
+              checked={darkMode}
+              onChange={handleDarkModeChange}
+            />
           </li>
           <li className="list-none max-lg:hidden ">
             <NavLink to="/">
@@ -75,24 +100,24 @@ const Header = () => {
             </NavLink>
           </li>
 
-          <li className="list-none font-light text-right text-lg lg:text-left order-1 lg:order-2 lg:flex gap-2">
-            <p className="text-white ">
+          <li className="max-lg:flex-grow leading-5 list-none font-light text-right text-lg lg:text-left order-1 lg:order-2 lg:flex-col gap-2">
+            <p className="text-white max-md:text-[1rem]  ">
               {user.role === "patient" ? "Paciente" : "Médico"}
             </p>
-            <p className="text-white font-semibold text-right">
-              {user.first_name}, {user.first_surname}
+            <p className="text-white font-semibold max-md:text-[1rem] font- text-right">
+              {user.first_name} {user.first_surname}
             </p>
           </li>
 
           <li
-            className="list-none size-14 bg-white rounded-full order-2 lg:order-1"
+            className="list-none size-14 bg-primary border border-5 rounded-full order-2 lg:order-1 overflow-hidden inline-table cursor-pointer"
             onClick={handleImageClick}
           >
-            <img src={avatarUrl} alt="User avatar" />
+            <img src={avatarUrl} alt="User avatar" className="size-14" />
             {dropdownOpen && (
               <div
                 ref={dropdownRef}
-                className="absolute right-0 mt-5 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                className="absolute right-0 lg:right-[-2.5rem] lg:top-20 mt-5 w-48 rounded-md shadow-lg bg-white  dark:bg-slate-700 ring-1 ring-black ring-opacity-5"
               >
                 <div
                   className=" flex flex-col gap-2 p-5"
@@ -102,7 +127,7 @@ const Header = () => {
                 >
                   <button
                     onClick={handleAvatar}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100"
                     role="menuitem"
                   >
                     Cambiar imagen
@@ -119,33 +144,45 @@ const Header = () => {
             )}
           </li>
           <hr className="max-lg:hidden border w-full lg:order-3" />
-          <li className="list-none max-lg:hidden order-3 flex gap-2">
-            <img src="/images/icon-consultations-white.svg" alt="" />
+          <li className="list-none max-lg:hidden order-3 flex gap-3">
+            {/* <img src="/images/icon-consultations-white.svg" alt="" /> */}
 
             <NavLink
               to="/consultations"
-              className="text-white font-semibold text-lg list-none"
+              className="text-white hover:text-cyan-200 font-semibold text-lg list-none focus:underline-offset"
             >
+              <EventNoteRoundedIcon color="white mr-2" />
               Consultas
             </NavLink>
           </li>
           <li className="list-none max-lg:hidden order-4 flex gap-2">
-            <img src="/images/icon-search-white.svg" alt="" />
+            {/* <img src="/images/icon-search-white.svg" alt="" /> */}
             <NavLink
               to="/search"
-              className="text-white font-semibold text-lg list-none"
+              className="text-white hover:text-cyan-200 font-semibold text-lg list-none focus:underline-offset"
             >
+              <PersonSearchRoundedIcon color="white mr-2" />
               Buscar
             </NavLink>
           </li>
-          <li className="list-none max-lg:hidden order-5 flex gap-2">
-            <img src="/images/icon-profile-white.svg" alt="" />
+          <li className="list-none max-lg:hidden order-5 flex gap-4">
+            {/* <img src="/images/icon-profile-white.svg" alt="" /> */}
             <NavLink
               to="/profile"
-              className="text-white font-semibold text-lg list-none"
+              className="text-white hover:text-cyan-200 font-semibold text-lg list-none focus:underline-offset"
             >
+              <AccountCircleRoundedIcon color="white mr-2" />
               Perfil
             </NavLink>
+          </li>
+          <li className="lg:mt-auto max-h-screen max-lg:hidden lg:order-5">
+            <button
+              onClick={handleLogout}
+              className="text-primary hover:text-white hover:bg-cyan-700 font-semibold bg-white p-2 rounded-md list-none shadow-md  "
+              role="menuitem"
+            >
+              Cerrar sesión
+            </button>
           </li>
         </ul>
       </nav>
@@ -166,26 +203,24 @@ const Header = () => {
               &#8203;
             </span>
 
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3
-                      className="text-lg leading-6 font-medium text-gray-900"
-                      id="modal-title"
-                    >
-                      Cambiar avatar
-                    </h3>
-                    <div>
-                      <input type="file" onChange={handleFileChange} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <div className=" px-4 inline-block align-bottom dark:bg-slate-400  bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <h3
+                className="py-3 text-lg leading-6 font-medium text-primary dark:text-white"
+                id="modal-title"
+              >
+                Cambiar avatar
+              </h3>
+
+              <input
+                className="dark:text-white"
+                type="file"
+                onChange={handleFileChange}
+              />
+
+              <div className="bg-gray-50 dark:bg-slate-400 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gradient-to-b from-primary to-slate-700  text-base font-medium text-white hover:bg-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={handleUpload}
                 >
                   Subir
@@ -204,25 +239,25 @@ const Header = () => {
       )}
     </header>
   ) : (
-    <header className="w-full shadow-sm fixed bg-white">
-      <nav>
-        <ul className="flex p-4 items-center gap-4 max-w-screen-xl m-auto ">
-          <li className="flex-grow">
-            <NavLink to="/">
-              <img src="/images/logo-vitalapp.svg" alt="Logo" />
-            </NavLink>
-          </li>
-          <li className="bg-primary px-4 py-1 rounded-md">
-            <NavLink to="/register" className="text-white font-bold">
-              Registro
-            </NavLink>
-          </li>
-          <li className="bg-primary px-4 py-1 rounded-md">
-            <NavLink to="/login" className="text-white font-bold">
-              Login
-            </NavLink>
-          </li>
-        </ul>
+    <header className="z-20 w-full shadow-sm fixed bg-white">
+      <nav className="flex p-4 items-center gap-4 max-w-screen-xl m-auto">
+        <NavLink className="flex-grow" to="/">
+          <img src="/images/logo-vitalapp.svg" alt="Logo" />
+        </NavLink>
+
+        <NavLink
+          to="/register"
+          className="text-white font-bold bg-primary hover:bg-slate-600 px-4 py-1 rounded-md duration-500"
+        >
+          Registro
+        </NavLink>
+
+        <NavLink
+          to="/login"
+          className="text-white font-bold bg-primary hover:bg-slate-600 px-4 py-1 rounded-md duration-500"
+        >
+          Login
+        </NavLink>
       </nav>
     </header>
   );

@@ -1,27 +1,40 @@
-import { insertRatingService } from "../../services/ratings/insertRatingService.js"
-import { generateError } from "../../utils/errors/generateError.js"
+import { selectResponseByIdModel } from '../../models/responses/selectResponseByIdModel.js';
+import { ratingSchema } from '../../schemas/ratings/ratingsSchema.js';
+import { insertRatingService } from '../../services/ratings/insertRatingService.js';
+import { generateError } from '../../utils/errors/generateError.js';
+import { validateSchemaUtil } from '../../utils/validateSchemaUtil.js';
 
 export const newRatingController = async (req, res, next) => {
   try {
-    
-    const { response_id, rating_value } = req.body
-    const user_id = req.user
-    
-    if (!response_id || !user_id || !rating_value) { 
-      throw generateError('Los parametros response_id, user_id y rating_value son requeridos',400)
+    const { response_id } = req.params;
+    const user_id = req.user.id;
+
+    const [response] = await selectResponseByIdModel(response_id);
+    const userResponseId = response.user_id;
+
+    if (userResponseId === user_id) {
+      throw generateError('No puedes votar tu propia respuesta', 401);
     }
-  
-    const data = req.body
-  
+
+    if (!response_id || !user_id) {
+      throw generateError('Error al valorar la respuesta', 400);
+    }
+    // pasamos el rating value por data al body
+    const data = req.body;
+
+    await validateSchemaUtil(ratingSchema, data);
+    // añadimo en data todos los parametros necesarios
+    data.user_id = user_id;
+    data.response_id = response_id;
+
     const newRating = await insertRatingService(data);
-  
+
     res.status(200).send({
       status: 'ok',
-      message: 'valoracion creada',
-      data: newRating
-    })
-    
+      message: 'Valoracion creada',
+      data: newRating,
+    });
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};

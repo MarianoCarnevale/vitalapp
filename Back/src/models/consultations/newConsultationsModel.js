@@ -36,6 +36,6 @@ export const newConsultationsModel = async (data, file) => {
 
     return consultation_id;
   } catch (error) {
-    console.log('Error al insertar consulta: ',error);
+    throw error;
   }
 };

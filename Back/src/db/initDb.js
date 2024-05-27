@@ -146,7 +146,7 @@ const initDb = async () => {
             title VARCHAR(50) NOT NULL,
             description TEXT NOT NULL,
             file VARCHAR(40),
-            severity ENUM("high" , "medium" , "low") NOT NULL,
+            severity ENUM("ALTA" , "MEDIA" , "BAJA") NOT NULL,
             is_private BOOLEAN DEFAULT False, 
             is_active BOOLEAN DEFAULT True,
             is_pending BOOLEAN DEFAULT True,
@@ -191,7 +191,6 @@ const initDb = async () => {
     console.log('Base de datos inicializada 🚀');
     process.exit(0);
   } catch (error) {
-    console.error(error);
     process.exit(1);
   }
 };

@@ -1,8 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
-import useUser from "../hooks/useUser";
+import { useContext } from "react";
+import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 
 export function PublicRoute() {
-  const { user } = useUser();
+  const { user } = useContext(UserTokenContext);
 
   return !user ? <Outlet /> : <Navigate to="/" />;
 }

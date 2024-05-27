@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { VITE_BASE_URL } from "../config/env.js";
 
 export const useHeader = () => {
-  const { token, setToken } = useContext(UserTokenContext);
+  const { token, setToken, setUser, getUser } = useContext(UserTokenContext);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -19,6 +19,9 @@ export const useHeader = () => {
 
   UseOutsideClick(dropdownRef, () => setDropdownOpen(false));
 
+  // Función para cerrar todos los toast
+  const dismissAll = () => toast.dismiss();
+
   const handleImageClick = (event) => {
     event.stopPropagation();
     setDropdownOpen(!dropdownOpen);
@@ -27,7 +30,8 @@ export const useHeader = () => {
   const handleLogout = () => {
     setToken(null);
     localStorage.removeItem("token");
-    window.location.reload();
+    setUser(null);
+    navigate("/");
   };
 
   const handleAvatar = (event) => {
@@ -59,8 +63,9 @@ export const useHeader = () => {
         toast.success("Imagen subida correctamente");
         setTimeout(() => {
           setIsModalOpen(false);
-          navigate(window.location.pathname);
-        }, 1000);
+          getUser(token);
+          dismissAll();
+        }, 1500);
       } else {
         toast.error("Error al subir la imagen");
       }

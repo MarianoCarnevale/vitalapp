@@ -9,6 +9,8 @@ import { selectDoctorByDoctorRegistrationNumberModel } from './selectDoctorByDoc
 import { updateDoctorModel } from './updateDoctorModel.js';
 import { selectDoctorByUserIdModel } from './selectDoctorByUserIdModel.js';
 import { selectAllPatientsModel } from './selectAllPatientsModel.js';
+import { desactivateUserByUserIdModel } from './desactivateUserByUserIdModel.js';
+import { reactivateUserByEmailModel } from './reactivateUserByEmailModel.js';
 
 export {
   insertUserModel,
@@ -22,4 +24,6 @@ export {
   updateDoctorModel,
   selectDoctorByUserIdModel,
   selectAllPatientsModel,
+  desactivateUserByUserIdModel,
+  reactivateUserByEmailModel,
 };

@@ -1,6 +1,12 @@
 import { getPool } from '../../db/getPool.js';
 
-export const insertResponseModel = async (response_id, consultation_id, user_id, content) => {
+export const insertResponseModel = async (
+  response_id,
+  consultation_id,
+  user_id,
+  content,
+  role
+) => {
   try {
     // Crear el pool de conexiones.
     const pool = await getPool();
@@ -16,18 +22,27 @@ export const insertResponseModel = async (response_id, consultation_id, user_id,
 
     // Verificar si el insert afectó a alguna línea.
     if (result.affectedRows === 0) {
-      const error = new Error('No se ha podido insertar la respuesta.');
-      error.code = 'INSERT_RESPONSE_ERROR';
-      throw error;
+      throw generateError('No se ha podido insertar la respuesta.', 500);
     }
 
     // Buscar la respuesta insertada.
-    const [response] = await pool.query(`SELECT * FROM responses WHERE response_id = ?`, [response_id]);
+    const [response] = await pool.query(
+      `SELECT * FROM responses WHERE response_id = ?`,
+      [response_id]
+    );
+
+    // si la respuesta es de un doctor la consulta pasa a ser is_pending : 0
+
+    if (role === 'doctor') {
+      await pool.query(
+        `UPDATE consultations SET is_pending = 0 WHERE consultation_id = ?`,
+        [consultation_id]
+      );
+    }
 
     // Devolver la respuesta.
     return response[0];
   } catch (error) {
-    console.log('Error al insertar la respuesta', error);
     throw error;
   }
 };
