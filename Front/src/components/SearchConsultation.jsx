@@ -54,9 +54,9 @@ export const SearchConsultation = ({ consultations }) => {
                   </p>
                   <p
                     className={`py-1 px-2 rounded-xl text-white ${
-                      consultation.severity === "low"
+                      consultation.severity === "BAJA"
                         ? "bg-green-500"
-                        : consultation.severity === "medium"
+                        : consultation.severity === "MEDIA"
                         ? "bg-yellow-500"
                         : "bg-red-500"
                     }`}
