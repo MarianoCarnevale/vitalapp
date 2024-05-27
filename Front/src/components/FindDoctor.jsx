@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { Link } from "react-router-dom";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 export const FindDoctor = () => {
+  const { user } = useContext(UserTokenContext);
   const [doctors, setDoctors] = useState([]);
   const [name, setName] = useState("");
   const [filterCaracter, setFilterCaracter] = useState(true);
@@ -45,7 +46,7 @@ export const FindDoctor = () => {
               : "bg-white dark:bg-slate-700 shadow-xl"
           } flex-grow text-primary dark:text-white py-2 px-6  font-semibold rounded-full`}
           onClick={() => {
-            setFilterCaracter(!filterCaracter);
+            setFilterCaracter(true);
             setFilterDisciplines(false);
           }}
         >
@@ -58,7 +59,7 @@ export const FindDoctor = () => {
               : "bg-white dark:bg-slate-700 shadow-xl "
           } flex-grow dark:text-white text-primary  font-semibold py-2 px-6 rounded-full duration-500`}
           onClick={() => {
-            setFilterDisciplines(!filterDisciplines);
+            setFilterDisciplines(true);
             setFilterCaracter(false);
           }}
         >
