@@ -69,15 +69,16 @@ const Register = () => {
       <div className="w-5/6 m-auto shadow-lg rounded-xl p-4 max-w-lg bg-white">
         <ToastContainer autoClose={1500} />
         <h1 className="text-3xl my-4 text-primary font-semibold mb-10">
-          Registro
+          Register
         </h1>
         <form onSubmit={onSubmit} className="flex flex-col gap-7">
+          {/* username */}
           <li className="w-full list-none">
             <label
               htmlFor="username"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Nombre de Usuario
+              User Name
             </label>
             <input
               id="username"
@@ -109,12 +110,13 @@ const Register = () => {
               <p className="text-red-500 font-bold">{errors.email.message}</p>
             )}
           </li>
+          {/* pass1 */}
           <li className="w-full list-none">
             <label
               htmlFor="password"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Contraseña
+              Password
             </label>
             <input
               id="password"
@@ -128,12 +130,13 @@ const Register = () => {
               </p>
             )}
           </li>
+          {/* pass2 */}
           <li className="list-none w-full">
             <label
               htmlFor="password2"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Confirmar Contraseña
+              Confirmar Password
             </label>
             <input
               id="password2"
@@ -156,7 +159,7 @@ const Register = () => {
               htmlFor="role"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Tipo de Usuario
+              Role
             </label>
             <select
               id="role"
@@ -164,7 +167,7 @@ const Register = () => {
               {...register("role", { required: true })}
               onChange={(e) => setRole(e.target.value)}
             >
-              <option value="">Selecciona un tipo</option>
+              <option value="">Selecciona un rol</option>
               <option value="patient">Paciente</option>
               <option value="doctor">Doctor</option>
             </select>
@@ -193,6 +196,7 @@ const Register = () => {
                   </p>
                 )}
               </li>
+              {/* Discipline */}
               <li className="list-none w-full">
                 <label
                   htmlFor="discipline_name"
@@ -217,6 +221,7 @@ const Register = () => {
                   </p>
                 )}
               </li>
+              {/* experience */}
               <li className="list-none w-full">
                 <label
                   htmlFor="experience"
@@ -238,12 +243,13 @@ const Register = () => {
               </li>
             </>
           )}
+          {/* first_name */}
           <li className="list-none w-full">
             <label
               htmlFor="first_name"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Primer Nombre
+              First Name
             </label>
             <input
               id="first_name"
@@ -257,12 +263,13 @@ const Register = () => {
               </p>
             )}
           </li>
+          {/* first_surname */}
           <li className="list-none w-full">
             <label
               htmlFor="first_surname"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Primer Apellido
+              First Surname
             </label>
             <input
               id="first_surname"

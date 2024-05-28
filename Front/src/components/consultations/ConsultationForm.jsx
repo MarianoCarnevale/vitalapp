@@ -20,8 +20,8 @@ export const ConsultationForm = ({ setIsCreated, isCreated }) => {
   useOutsideClick(ref, handleOutsideClick);
 
   //usamos la funcion para obtener los datos de forma asyn
-
   useEffect(() => {
+    //Obtener todas las disciplinas
     getDiscipline();
   }, []);
 
@@ -39,7 +39,6 @@ export const ConsultationForm = ({ setIsCreated, isCreated }) => {
   //usamos todos los datos necesarios del hook
   const {
     disciplines,
-    getDiscipline,
     especialidad,
     doctor,
     setDoctorValue,
@@ -48,6 +47,7 @@ export const ConsultationForm = ({ setIsCreated, isCreated }) => {
     setgravedadValue,
     OnSubmit,
     handelSeletDiscipline,
+    getDiscipline,
     disable,
   } = useConsultation(handleSubmit, reset);
 

@@ -1,7 +1,7 @@
 import { getPool } from '../../db/getPool.js';
 
 export const selectAllResponsesByConsultationModel = async (
-  consultation_id, user_id
+  consultation_id
 ) => {
   try {
     // Crear la conexión a la base de datos.

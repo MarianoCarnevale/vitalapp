@@ -43,7 +43,7 @@ export const selectDoctorsByDiscipline = async (discipline_id) => {
     );
 
     if (doctors[0] === undefined) {
-      throw generateError('Doctores no encontrados', 404);
+      throw generateError('No doctors found', 404);
     }
 
     return doctors;

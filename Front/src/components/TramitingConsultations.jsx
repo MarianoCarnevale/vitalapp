@@ -70,7 +70,7 @@ export const TramitingConsultations = ({
 };
 
 TramitingConsultations.propTypes = {
-  results: PropTypes.array.isRequired,
-  isCreated: PropTypes.bool.isRequired,
-  setIsCreated: PropTypes.func.isRequired,
+  results: PropTypes.array,
+  isCreated: PropTypes.bool,
+  setIsCreated: PropTypes.func,
 };

@@ -7,7 +7,6 @@ import { deleteConsultationFileController } from './deleteConsultationFileContro
 import { endConsultationController } from './endConsultationController.js';
 import { consultationsByDisciplineController } from './consultationsByDisciplineController.js';
 
-
 export {
   consultationsController,
   newConsultationsController,
@@ -16,6 +15,5 @@ export {
   oneConsultationControler,
   deleteConsultationFileController,
   endConsultationController,
-  consultationsByDisciplineController
+  consultationsByDisciplineController,
 };
-

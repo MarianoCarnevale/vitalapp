@@ -19,8 +19,7 @@ ratingsRoutes.post(
   newRatingController
 );
 
-// conseguir todas las valoraciones
-ratingsRoutes.get('/ratings', authUserController, ratingsController);
+ratingsRoutes.get('/ratings/:response_id', ratingsController);
 
 // conseguir la valoracion de la respuesta
 ratingsRoutes.get(
@@ -29,8 +28,7 @@ ratingsRoutes.get(
   ratingsController
 );
 
-// // borrar la valoración de una respuesta
-// ratingsRoutes.delete('/ratings/:rating_id', authUserController, deleteRatingController);
+ratingsRoutes.delete('/ratings/:rating_id', deleteRatingController);
 
 // // modificar la valoración propia del usuario
 // ratingsRoutes.put('/ratings/:rating_id', authUserController, ratingsExistsController, updateRatingController);

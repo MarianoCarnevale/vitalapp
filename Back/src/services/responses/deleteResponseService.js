@@ -10,6 +10,7 @@ export const deleteResponseService = async (
   response_id
 ) => {
   try {
+    console.log(response_id);
     // Recuperar la respuesta de la base de datos.
     const response = await selectOneResponseByUserIdModel(
       user_id,

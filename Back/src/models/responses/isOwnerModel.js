@@ -6,9 +6,10 @@ export const isOwnerModel = async (user_id, response_id) => {
     const pool = await getPool();
 
     // Obtener la respuesta en la que el usuario coincida.
-    const isOwner = await pool.query(`SELECT * FROM responses WHERE response_id = ? AND user_id = ?`, [
-      response_id, user_id
-    ]);
+    const isOwner = await pool.query(
+      `SELECT * FROM responses WHERE response_id = ? AND user_id = ?`,
+      [response_id, user_id]
+    );
 
     // Devolver la consulta.
     return isOwner[0];

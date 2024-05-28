@@ -1,12 +1,11 @@
 import { useContext, useState, useRef, useCallback } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
 import UseOutsideClick from "./useOutsideClick.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { VITE_BASE_URL } from "../config/env.js";
-import { useNavigate } from "react-router-dom";
 
 export const useHeader = () => {
   const { token, setToken, setUser, getUser } = useContext(UserTokenContext);
@@ -16,7 +15,7 @@ export const useHeader = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   UseOutsideClick(dropdownRef, () => setDropdownOpen(false));
 
@@ -73,13 +72,12 @@ export const useHeader = () => {
     } catch (error) {
       toast.error(error.response.data.message);
     }
-  }, [selectedFile, token]);
+  }, [selectedFile, token, navigate]);
 
   return {
     dropdownOpen,
     dropdownRef,
     isModalOpen,
-    setIsModalOpen,
     selectedFile,
     handleImageClick,
     handleLogout,

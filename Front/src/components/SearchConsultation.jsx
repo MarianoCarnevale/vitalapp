@@ -35,7 +35,7 @@ export const SearchConsultation = ({ consultations }) => {
 
       <ul className="lg:w-full max-lg:h-full flex flex-col gap-5 h-[17.3rem] dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
         {filteredResults.length === 0 && (
-          <p className="dark:text-white">No existen consultas pendientes.</p>
+          <p>No existen consultas pendientes.</p>
         )}
         {filteredResults.length > 0 &&
           filteredResults.map((consultation) => {
@@ -54,9 +54,9 @@ export const SearchConsultation = ({ consultations }) => {
                   </p>
                   <p
                     className={`py-1 px-2 rounded-xl text-white ${
-                      consultation.severity === "BAJA"
+                      consultation.severity === "low"
                         ? "bg-green-500"
-                        : consultation.severity === "MEDIA"
+                        : consultation.severity === "medium"
                         ? "bg-yellow-500"
                         : "bg-red-500"
                     }`}

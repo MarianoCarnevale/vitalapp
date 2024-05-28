@@ -8,7 +8,6 @@ export const newConsultationsController = async (req, res, next) => {
     //Sacamos los datos del usuario
     const user_id = req.user.id;
     const data = req.body;
-
     data.user_id = user_id;
 
     await validateSchemaUtil(newConsultationsSchema, data);

@@ -1,5 +1,5 @@
 import { selectAllResponsesByConsultationModel } from '../models/responses/index.js';
-import { generateError } from '../utils/errors/generateError.js';
+import { notFoundError } from '../services/errorService.js';
 
 export const responseExistsController = async (req, res, next) => {
   try {
@@ -11,7 +11,7 @@ export const responseExistsController = async (req, res, next) => {
 
     // Si no se encuentra la respuesta, lanzar un error.
     if (!response) {
-      throw generateError('No se ha encontrado la respuesta', 404)
+      notFoundError('respuesta');
     }
 
     // Pasar el control al siguiente middleware.
