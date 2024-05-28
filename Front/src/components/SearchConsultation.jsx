@@ -33,7 +33,7 @@ export const SearchConsultation = ({ consultations }) => {
         />
       </div>
 
-      <ul className="lg:w-full flex flex-col gap-5 h-[17.3rem] dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
+      <ul className="lg:w-full max-lg:h-full flex flex-col gap-5 h-[17.3rem] dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
         {filteredResults.length === 0 && (
           <p className="dark:text-white">No existen consultas pendientes.</p>
         )}
