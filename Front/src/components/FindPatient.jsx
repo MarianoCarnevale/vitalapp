@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { VITE_BASE_URL } from "../config/env.js";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
+import { Link } from "react-router-dom";
 
 export const FindPatient = () => {
   const { token } = useContext(UserTokenContext);
