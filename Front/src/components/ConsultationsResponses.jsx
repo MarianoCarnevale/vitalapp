@@ -92,25 +92,25 @@ export const ConsultationsResponses = (consultation) => {
                       }`}
                     >
                       <p
-                        className={`text-primary dark:text-white font-semibold $`}
+                        className={`text-primary dark:text-white font-semibold`}
                       >
                         {response.role === "doctor" ? "Doctor" : "Paciente"}:{" "}
                         {response.first_name}
+                        {response.role === "doctor" && (
+                          <>
+                            <button
+                              onClick={() => {
+                                handleClick(response.response_id);
+                              }}
+                            >
+                              <StarIcon
+                                className="mb-[0.1rem] ml-2 dark:fill-white hover:fill-yellow-400 dark:hover:fill-yellow-400 cursor-pointer"
+                                color="primary"
+                              />
+                            </button>
+                          </>
+                        )}
                       </p>
-                      {user.role === "patient" && (
-                        <>
-                          <button
-                            onClick={() => {
-                              handleClick(response.response_id);
-                            }}
-                          >
-                            <StarIcon
-                              className="mb-[0.1rem] dark:fill-white hover:fill-yellow-400 dark:hover:fill-yellow-400 cursor-pointer"
-                              color="primary"
-                            />
-                          </button>
-                        </>
-                      )}
                     </div>
                     <hr className="border border-primary dark:border-white w-full my-2" />
                     <p
