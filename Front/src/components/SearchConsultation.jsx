@@ -25,7 +25,7 @@ export const SearchConsultation = ({ consultations }) => {
       <div className="flex :border-none gap-2 items-center border dark:border-none p-4 bg-white dark:bg-sky-800 w-full  border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="w-full dark:bg-sky-800 dark:text-white dark:placeholder:text-white"
+          className="w-full focus-visible:outline-none focus-visible:border-none dark:bg-sky-800 dark:text-white dark:placeholder:text-white"
           type="text"
           placeholder="Busca una consulta..."
           value={searchTerm}

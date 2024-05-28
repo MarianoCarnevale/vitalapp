@@ -37,7 +37,7 @@ export const FindPatient = () => {
       <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary dark:border-none rounded-3xl dark:bg-sky-800">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="dark:bg-sky-800 w-full dark:placeholder:text-white"
+          className="dark:bg-sky-800 w-full dark:placeholder:text-white focus-visible:outline-none focus-visible:border-none"
           type="text"
           placeholder="Busca un paciente..."
           onChange={(e) => setName(e.target.value.toLowerCase())}

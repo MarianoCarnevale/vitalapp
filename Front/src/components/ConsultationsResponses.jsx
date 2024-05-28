@@ -65,7 +65,7 @@ export const ConsultationsResponses = (consultation) => {
           <input
             placeholder="Escribe tu respuesta"
             id="NewResponse"
-            className="border-2 border-primary  placeholder:dark:text-white dark:bg-sky-900 rounded-3xl p-4 w-full"
+            className="border-2 border-primary focus-visible:outline-none  placeholder:dark:text-white dark:bg-sky-900 rounded-3xl p-4 w-full"
             type="text"
             {...register("content")}
           />
