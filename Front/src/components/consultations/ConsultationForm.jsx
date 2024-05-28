@@ -53,7 +53,7 @@ export const ConsultationForm = ({ setIsCreated, isCreated }) => {
 
   return (
     user.role === "patient" && (
-      <sections>
+      <section>
         <div className="w-fit max-lg:mb-5 flex justify-center items-center list-none text-center bg-gradient-to-b from-primary to-slate-600 dark:bg-gradient-to-t dark:from-white dark:to-white shadow-xl font-bold rounded-3xl">
           <LoupeRoundedIcon color="white" className="ml-2 dark:fill-primary" />
           <button
@@ -252,7 +252,7 @@ export const ConsultationForm = ({ setIsCreated, isCreated }) => {
             </div>
           </div>
         )}
-      </sections>
+      </section>
     )
   );
 };

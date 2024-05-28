@@ -60,12 +60,15 @@ const Home = () => {
           />
         </div>
         <div>
-          <SearchConsultation consultations={consultations} results={results} />
+          <ConsultationList />
         </div>
         {user.role === "patient" && (
           <>
             <div>
-              <ConsultationList />
+              <SearchConsultation
+                consultations={consultations}
+                results={results}
+              />
             </div>
             <div>
               <FindDoctor />

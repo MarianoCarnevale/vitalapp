@@ -18,11 +18,11 @@ export const SearchConsultation = ({ consultations }) => {
   });
 
   return (
-    <div className="w-full flex flex-col gap-6">
+    <div className="w-full flex flex-col gap-5">
       <p className=" mr-auto text-primary dark:text-white text-3xl font-semibold">
         Busca tu consulta
       </p>
-      <div className="flex :border-none border gap-2 items-center p-4 bg-white dark:bg-sky-800 w-full  border-primary rounded-3xl">
+      <div className="flex :border-none gap-2 items-center border dark:border-none p-4 bg-white dark:bg-sky-800 w-full  border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
           className="w-full dark:bg-sky-800 dark:text-white dark:placeholder:text-white"

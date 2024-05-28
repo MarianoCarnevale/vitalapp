@@ -66,7 +66,7 @@ export const FindDoctor = () => {
           Especialidades
         </button>
       </div>
-      <div className="border flex gap-2 items-center p-4 bg-white dark:bg-sky-800 w-full   border-primary rounded-3xl">
+      <div className="border flex gap-2 items-center dark:border-none p-4 bg-white dark:bg-sky-800 w-full   border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
           className="w-full dark:bg-sky-800 dark:text-white dark:placeholder:text-white  "
@@ -79,7 +79,7 @@ export const FindDoctor = () => {
           onChange={(e) => setName(e.target.value.toLowerCase())}
         />
       </div>
-      <ul className="max-lg:max-w-lg w-full h-[19rem]  flex flex-col gap-5  dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5  border-white rounded-3xl  overflow-auto hide-scrollbar shadow-lg">
+      <ul className="max-lg:max-w-lg w-full h-[19rem] flex flex-col gap-5  dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5  border-white rounded-3xl  overflow-auto hide-scrollbar shadow-lg">
         {doctors
           .filter((doctor) =>
             filterCaracter

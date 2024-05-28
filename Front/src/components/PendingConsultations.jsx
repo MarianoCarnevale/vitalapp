@@ -16,13 +16,15 @@ export const PendingConsultations = (children) => {
 
   return (
     <>
-      <div className="  gap-2 items-left h-fit w-full  border-primary rounded-3xl">
+      <div className="  gap-2 items-left h-fit w-full flex flex-col  border-primary rounded-3xl">
         <p className="max-lg:mb-5 lg:mt-1 mb-5 w-5/6 text-left  text-primary dark:text-white font-semibold text-3xl ">
           Consultas Pendientes
         </p>
-        <ul className="w-full h-[22.5rem] flex flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
+        <ul className="w-full h-[22rem] flex flex-col gap-5 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800   bg-white p-5 border-white rounded-3xl overflow-auto hide-scrollbar shadow-lg">
           {children.results.filter((result) => result.is_pending === 1)
-            .length === 0 && <p className="dark:text-white">No existen consultas pendientes.</p>}
+            .length === 0 && (
+            <p className="dark:text-white">No existen consultas pendientes.</p>
+          )}
           {children.consultations.filter(
             (consultation) => consultation.is_pending === 1
           ).length > 0 &&

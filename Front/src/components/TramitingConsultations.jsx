@@ -18,8 +18,6 @@ export const TramitingConsultations = ({
     }
   };
 
-  console.log(results);
-
   return (
     <section className="w-full m-auto   gap-6 items-center">
       <div className="flex max-md:flex-col justify-between items-center ">
