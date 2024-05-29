@@ -1,8 +1,0 @@
-services:
-  app:
-    image: node:14
-    buildCommand: npm install
-    runCommand: npm start
-    environment:
-      - NODE_ENV=production
-    port: 3000
