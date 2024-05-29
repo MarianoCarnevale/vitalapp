@@ -1,10 +1,14 @@
 import { getPool } from '../../db/getPool.js';
 import { generateError } from '../../utils/errors/generateError.js';
 
-export const selectConsultationsModel = async (consultation_id) => {
+export const selectConsultationsModel = async (filter) => {
   try {
     //Esperamos conexion de la base de datos
     const pool = await getPool();
+
+    if (!filter) {
+      filter = '';
+    }
 
     const [consultations] = await pool.query(
       `

@@ -1,5 +1,4 @@
 import { getPool } from '../../db/getPool.js';
-import { generateError } from '../../utils/errors/generateError.js';
 
 export const deleteResponseModel = async (response_id) => {
   try {
@@ -13,7 +12,9 @@ export const deleteResponseModel = async (response_id) => {
 
     // Verificar si el delete afectó a alguna línea.
     if (result.affectedRows === 0) {
-      throw generateError('No se ha podido eliminar la respuesta', 500)
+      const error = new Error('No se ha podido eliminar la respuesta.');
+      error.code = 'DELETE_TWEET_ERROR';
+      throw error;
     }
 
     return;

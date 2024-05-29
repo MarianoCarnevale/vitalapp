@@ -12,36 +12,36 @@ export const Testimonials = () => {
       content:
         "“¡A nuestro equipo le encanta usar VitalApp para sus consultas virtuales fluidas! Ha revolucionado la forma en que nos conectamos con los pacientes.”",
       username: "Martín Castro",
-      avatar: "/images/MartinLinkedin.jpg",
-      company: "CEO de HealthConnectHub",
+      avatar: "/images/martinLinkedin.jpeg",
+      company: "CEO of HealthConnectHub",
     },
     {
       content:
         "“VitalApp ha transformado la atención al paciente con su interfaz fácil de usar. ¡Es un punto de inflexión en el campo médico!”",
       username: "Adrián Acuña",
-      avatar: "/images/AdriAcuñaLinkedin.jpg",
-      company: "CEO de VirtualWellnessCare",
+      avatar: "/images/adriAcuñaLinkedin.jpeg",
+      company: "CEO of VirtualWellnessCare",
     },
     {
       content:
         "“VitalApp es un salvavidas para nuestra ajetreada práctica. Agiliza las citas y mejora la comunicación con los pacientes. ¡Muy recomendable!”",
       username: "Mariano Carnevale",
-      avatar: "/images/MarianoLinkedin.png",
-      company: "CEO de HealthLinkMD",
+      avatar: "/images/marianoLinkedin.webp",
+      company: "CEO of HealthLinkMD",
     },
     {
       content:
         "“VitalApp ha mejorado nuestra eficiencia y satisfacción del paciente. Es una herramienta imprescindible para cualquier proveedor de atención médica”",
       username: "Yogesh Samtani",
-      avatar: "/images/YagoLinkedin.jpg",
-      company: "CEO de MedConsultPro",
+      avatar: "/images/yagoLinkedIn.webp",
+      company: "CEO of MedConsultPro",
     },
     {
       content:
         "“El uso de VitalApp ha hecho que las consultas remotas sean muy sencillas. Nuestros pacientes la aprecian y a nuestro equipo le encanta la funcionalidad.”",
       username: "Adrián López",
-      avatar: "/images/AdriLopezLinkedin.jpg",
-      company: "CEO de CareConnectOnline",
+      avatar: "/images/adriLinkedin.webp",
+      company: "CEO of CareConnectOnline",
     },
   ];
 

@@ -134,7 +134,7 @@ const Header = () => {
                   </button>
                   <button
                     onClick={handleLogout}
-                    className="text-white font-semibold bg-primary p-2 rounded-md list-none shadow-md lg:hidden"
+                    className=" text-white font-semibold bg-primary p-2 rounded-md list-none shadow-md"
                     role="menuitem"
                   >
                     Cerrar sesión
@@ -188,7 +188,7 @@ const Header = () => {
       </nav>
       {isModalOpen && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div
               className="fixed inset-0 transition-opacity"
               aria-hidden="true"

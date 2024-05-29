@@ -1,5 +1,4 @@
 import { getPool } from '../../db/getPool.js';
-import { generateError } from '../../utils/errors/generateError.js';
 
 export const insertResponseModel = async (
   response_id,
@@ -8,7 +7,6 @@ export const insertResponseModel = async (
   content,
   role
 ) => {
-
   try {
     // Crear el pool de conexiones.
     const pool = await getPool();

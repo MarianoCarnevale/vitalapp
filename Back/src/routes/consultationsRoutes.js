@@ -32,7 +32,7 @@ consultationsRouter.post(
 
 //Conseguir todas las consultas
 consultationsRouter.get(
-  '/consultations',
+  '/consultations/',
   authUserController,
   consultationsController
 );
@@ -50,7 +50,20 @@ consultationsRouter.get(
   oneConsultationControler
 );
 
-// añadir archivo a la consulta
+//Conseguir consulta por usuario(medico)
+consultationsRouter.get(
+  '/consultations/doctor/:doctor_id',
+  authUserController,
+  consultationsController
+);
+
+//filtro de busqueda
+consultationsRouter.get(
+  '/consultations/search/consultation',
+  authUserController,
+  consultationsController
+);
+
 consultationsRouter.post(
   '/consultations/:consultation_id/file',
   authUserController,

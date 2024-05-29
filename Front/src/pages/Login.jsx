@@ -72,12 +72,13 @@ const Login = () => {
               <p className="text-red-500 font-bold">{errors.email.message}</p>
             )}
           </li>
+          {/* pass1 */}
           <li className="w-full list-none">
             <label
               htmlFor="password"
               className="font-semibold text-primary absolute bg-white mt-[-20px] ml-3 px-2 py-1"
             >
-              Contraseña
+              Password
             </label>
             <input
               type="password"
