@@ -17,6 +17,7 @@ import { Testimonials } from "../components/Testimonials.jsx";
 import { TramitingConsultations } from "../components/TramitingConsultations.jsx";
 
 const Home = () => {
+  const [isCreated, setIsCreated] = useState(false);
   const [consultations, setConsultations] = useState([]);
   const [results, setResults] = useState([]);
   const { token } = useContext(UserTokenContext);
@@ -57,6 +58,8 @@ const Home = () => {
           <TramitingConsultations
             consultations={consultations}
             results={results}
+            isCreated={isCreated}
+            setIsCreated={setIsCreated}
           />
         </div>
         <div>

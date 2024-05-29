@@ -96,20 +96,21 @@ export const ConsultationsResponses = (consultation) => {
                       >
                         {response.role === "doctor" ? "Doctor" : "Paciente"}:{" "}
                         {response.first_name}
-                        {response.role === "doctor" && (
-                          <>
-                            <button
-                              onClick={() => {
-                                handleClick(response.response_id);
-                              }}
-                            >
-                              <ThumbUpAltIcon
-                                className="mb-[0.1rem] ml-2 dark:fill-white hover:fill-secondary dark:hover:fill-yellow-400 cursor-pointer"
-                                color="primary"
-                              />
-                            </button>
-                          </>
-                        )}
+                        {response.role === "doctor" &&
+                          user.role === "patient" && (
+                            <>
+                              <button
+                                onClick={() => {
+                                  handleClick(response.response_id);
+                                }}
+                              >
+                                <ThumbUpAltIcon
+                                  className="mb-[0.1rem] ml-2 dark:fill-white hover:fill-secondary dark:hover:fill-yellow-400 cursor-pointer"
+                                  color="primary"
+                                />
+                              </button>
+                            </>
+                          )}
                       </p>
                     </div>
                     <hr className="border border-primary dark:border-white w-full my-2" />
