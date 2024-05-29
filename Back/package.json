@@ -20,7 +20,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
-    "initDb": "node ./src/db/initDb.js"
+    "initDb": "node ./src/db/initDb.js",
     "start": "node server.js"
   },
   "keywords": [],
