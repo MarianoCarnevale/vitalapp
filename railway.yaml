@@ -1,7 +1,7 @@
 services:
   app:
-    image: node:14
-    buildCommand: cd back && npm install && cd ../front && npm install && npm run build
+    image: node:20
+    buildCommand: cd back && npm install && cd ../front && npm install && npm run build && cp -r dist/* ../
     runCommand: cd back && npm start
     environment:
       - NODE_ENV=production
