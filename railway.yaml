@@ -1,8 +1,8 @@
 services:
   app:
     image: node:20
-    buildCommand: cd back && npm install && cd ../front && npm install && npm run build
-    runCommand: cd back && npm start
+    buildCommand: cd Back && npm install && cd ../Front && npm install && npm run build
+    runCommand: cd Back && npm start
     environment:
       - NODE_ENV=production
     port: 3000
