@@ -44,7 +44,7 @@ export const FindDoctor = () => {
             filterCaracter
               ? "bg-gradient-to-b from-primary to-cyan-700 dark:bg-sky-800 text-white  shadow-md hover:shadow-sm "
               : "bg-white dark:bg-slate-700 shadow-xl"
-          } flex-grow text-primary dark:text-white py-2 px-6  font-semibold rounded-full`}
+          } flex-grow text-primary dark:text-white py-2 px-6  font-semibold rounded-full duration-500`}
           onClick={() => {
             setFilterCaracter(true);
             setFilterDisciplines(false);
@@ -69,7 +69,7 @@ export const FindDoctor = () => {
       <div className="border flex gap-2 items-center dark:border-none p-4 bg-white dark:bg-sky-800 w-full   border-primary rounded-3xl">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="w-full dark:bg-sky-800 dark:text-white dark:placeholder:text-white  "
+          className="w-full dark:bg-sky-800 dark:text-white dark:placeholder:text-white focus-visible:outline-none focus-visible:border-none"
           type="text"
           placeholder={
             filterDisciplines

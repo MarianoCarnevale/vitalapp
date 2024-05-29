@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { useResponses } from "../hooks/useResponse.jsx";
-import StarIcon from "@mui/icons-material/Star";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import { RatingContext } from "../contexts/RatingContext.jsx";
 import { RatingModal } from "./RatingModal.jsx";
 import { UserTokenContext } from "../contexts/UserTokenContext.jsx";
@@ -65,7 +65,7 @@ export const ConsultationsResponses = (consultation) => {
           <input
             placeholder="Escribe tu respuesta"
             id="NewResponse"
-            className="border-2 border-primary  placeholder:dark:text-white dark:bg-sky-900 rounded-3xl p-4 w-full"
+            className="border-2 border-primary  placeholder:dark:text-white dark:text-white dark:bg-sky-900 rounded-3xl p-4 w-full"
             type="text"
             {...register("content")}
           />
@@ -103,8 +103,8 @@ export const ConsultationsResponses = (consultation) => {
                                 handleClick(response.response_id);
                               }}
                             >
-                              <StarIcon
-                                className="mb-[0.1rem] ml-2 dark:fill-white hover:fill-yellow-400 dark:hover:fill-yellow-400 cursor-pointer"
+                              <ThumbUpAltIcon
+                                className="mb-[0.1rem] ml-2 dark:fill-white hover:fill-secondary dark:hover:fill-yellow-400 cursor-pointer"
                                 color="primary"
                               />
                             </button>

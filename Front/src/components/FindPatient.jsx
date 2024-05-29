@@ -37,13 +37,13 @@ export const FindPatient = () => {
       <div className="flex border gap-2 items-center p-4 bg-white w-full  border-primary dark:border-none rounded-3xl dark:bg-sky-800">
         <img src="/images/search-icon.svg" alt="input icon" />
         <input
-          className="dark:bg-sky-800 w-full dark:placeholder:text-white"
+          className="dark:bg-sky-800 w-full placeholder:dark:text-white dark:text-white focus-visible:outline-none focus-visible:border-none"
           type="text"
           placeholder="Busca un paciente..."
           onChange={(e) => setName(e.target.value.toLowerCase())}
         />
       </div>
-      <ul className="w-full max-lg:h-full max-lg:max-h max-h-[17.5rem] flex flex-col gap-3 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
+      <ul className="w-full max-lg:h-full max-h-[17.5rem] flex flex-col gap-3 dark:bg-gradient-to-t dark:from-slate-900 dark:to-sky-800  bg-white p-5 border-white rounded-3xl h-full max-h overflow-auto hide-scrollbar shadow-lg">
         {patients
           .filter((patient) => patient.first_name.toLowerCase().includes(name))
           .sort((a, b) =>
