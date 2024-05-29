@@ -1,0 +1,8 @@
+services:
+  app:
+    image: node:20
+    buildCommand: npm install && npm run
+    runCommand: npx http-server ./dist
+    environment:
+      - NODE_ENV=production
+    port: 3001
