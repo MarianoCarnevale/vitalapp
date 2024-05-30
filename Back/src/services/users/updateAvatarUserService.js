@@ -28,7 +28,7 @@ export const updateAvatarUserService = async (id, img, width) => {
     const imgSharp = sharp(img.data);
 
     // Redimensionar la imagen.
-    imgSharp.resize(width);
+    imgSharp.resize(800, 800);
 
     // Nombre de la imagen como uuid.
     const imgName = `${crypto.randomUUID()}.jpg`;
